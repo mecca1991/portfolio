@@ -5,13 +5,15 @@ interface Props {
   title: string;
   intro: string;
   footer?: boolean;
+  /** smaller type and padding, used at the end of detail pages */
+  compact?: boolean;
 }
 
-const { title, intro, footer = false } = Astro.props;
+const { title, intro, footer = false, compact = false } = Astro.props;
 const year = new Date().getFullYear();
 ---
 
-<section id="contact" class="dark contact" aria-labelledby="contact-title">
+<section id="contact" class:list={['dark', 'contact', { compact }]} aria-labelledby="contact-title">
   <div class="container body">
     <div class="pitch">
       <h2 id="contact-title" class="display">{title}</h2>
@@ -109,6 +111,30 @@ const year = new Date().getFullYear();
     border-top: 1px solid var(--dark-line);
     font-size: 14px;
     color: var(--dark-muted);
+  }
+
+  .compact {
+    margin-top: clamp(2rem, 0.886rem + 4.571vw, 5.5rem);
+  }
+
+  .compact .body {
+    gap: 40px;
+    padding-block: clamp(2.5rem, 1.729rem + 3.048vw, 5rem);
+  }
+
+  .compact h2 {
+    font-size: clamp(1.75rem, 1.304rem + 1.829vw, 2.5rem);
+    line-height: 1.15;
+  }
+
+  .compact p {
+    margin-top: 18px;
+  }
+
+  .compact .email {
+    margin-top: clamp(0.875rem, 0.596rem + 1.143vw, 1.375rem);
+    padding-block: 5px;
+    font-size: clamp(1.375rem, 1.236rem + 0.571vw, 1.75rem);
   }
 
   @media (max-width: 47.99rem) {

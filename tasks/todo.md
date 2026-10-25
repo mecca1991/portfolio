@@ -132,13 +132,17 @@ Design source: https://claude.ai/artifact/1u5mcMR1p11RRbJGzR2qVF · Plan: `tasks
 **Description:** `/work/intrvuer/` from `Intrvuer.dc.html` and its phone artboard: header block with facts list, "On this page" nav (sticky sidebar on desktop, inline box on phones), five numbered sections, architecture flow figure, "Technical notes" disclosure, next-project link, contact. Extract a `CaseStudyLayout` that Task 7 reuses.
 
 **Acceptance criteria:**
-- [ ] "Technical notes" is a native `<details>` (works without JS)
-- [ ] "On this page" anchors land on the right section headings
-- [ ] Placeholder text from the canvas kept verbatim and listed by `check:placeholders`
+- [x] "Technical notes" is a native `<details>` (works without JS)
+- [x] "On this page" anchors land on the right section headings
+- [x] Placeholder text from the canvas kept verbatim and listed by `check:placeholders`
 
 **Verification:**
-- [ ] Build succeeds
-- [ ] Manual: 1440 / 390 comparison; keyboard-open the disclosure
+- [x] Build succeeds
+- [x] Manual: 1440 / 390 comparison; keyboard-open the disclosure
+
+> Note: phones use the shared two-row site header (the phone artboard had logo + Contact only) and the desktop copy. The sidebar index is sticky and highlights the section in the URL hash with `:has(:target)`, no JS. `npm run check:placeholders` lists 12 placeholders (3 on the homepage, 9 here) and exits 1.
+
+> Needs Wilfred: the Feedback report caption reads as a note to yourself ("Use the public sample report, which features a fictional candidate."). It's kept verbatim from the design; replace it when the real capture lands.
 
 **Dependencies:** Task 3
 

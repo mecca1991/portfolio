@@ -11,6 +11,7 @@
     "build": "astro build",
     "preview": "astro preview",
     "check": "astro check",
+    "check:placeholders": "node scripts/check-placeholders.mjs",
     "cv:upload": "aws s3 cp Wilfred_Chetat_CV.pdf s3://wilfredchetat-public/Wilfred_Chetat_CV.pdf --profile personal --region us-east-1 --content-type application/pdf --content-disposition inline --cache-control 'public, max-age=300'",
     "astro": "astro"
   },
