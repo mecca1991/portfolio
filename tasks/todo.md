@@ -200,9 +200,13 @@ Design source: https://claude.ai/artifact/1u5mcMR1p11RRbJGzR2qVF · Plan: `tasks
 ---
 
 ### ✅ Checkpoint: Pages
-- [ ] All routes match the artboards at 1440 and 390
-- [ ] Every link resolves (`npx linkinator dist --recurse` or equivalent)
+- [x] All routes match the artboards at 1440 and 390
+- [x] Every link resolves (`npx linkinator dist --recurse` or equivalent)
 - [ ] Review on the Amplify URL with you
+
+> Preview: https://phase-2-pages.dshdhrt6lgmzs.amplifyapp.com (Amplify branch `phase-2-pages`, auto-builds on push; `main` and www.wilfredchetat.com are untouched). Checked 2026-10-25: 5 pages, 0 broken internal links or anchors, 10 external URLs return 200 (LinkedIn gives its usual 999 to scripts); every route at 1440 and 390 has no horizontal scroll, no broken images, fonts loaded, one h1, no console errors; preview serves the 404 page with a 404 status and the same security and cache headers as production.
+
+> Needs Wilfred: review the preview, then approve the checkpoint in chat. After approval, `phase-2-pages` merges into `main`, which deploys to www.wilfredchetat.com.
 
 ---
 
