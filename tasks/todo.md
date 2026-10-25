@@ -270,13 +270,17 @@ Design source: https://claude.ai/artifact/1u5mcMR1p11RRbJGzR2qVF · Plan: `tasks
 **Description:** Audit every route and fix what turns up: contrast, heading order, focus order, touch targets ≥ 44 px, reduced motion, image sizes, font preloads.
 
 **Acceptance criteria:**
-- [ ] Lighthouse mobile ≥ 95 for Performance, Accessibility, Best Practices, SEO on all routes
-- [ ] Zero axe violations
-- [ ] Total JS shipped on the homepage = 0 KB
+- [x] Lighthouse mobile ≥ 95 for Performance, Accessibility, Best Practices, SEO on all routes
+- [x] Zero axe violations
+- [x] Total JS shipped on the homepage = 0 KB
 
 **Verification:**
-- [ ] Lighthouse reports saved in `tasks/reports/`
-- [ ] Manual: full keyboard pass, VoiceOver spot check on the homepage
+- [x] Lighthouse reports saved in `tasks/reports/`
+- [x] Manual: full keyboard pass and accessibility-tree check (VoiceOver spot check moved to Task 12, see note)
+
+> Note: scores and axe results are in `tasks/reports/README.md`. Changes: CSS inlined (no render-blocking requests), the two Latin fonts preloaded, more capture widths with accurate `sizes`, and code panels made keyboard-focusable (the one axe violation). Every page has one h1, no skipped heading levels, header/nav/main landmarks, `lang="en"`, and a visible focus ring on every interactive element. Reduced motion is handled globally in `global.css`. Lighthouse still notes a 26 KiB image-delivery estimate for the feedback capture; it's the correct srcset choice for a 1.75× phone, so it stays.
+
+> Needs Wilfred: a VoiceOver spot check on the homepage (⌘F5 on a Mac). I can't run a screen reader from here, so it's on the Task 12 launch checklist.
 
 **Dependencies:** Task 9
 
@@ -315,6 +319,7 @@ Design source: https://claude.ai/artifact/1u5mcMR1p11RRbJGzR2qVF · Plan: `tasks
 - [x] Custom domain on HTTPS; apex 301-redirects to `www` (done early)
 - [ ] `v1.0.0` tag on `main`
 - [ ] OG card renders in a card validator (e.g. LinkedIn Post Inspector) for www.wilfredchetat.com
+- [ ] VoiceOver spot check on the homepage (Wilfred)
 
 **Verification:**
 - [ ] Manual: smoke-test every route on the production URL, phone and desktop
