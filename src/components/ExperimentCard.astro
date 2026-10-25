@@ -1,0 +1,145 @@
+---
+/*
+ * Smaller sans-serif title on a white card, so experiments read as secondary to selected work.
+ * With a figure, phones place it after the description: label, title, text, figure, tags, links.
+ */
+import Label from './Label.astro';
+import Tags from './Tags.astro';
+
+interface Props {
+  id: string;
+  label: string;
+  title: string;
+  description: string;
+  tags?: readonly string[];
+  wide?: boolean;
+}
+
+const { id, label, title, description, tags, wide = false } = Astro.props;
+const hasFigure = Astro.slots.has('figure');
+---
+
+<article class:list={['card', { wide, 'with-figure': hasFigure }]} aria-labelledby={id}>
+  <div class="text">
+    <Label>{label}</Label>
+    <h3 id={id}>{title}</h3>
+    <p class="description">{description}</p>
+    {tags && <div class="tags"><Tags items={tags} /></div>}
+    {Astro.slots.has('links') && <div class="links"><slot name="links" /></div>}
+  </div>
+  {
+    hasFigure && (
+      <figure>
+        <slot name="figure" />
+      </figure>
+    )
+  }
+</article>
+
+<style>
+  .card {
+    flex: 1 1 300px;
+    min-width: 0;
+    padding: 28px;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: var(--white);
+  }
+
+  .wide {
+    flex: 2 1 600px;
+  }
+
+  .with-figure {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 28px;
+  }
+
+  .with-figure .text {
+    flex: 1 1 260px;
+    min-width: 0;
+  }
+
+  h3 {
+    margin-top: 16px;
+    font-size: clamp(1.1875rem, 1.095rem + 0.381vw, 1.5rem);
+    font-weight: 500;
+    line-height: 1.3;
+  }
+
+  .description {
+    margin-top: 10px;
+    font-size: clamp(0.9375rem, 0.914rem + 0.095vw, 1rem);
+    line-height: 1.55;
+  }
+
+  .tags {
+    margin-top: 16px;
+  }
+
+  .links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0 24px;
+    margin-top: 10px;
+    font-size: 16px;
+  }
+
+  .links :global(a) {
+    padding: 10px 0;
+  }
+
+  figure {
+    flex: 1.3 1 320px;
+    min-width: 0;
+  }
+
+  figure :global(figcaption) {
+    margin-top: 10px;
+    font-size: 14px;
+    color: var(--muted);
+  }
+
+  @media (max-width: 47.99rem) {
+    .card {
+      padding: 20px;
+    }
+
+    .with-figure {
+      flex-direction: column;
+      flex-wrap: nowrap;
+      gap: 0;
+    }
+
+    .with-figure .text {
+      display: contents;
+    }
+
+    h3 {
+      margin-top: 12px;
+    }
+
+    .description {
+      margin-top: 8px;
+    }
+
+    /* in a column the desktop flex-basis would become a height */
+    figure {
+      flex: none;
+      order: 1;
+      margin-top: 12px;
+    }
+
+    .tags {
+      order: 2;
+      margin-top: 12px;
+    }
+
+    .links {
+      order: 3;
+      margin-top: 4px;
+      font-size: 15px;
+    }
+  }
+</style>

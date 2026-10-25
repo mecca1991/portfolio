@@ -1,0 +1,161 @@
+---
+import ExperimentCard from './ExperimentCard.astro';
+
+const input = `{
+  "name": "Ada",
+  "tags": ["rust", "json"],
+  "active": true
+}`;
+
+const parsed = `Object
+├ name: String "Ada"
+├ tags: Array
+│  ├ String "rust"
+│  └ String "json"
+└ active: Bool true`;
+---
+
+<section id="experiments" class="experiments" aria-labelledby="exp-title">
+  <div class="container">
+    <div class="intro">
+      <h2 id="exp-title" class="display">Engineering experiments</h2>
+      <p>Smaller builds for learning and testing ideas.</p>
+    </div>
+    <div class="cards">
+      <ExperimentCard
+        id="rust-title"
+        wide
+        label="Personal project · Rust cohort"
+        title="Rust JSON Parser"
+        description="A custom tokenizer and parser supporting nested arrays and objects, typed JSON values, structured errors and formatting, developed with cohort feedback."
+        tags={['Rust', 'Parsing', 'Testing']}
+      >
+        <Fragment slot="links">
+          <a class="source" href="https://github.com/mecca1991/rust-cohort/tree/main/rust-json-parser"
+            >View source <span aria-hidden="true">↗</span></a
+          >
+          <a class="link-ink" href="/experiments/rust-json-parser/">How it works</a>
+        </Fragment>
+        <Fragment slot="figure">
+          <div class="panels">
+            <div class="panel dark-panel">
+              <span>Input</span>
+              <pre><code>{input}</code></pre>
+            </div>
+            <div class="panel light-panel">
+              <span>Parsed structure</span>
+              <pre><code>{parsed}</code></pre>
+            </div>
+          </div>
+          <figcaption>Illustrative output. Type names simplified.</figcaption>
+        </Fragment>
+      </ExperimentCard>
+
+      <ExperimentCard
+        id="vs-title"
+        label="Proof of concept"
+        title="Natural-language search over video detections"
+        description="Find a detection by describing clothing or belongings, using generated descriptions, text embeddings and Qdrant retrieval. I built the backend and search interface. Separate from production work."
+      />
+    </div>
+  </div>
+</section>
+
+<style>
+  .experiments {
+    border-block: 1px solid var(--line);
+    background: var(--surface);
+  }
+
+  .experiments > .container {
+    padding-block: clamp(2.5rem, 1.386rem + 4.571vw, 5.5rem);
+  }
+
+  .intro {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 6px 12px;
+    margin-bottom: clamp(1.25rem, 0.786rem + 1.905vw, 2.5rem);
+  }
+
+  h2 {
+    font-size: clamp(1.75rem, 1.564rem + 0.762vw, 2.25rem);
+    line-height: 1.15;
+  }
+
+  .intro p {
+    font-size: clamp(0.9375rem, 0.914rem + 0.095vw, 1rem);
+    color: var(--muted);
+  }
+
+  .cards {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: clamp(1rem, 0.814rem + 0.762vw, 1.5rem);
+  }
+
+  .source {
+    font-weight: 600;
+  }
+
+  .panels {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  /* stacks inside the card's figure column; side by side only when there's room for the JSON */
+  .panel {
+    flex: 1 1 240px;
+    min-width: 0;
+    padding: 14px 16px;
+    border-radius: var(--radius-sm);
+  }
+
+  .panel span {
+    display: block;
+    margin-bottom: 6px;
+    font-size: 12px;
+  }
+
+  .dark-panel {
+    background: var(--ink);
+    color: var(--canvas);
+  }
+
+  .dark-panel span {
+    color: var(--dark-muted);
+  }
+
+  .light-panel {
+    border: 1px solid var(--line);
+    background: var(--canvas);
+  }
+
+  .light-panel span {
+    color: var(--muted);
+  }
+
+  /* long lines scroll inside the panel instead of widening the page */
+  pre {
+    margin: 0;
+    overflow-x: auto;
+    font-family: var(--font-mono);
+    font-size: 13px;
+    line-height: 1.6;
+  }
+
+  @media (max-width: 47.99rem) {
+    .panel {
+      padding: 10px 12px;
+    }
+
+    pre {
+      font-size: 12px;
+      line-height: 1.5;
+    }
+  }
+</style>

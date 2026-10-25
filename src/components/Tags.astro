@@ -1,0 +1,39 @@
+---
+interface Props {
+  items: readonly string[];
+}
+
+const { items } = Astro.props;
+---
+
+<ul class="tags" aria-label="Tags">
+  {items.map((t) => <li>{t}</li>)}
+</ul>
+
+<style>
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    font-size: 14px;
+  }
+
+  li {
+    padding: 3px 9px;
+    border-radius: var(--radius-sm);
+    background: var(--surface);
+  }
+
+  @media (max-width: 47.99rem) {
+    .tags {
+      font-size: 13px;
+    }
+
+    li {
+      padding: 2px 8px;
+    }
+  }
+</style>

@@ -3,7 +3,11 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Header from '../components/Header.astro';
 import Hero from '../components/Hero.astro';
 import SelectedWork from '../components/SelectedWork.astro';
+import Experiments from '../components/Experiments.astro';
+import WritingList from '../components/WritingList.astro';
+import About from '../components/About.astro';
 import ContactSection from '../components/ContactSection.astro';
+import { site } from '../data/site';
 ---
 
 <BaseLayout
@@ -16,26 +20,21 @@ import ContactSection from '../components/ContactSection.astro';
 
     <section class="glance" aria-label="At a glance">
       <dl class="container">
-        <div>
-          <dt>Currently</dt>
-          <dd>Senior Backend Engineer, UXE Security Solutions, since Sep 2024</dd>
-        </div>
-        <div>
-          <dt>Experience</dt>
-          <dd>6+ years across payments, data systems, video analytics and AI</dd>
-        </div>
-        <div>
-          <dt>Works on</dt>
-          <dd>Employed roles and freelance client projects</dd>
-        </div>
-        <div>
-          <dt>Languages</dt>
-          <dd>English, French</dd>
-        </div>
+        {
+          site.glance.map((g) => (
+            <div>
+              <dt>{g.term}</dt>
+              <dd>{g.detail}</dd>
+            </div>
+          ))
+        }
       </dl>
     </section>
 
     <SelectedWork />
+    <Experiments />
+    <WritingList />
+    <About />
 
     <ContactSection
       title="Tell me what you’re building."
@@ -69,7 +68,7 @@ import ContactSection from '../components/ContactSection.astro';
     margin-top: 4px;
   }
 
-  /* the phone design leaves this strip out */
+  /* phones show these facts inside About instead */
   @media (max-width: 47.99rem) {
     .glance {
       display: none;

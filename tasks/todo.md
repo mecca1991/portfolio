@@ -109,13 +109,15 @@ Design source: https://claude.ai/artifact/1u5mcMR1p11RRbJGzR2qVF · Plan: `tasks
 **Description:** The tinted experiments band (Rust parser card with input/output panels, video-search proof of concept), the writing list, and the About section with the "what I work with" table and experience timeline.
 
 **Acceptance criteria:**
-- [ ] Experience and stack read from `src/data/site.ts`, not hard-coded in markup
-- [ ] "How it works" links to `/experiments/rust-json-parser/`; code panels scroll horizontally on phones instead of overflowing
-- [ ] `#experiments` and `#about` header anchors land on their sections
+- [x] Experience and stack read from `src/data/site.ts`, not hard-coded in markup
+- [x] "How it works" links to `/experiments/rust-json-parser/`; code panels scroll horizontally on phones instead of overflowing
+- [x] `#experiments` and `#about` header anchors land on their sections
+
+> Note: the Rust card's code panels stack inside the figure. Side by side, the JSON lines don't fit at 1440 (the artboard lets them spill past the panel). Phones get the at-a-glance facts inside About, as in the phone artboard, from the same `site.glance` data. The parser page link arrives in Task 8.
 
 **Verification:**
-- [ ] Build succeeds
-- [ ] Manual: 1440 / 390 comparison; no horizontal page scroll at 390 px
+- [x] Build succeeds
+- [x] Manual: 1440 / 390 comparison; no horizontal page scroll at 390 px
 
 **Dependencies:** Task 3
 
