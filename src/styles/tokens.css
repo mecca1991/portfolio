@@ -1,0 +1,51 @@
+/*
+ * Design tokens from the "Reusable components" artboard.
+ * Fluid sizes interpolate between the phone (390px) and desktop (1440px) artboards.
+ */
+:root {
+  /* colour */
+  --canvas: #f7f5f0;
+  --ink: #192522;
+  --muted: #53645e; /* 5.7:1 on canvas */
+  --accent: #155e52; /* 7:1 on canvas */
+  --accent-hover: #0e4239;
+  --accent-pressed: #0a332c;
+  --surface: #eef3ef;
+  --line: #ccd6cf;
+  --attention: #8a3b12; /* always paired with a word */
+  --white: #ffffff;
+
+  /* dark band (contact, footer, code input) */
+  --dark-text-soft: #d9e2dc;
+  --dark-muted: #b9c6bf;
+  --dark-line: #2e3c38;
+
+  /* error notice */
+  --error-bg: #fbf3ee;
+  --error-line: #e3c7b5;
+  --error-text: #6b2e0e;
+
+  /* type */
+  --font-display: 'Newsreader Variable', Georgia, serif;
+  --font-body: 'IBM Plex Sans Variable', system-ui, sans-serif;
+  --font-mono: ui-monospace, 'SFMono-Regular', Menlo, monospace;
+
+  --text-h1: clamp(2.25rem, 1.6rem + 2.667vw, 4rem); /* 36 → 64 */
+  --text-h2: clamp(1.875rem, 1.55rem + 1.333vw, 2.75rem); /* 30 → 44 */
+  --text-body: clamp(1.0625rem, 1.039rem + 0.095vw, 1.125rem); /* 17 → 18 */
+  --text-caption: clamp(0.875rem, 0.852rem + 0.095vw, 0.9375rem); /* 14 → 15 */
+  --text-small: 0.8125rem; /* 13: labels */
+
+  /* shape */
+  --radius-sm: 4px;
+  --radius: 6px;
+  --radius-pill: 999px;
+
+  /* layout */
+  --content-max: 1200px;
+  --gutter: clamp(1.25rem, 0.971rem + 1.143vw, 2rem); /* 20 → 32 */
+  --tap: 44px;
+
+  /* motion: colour fades only, removed under reduced motion */
+  --fade: 180ms ease;
+}

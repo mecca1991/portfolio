@@ -1,0 +1,24 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Page not found · Wilfred Chetat" description="This page doesn’t exist.">
+  <main id="main" class="container not-found">
+    <h1 class="display">Page not found</h1>
+    <p><a href="/">Back to the homepage</a></p>
+  </main>
+</BaseLayout>
+
+<style>
+  .not-found {
+    padding-block: 96px;
+  }
+
+  h1 {
+    font-size: var(--text-h2);
+  }
+
+  p {
+    margin-top: 20px;
+  }
+</style>
