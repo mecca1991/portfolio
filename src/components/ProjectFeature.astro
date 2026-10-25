@@ -1,0 +1,178 @@
+---
+/*
+ * Large selected-work row: text beside an evidence figure.
+ * Phones follow the card order: label, title, one-liner, contribution, visual, actions.
+ */
+import Label from './Label.astro';
+
+interface Props {
+  id: string;
+  label: string;
+  detail?: string;
+  title: string;
+  oneLiner: string;
+  description: string;
+  roleLabel: string;
+  role: string;
+  /** figure on the left on wide screens */
+  reverse?: boolean;
+  /** larger title for the lead project */
+  primary?: boolean;
+}
+
+const { id, label, detail, title, oneLiner, description, roleLabel, role, reverse = false, primary = false } =
+  Astro.props;
+---
+
+<article class:list={['feature', { reverse, primary }]} aria-labelledby={id}>
+  <div class="text">
+    <div class="meta">
+      <Label>{label}</Label>
+      {detail && <span class="detail">{detail}</span>}
+    </div>
+    <h3 id={id} class="display">{title}</h3>
+    <p class="one-liner">{oneLiner}</p>
+    <p class="description">{description}</p>
+    <p class="role"><span>{roleLabel}: </span>{role}</p>
+    <div class="actions"><slot name="actions" /></div>
+  </div>
+  <figure class="visual"><slot name="figure" /></figure>
+</article>
+
+<style>
+  .feature {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 56px;
+    padding-block: 80px;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .feature:first-of-type {
+    padding-top: 0;
+  }
+
+  /* row-reverse keeps the text first in the DOM; flex-end left-aligns it once wrapped */
+  .reverse {
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+  }
+
+  .text {
+    flex: 1 1 380px;
+    min-width: 0;
+    max-width: 470px;
+  }
+
+  .meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .detail {
+    font-size: clamp(0.8125rem, 0.789rem + 0.095vw, 0.875rem);
+    color: var(--muted);
+  }
+
+  h3 {
+    margin-top: 18px;
+    font-size: clamp(2rem, 1.629rem + 1.524vw, 3rem);
+    line-height: 1.05;
+  }
+
+  .primary h3 {
+    font-size: clamp(2.125rem, 1.707rem + 1.714vw, 3.25rem);
+  }
+
+  .one-liner {
+    margin-top: 10px;
+    font-family: var(--font-display);
+    font-size: clamp(1.1875rem, 1.095rem + 0.381vw, 1.4375rem);
+    line-height: 1.35;
+  }
+
+  .description {
+    margin-top: 20px;
+  }
+
+  .role {
+    margin-top: 16px;
+    font-size: clamp(0.9375rem, 0.914rem + 0.095vw, 1rem);
+  }
+
+  .role span {
+    color: var(--muted);
+  }
+
+  .actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 12px 24px;
+    margin-top: 28px;
+  }
+
+  .visual {
+    flex: 1.5 1 520px;
+    min-width: 0;
+  }
+
+  .visual :global(figcaption) {
+    margin-top: 12px;
+    font-size: 15px;
+    line-height: 1.5;
+    color: var(--muted);
+  }
+
+  @media (max-width: 47.99rem) {
+    .feature,
+    .reverse {
+      flex-direction: column;
+      flex-wrap: nowrap;
+      align-items: stretch;
+      gap: 0;
+      padding-block: 40px;
+    }
+
+    .text {
+      display: contents;
+    }
+
+    h3 {
+      margin-top: 14px;
+    }
+
+    .one-liner {
+      margin-top: 8px;
+    }
+
+    .description {
+      margin-top: 12px;
+      font-size: 16px;
+    }
+
+    .role {
+      margin-top: 12px;
+    }
+
+    /* in a column the desktop flex-basis would become a height */
+    .visual {
+      flex: none;
+      order: 1;
+      margin-top: 18px;
+    }
+
+    .visual :global(figcaption) {
+      font-size: 14px;
+    }
+
+    .actions {
+      order: 2;
+      gap: 4px 20px;
+      margin-top: 14px;
+    }
+  }
+</style>

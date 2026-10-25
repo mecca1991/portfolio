@@ -1,0 +1,50 @@
+---
+/*
+ * Solid outline: how I was involved. Dashed outline: not real or not built.
+ * `plain` drops the caps for in-frame badges like "Illustrative reconstruction".
+ */
+interface Props {
+  dashed?: boolean;
+  plain?: boolean;
+}
+
+const { dashed = false, plain = false } = Astro.props;
+---
+
+<span class:list={['label', { dashed, plain }]}><slot /></span>
+
+<style>
+  .label {
+    display: inline-block;
+    padding: 5px 12px;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-pill);
+    background: var(--white);
+    font-size: var(--text-small);
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--ink);
+  }
+
+  .dashed {
+    border: 1px dashed var(--muted);
+  }
+
+  .plain {
+    padding: 3px 10px;
+    letter-spacing: 0;
+    text-transform: none;
+  }
+
+  @media (max-width: 47.99rem) {
+    .label {
+      padding: 4px 10px;
+      font-size: 12px;
+    }
+
+    .plain {
+      padding: 2px 8px;
+    }
+  }
+</style>

@@ -11,16 +11,19 @@
     "build": "astro build",
     "preview": "astro preview",
     "check": "astro check",
+    "check:placeholders": "node scripts/check-placeholders.mjs",
     "cv:upload": "aws s3 cp Wilfred_Chetat_CV.pdf s3://wilfredchetat-public/Wilfred_Chetat_CV.pdf --profile personal --region us-east-1 --content-type application/pdf --content-disposition inline --cache-control 'public, max-age=300'",
     "astro": "astro"
   },
   "dependencies": {
+    "@astrojs/sitemap": "^3.7.4",
     "@fontsource-variable/ibm-plex-sans": "^5.3.0",
     "@fontsource-variable/newsreader": "^5.3.0",
     "astro": "^7.4.2"
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.12",
+    "axe-core": "^4.14.0",
     "typescript": "^6.0.3"
   }
 }

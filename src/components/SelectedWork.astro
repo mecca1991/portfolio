@@ -1,0 +1,236 @@
+---
+import ProjectFeature from './ProjectFeature.astro';
+import ProjectCard from './ProjectCard.astro';
+import Capture from './Capture.astro';
+import feedbackAnswer from '../assets/captures/intrvuer/feedback-answer.png';
+import UiReconstruction from './UiReconstruction.astro';
+import ReconTable from './ReconTable.astro';
+---
+
+<section id="work" class="work" aria-labelledby="work-title">
+  <div class="container">
+    <div class="intro">
+      <h2 id="work-title" class="display">Selected work</h2>
+      <p>Each project is labelled with how I was involved.</p>
+    </div>
+
+    <ProjectFeature
+      id="p1-title"
+      primary
+      label="Personal product"
+      detail="Live"
+      title="Intrvuer"
+      oneLiner="A voice interview coach that ties practice to the role you’re preparing for."
+      description="Candidates add a résumé and target job, answer questions out loud, and get feedback on each answer."
+      roleLabel="My contribution"
+      role="design, Next.js interface, FastAPI backend, speech and LLM integrations, deployment."
+    >
+      <Fragment slot="actions">
+        <a class="btn btn-primary btn-sm" href="/work/intrvuer/">Read the case study</a>
+        <a class="link-ink" href="https://intrvuer.com/">Visit intrvuer.com <span aria-hidden="true">↗</span></a>
+      </Fragment>
+      <Fragment slot="figure">
+        <Capture
+          src={feedbackAnswer}
+          alt="Feedback on one answer in the Intrvuer sample report: the question, the candidate's response, STAR scores, written feedback and a suggested improvement."
+          sizes="(max-width: 47.99rem) calc(100vw - 40px), 440px"
+          maxWidth={440}
+        />
+        <figcaption class="capture-caption">
+          Each spoken answer gets its own feedback. The public sample report uses a fictional candidate.
+        </figcaption>
+      </Fragment>
+    </ProjectFeature>
+
+    <ProjectFeature
+      id="p2-title"
+      reverse
+      label="Freelance client project"
+      detail="Upwork"
+      title="Sysconnector"
+      oneLiner="Facebook Lead Ads to Adobe Campaign, from webhook to sync status."
+      description="I built the lead integration end to end: webhook processing, field mapping, sync status and connection validation, plus audience-management APIs and the React screens around them."
+      roleLabel="My role"
+      role="Freelance Full-Stack Engineer · Upwork"
+    >
+      <Fragment slot="actions">
+        <a class="btn btn-primary btn-sm" href="/work/sysconnector/">Read the case study</a>
+      </Fragment>
+      <Fragment slot="figure">
+        <UiReconstruction title="Field mapping · Facebook Lead Ads → Adobe Campaign">
+          <ReconTable
+            columns={['Lead form field', 'Campaign field', 'Status']}
+            rows={[
+              ['full_name', '[Campaign field]', { text: 'Mapped', tone: 'ok' }],
+              ['email', '[Campaign field]', { text: 'Mapped', tone: 'ok' }],
+              ['phone_number', { text: 'Not mapped', tone: 'muted' }, { text: 'Needs a field', tone: 'fail' }],
+            ]}
+          />
+          <p class="recon-note">Leads sync once required fields are mapped.</p>
+        </UiReconstruction>
+        <figcaption>
+          Illustrative reconstruction of the mapping step. Field names and labels are examples, not captured data.
+        </figcaption>
+      </Fragment>
+    </ProjectFeature>
+
+    <div class="cards">
+      <ProjectCard
+        id="p3-title"
+        label="Professional work"
+        detail="Alphathesis · 2023–2024"
+        title="Lease Insurance"
+        oneLiner="Data ingestion for lease-insurance operations."
+        description="Source files had inconsistent periods, repeated transactions and running totals that couldn’t be trusted. I worked on ingestion rules, the relational model, APIs, duplicate prevention and client-scoped access."
+      >
+        <Fragment slot="figure">
+          <dl class="ledger">
+            <div><dt>Opening balance</dt><dd>1,200.00</dd></div>
+            <div><dt>Accepted transactions</dt><dd>+ 230.00</dd></div>
+            <div class="status-muted"><dt>Repeated ext-7781</dt><dd>skipped</dd></div>
+            <div class="total"><dt>Derived period balance</dt><dd>1,430.00</dd></div>
+          </dl>
+          <figcaption>Fictional example: balances come from accepted transactions, not insertion order.</figcaption>
+        </Fragment>
+      </ProjectCard>
+
+      <ProjectCard
+        id="p4-title"
+        label="Engineering contribution"
+        detail="Public platform"
+        title="EduClick"
+        oneLiner="Opportunity ingestion for African talent."
+        description="I worked on the opportunity-ingestion backend, turning source listings into consistent records through per-record validation and replay-safe upserts, with an outcome for every record: created, updated or rejected."
+      >
+        <Fragment slot="figure">
+          <ul class="batch">
+            <li><span>Scholarship · src-104</span><span class="status-ok">Created</span></li>
+            <li><span>Internship · src-221</span><span class="status-fail">Rejected · no deadline</span></li>
+            <li><span>Scholarship · src-104 again</span><span class="outcome">Updated · no duplicate</span></li>
+          </ul>
+          <figcaption>Illustrative batch with fictional data. Labels follow the implementation.</figcaption>
+        </Fragment>
+        <a slot="actions" class="link-ink" href="https://www.educlick.africa/opportunities"
+          >Browse EduClick opportunities <span aria-hidden="true">↗</span></a
+        >
+      </ProjectCard>
+    </div>
+  </div>
+</section>
+
+<style>
+  .work > .container {
+    padding-block: clamp(2.5rem, 1.2rem + 5.333vw, 6rem) clamp(0.5rem, 0.129rem + 1.524vw, 1.5rem);
+  }
+
+  .intro {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 6px 12px;
+    margin-bottom: clamp(1.75rem, 1.286rem + 1.905vw, 3rem);
+  }
+
+  h2 {
+    font-size: var(--text-h2);
+  }
+
+  .intro p {
+    font-size: clamp(0.9375rem, 0.914rem + 0.095vw, 1rem);
+    color: var(--muted);
+  }
+
+  .capture-caption {
+    max-width: 440px;
+  }
+
+  .recon-note {
+    padding: 12px 20px 14px;
+    border-top: 1px solid var(--line);
+    font-size: 14px;
+    color: var(--muted);
+  }
+
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(420px, 100%), 1fr));
+    gap: 32px;
+    padding-block: 80px 24px;
+  }
+
+  .ledger {
+    padding: 16px 20px;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: var(--surface);
+    font-size: 15px;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .ledger div {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 7px 0;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .ledger .total {
+    padding-bottom: 0;
+    border-bottom: 0;
+    font-weight: 600;
+  }
+
+  .batch {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: var(--white);
+    font-size: 15px;
+    line-height: 1.4;
+  }
+
+  .batch li {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 8px 12px;
+    padding: 10px 18px;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .batch li:last-child {
+    border-bottom: 0;
+  }
+
+  .outcome {
+    font-weight: 500;
+  }
+
+  @media (max-width: 47.99rem) {
+    .work {
+      border-top: 1px solid var(--line);
+    }
+
+    .recon-note {
+      padding: 10px 14px 12px;
+    }
+
+    .cards {
+      gap: 0;
+      padding: 0;
+    }
+
+    .ledger,
+    .batch {
+      font-size: 14px;
+    }
+
+    .ledger {
+      padding: 12px 16px;
+    }
+  }
+</style>

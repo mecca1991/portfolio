@@ -1,0 +1,101 @@
+---
+/* Smaller selected-work entry for the two-column grid. */
+import Label from './Label.astro';
+
+interface Props {
+  id: string;
+  label: string;
+  detail?: string;
+  title: string;
+  oneLiner: string;
+  description: string;
+}
+
+const { id, label, detail, title, oneLiner, description } = Astro.props;
+---
+
+<article class="card" aria-labelledby={id}>
+  <div class="meta">
+    <Label>{label}</Label>
+    {detail && <span class="detail">{detail}</span>}
+  </div>
+  <div>
+    <h3 id={id} class="display">{title}</h3>
+    <p class="one-liner">{oneLiner}</p>
+    <p class="description">{description}</p>
+  </div>
+  {
+    Astro.slots.has('figure') && (
+      <figure>
+        <slot name="figure" />
+      </figure>
+    )
+  }
+  <slot name="actions" />
+</article>
+
+<style>
+  .card {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding-top: 24px;
+    border-top: 2px solid var(--ink);
+  }
+
+  .card > :global(a) {
+    align-self: flex-start;
+  }
+
+  .meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .detail {
+    font-size: clamp(0.8125rem, 0.789rem + 0.095vw, 0.875rem);
+    color: var(--muted);
+  }
+
+  h3 {
+    font-size: clamp(1.75rem, 1.564rem + 0.762vw, 2.25rem);
+  }
+
+  .one-liner {
+    margin-top: 6px;
+    font-family: var(--font-display);
+    font-size: clamp(1.125rem, 1.079rem + 0.19vw, 1.25rem);
+    line-height: 1.35;
+  }
+
+  .description {
+    margin-top: 14px;
+    font-size: clamp(1rem, 0.977rem + 0.095vw, 1.0625rem);
+  }
+
+  figure :global(figcaption) {
+    margin-top: 10px;
+    font-size: 14px;
+    color: var(--muted);
+  }
+
+  /* phone: entries separated by hairlines, like the feature rows above */
+  @media (max-width: 47.99rem) {
+    .card {
+      gap: 16px;
+      padding-block: 40px;
+      border-top: 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .card:last-child {
+      border-bottom: 0;
+    }
+
+    .description {
+      margin-top: 10px;
+    }
+  }
+</style>

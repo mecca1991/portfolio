@@ -1,0 +1,71 @@
+---
+interface Props {
+  title: string;
+  decision: string;
+  tradeoff: string;
+}
+
+const { title, decision, tradeoff } = Astro.props;
+---
+
+<div class="decision">
+  <h3>{title}</h3>
+  <dl>
+    <div><dt>Decision</dt><dd>{decision}</dd></div>
+    <div><dt>Tradeoff</dt><dd>{tradeoff}</dd></div>
+  </dl>
+</div>
+
+<style>
+  .decision {
+    margin-top: 28px;
+    border-top: 1px solid var(--ink);
+  }
+
+  h3 {
+    margin: 18px 0 12px;
+    font-size: clamp(1.0625rem, 1rem + 0.286vw, 1.25rem);
+    font-weight: 500;
+  }
+
+  dl {
+    font-size: 16px;
+  }
+
+  dl div {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px 20px;
+    padding-block: 10px;
+    border-bottom: 1px solid var(--line);
+  }
+
+  dt {
+    flex: 0 0 110px;
+    font-weight: 500;
+    color: var(--muted);
+  }
+
+  dd {
+    flex: 1 1 360px;
+  }
+
+  @media (max-width: 47.99rem) {
+    .decision {
+      margin-top: 16px;
+    }
+
+    h3 {
+      margin: 12px 0 6px;
+    }
+
+    dl {
+      font-size: 15px;
+    }
+
+    dt,
+    dd {
+      flex-basis: 100%;
+    }
+  }
+</style>

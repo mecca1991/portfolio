@@ -1,0 +1,316 @@
+---
+/*
+ * The only client JS on the site. Without JS it shows the starting example as a static,
+ * read-only preview: controls stay disabled until the script enables them.
+ */
+import Label from './Label.astro';
+import { SAMPLES, LABELS, parseToRows, type SampleId } from '../scripts/json-tree';
+
+const initial: SampleId = 'nested';
+const ids = Object.keys(SAMPLES) as SampleId[];
+const { rows } = parseToRows(SAMPLES[initial], true);
+---
+
+<section class="container playground" aria-labelledby="rp-play" data-playground>
+  <div class="box">
+    <div class="head">
+      <h2 id="rp-play" class="display">Playground</h2>
+      <Label dashed>Proposed feature</Label>
+    </div>
+    <p class="note">
+      Not built yet. This preview uses the browser’s own JSON parser to show the interaction; it does not run the Rust
+      code.
+    </p>
+    <p class="note no-js">Turn on JavaScript to edit the example. This is its starting state.</p>
+
+    <div class="tabs" role="group" aria-label="Examples">
+      {
+        ids.map((id) => (
+          <button type="button" class="tab" data-sample={id} aria-pressed={id === initial ? 'true' : 'false'} disabled>
+            {LABELS[id]}
+          </button>
+        ))
+      }
+    </div>
+
+    <div class="io">
+      <div class="col">
+        <label for="rp-input">JSON input</label>
+        <textarea id="rp-input" spellcheck="false" readonly>{SAMPLES[initial]}</textarea>
+      </div>
+      <div class="col">
+        <div class="out-head">
+          <span>Parsed output</span>
+          <button type="button" class="expand" aria-expanded="true" aria-controls="rp-output" disabled>
+            Collapse to top level
+          </button>
+        </div>
+        <div id="rp-output" class="output" aria-live="polite">
+          <div class="error" hidden>
+            <div class="error-title">Couldn’t parse this input</div>
+            <div class="error-text"></div>
+          </div>
+          <div class="rows">
+            {
+              rows.map((r) => (
+                <div class="row" style={`padding-left: ${r.depth * 22}px`}>
+                  <span class="key">{r.key}</span>
+                  <span class="type">{r.type}</span> <span>{r.value}</span>
+                </div>
+              ))
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  import { SAMPLES, parseToRows, type SampleId } from '../scripts/json-tree';
+
+  const root = document.querySelector<HTMLElement>('[data-playground]');
+
+  if (root) {
+    const input = root.querySelector('textarea')!;
+    const tabs = [...root.querySelectorAll<HTMLButtonElement>('.tab')];
+    const expand = root.querySelector<HTMLButtonElement>('.expand')!;
+    const errorBox = root.querySelector<HTMLElement>('.error')!;
+    const errorText = root.querySelector<HTMLElement>('.error-text')!;
+    const rowsEl = root.querySelector<HTMLElement>('.rows')!;
+    let expanded = true;
+
+    const span = (className: string, text: string) => {
+      const el = document.createElement('span');
+      el.className = className;
+      el.textContent = text;
+      return el;
+    };
+
+    const render = () => {
+      const { rows, error } = parseToRows(input.value, expanded);
+      errorBox.hidden = !error;
+      errorText.textContent = error;
+      expand.hidden = rows.length === 0;
+      expand.setAttribute('aria-expanded', String(expanded));
+      expand.textContent = expanded ? 'Collapse to top level' : 'Expand all';
+      rowsEl.replaceChildren(
+        ...rows.map((r) => {
+          const line = document.createElement('div');
+          line.className = 'row';
+          line.style.paddingLeft = `${r.depth * 22}px`;
+          line.append(span('key', r.key), span('type', r.type), ' ', span('', r.value));
+          return line;
+        }),
+      );
+    };
+
+    for (const tab of tabs) {
+      tab.addEventListener('click', () => {
+        input.value = SAMPLES[tab.dataset.sample as SampleId];
+        for (const t of tabs) t.setAttribute('aria-pressed', String(t === tab));
+        render();
+      });
+    }
+
+    expand.addEventListener('click', () => {
+      expanded = !expanded;
+      render();
+    });
+
+    input.addEventListener('input', render);
+
+    for (const control of [...tabs, expand]) control.disabled = false;
+    input.readOnly = false;
+    root.querySelector<HTMLElement>('.no-js')!.hidden = true;
+  }
+</script>
+
+<style>
+  .playground {
+    margin-top: clamp(2.5rem, 1.757rem + 3.048vw, 4.5rem);
+  }
+
+  .box {
+    padding: clamp(1.25rem, 0.971rem + 1.143vw, 2rem);
+    border: 1.5px dashed var(--muted);
+    border-radius: 8px;
+    background: var(--white);
+  }
+
+  .head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 12px;
+  }
+
+  h2 {
+    font-size: clamp(1.625rem, 1.486rem + 0.571vw, 2rem);
+    line-height: 1.15;
+  }
+
+  .note {
+    max-width: 46em;
+    margin-top: 10px;
+    font-size: 15px;
+    color: var(--muted);
+  }
+
+  .tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 20px;
+  }
+
+  button {
+    min-height: 44px;
+    padding: 8px 14px;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-sm);
+    background: var(--white);
+    font: inherit;
+    font-size: 15px;
+    color: var(--ink);
+    cursor: pointer;
+  }
+
+  button:hover:not(:disabled) {
+    border-color: var(--ink);
+  }
+
+  button:disabled {
+    cursor: default;
+  }
+
+  .tab[aria-pressed='true'] {
+    border-color: var(--ink);
+    background: var(--ink);
+    color: var(--white);
+    font-weight: 500;
+  }
+
+  .io {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+    gap: 16px;
+    margin-top: 16px;
+  }
+
+  .col {
+    display: flex;
+    flex: 1 1 360px;
+    flex-direction: column;
+    min-width: 0;
+  }
+
+  label,
+  .out-head span {
+    font-size: 14px;
+    font-weight: 500;
+  }
+
+  label {
+    margin-bottom: 6px;
+  }
+
+  .out-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    margin-bottom: 6px;
+  }
+
+  .expand {
+    padding: 6px 12px;
+    background: transparent;
+    font-size: 14px;
+  }
+
+  textarea,
+  .output {
+    flex: 1;
+    min-height: 240px;
+    border-radius: var(--radius);
+    font-family: var(--font-mono);
+    font-size: 14px;
+  }
+
+  textarea {
+    width: 100%;
+    padding: 16px 18px;
+    border: 0;
+    background: var(--ink);
+    color: var(--canvas);
+    line-height: 1.6;
+    resize: vertical;
+  }
+
+  textarea:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+  }
+
+  .output {
+    padding: 14px 16px;
+    overflow: auto;
+    border: 1px solid var(--line);
+    background: var(--canvas);
+    line-height: 1.7;
+  }
+
+  .error {
+    padding: 12px 14px;
+    border: 1px solid var(--error-line);
+    border-radius: var(--radius-sm);
+    background: var(--error-bg);
+    font-family: var(--font-body);
+    color: var(--error-text);
+  }
+
+  .error-title {
+    font-weight: 600;
+  }
+
+  .error-text {
+    margin-top: 4px;
+    font-size: 15px;
+  }
+
+  /* rows are rebuilt by the script, so their styles can't be scoped */
+  .rows :global(.row) {
+    white-space: nowrap;
+  }
+
+  .rows :global(.key) {
+    color: var(--muted);
+  }
+
+  .rows :global(.type) {
+    font-weight: 600;
+  }
+
+  @media (max-width: 47.99rem) {
+    .note {
+      font-size: 14px;
+    }
+
+    .io {
+      gap: 20px;
+    }
+
+    .col {
+      flex-basis: 100%;
+    }
+
+    textarea,
+    .output {
+      min-height: 200px;
+      font-size: 13px;
+    }
+  }
+</style>

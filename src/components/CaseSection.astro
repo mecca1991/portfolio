@@ -1,0 +1,73 @@
+---
+interface Props {
+  id: string;
+  number: string;
+  title: string;
+  /** full article width instead of the 680px reading column */
+  wide?: boolean;
+}
+
+const { id, number, title, wide = false } = Astro.props;
+---
+
+<section id={id} class:list={['case-section', { wide }]} aria-labelledby={`h-${id}`}>
+  <p class="number">{number}</p>
+  <h2 id={`h-${id}`} class="display">{title}</h2>
+  <slot />
+</section>
+
+<style>
+  .case-section {
+    max-width: 680px;
+    scroll-margin-top: 24px;
+  }
+
+  .case-section + .case-section {
+    margin-top: clamp(2.5rem, 1.757rem + 3.048vw, 4.5rem);
+  }
+
+  .wide {
+    max-width: none;
+  }
+
+  .number {
+    margin-bottom: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--muted);
+  }
+
+  h2 {
+    font-size: clamp(1.75rem, 1.564rem + 0.762vw, 2.25rem);
+    line-height: 1.15;
+  }
+
+  .case-section > :global(p:not(.number)) {
+    margin-top: 20px;
+  }
+
+  .case-section > :global(ul) {
+    margin: 20px 0 0;
+    padding-left: 20px;
+  }
+
+  .case-section > :global(ul li) {
+    padding-block: 4px;
+  }
+
+  @media (max-width: 47.99rem) {
+    /* the phone artboard drops the section numbers */
+    .number {
+      display: none;
+    }
+
+    .case-section > :global(p:not(.number)),
+    .case-section > :global(ul) {
+      margin-top: 12px;
+    }
+
+    .case-section > :global(ul) {
+      font-size: 16px;
+    }
+  }
+</style>

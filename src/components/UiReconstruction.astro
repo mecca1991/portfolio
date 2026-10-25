@@ -1,0 +1,54 @@
+---
+/* A rebuilt UI with example data: the badge sits in the frame, "Illustrative" goes in the caption. */
+import Label from './Label.astro';
+
+interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<div class="frame">
+  <div class="head">
+    <span class="title">{title}</span>
+    <Label dashed plain>Illustrative reconstruction</Label>
+  </div>
+  <slot />
+</div>
+
+<style>
+  .frame {
+    overflow: hidden;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: var(--white);
+    font-size: 15px;
+    line-height: 1.4;
+  }
+
+  .head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    padding: 12px 20px;
+    border-bottom: 1px solid var(--line);
+    background: var(--canvas);
+  }
+
+  .title {
+    font-weight: 600;
+  }
+
+  @media (max-width: 47.99rem) {
+    .frame {
+      font-size: 14px;
+    }
+
+    .head {
+      padding: 10px 14px;
+    }
+  }
+</style>

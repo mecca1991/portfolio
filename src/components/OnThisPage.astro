@@ -1,0 +1,109 @@
+---
+/*
+ * Section index: sticky sidebar on wide screens, inline box on phones.
+ * The link for the section in the URL hash is highlighted with :has(:target), no JS.
+ */
+interface Props {
+  sections: readonly { id: string; label: string }[];
+}
+
+const { sections } = Astro.props;
+---
+
+<nav class="toc" aria-label="On this page">
+  <p>On this page</p>
+  <ol>
+    {
+      sections.map((s) => (
+        <li>
+          <a href={`#${s.id}`} data-for={s.id}>
+            {s.label}
+          </a>
+        </li>
+      ))
+    }
+  </ol>
+</nav>
+
+<style>
+  .toc {
+    position: sticky;
+    top: 24px;
+    flex: 1 1 200px;
+    min-width: 0;
+    max-width: 230px;
+    padding-top: 32px;
+    font-size: 15px;
+  }
+
+  p {
+    margin-bottom: 12px;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  ol {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    border-left: 1px solid var(--line);
+  }
+
+  a {
+    display: block;
+    margin-left: -1px;
+    padding: 8px 0 8px 16px;
+    border-left: 2px solid transparent;
+    color: var(--muted);
+    text-decoration: none;
+  }
+
+  a:hover {
+    color: var(--ink);
+    border-left-color: var(--line);
+  }
+
+  /* section ids shared by every case study */
+  :global(body:has(#purpose:target)) a[data-for='purpose'],
+  :global(body:has(#problem:target)) a[data-for='problem'],
+  :global(body:has(#implemented:target)) a[data-for='implemented'],
+  :global(body:has(#decisions:target)) a[data-for='decisions'],
+  :global(body:has(#outcomes:target)) a[data-for='outcomes'] {
+    border-left-color: var(--accent);
+    color: var(--ink);
+    font-weight: 500;
+  }
+
+  @media (max-width: 47.99rem) {
+    .toc {
+      position: static;
+      max-width: none;
+      flex-basis: auto;
+      padding: 14px 16px;
+      border-radius: var(--radius);
+      background: var(--surface);
+    }
+
+    p {
+      margin-bottom: 4px;
+      font-size: 12px;
+    }
+
+    ol {
+      padding-left: 20px;
+      border-left: 0;
+      list-style: decimal;
+    }
+
+    a {
+      display: inline-block;
+      margin-left: 0;
+      padding: 10px 0;
+      border-left: 0;
+      color: var(--ink);
+    }
+  }
+</style>
