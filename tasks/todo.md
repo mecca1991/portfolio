@@ -49,9 +49,9 @@ Design source: https://claude.ai/artifact/1u5mcMR1p11RRbJGzR2qVF · Plan: `tasks
 ---
 
 ### ✅ Checkpoint: Foundation
-- [ ] Build + check pass locally on Node 22
-- [ ] Live skeleton deploys on push
-- [ ] Review with you before page work
+- [x] Build + check pass locally on Node 22
+- [x] Live skeleton deploys on push
+- [x] Review with you before page work (go-ahead given by starting the build loop, 2026-10-25)
 
 ---
 
