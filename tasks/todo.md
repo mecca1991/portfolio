@@ -160,6 +160,8 @@ Design source: https://claude.ai/artifact/1u5mcMR1p11RRbJGzR2qVF · Plan: `tasks
 - [ ] Build succeeds
 - [ ] Manual: 1440 / 390 comparison
 
+> Needs Wilfred: real screenshots. Checked app.sysconnector.com on 2026-10-25 (read-only): the signed-in workspace has no connections or connected apps, and Create Connection is blocked by the free plan's 1/1 connection limit, so none of the screens you built can be captured. The current app also uses OAuth ("credentials are never stored"), which suggests it differs from the earlier version you built. Until real captures exist (older screenshots from the engagement, or a workspace with demo data and the client's OK), build this task with the illustrative reconstructions as designed.
+
 **Dependencies:** Task 6 (layout)
 
 **Files likely touched:** `src/pages/work/sysconnector.astro`, `src/components/UiReconstruction.astro`, `src/components/DecisionTable.astro`
