@@ -1,41 +1,75 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Hero from '../components/Hero.astro';
+import ContactSection from '../components/ContactSection.astro';
 ---
 
 <BaseLayout
   title="Wilfred Chetat · Senior Backend Engineer"
   description="Senior backend engineer in Dubai building reliable Python systems and AI-powered products."
 >
-  <main id="main" class="container hero">
-    <p class="eyebrow">Senior Backend Engineer · Dubai, UAE</p>
-    <h1 class="display">Building reliable backend systems and AI-powered products.</h1>
-    <p class="lede">Site under construction.</p>
+  <Header />
+  <main id="main">
+    <Hero />
+
+    <section class="glance" aria-label="At a glance">
+      <dl class="container">
+        <div>
+          <dt>Currently</dt>
+          <dd>Senior Backend Engineer, UXE Security Solutions, since Sep 2024</dd>
+        </div>
+        <div>
+          <dt>Experience</dt>
+          <dd>6+ years across payments, data systems, video analytics and AI</dd>
+        </div>
+        <div>
+          <dt>Works on</dt>
+          <dd>Employed roles and freelance client projects</dd>
+        </div>
+        <div>
+          <dt>Languages</dt>
+          <dd>English, French</dd>
+        </div>
+      </dl>
+    </section>
+
+    <ContactSection
+      title="Tell me what you’re building."
+      intro="For an engineering role or a freelance project involving Python backends, integrations, data workflows or AI, send a short outline of what you need."
+      footer
+    />
   </main>
 </BaseLayout>
 
 <style>
-  .hero {
-    padding-block: 72px 64px;
+  .glance {
+    border-block: 1px solid var(--line);
+    background: var(--surface);
   }
 
-  .eyebrow {
-    margin-bottom: 20px;
-    font-size: var(--text-caption);
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
+  dl {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 16px 32px;
+    padding-block: 24px;
+    font-size: 16px;
+    line-height: 1.45;
+  }
+
+  dt {
+    font-size: 14px;
     color: var(--muted);
-    font-weight: 500;
   }
 
-  h1 {
-    max-width: 14ch;
-    font-size: var(--text-h1);
-    line-height: 1.06;
-    letter-spacing: -0.015em;
+  dd {
+    margin-top: 4px;
   }
 
-  .lede {
-    margin-top: 28px;
-    color: var(--muted);
+  /* the phone design leaves this strip out */
+  @media (max-width: 47.99rem) {
+    .glance {
+      display: none;
+    }
   }
 </style>

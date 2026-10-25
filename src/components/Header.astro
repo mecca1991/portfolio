@@ -1,0 +1,143 @@
+---
+import { site } from '../data/site';
+
+interface Props {
+  current?: 'work' | 'experiments';
+  showCv?: boolean;
+}
+
+const { current, showCv = true } = Astro.props;
+
+const nav = [
+  { id: 'work', href: '/#work', label: 'Selected work', short: 'Work' },
+  { id: 'experiments', href: '/#experiments', label: 'Experiments' },
+  { id: 'about', href: '/#about', label: 'About' },
+  { id: 'contact', href: '#contact', label: 'Contact' },
+];
+---
+
+<header class="site-header">
+  <div class="container bar">
+    <a class="logo" href="/">{site.name}</a>
+    <nav aria-label="Primary">
+      {
+        nav.map((item) => (
+          <a
+            class="navlink"
+            href={item.href}
+            aria-current={item.id === current ? 'true' : undefined}
+          >
+            {item.short ? (
+              <>
+                <span class="long">{item.label}</span>
+                <span class="short">{item.short}</span>
+              </>
+            ) : (
+              item.label
+            )}
+          </a>
+        ))
+      }
+    </nav>
+    {showCv && <a class="btn btn-outline cv" href={site.links.cv}>CV (PDF)</a>}
+  </div>
+</header>
+
+<style>
+  .site-header {
+    border-bottom: 1px solid var(--line);
+  }
+
+  .bar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 4px;
+    padding-block: 14px;
+  }
+
+  .logo {
+    margin-right: auto;
+    padding: 8px 0;
+    font-family: var(--font-display);
+    font-size: 24px;
+    color: var(--ink);
+    text-decoration: none;
+  }
+
+  nav {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 4px;
+    font-size: 16px;
+  }
+
+  .navlink {
+    padding: 10px 12px;
+    color: var(--ink);
+    text-decoration: none;
+    text-underline-offset: 6px;
+  }
+
+  .navlink:hover,
+  .navlink[aria-current] {
+    color: var(--ink);
+    text-decoration: underline;
+  }
+
+  .cv {
+    margin-left: 8px;
+    font-size: 16px;
+  }
+
+  .short {
+    display: none;
+  }
+
+  /* phone: logo and CV on one row, every nav link visible on the next */
+  @media (max-width: 47.99rem) {
+    .bar {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      grid-template-areas:
+        'logo cv'
+        'nav nav';
+      column-gap: 12px;
+      row-gap: 0;
+      padding-block: 8px 4px;
+    }
+
+    .logo {
+      grid-area: logo;
+      padding: 10px 0;
+      font-size: 22px;
+    }
+
+    .cv {
+      grid-area: cv;
+      margin-left: 0;
+      padding-inline: 12px;
+      font-size: 15px;
+    }
+
+    nav {
+      grid-area: nav;
+      gap: 2px;
+      margin-left: -10px;
+      font-size: 15px;
+    }
+
+    .navlink {
+      padding: 11px 10px;
+    }
+
+    .long {
+      display: none;
+    }
+
+    .short {
+      display: inline;
+    }
+  }
+</style>

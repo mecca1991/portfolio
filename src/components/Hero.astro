@@ -1,0 +1,210 @@
+---
+import { Picture } from 'astro:assets';
+import portrait from '../assets/portrait.jpg';
+import { site } from '../data/site';
+---
+
+<section class="container hero" aria-labelledby="hero-title">
+  <div class="hero-text">
+    <p class="eyebrow">
+      <span>Senior Backend Engineer</span><span class="sep" aria-hidden="true"> · </span><span
+        >Dubai, UAE</span
+      >
+    </p>
+    <h1 id="hero-title" class="display">Building reliable backend systems and AI-powered products.</h1>
+    <p class="lede">
+      I’m Wilfred Chetat. I work mainly in Python on APIs, integrations, payments and data systems,
+      and I build AI-powered products like Intrvuer from interface to deployment.
+    </p>
+    <div class="actions">
+      <a class="btn btn-primary" href="#work">View selected work</a>
+      <a class="btn btn-secondary" href="#contact">Get in touch</a>
+    </div>
+    <ul class="profiles" aria-label="Profiles and CV">
+      <li class="cv-item"><a href={site.links.cv}>CV (PDF)</a></li>
+      <li><a href={site.links.github}>GitHub <span aria-hidden="true">↗</span></a></li>
+      <li><a href={site.links.linkedin}>LinkedIn <span aria-hidden="true">↗</span></a></li>
+    </ul>
+  </div>
+  <div class="portrait">
+    <Picture
+      src={portrait}
+      formats={['avif', 'webp']}
+      widths={[132, 264, 420, 840]}
+      sizes="(max-width: 47.99rem) 132px, 420px"
+      alt="Wilfred Chetat, smiling, in a navy blazer and white shirt"
+      loading="eager"
+      fetchpriority="high"
+    />
+  </div>
+</section>
+
+<style>
+  .hero {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 64px;
+    padding-block: clamp(1.75rem, 0.729rem + 4.19vw, 4.5rem) clamp(2.5rem, 1.943rem + 2.286vw, 4rem);
+  }
+
+  .hero-text {
+    flex: 999 1 560px;
+    min-width: 0;
+  }
+
+  .eyebrow {
+    margin-bottom: 20px;
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  h1 {
+    max-width: 14ch;
+    font-size: var(--text-h1);
+    line-height: 1.06;
+    letter-spacing: -0.015em;
+  }
+
+  .lede {
+    margin-top: 28px;
+    max-width: 32em;
+    font-size: clamp(1.0625rem, 0.993rem + 0.286vw, 1.25rem);
+  }
+
+  .actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 12px;
+    margin-top: 36px;
+  }
+
+  .actions .btn {
+    padding: 14px 24px;
+    font-size: 17px;
+  }
+
+  .actions .btn-secondary {
+    padding: 13px 23px;
+  }
+
+  .profiles {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px 28px;
+    margin: 28px 0 0;
+    padding: 0;
+    list-style: none;
+    font-size: 16px;
+  }
+
+  .profiles a {
+    display: inline-block;
+    padding: 8px 0;
+    color: var(--ink);
+  }
+
+  .portrait {
+    flex: 1 1 340px;
+    max-width: 420px;
+  }
+
+  .portrait :global(img) {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    object-position: 50% 20%;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: var(--surface);
+  }
+
+  /* phone: small portrait beside the eyebrow, everything else full width below */
+  @media (max-width: 47.99rem) {
+    .hero {
+      display: grid;
+      grid-template-columns: 132px 1fr;
+      align-items: end;
+      gap: 0 16px;
+    }
+
+    .hero-text {
+      display: contents;
+    }
+
+    .portrait {
+      grid-row: 1;
+      grid-column: 1;
+      width: 132px;
+    }
+
+    .eyebrow {
+      grid-row: 1;
+      grid-column: 2;
+      margin: 0;
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    .eyebrow span {
+      display: block;
+    }
+
+    .eyebrow .sep {
+      display: none;
+    }
+
+    h1,
+    .lede,
+    .actions,
+    .profiles {
+      grid-column: 1 / -1;
+    }
+
+    h1 {
+      margin-top: 24px;
+      line-height: 1.1;
+    }
+
+    .lede {
+      margin-top: 16px;
+    }
+
+    .actions {
+      flex-wrap: nowrap;
+      gap: 10px;
+      margin-top: 24px;
+    }
+
+    .actions .btn {
+      flex: 1 1 0;
+      padding: 13px 10px;
+      font-size: 16px;
+      text-align: center;
+    }
+
+    .actions .btn-secondary {
+      padding: 12px 10px;
+    }
+
+    .profiles {
+      gap: 0 24px;
+      margin-top: 10px;
+      font-size: 15px;
+    }
+
+    .profiles a {
+      padding: 10px 0;
+    }
+
+    /* the header carries the CV link on phones */
+    .cv-item {
+      display: none;
+    }
+  }
+</style>

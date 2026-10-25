@@ -62,13 +62,15 @@ Design source: https://claude.ai/artifact/1u5mcMR1p11RRbJGzR2qVF · Plan: `tasks
 **Description:** Build the homepage frame and the shared pieces every page reuses: `Header` (logo, nav, CV button; one row on phones), `Hero` with the portrait, the at-a-glance strip, and the dark contact section with footer. Use `src/data/site.ts` (already created) for email, profile links and the S3 CV URL.
 
 **Acceptance criteria:**
-- [ ] Matches `Main.dc.html` at 1440 px and `Home-Mobile.dc.html` at 390 px
-- [ ] Portrait served through Astro `<Image>` as AVIF/WebP with the designed alt text
-- [ ] Skip link, nav anchors and external `↗` links work; focus ring visible on every interactive element
+- [x] Matches `Main.dc.html` at 1440 px and `Home-Mobile.dc.html` at 390 px
+- [x] Portrait served through Astro `<Picture>` as AVIF/WebP with the designed alt text
+- [x] Skip link, `#contact` and external `↗` links work; focus ring visible on every interactive element
+
+> Note: phones use the desktop copy for the hero lede and contact intro (the phone artboard had shorter variants), and the footer keeps both spans on one line. Section anchors (`#work`, `#experiments`, `#about`) are checked in Tasks 4–5, once those sections exist.
 
 **Verification:**
-- [ ] `npm run build` succeeds
-- [ ] Manual: compare side by side with the canvas at both widths; tab through the page
+- [x] `npm run build` succeeds
+- [x] Manual: compare side by side with the canvas at both widths; tab through the page
 
 **Dependencies:** Task 1
 
@@ -86,6 +88,7 @@ Design source: https://claude.ai/artifact/1u5mcMR1p11RRbJGzR2qVF · Plan: `tasks
 - [ ] Order on phones follows the Components rule: label, title, one-liner, contribution, visual, actions
 - [ ] "Illustrative reconstruction" badges and captions appear exactly as designed
 - [ ] "Read the case study" links go to `/work/intrvuer/` and `/work/sysconnector/`
+- [ ] `#work` (header nav and hero button) lands on the section heading
 
 **Verification:**
 - [ ] Build succeeds
@@ -106,6 +109,7 @@ Design source: https://claude.ai/artifact/1u5mcMR1p11RRbJGzR2qVF · Plan: `tasks
 **Acceptance criteria:**
 - [ ] Experience and stack read from `src/data/site.ts`, not hard-coded in markup
 - [ ] "How it works" links to `/experiments/rust-json-parser/`; code panels scroll horizontally on phones instead of overflowing
+- [ ] `#experiments` and `#about` header anchors land on their sections
 
 **Verification:**
 - [ ] Build succeeds

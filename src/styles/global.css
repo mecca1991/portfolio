@@ -59,6 +59,64 @@ a:hover {
   outline-color: var(--canvas);
 }
 
+.dark a {
+  color: var(--canvas);
+}
+
+.dark a:hover {
+  color: var(--white);
+}
+
+/* buttons: touch targets stay ≥ 44px tall */
+.btn {
+  display: inline-block;
+  border-radius: var(--radius-sm);
+  font-weight: 500;
+  line-height: 1.6;
+  text-decoration: none;
+}
+
+.btn-primary {
+  background: var(--accent);
+  color: var(--white);
+  padding: 13px 22px;
+}
+
+.btn-primary:hover {
+  background: var(--accent-hover);
+  color: var(--white);
+}
+
+.btn-primary:active {
+  background: var(--accent-pressed);
+}
+
+.btn-secondary {
+  color: var(--ink);
+  border: 1px solid var(--ink);
+  padding: 12px 21px;
+}
+
+.btn-secondary:hover {
+  background: var(--surface);
+  color: var(--ink);
+}
+
+.btn-secondary:active {
+  background: var(--line);
+}
+
+.btn-outline {
+  color: var(--accent);
+  border: 1px solid var(--accent);
+  padding: 9px 14px;
+}
+
+.btn-outline:hover {
+  background: var(--surface);
+  color: var(--accent-hover);
+}
+
 .container {
   max-width: var(--content-max);
   margin-inline: auto;
