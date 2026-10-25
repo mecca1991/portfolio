@@ -7,6 +7,8 @@ export default defineConfig({
   trailingSlash: 'always',
   build: {
     format: 'directory',
+    // the CSS is a few KB per page; inlining it removes render-blocking requests
+    inlineStylesheets: 'always',
   },
   integrations: [
     sitemap({

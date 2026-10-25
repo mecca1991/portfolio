@@ -57,12 +57,12 @@ const parsed = `Object (3 keys)
           <div class="panels">
             <div class="panel dark-panel">
               <span>Input</span>
-              <pre><code>{input}</code></pre>
+              <pre tabindex="0"><code>{input}</code></pre>
             </div>
             <div class="arrow" aria-hidden="true"><span>→</span></div>
             <div class="panel light-panel">
               <span>Parsed structure</span>
-              <pre><code>{parsed}</code></pre>
+              <pre tabindex="0"><code>{parsed}</code></pre>
             </div>
           </div>
           <figcaption>Illustrative output. Type names are simplified.</figcaption>
@@ -91,7 +91,7 @@ const parsed = `Object (3 keys)
           </li>
         </ol>
         <figure class="snippet">
-          <pre><code><span class="comment">// Before: assumes another character exists</span>
+          <pre tabindex="0"><code><span class="comment">// Before: assumes another character exists</span>
 let ch = chars.next().unwrap();
 
 <span class="comment">// After: the caller receives a structured error</span>
@@ -236,6 +236,11 @@ let ch = chars.next().ok_or(ParseError::UnexpectedEnd)?;</code></pre>
 
   .dark-panel span {
     color: var(--dark-muted);
+  }
+
+  /* code panels are focusable so they can scroll by keyboard; keep the ring visible on dark */
+  .dark-panel pre:focus-visible {
+    outline-color: var(--canvas);
   }
 
   .light-panel {

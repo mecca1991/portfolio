@@ -3,6 +3,9 @@ import '@fontsource-variable/newsreader/opsz.css';
 import '@fontsource-variable/ibm-plex-sans/wght.css';
 import '../styles/tokens.css';
 import '../styles/global.css';
+// same files the @font-face rules use; preloading skips the wait for CSS to discover them
+import displayFont from '@fontsource-variable/newsreader/files/newsreader-latin-opsz-normal.woff2?url';
+import bodyFont from '@fontsource-variable/ibm-plex-sans/files/ibm-plex-sans-latin-wght-normal.woff2?url';
 
 interface Props {
   title: string;
@@ -26,6 +29,8 @@ const ogImage = new URL('/og.png', Astro.site);
     <meta name="description" content={description} />
     {noindex ? <meta name="robots" content="noindex" /> : <link rel="canonical" href={canonical} />}
     <meta name="theme-color" content="#f7f5f0" />
+    <link rel="preload" href={displayFont} as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href={bodyFont} as="font" type="font/woff2" crossorigin />
 
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png" />
