@@ -231,7 +231,7 @@ Design source: https://claude.ai/artifact/1u5mcMR1p11RRbJGzR2qVF · Plan: `tasks
 
 > Needs Wilfred:
 > - The H1 "Building reliable backend systems and AI-powered products." is your positioning line, so it's unchanged. It reads like a tagline many engineers could use. What's the one thing you most want a hiring manager to remember (payments backends, for example)?
-> - Intrvuer flow figure: name the providers? Your CV lists Faster-Whisper/Deepgram for speech-to-text, Kokoro/Supertonic for text-to-speech, plus Celery and Redis. Confirm and I'll add them.
+> - ~~Intrvuer flow figure: name the providers?~~ Answered 2026-10-25: no, provider names stay off the site.
 > - Sysconnector leads figure: do "Synced", "Failed · field not mapped" and "Pending" match the real status labels? If yes, the caption can say so again.
 
 **Dependencies:** Pages checkpoint
