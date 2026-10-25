@@ -83,7 +83,7 @@ Task 1 scaffold + tokens + layout
 |---|---|---|
 | Node mismatch (local 20, Astro needs 22) | High | `nvm install 22` first; `.nvmrc`; `engines` in `package.json`; Amplify build runs `nvm use` |
 | Amplify ↔ GitHub connection needs a browser OAuth step | Med | You approve the GitHub App in the Amplify console once (Task 2). Everything else is in the repo |
-| Design has unfilled placeholders (screenshots, CV, dates, tradeoffs) | High | Placeholder boxes are built as designed, so pages work now. A `check:placeholders` script lists what's left; Task 12 blocks on it |
+| Design has unfilled placeholders (screenshots, dates, tradeoffs) | High | Placeholder boxes are built as designed, so pages work now. A `check:placeholders` script lists what's left; Task 12 blocks on it |
 | Portrait lives only in the canvas asset store | Low | Download it once into `src/assets/`; Astro `<Image>` generates AVIF/WebP |
 | Illustrative reconstructions read as real product screenshots | Med | Keep the "Illustrative reconstruction" badges and captions exactly as designed |
 | AWS default region is `ap-southeast-2` | Low | Amplify serves through CloudFront globally, so region barely affects latency. Pick the region at app creation |
@@ -91,12 +91,14 @@ Task 1 scaffold + tokens + layout
 ## Decisions (2026-10-25)
 
 - **Repo:** `mecca1991/portfolio`, public.
-- **Placeholders:** hold the public launch until real captures, CV and missing text are in. Review happens on the `amplifyapp.com` URL.
+- **Placeholders:** hold the public launch until real captures and missing text are in. Review happens on the `amplifyapp.com` URL.
 - **Domain:** `https://www.wilfredchetat.com` is canonical; the apex 301-redirects to `www`. Attached early (2026-10-25), so the domain is public while pages are built. Registered at Namecheap, DNS in Route 53.
 - **Accent:** green `#155E52` (canvas default).
-- **AWS:** personal account `338573231383`, CLI profile `personal` (`aws login`). Amplify app `dshdhrt6lgmzs` in `us-east-1`, branch `main` = production. Rules: apex → www (301), `/<*>` → `/404.html` (404). Never use the `default` CLI profile (Sysconnector client account).
+- **AWS:** personal account `338573231383`, CLI profile `personal` (`aws login`). Amplify app `dshdhrt6lgmzs` in `us-east-1`, branch `main` = production. Rules: apex → www (`301`), `/<*>` → `/404.html` (`404-200`: serves the page in place with a 404 status; plain `404` redirects instead). Never use the `default` CLI profile (Sysconnector client account).
 - **Old repo:** the 2020 `mecca1991/portfolio` was renamed to `mecca1991/portfolio-2020`.
+
+- **CV:** served from S3, not the repo: `https://wilfredchetat-public.s3.us-east-1.amazonaws.com/Wilfred_Chetat_CV.pdf` (bucket `wilfredchetat-public`, versioned, public read on that one key only). URL lives in `src/data/site.ts`; update with `npm run cv:upload`. The source PDF at the repo root is gitignored.
 
 ## Open Questions
 
-1. **CV:** do you have the PDF ready to add to `public/`?
+None right now.

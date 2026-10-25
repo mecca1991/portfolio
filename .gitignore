@@ -8,6 +8,9 @@ node_modules/
 # logs
 npm-debug.log*
 
+# CV source: hosted on S3, not in the repo
+/*.pdf
+
 # environment
 .env
 .env.*

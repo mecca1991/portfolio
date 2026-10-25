@@ -59,7 +59,7 @@ Design source: https://claude.ai/artifact/1u5mcMR1p11RRbJGzR2qVF · Plan: `tasks
 
 ### Task 3: Homepage: header, hero, at-a-glance, contact footer
 
-**Description:** Build the homepage frame and the shared pieces every page reuses: `Header` (logo, nav, CV button; one row on phones), `Hero` with the portrait, the at-a-glance strip, and the dark contact section with footer. Set up `src/data/site.ts` for email, profile links and CV path.
+**Description:** Build the homepage frame and the shared pieces every page reuses: `Header` (logo, nav, CV button; one row on phones), `Hero` with the portrait, the at-a-glance strip, and the dark contact section with footer. Use `src/data/site.ts` (already created) for email, profile links and the S3 CV URL.
 
 **Acceptance criteria:**
 - [ ] Matches `Main.dc.html` at 1440 px and `Home-Mobile.dc.html` at 390 px
@@ -254,19 +254,19 @@ Design source: https://claude.ai/artifact/1u5mcMR1p11RRbJGzR2qVF · Plan: `tasks
 
 ### Task 12: Production release
 
-**Description:** Resolve or sign off remaining placeholders, add the CV PDF, attach the custom domain (if any), tag `v1.0.0`.
+**Description:** Resolve or sign off remaining placeholders and tag `v1.0.0`. (CV and domain already done.)
 
 **Acceptance criteria:**
 - [ ] `npm run check:placeholders` passes, or every remaining item is approved by you
-- [ ] Custom domain on HTTPS (if chosen); `www` redirects to apex
+- [x] Custom domain on HTTPS; apex 301-redirects to `www` (done early)
 - [ ] `v1.0.0` tag on `main`
 
 **Verification:**
 - [ ] Manual: smoke-test every route on the production URL, phone and desktop
 
-**Dependencies:** Task 11, your content (captures, CV, dates, decision text)
+**Dependencies:** Task 11, your content (captures, dates, decision text)
 
-**Files likely touched:** `public/cv.pdf`, page files with placeholders
+**Files likely touched:** page files with placeholders
 
 **Estimated scope:** S
 
