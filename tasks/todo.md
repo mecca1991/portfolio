@@ -295,12 +295,14 @@ Design source: https://claude.ai/artifact/1u5mcMR1p11RRbJGzR2qVF · Plan: `tasks
 **Description:** A short, well-designed README: banner image of the live homepage (light/dark `<picture>`), one-line description, live link, stack badges, three commands (install, dev, build), a compact structure tree and a two-line deploy note. Minimal text.
 
 **Acceptance criteria:**
-- [ ] Fits on one screen on GitHub, plus the structure tree
-- [ ] Banner is a real capture of the built site, stored in `.github/assets/`
-- [ ] Every command in it works on a fresh clone
+- [x] Fits on one screen on GitHub, plus the structure tree
+- [x] Banner is a real capture of the built site, stored in `.github/assets/`
+- [x] Every command in it works on a fresh clone
 
 **Verification:**
-- [ ] Manual: view on github.com in light and dark themes; follow the commands in a fresh clone
+- [x] Manual: view on github.com in light and dark themes; follow the commands in a fresh clone
+
+> Note: the banner is a real capture of the homepage hero on GitHub-light (#ffffff) and GitHub-dark (#0d1117) frames. It uses `#gh-light-mode-only` / `#gh-dark-mode-only` because `<picture>` follows the OS appearance, which showed the light banner on your dark GitHub. Verified live on the phase-3-ship branch page in dark mode (dark banner shown, light hidden); the light switch wasn't observed, since changing your GitHub theme is an account setting. The README content above the layout tree takes ~875 px. A fresh clone on Node 22 runs `npm ci`, `npm run build` (5 pages plus sitemap) and `npm run dev` (homepage 200); `npm run cv:upload -- --dryrun` targets the right S3 key. If the H1 changes, recapture the banner.
 
 **Dependencies:** Task 10
 
