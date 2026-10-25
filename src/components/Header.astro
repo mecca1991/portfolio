@@ -9,7 +9,7 @@ interface Props {
 const { current, showCv = true } = Astro.props;
 
 const nav = [
-  { id: 'work', href: '/#work', label: 'Selected work', short: 'Work' },
+  { id: 'work', href: '/#work', label: 'Projects' },
   { id: 'experiments', href: '/#experiments', label: 'Experiments' },
   { id: 'about', href: '/#about', label: 'About' },
   { id: 'contact', href: '#contact', label: 'Contact' },
@@ -27,14 +27,7 @@ const nav = [
             href={item.href}
             aria-current={item.id === current ? 'true' : undefined}
           >
-            {item.short ? (
-              <>
-                <span class="long">{item.label}</span>
-                <span class="short">{item.short}</span>
-              </>
-            ) : (
-              item.label
-            )}
+            {item.label}
           </a>
         ))
       }
@@ -91,10 +84,6 @@ const nav = [
     font-size: 16px;
   }
 
-  .short {
-    display: none;
-  }
-
   /* phone: logo and CV on one row, every nav link visible on the next */
   @media (max-width: 47.99rem) {
     .bar {
@@ -130,14 +119,6 @@ const nav = [
 
     .navlink {
       padding: 11px 10px;
-    }
-
-    .long {
-      display: none;
-    }
-
-    .short {
-      display: inline;
     }
   }
 </style>
