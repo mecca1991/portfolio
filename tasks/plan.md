@@ -92,10 +92,12 @@ Task 1 scaffold + tokens + layout
 
 - **Repo:** `mecca1991/portfolio`, public.
 - **Placeholders:** hold the public launch until real captures, CV and missing text are in. Review happens on the `amplifyapp.com` URL.
-- **Domain:** custom domain owned by Wilfred, attached in Task 12.
+- **Domain:** `wilfredchetat.com`, attached in Task 12. Registered at Namecheap, nameservers on Route 53 (awsdns), apex currently has no A record.
 - **Accent:** green `#155E52` (canvas default).
+- **AWS account:** the Amplify app goes in the personal account that holds the `wilfredchetat.com` hosted zone, not the default CLI profile (that's the Sysconnector client account).
+- **Old repo:** the 2020 `mecca1991/portfolio` was renamed to `mecca1991/portfolio-2020`.
 
 ## Open Questions
 
-1. **Domain:** which domain, and is its DNS on Route 53? (Needed for `site` in `astro.config.mjs` by Task 9.)
+1. **AWS account:** which account/profile holds the `wilfredchetat.com` hosted zone?
 2. **CV:** do you have the PDF ready to add to `public/`?
