@@ -3,6 +3,9 @@ import CaseStudyLayout from '../../layouts/CaseStudyLayout.astro';
 import CaseSection from '../../components/CaseSection.astro';
 import ImplementedStep from '../../components/ImplementedStep.astro';
 import CapturePlaceholder from '../../components/CapturePlaceholder.astro';
+import Capture from '../../components/Capture.astro';
+import contextSetup from '../../assets/captures/intrvuer/context-setup.png';
+import feedbackAnswer from '../../assets/captures/intrvuer/feedback-answer.png';
 import Decision from '../../components/Decision.astro';
 import Outcomes from '../../components/Outcomes.astro';
 
@@ -70,11 +73,10 @@ const sections = [
       task="add a résumé and the job being targeted."
       built="the intake screens and the API that stores this context for the session."
     >
-      <CapturePlaceholder
+      <Capture
         slot="figure"
-        text="[Approved capture needed] Context setup: résumé and target job"
-        phoneRatio="4 / 3"
-        icon={false}
+        src={contextSetup}
+        alt="Intrvuer practice setup, step 1 of 3: fields for the target role, the company and the job description to practise for."
       />
     </ImplementedStep>
 
@@ -97,8 +99,11 @@ const sections = [
       built="background processing with LLM integrations that produce per-answer feedback, and the report view."
     >
       <Fragment slot="figure">
-        <CapturePlaceholder text="[Approved capture needed] Feedback on one answer" phoneRatio="4 / 3" icon={false} />
-        <figcaption>Use the public sample report, which features a fictional candidate.</figcaption>
+        <Capture
+          src={feedbackAnswer}
+          alt="Feedback on one answer in the Intrvuer sample report: the question, the candidate's response, STAR scores for completeness, specificity, relevance, impact and conciseness, written feedback and a suggested improvement."
+        />
+        <figcaption>From the public sample report, which uses a fictional candidate.</figcaption>
       </Fragment>
     </ImplementedStep>
 

@@ -140,9 +140,11 @@ Design source: https://claude.ai/artifact/1u5mcMR1p11RRbJGzR2qVF · Plan: `tasks
 - [x] Build succeeds
 - [x] Manual: 1440 / 390 comparison; keyboard-open the disclosure
 
-> Note: phones use the shared two-row site header (the phone artboard had logo + Contact only) and the desktop copy. The sidebar index is sticky and highlights the section in the URL hash with `:has(:target)`, no JS. `npm run check:placeholders` lists 12 placeholders (3 on the homepage, 9 here) and exits 1.
+> Note: phones use the shared two-row site header (the phone artboard had logo + Contact only) and the desktop copy. The sidebar index is sticky and highlights the section in the URL hash with `:has(:target)`, no JS. `npm run check:placeholders` lists what's left and exits 1 until it's empty.
 
-> Needs Wilfred: the Feedback report caption reads as a note to yourself ("Use the public sample report, which features a fictional candidate."). It's kept verbatim from the design; replace it when the real capture lands.
+> Captures added 2026-10-25 from intrvuer.com: practice setup step 1 ("Paste New" tab, so no saved job, billing or email shows) and one answer from the public sample report (fictional candidate), captured at a narrow width so its text stays readable. That replaced the placeholder caption with "From the public sample report, which uses a fictional candidate." The homepage Intrvuer row uses the same feedback capture, capped at 440 px.
+
+> Needs Wilfred: "Spoken practice, mid-session" still needs a capture. It only exists during a live session, which uses a paid session and the microphone.
 
 **Dependencies:** Task 3
 
@@ -164,7 +166,7 @@ Design source: https://claude.ai/artifact/1u5mcMR1p11RRbJGzR2qVF · Plan: `tasks
 - [x] Build succeeds
 - [x] Manual: 1440 / 390 comparison
 
-> Needs Wilfred: real screenshots. Checked app.sysconnector.com on 2026-10-25 (read-only): the signed-in workspace has no connections or connected apps, and Create Connection is blocked by the free plan's 1/1 connection limit, so none of the screens you built can be captured. The current app also uses OAuth ("credentials are never stored"), which suggests it differs from the earlier version you built. Until real captures exist (older screenshots from the engagement, or a workspace with demo data and the client's OK), build this task with the illustrative reconstructions as designed.
+> Needs Wilfred: real screenshots. Checked app.sysconnector.com on 2026-10-25 (read-only): the signed-in workspace has no connections or connected apps, and Create Connection is blocked by the free plan's 1/1 connection limit, so none of the screens you built can be captured. The current app also uses OAuth ("credentials are never stored"), which suggests it differs from the earlier version you built. Until real captures exist (older screenshots from the engagement, or a workspace with demo data and the client's OK), build this task with the illustrative reconstructions as designed. Re-checked 2026-10-25 in your signed-in Chrome: still the one workspace, with no connections and no workspace switcher.
 
 > Note: built with the illustrative reconstructions (HTML, no real controls inside). Phones use the desktop copy and the five-section index, as on Intrvuer; the phone artboard merged "Purpose and problem".
 

@@ -1,7 +1,8 @@
 ---
 import ProjectFeature from './ProjectFeature.astro';
 import ProjectCard from './ProjectCard.astro';
-import CapturePlaceholder from './CapturePlaceholder.astro';
+import Capture from './Capture.astro';
+import feedbackAnswer from '../assets/captures/intrvuer/feedback-answer.png';
 import UiReconstruction from './UiReconstruction.astro';
 import ReconTable from './ReconTable.astro';
 ---
@@ -29,11 +30,13 @@ import ReconTable from './ReconTable.astro';
         <a class="link-ink" href="https://intrvuer.com/">Visit intrvuer.com <span aria-hidden="true">↗</span></a>
       </Fragment>
       <Fragment slot="figure">
-        <CapturePlaceholder
-          text="[Approved capture needed] Feedback report: one answer and its feedback, readable at this size"
-          phoneRatio="4 / 3"
+        <Capture
+          src={feedbackAnswer}
+          alt="Feedback on one answer in the Intrvuer sample report: the question, the candidate's response, STAR scores, written feedback and a suggested improvement."
+          sizes="(max-width: 47.99rem) calc(100vw - 40px), 440px"
+          maxWidth={440}
         />
-        <figcaption>
+        <figcaption class="capture-caption">
           Each spoken answer gets its own feedback. The public sample report uses a fictional candidate.
         </figcaption>
       </Fragment>
@@ -136,6 +139,10 @@ import ReconTable from './ReconTable.astro';
   .intro p {
     font-size: clamp(0.9375rem, 0.914rem + 0.095vw, 1rem);
     color: var(--muted);
+  }
+
+  .capture-caption {
+    max-width: 440px;
   }
 
   .recon-note {
