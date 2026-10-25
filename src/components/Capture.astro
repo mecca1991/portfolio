@@ -9,13 +9,19 @@ interface Props {
   sizes?: string;
   /** cap the width of tall captures */
   maxWidth?: number;
+  /** a full phone screen: phone-sized and with device-like corners */
+  phone?: boolean;
 }
 
-const { src, alt, sizes = '(max-width: 47.99rem) calc(100vw - 40px), 500px', maxWidth } = Astro.props;
-const widths = [...new Set([360, 480, 640, 800, 960, 1200, src.width])].filter((w) => w <= src.width);
+const { src, alt, phone = false } = Astro.props;
+const maxWidth = Astro.props.maxWidth ?? (phone ? 280 : undefined);
+const sizes =
+  Astro.props.sizes ??
+  (phone ? '280px' : '(max-width: 47.99rem) calc(100vw - 40px), 500px');
+const widths = [...new Set([280, 360, 480, 640, 800, 960, 1200, src.width])].filter((w) => w <= src.width);
 ---
 
-<div class="capture" style={maxWidth ? { maxWidth: `${maxWidth}px` } : undefined}>
+<div class:list={['capture', { phone }]} style={maxWidth ? { maxWidth: `${maxWidth}px` } : undefined}>
   <Picture src={src} alt={alt} formats={['avif', 'webp']} widths={widths} sizes={sizes} loading="lazy" />
 </div>
 
@@ -26,5 +32,9 @@ const widths = [...new Set([360, 480, 640, 800, 960, 1200, src.width])].filter((
     border: 1px solid var(--line);
     border-radius: var(--radius);
     background: var(--white);
+  }
+
+  .phone :global(img) {
+    border-radius: 28px;
   }
 </style>

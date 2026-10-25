@@ -326,11 +326,9 @@ Design source: https://claude.ai/artifact/1u5mcMR1p11RRbJGzR2qVF · Plan: `tasks
 **Verification:**
 - [ ] Manual: smoke-test every route on the production URL, phone and desktop
 
-> Note: `check:placeholders` now allowlists the reconstructions' deliberate example names (`[Page]`, `[Lead form]`, `[Account]`, `[Campaign field]`). On 2026-10-25 it reports 9 real placeholders and exits 1.
+> Note: `check:placeholders` now allowlists the reconstructions' deliberate example names (`[Page]`, `[Lead form]`, `[Account]`, `[Campaign field]`). On 2026-10-25 it reports 7 real placeholders and exits 1. Intrvuer's start date (Nov 2025) is in, and the spoken-practice step now uses the iOS app's interview screen from `educlick/intrvuer-pending/marketing/…/03-interview.png`.
 
 > Needs Wilfred, to launch:
-> - Intrvuer dates: `[Start date]`
-> - Intrvuer "Spoken practice, mid-session" screenshot (needs a live session)
 > - Intrvuer technical notes: how background jobs are queued and retried, how session state is stored, how speech results are matched to the right answer
 > - Intrvuer decision 1, "Bring the role into the session first": the decision (how résumé and job context shape questions and follow-ups) and its tradeoff (e.g. setup time before practice)
 > - Intrvuer decision 2, "Show listening, processing and recovery": the decision (how each session state is shown, what happens when a step fails) and its tradeoff (what was simplified or deferred)

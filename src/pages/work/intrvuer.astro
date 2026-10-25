@@ -2,9 +2,9 @@
 import CaseStudyLayout from '../../layouts/CaseStudyLayout.astro';
 import CaseSection from '../../components/CaseSection.astro';
 import ImplementedStep from '../../components/ImplementedStep.astro';
-import CapturePlaceholder from '../../components/CapturePlaceholder.astro';
 import Capture from '../../components/Capture.astro';
 import contextSetup from '../../assets/captures/intrvuer/context-setup.png';
+import spokenPractice from '../../assets/captures/intrvuer/spoken-practice-ios.png';
 import feedbackAnswer from '../../assets/captures/intrvuer/feedback-answer.png';
 import Decision from '../../components/Decision.astro';
 import Outcomes from '../../components/Outcomes.astro';
@@ -84,12 +84,14 @@ const sections = [
       task="answer questions and follow-ups out loud."
       built="the session interface, speech handling and the backend that sequences questions and follow-ups."
     >
-      <CapturePlaceholder
-        slot="figure"
-        text="[Approved capture needed] Spoken practice, mid-session"
-        phoneRatio="4 / 3"
-        icon={false}
-      />
+      <Fragment slot="figure">
+        <Capture
+          phone
+          src={spokenPractice}
+          alt="Intrvuer iOS app mid-session: the interviewer, Sarah, asks about a high-stakes project, the candidate's spoken answer appears as text, Sarah asks a follow-up, and a microphone button waits for the next answer."
+        />
+        <figcaption>The Intrvuer iOS app during a practice session.</figcaption>
+      </Fragment>
     </ImplementedStep>
 
     <ImplementedStep
