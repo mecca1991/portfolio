@@ -1,7 +1,5 @@
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset=".github/assets/banner-dark.png">
-  <img alt="The wilfredchetat.com homepage: Wilfred Chetat, Senior Backend Engineer in Dubai, with a portrait and links to selected work, CV, GitHub and LinkedIn." src=".github/assets/banner-light.png">
-</picture>
+![The wilfredchetat.com homepage: Wilfred Chetat, Senior Backend Engineer in Dubai, with a portrait and links to selected work, CV, GitHub and LinkedIn.](.github/assets/banner-light.png#gh-light-mode-only)
+![The wilfredchetat.com homepage: Wilfred Chetat, Senior Backend Engineer in Dubai, with a portrait and links to selected work, CV, GitHub and LinkedIn.](.github/assets/banner-dark.png#gh-dark-mode-only)
 
 # wilfredchetat.com
 
@@ -17,7 +15,7 @@ Source for [www.wilfredchetat.com](https://www.wilfredchetat.com), the portfolio
 Needs Node 22; `nvm use` picks it up from `.nvmrc`.
 
 ```sh
-npm install
+npm ci
 npm run dev      # http://localhost:4321
 npm run build    # static site in dist/
 ```
