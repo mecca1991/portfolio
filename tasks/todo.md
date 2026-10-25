@@ -11,13 +11,13 @@ Design source: https://claude.ai/artifact/1u5mcMR1p11RRbJGzR2qVF · Plan: `tasks
 **Description:** Create the Astro + TypeScript project on Node 22 with the design tokens from the Components artboard, self-hosted fonts and a `BaseLayout` (html shell, meta, skip link, reduced-motion rule). One placeholder `index.astro` renders on the canvas colour in Newsreader/Plex.
 
 **Acceptance criteria:**
-- [ ] `tokens.css` defines every colour, type size, radius and focus style from `Components.dc.html`
-- [ ] Fonts load from the bundle (no requests to `fonts.googleapis.com`)
-- [ ] `.nvmrc` = 22, `engines.node` set, `trailingSlash: 'always'`, `build.format: 'directory'`
+- [x] `tokens.css` defines every colour, type size, radius and focus style from `Components.dc.html`
+- [x] Fonts load from the bundle (no requests to `fonts.googleapis.com`)
+- [x] `.nvmrc` = 22, `engines.node` set, `trailingSlash: 'always'`, `build.format: 'directory'`
 
 **Verification:**
-- [ ] `npm run build` succeeds; `npm run check` (astro check) reports 0 errors
-- [ ] Manual: `npm run dev`, page shows correct fonts and colours; network tab has no third-party requests
+- [x] `npm run build` succeeds; `npm run check` (astro check) reports 0 errors
+- [x] Manual: `npm run dev`, page shows correct fonts and colours; network tab has no third-party requests
 
 **Dependencies:** None
 
@@ -32,7 +32,7 @@ Design source: https://claude.ai/artifact/1u5mcMR1p11RRbJGzR2qVF · Plan: `tasks
 **Description:** Fail fast on hosting. Initialise git, create the GitHub repo with `gh`, add the Amplify build spec and headers, connect the repo in the Amplify console, and confirm a push to `main` deploys.
 
 **Acceptance criteria:**
-- [ ] GitHub repo exists with `main` pushed (name and visibility confirmed with you first)
+- [x] GitHub repo exists with `main` pushed (name and visibility confirmed with you first)
 - [ ] `amplify.yml` builds with Node 22 and publishes `dist/`; `customHttp.yml` sets security headers and `immutable` caching for `/_astro/*`
 - [ ] Amplify app auto-builds `main`; 404 rewrite to `/404.html` configured
 
