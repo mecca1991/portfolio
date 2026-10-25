@@ -33,12 +33,12 @@ Design source: https://claude.ai/artifact/1u5mcMR1p11RRbJGzR2qVF · Plan: `tasks
 
 **Acceptance criteria:**
 - [x] GitHub repo exists with `main` pushed (name and visibility confirmed with you first)
-- [ ] `amplify.yml` builds with Node 22 and publishes `dist/`; `customHttp.yml` sets security headers and `immutable` caching for `/_astro/*`
-- [ ] Amplify app auto-builds `main`; 404 rewrite to `/404.html` configured
+- [x] `amplify.yml` builds with Node 22 and publishes `dist/`; `customHttp.yml` sets security headers and `immutable` caching for `/_astro/*`
+- [x] Amplify app auto-builds `main`; 404 rewrite to `/404.html` configured
 
 **Verification:**
-- [ ] Amplify build log green
-- [ ] Manual: `*.amplifyapp.com` URL serves the skeleton; `curl -I` shows the custom headers
+- [x] Amplify build log green
+- [x] Manual: `*.amplifyapp.com` URL serves the skeleton; `curl -I` shows the custom headers
 
 **Dependencies:** Task 1
 

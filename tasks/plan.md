@@ -92,12 +92,11 @@ Task 1 scaffold + tokens + layout
 
 - **Repo:** `mecca1991/portfolio`, public.
 - **Placeholders:** hold the public launch until real captures, CV and missing text are in. Review happens on the `amplifyapp.com` URL.
-- **Domain:** `wilfredchetat.com`, attached in Task 12. Registered at Namecheap, nameservers on Route 53 (awsdns), apex currently has no A record.
+- **Domain:** `https://www.wilfredchetat.com` is canonical; the apex 301-redirects to `www`. Attached early (2026-10-25), so the domain is public while pages are built. Registered at Namecheap, DNS in Route 53.
 - **Accent:** green `#155E52` (canvas default).
-- **AWS account:** the Amplify app goes in the personal account that holds the `wilfredchetat.com` hosted zone, not the default CLI profile (that's the Sysconnector client account).
+- **AWS:** personal account `338573231383`, CLI profile `personal` (`aws login`). Amplify app `dshdhrt6lgmzs` in `us-east-1`, branch `main` = production. Rules: apex → www (301), `/<*>` → `/404.html` (404). Never use the `default` CLI profile (Sysconnector client account).
 - **Old repo:** the 2020 `mecca1991/portfolio` was renamed to `mecca1991/portfolio-2020`.
 
 ## Open Questions
 
-1. **AWS account:** which account/profile holds the `wilfredchetat.com` hosted zone?
-2. **CV:** do you have the PDF ready to add to `public/`?
+1. **CV:** do you have the PDF ready to add to `public/`?
