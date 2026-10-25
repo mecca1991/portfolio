@@ -6,6 +6,10 @@ import { join, relative } from 'node:path';
 const root = new URL('../dist/', import.meta.url).pathname;
 const placeholder = /\[[A-Z][^\]\n]{2,160}\]/g;
 
+// Example names inside the "Illustrative reconstruction" frames. They're bracketed on purpose
+// (the captions say so), so they don't block a launch.
+const allowed = new Set(['[Page]', '[Lead form]', '[Account]', '[Campaign field]']);
+
 async function* htmlFiles(dir) {
   for (const entry of await readdir(dir, { withFileTypes: true })) {
     const path = join(dir, entry.name);
@@ -26,7 +30,7 @@ function visibleText(html) {
 
 let total = 0;
 for await (const file of htmlFiles(root)) {
-  const found = visibleText(await readFile(file, 'utf8')).match(placeholder) ?? [];
+  const found = (visibleText(await readFile(file, 'utf8')).match(placeholder) ?? []).filter((t) => !allowed.has(t));
   if (found.length === 0) continue;
   total += found.length;
   console.log(`\n${relative(root, file)} (${found.length})`);

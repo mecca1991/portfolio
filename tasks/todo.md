@@ -326,7 +326,18 @@ Design source: https://claude.ai/artifact/1u5mcMR1p11RRbJGzR2qVF · Plan: `tasks
 **Verification:**
 - [ ] Manual: smoke-test every route on the production URL, phone and desktop
 
-> Note: the reconstructions use bracketed example names on purpose (`[Page]`, `[Lead form]`, `[Account]`, `[Campaign field]`), and `check:placeholders` flags them. Add an allowlist for those before using the check as the launch gate.
+> Note: `check:placeholders` now allowlists the reconstructions' deliberate example names (`[Page]`, `[Lead form]`, `[Account]`, `[Campaign field]`). On 2026-10-25 it reports 9 real placeholders and exits 1.
+
+> Needs Wilfred, to launch:
+> - Intrvuer dates: `[Start date]`
+> - Intrvuer "Spoken practice, mid-session" screenshot (needs a live session)
+> - Intrvuer technical notes: how background jobs are queued and retried, how session state is stored, how speech results are matched to the right answer
+> - Intrvuer decision 1, "Bring the role into the session first": the decision (how résumé and job context shape questions and follow-ups) and its tradeoff (e.g. setup time before practice)
+> - Intrvuer decision 2, "Show listening, processing and recovery": the decision (how each session state is shown, what happens when a step fails) and its tradeoff (what was simplified or deferred)
+> - Sysconnector dates: `[Engagement dates]`
+> - Sysconnector "Reuse destination credentials" tradeoff (e.g. handling credentials shared across connections)
+> - Answers to the Task 8b questions (H1 positioning line, provider names in the Intrvuer flow figure, real lead status labels)
+> - VoiceOver spot check, then approval to merge `phase-3-ship` into `main`
 
 **Dependencies:** Task 11, your content (captures, dates, decision text)
 
