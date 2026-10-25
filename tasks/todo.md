@@ -219,13 +219,20 @@ Design source: https://claude.ai/artifact/1u5mcMR1p11RRbJGzR2qVF · Plan: `tasks
 **Description:** Run the `clarity` skill over the reader-facing prose on every page (homepage sections, both case studies, the parser page, captions, alt text, `src/data/site.ts`). Start in review mode, then apply rewrites that make the copy more specific and more like Wilfred's own voice, without inventing facts or changing what each section claims.
 
 **Acceptance criteria:**
-- [ ] Every page's prose reviewed with `clarity`; findings and the rewrites applied are listed in the commit body
-- [ ] No fact added, removed or changed; canvas placeholder text left verbatim; engagement labels and "Illustrative" captions unchanged
-- [ ] Anything that needs Wilfred's knowledge or approval (claims, numbers, tone calls) listed under this task as `> Needs Wilfred:`
+- [x] Every page's prose reviewed with `clarity`; findings and the rewrites applied are listed in the commit body
+- [x] No fact added, removed or changed; canvas placeholder text left verbatim; engagement labels and "Illustrative" captions unchanged
+- [x] Anything that needs Wilfred's knowledge or approval (claims, numbers, tone calls) listed under this task as `> Needs Wilfred:`
 
 **Verification:**
-- [ ] `npm run build` and `npm run check` pass
-- [ ] Manual: read the diff against the artboard copy; spot-check every page at 1440 and 390 for layout breaks from changed text length
+- [x] `npm run build` and `npm run check` pass
+- [x] Manual: read the diff against the artboard copy; spot-check every page at 1440 and 390 for layout breaks from changed text length
+
+> Note: `clarity` review found the copy specific and plain (0 hedges, boosters or participial openers in its lint). Seven small fixes went in, listed in the commit body: three repetitions removed, one mixed-tense list split, one vague phrase made concrete from its own figure, and two notes-to-self cut from captions. No facts changed; placeholders untouched; 17 left.
+
+> Needs Wilfred:
+> - The H1 "Building reliable backend systems and AI-powered products." is your positioning line, so it's unchanged. It reads like a tagline many engineers could use. What's the one thing you most want a hiring manager to remember (payments backends, for example)?
+> - Intrvuer flow figure: name the providers? Your CV lists Faster-Whisper/Deepgram for speech-to-text, Kokoro/Supertonic for text-to-speech, plus Celery and Redis. Confirm and I'll add them.
+> - Sysconnector leads figure: do "Synced", "Failed · field not mapped" and "Pending" match the real status labels? If yes, the caption can say so again.
 
 **Dependencies:** Pages checkpoint
 
