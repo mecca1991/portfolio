@@ -253,7 +253,7 @@ Design source: https://claude.ai/artifact/1u5mcMR1p11RRbJGzR2qVF · Plan: `tasks
 
 **Verification:**
 - [ ] Build succeeds
-- [ ] Manual: `curl -I https://…/nope/` → 404; OG preview via a card validator
+- [ ] Manual: `curl -I https://…/nope/` → 404; OG tags and image checked on every route (the card-validator check moves to Task 12: validators fetch `og:image` from www, which serves the holding page until launch)
 
 **Dependencies:** Tasks 3–8
 
@@ -312,6 +312,7 @@ Design source: https://claude.ai/artifact/1u5mcMR1p11RRbJGzR2qVF · Plan: `tasks
 - [ ] `npm run check:placeholders` passes, or every remaining item is approved by you
 - [x] Custom domain on HTTPS; apex 301-redirects to `www` (done early)
 - [ ] `v1.0.0` tag on `main`
+- [ ] OG card renders in a card validator (e.g. LinkedIn Post Inspector) for www.wilfredchetat.com
 
 **Verification:**
 - [ ] Manual: smoke-test every route on the production URL, phone and desktop

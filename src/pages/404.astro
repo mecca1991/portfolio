@@ -1,24 +1,70 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import { site } from '../data/site';
 ---
 
-<BaseLayout title="Page not found · Wilfred Chetat" description="This page doesn’t exist.">
+<BaseLayout title="Page not found · Wilfred Chetat" description="This page doesn’t exist." noindex>
+  <Header />
   <main id="main" class="container not-found">
-    <h1 class="display">Page not found</h1>
-    <p><a href="/">Back to the homepage</a></p>
+    <p class="code">404</p>
+    <h1 class="display">This page doesn’t exist.</h1>
+    <p class="lede">The link may be out of date, or the address may have a typo.</p>
+    <div class="actions">
+      <a class="btn btn-primary" href="/">Go to the homepage</a>
+      <a class="btn btn-secondary" href="/#work">See selected work</a>
+    </div>
+    <p class="contact">
+      Looking for something specific? Email <a href={`mailto:${site.email}`}>{site.email}</a>.
+    </p>
   </main>
 </BaseLayout>
 
 <style>
   .not-found {
-    padding-block: 96px;
+    padding-block: clamp(3rem, 1.886rem + 4.571vw, 6rem);
+  }
+
+  .code {
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    color: var(--muted);
   }
 
   h1 {
-    font-size: var(--text-h2);
+    max-width: 16ch;
+    margin-top: 16px;
+    font-size: var(--text-h1);
+    line-height: 1.06;
+    letter-spacing: -0.015em;
   }
 
-  p {
+  .lede {
+    max-width: 32em;
     margin-top: 20px;
+  }
+
+  .actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 32px;
+  }
+
+  .actions .btn {
+    font-size: 16px;
+  }
+
+  .contact {
+    margin-top: 40px;
+    font-size: 16px;
+    color: var(--muted);
+  }
+
+  .contact a {
+    display: inline-block;
+    padding-block: 10px;
+    overflow-wrap: anywhere;
   }
 </style>
