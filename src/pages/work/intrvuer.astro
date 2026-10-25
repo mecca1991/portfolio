@@ -127,23 +127,47 @@ const sections = [
 
     <details class="notes">
       <summary>Technical notes</summary>
-      <p>
-        [How background jobs are queued and retried, how session state is stored, and how speech results are matched
-        to the right answer.]
-      </p>
+      <ul>
+        <li>
+          Each answer is one recording, uploaded for the question on screen with an idempotency key and a SHA-256 of
+          the audio. The database allows one answer per question. A retry gets the original answer back without a
+          second transcription; the same key with different audio is refused.
+        </li>
+        <li>
+          An answer turn claims its question in a short transaction. Transcription (faster-whisper) and the follow-up
+          decision then run with no transaction open, and the result is saved only if the attempt still holds the
+          claim. The whole turn has a 90-second budget, under the app’s 120-second timeout; past that, the app gets a
+          503 it knows to retry. Speech (Kokoro) is synthesised after the commit, so a synthesis failure costs the
+          audio, not the answer.
+        </li>
+        <li>
+          Feedback and résumé analysis run on Celery workers with Redis. Feedback is claimed under a lease and saved
+          one answer at a time, so a retry pays only for the answers still missing. Scheduled sweeps pick up jobs that
+          were never queued or whose worker died.
+        </li>
+        <li>
+          Workers don’t requeue a task when their process dies. In August 2026 they did: a task that kept running out
+          of memory was redelivered 86,000 times, and together with a sweep that kept re-queuing follow-up
+          generation, that came to about 13,000 paid LLM calls a day. The sweeps now handle recovery.
+        </li>
+        <li>
+          Sessions, questions, answers and claims are stored in PostgreSQL. Answer audio is transcribed and discarded;
+          the transcript is the answer.
+        </li>
+      </ul>
     </details>
   </CaseSection>
 
   <CaseSection id="decisions" number="04" title="Decisions and tradeoffs">
     <Decision
       title="Bring the role into the session first"
-      decision="[How résumé and job context shape questions and follow-ups]"
-      tradeoff="[What this cost, such as setup time before practice]"
+      decision="Before the first question, an LLM reads the job description into requirements and the résumé into past roles. Questions are written from the top ten requirements and up to five roles, and the interviewer’s introduction names the company and position. After each answer, an LLM decides whether to ask a follow-up, with the conversation so far as context."
+      tradeoff="Practice can’t start until the candidate has added both documents and the questions are generated, which the server allows up to 90 seconds. Follow-ups cost time on every answer too. I tried pre-generating them in the background and matching them by embedding, then retired that in August 2026; each answer now waits for one LLM call inside the turn’s budget."
     />
     <Decision
       title="Show listening, processing and recovery"
-      decision="[How each session state is shown, and what happens when a step fails]"
-      tradeoff="[What was simplified or deferred]"
+      decision="The iOS app shows whether the interviewer is speaking or the candidate is recording. Each answer is written to disk as it is recorded and kept until the server accepts it; every retry reuses one idempotency key, so the server records the answer once. After five automatic attempts, not counting time offline, the answer waits in a saved-answers list with Retry and Discard. In a simulator test, an app killed mid-answer sent the answer on relaunch."
+      tradeoff="There is no pause. A phone call ends the recording, and the app saves what was said and tells the candidate, instead of offering to resume. The server keeps only the transcript and the app deletes its copy once the server accepts it, so a bad transcript can’t be re-run from the audio. Keeping audio would have needed storage, a retention policy and a privacy position, and I declined it."
     />
   </CaseSection>
 
@@ -275,9 +299,14 @@ const sections = [
     content: '−';
   }
 
-  .notes p {
-    padding-bottom: 20px;
+  .notes ul {
+    margin: 0;
+    padding: 0 0 20px 20px;
     font-size: 16px;
+  }
+
+  .notes li {
+    padding-block: 4px;
   }
 
   @media (max-width: 47.99rem) {
@@ -315,7 +344,7 @@ const sections = [
       font-size: 16px;
     }
 
-    .notes p {
+    .notes ul {
       font-size: 15px;
     }
   }
