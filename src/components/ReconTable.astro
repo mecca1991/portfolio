@@ -1,0 +1,67 @@
+---
+/* Table inside a UiReconstruction. A cell is plain text or text with a status tone. */
+type Tone = 'ok' | 'fail' | 'muted';
+type Cell = string | { text: string; tone: Tone };
+
+interface Props {
+  columns: string[];
+  rows: Cell[][];
+}
+
+const { columns, rows } = Astro.props;
+---
+
+<table>
+  <thead>
+    <tr>{columns.map((c) => <th scope="col">{c}</th>)}</tr>
+  </thead>
+  <tbody>
+    {
+      rows.map((row) => (
+        <tr>
+          {row.map((cell) =>
+            typeof cell === 'string' ? <td>{cell}</td> : <td class={`status-${cell.tone}`}>{cell.text}</td>,
+          )}
+        </tr>
+      ))
+    }
+  </tbody>
+</table>
+
+<style>
+  table {
+    width: 100%;
+    table-layout: fixed;
+    border-collapse: collapse;
+    font-size: 14px;
+    text-align: left;
+  }
+
+  th {
+    padding: 10px 20px;
+    border-bottom: 1px solid var(--line);
+    font-weight: 400;
+    color: var(--muted);
+  }
+
+  td {
+    padding: 12px 20px;
+    border-bottom: 1px solid var(--line);
+  }
+
+  tbody tr:last-child td {
+    border-bottom: 0;
+  }
+
+  /* phone: let columns size to their content so long field names fit */
+  @media (max-width: 47.99rem) {
+    table {
+      table-layout: auto;
+    }
+
+    th,
+    td {
+      padding-inline: 12px;
+    }
+  }
+</style>

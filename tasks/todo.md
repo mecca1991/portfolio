@@ -85,14 +85,16 @@ Design source: https://claude.ai/artifact/1u5mcMR1p11RRbJGzR2qVF · Plan: `tasks
 **Description:** The four project entries: Intrvuer and Sysconnector as large alternating rows, Lease Insurance and EduClick as a two-column grid, each with its engagement label and evidence figure (placeholder box, illustrative mapping table, balance table, import batch).
 
 **Acceptance criteria:**
-- [ ] Order on phones follows the Components rule: label, title, one-liner, contribution, visual, actions
-- [ ] "Illustrative reconstruction" badges and captions appear exactly as designed
-- [ ] "Read the case study" links go to `/work/intrvuer/` and `/work/sysconnector/`
-- [ ] `#work` (header nav and hero button) lands on the section heading
+- [x] Order on phones follows the Components rule: label, title, one-liner, contribution, visual, actions
+- [x] "Illustrative reconstruction" badges and captions appear exactly as designed
+- [x] "Read the case study" links go to `/work/intrvuer/` and `/work/sysconnector/`
+- [x] `#work` (header nav and hero button) lands on the section heading
+
+> Note: the case-study links point at the right URLs; those pages arrive in Tasks 6–7 and the Pages checkpoint link check covers them. As in Task 3, phones show the desktop copy (the phone artboard had trimmed variants and a 2-row mapping figure).
 
 **Verification:**
-- [ ] Build succeeds
-- [ ] Manual: 1440 / 390 comparison against the canvas
+- [x] Build succeeds
+- [x] Manual: 1440 / 390 comparison against the canvas
 
 **Dependencies:** Task 3
 
