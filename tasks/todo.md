@@ -247,13 +247,15 @@ Design source: https://claude.ai/artifact/1u5mcMR1p11RRbJGzR2qVF · Plan: `tasks
 **Description:** Per-page titles and descriptions, Open Graph/Twitter cards with one OG image in the site style, canonical URLs, `@astrojs/sitemap`, `robots.txt`, favicon set, and a designed 404 page.
 
 **Acceptance criteria:**
-- [ ] Every route has a unique `<title>`, description and OG image
-- [ ] `sitemap-index.xml` and `robots.txt` present in `dist/`
-- [ ] Unknown URL on Amplify returns the 404 page with status 404
+- [x] Every route has a unique `<title>`, description and OG image
+- [x] `sitemap-index.xml` and `robots.txt` present in `dist/`
+- [x] Unknown URL on Amplify returns the 404 page with status 404
 
 **Verification:**
-- [ ] Build succeeds
-- [ ] Manual: `curl -I https://…/nope/` → 404; OG tags and image checked on every route (the card-validator check moves to Task 12: validators fetch `og:image` from www, which serves the holding page until launch)
+- [x] Build succeeds
+- [x] Manual: `curl -I https://…/nope/` → 404; OG tags and image checked on every route (the card-validator check moves to Task 12: validators fetch `og:image` from www, which serves the holding page until launch)
+
+> Note: one shared OG card (1200×630, site fonts and portrait, no tagline, since the H1 is still an open question). Verified on the phase-3-ship preview 2026-10-25: `/nope/` → 404 with the noindex page; robots.txt, sitemap-index.xml, sitemap-0.xml (4 URLs, 404 excluded), og.png and favicons served with the right types. Canonical and og:url point at www.wilfredchetat.com on every page.
 
 **Dependencies:** Tasks 3–8
 
