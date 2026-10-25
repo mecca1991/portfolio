@@ -1,5 +1,5 @@
-![The wilfredchetat.com homepage: Wilfred Chetat, Senior Backend Engineer in Dubai, with a portrait and links to selected work, CV, GitHub and LinkedIn.](.github/assets/banner-light.png#gh-light-mode-only)
-![The wilfredchetat.com homepage: Wilfred Chetat, Senior Backend Engineer in Dubai, with a portrait and links to selected work, CV, GitHub and LinkedIn.](.github/assets/banner-dark.png#gh-dark-mode-only)
+![The wilfredchetat.com homepage: Wilfred Chetat, Senior Backend Engineer in Dubai, with a portrait and links to projects, CV, GitHub and LinkedIn.](.github/assets/banner-light.png#gh-light-mode-only)
+![The wilfredchetat.com homepage: Wilfred Chetat, Senior Backend Engineer in Dubai, with a portrait and links to projects, CV, GitHub and LinkedIn.](.github/assets/banner-dark.png#gh-dark-mode-only)
 
 # wilfredchetat.com
 
