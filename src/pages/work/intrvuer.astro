@@ -134,21 +134,16 @@ const sections = [
           second transcription; the same key with different audio is refused.
         </li>
         <li>
-          An answer turn claims its question in a short transaction. Transcription (faster-whisper) and the follow-up
-          decision then run with no transaction open, and the result is saved only if the attempt still holds the
-          claim. The whole turn has a 90-second budget, under the app’s 120-second timeout; past that, the app gets a
-          503 it knows to retry. Speech (Kokoro) is synthesised after the commit, so a synthesis failure costs the
-          audio, not the answer.
+          An answer turn claims its question in a short transaction. Transcription and the follow-up decision then run
+          with no transaction open, and the result is saved only if the attempt still holds the claim. The whole turn
+          has a 90-second budget, under the app’s 120-second timeout; past that, the app gets a 503 it knows to retry.
+          The interviewer’s reply is synthesised after the commit, so a synthesis failure costs the audio, not the
+          answer.
         </li>
         <li>
           Feedback and résumé analysis run on Celery workers with Redis. Feedback is claimed under a lease and saved
           one answer at a time, so a retry pays only for the answers still missing. Scheduled sweeps pick up jobs that
           were never queued or whose worker died.
-        </li>
-        <li>
-          Workers don’t requeue a task when their process dies. In August 2026 they did: a task that kept running out
-          of memory was redelivered 86,000 times, and together with a sweep that kept re-queuing follow-up
-          generation, that came to about 13,000 paid LLM calls a day. The sweeps now handle recovery.
         </li>
         <li>
           Sessions, questions, answers and claims are stored in PostgreSQL. Answer audio is transcribed and discarded;
@@ -162,7 +157,7 @@ const sections = [
     <Decision
       title="Bring the role into the session first"
       decision="Before the first question, an LLM reads the job description into requirements and the résumé into past roles. Questions are written from the top ten requirements and up to five roles, and the interviewer’s introduction names the company and position. After each answer, an LLM decides whether to ask a follow-up, with the conversation so far as context."
-      tradeoff="Practice can’t start until the candidate has added both documents and the questions are generated, which the server allows up to 90 seconds. Follow-ups cost time on every answer too. I tried pre-generating them in the background and matching them by embedding, then retired that in August 2026; each answer now waits for one LLM call inside the turn’s budget."
+      tradeoff="Practice can’t start until the candidate has added both documents and the questions are generated, which the server allows up to 90 seconds. Follow-ups cost time on every answer too. I tried generating them in the background before they were needed, but when a candidate stopped halfway, the follow-ups already paid for were wasted. I dropped that in August 2026, so each answer now waits for one LLM call inside the turn’s budget."
     />
     <Decision
       title="Show listening, processing and recovery"

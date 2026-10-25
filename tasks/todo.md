@@ -326,13 +326,12 @@ Design source: https://claude.ai/artifact/1u5mcMR1p11RRbJGzR2qVF · Plan: `tasks
 **Verification:**
 - [ ] Manual: smoke-test every route on the production URL, phone and desktop
 
-> Note: `check:placeholders` now allowlists the reconstructions' deliberate example names (`[Page]`, `[Lead form]`, `[Account]`, `[Campaign field]`). On 2026-10-25 it reports 2 real placeholders (both Sysconnector) and exits 1. Intrvuer's start date (Nov 2025) is in, and the spoken-practice step now uses the iOS app's interview screen from `educlick/intrvuer-pending/marketing/…/03-interview.png`. Intrvuer's technical notes and both decisions were written from the intrvuer-be and intrvuer-ios git histories (commit 729c6ce), for Wilfred to review.
+> Note: `check:placeholders` now allowlists the reconstructions' deliberate example names (`[Page]`, `[Lead form]`, `[Account]`, `[Campaign field]`). On 2026-10-25 it reports 2 real placeholders (both Sysconnector) and exits 1. Intrvuer's start date (Nov 2025) is in, and the spoken-practice step now uses the iOS app's interview screen from `educlick/intrvuer-pending/marketing/…/03-interview.png`. Intrvuer's technical notes and both decisions were written from the intrvuer-be and intrvuer-ios git histories (commit 729c6ce). Wilfred's review: the worker incident and the provider names are out, and the follow-up tradeoff now says why pre-generation was dropped (a candidate who stopped halfway left paid-for follow-ups unused).
 
 > Needs Wilfred, to launch:
-> - Review of the Intrvuer notes and decisions (729c6ce), including whether to publish the August 2026 worker incident
 > - Sysconnector dates: `[Engagement dates]`
 > - Sysconnector "Reuse destination credentials" tradeoff (e.g. handling credentials shared across connections)
-> - Answers to the Task 8b questions (H1 positioning line, provider names in the Intrvuer flow figure, real lead status labels)
+> - Answers to the Task 8b questions (H1 positioning line, real lead status labels). Provider names: no, keep them off the site
 > - VoiceOver spot check, then approval to merge `phase-3-ship` into `main`
 
 **Dependencies:** Task 11, your content (captures, dates, decision text)
