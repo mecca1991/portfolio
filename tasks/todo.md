@@ -204,15 +204,36 @@ Design source: https://claude.ai/artifact/1u5mcMR1p11RRbJGzR2qVF · Plan: `tasks
 ### ✅ Checkpoint: Pages
 - [x] All routes match the artboards at 1440 and 390
 - [x] Every link resolves (`npx linkinator dist --recurse` or equivalent)
-- [ ] Review on the Amplify URL with you
+- [x] Review on the Amplify URL with you (approved 2026-10-25; `main` stays on its holding page until launch)
 
 > Preview: https://phase-2-pages.dshdhrt6lgmzs.amplifyapp.com (Amplify branch `phase-2-pages`, auto-builds on push; `main` and www.wilfredchetat.com are untouched). Checked 2026-10-25: 5 pages, 0 broken internal links or anchors, 10 external URLs return 200 (LinkedIn gives its usual 999 to scripts); every route at 1440 and 390 has no horizontal scroll, no broken images, fonts loaded, one h1, no console errors; preview serves the 404 page with a 404 status and the same security and cache headers as production.
 
-> Needs Wilfred: review the preview, then approve the checkpoint in chat. After approval, `phase-2-pages` merges into `main`, which deploys to www.wilfredchetat.com.
+> Decision 2026-10-25: don't merge yet. `main` keeps the holding page so placeholders never go public; Phase 3 continues on `phase-3-ship`, branched from `phase-2-pages`, and everything merges into `main` at launch (Task 12).
 
 ---
 
 ## Phase 3: Polish and ship
+
+### Task 8b: Copy review with clarity
+
+**Description:** Run the `clarity` skill over the reader-facing prose on every page (homepage sections, both case studies, the parser page, captions, alt text, `src/data/site.ts`). Start in review mode, then apply rewrites that make the copy more specific and more like Wilfred's own voice, without inventing facts or changing what each section claims.
+
+**Acceptance criteria:**
+- [ ] Every page's prose reviewed with `clarity`; findings and the rewrites applied are listed in the commit body
+- [ ] No fact added, removed or changed; canvas placeholder text left verbatim; engagement labels and "Illustrative" captions unchanged
+- [ ] Anything that needs Wilfred's knowledge or approval (claims, numbers, tone calls) listed under this task as `> Needs Wilfred:`
+
+**Verification:**
+- [ ] `npm run build` and `npm run check` pass
+- [ ] Manual: read the diff against the artboard copy; spot-check every page at 1440 and 390 for layout breaks from changed text length
+
+**Dependencies:** Pages checkpoint
+
+**Files likely touched:** `src/components/*.astro`, `src/pages/**/*.astro`, `src/data/site.ts`
+
+**Estimated scope:** M
+
+---
 
 ### Task 9: SEO, metadata, favicon, 404
 

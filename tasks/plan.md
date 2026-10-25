@@ -53,6 +53,7 @@ Desktop and phone artboards merge into one responsive page each.
 - [ ] Human review on the Amplify preview
 
 ### Phase 3: Polish and ship
+- [ ] Task 8b: Copy review with clarity
 - [ ] Task 9: SEO, metadata, favicon, 404
 - [ ] Task 10: Accessibility and performance pass
 - [ ] Task 11: README
@@ -98,6 +99,9 @@ Task 1 scaffold + tokens + layout
 - **Old repo:** the 2020 `mecca1991/portfolio` was renamed to `mecca1991/portfolio-2020`.
 
 - **CV:** served from S3, not the repo: `https://wilfredchetat-public.s3.us-east-1.amazonaws.com/Wilfred_Chetat_CV.pdf` (bucket `wilfredchetat-public`, versioned, public read on that one key only). URL lives in `src/data/site.ts`; update with `npm run cv:upload`. The source PDF at the repo root is gitignored.
+
+- **Release:** `main` keeps the holding page until launch so placeholders never go public. Phase branches chain (`phase-3-ship` from `phase-2-pages`), each with its own Amplify preview, and everything merges into `main` at Task 12.
+- **Copy:** from Phase 3 on, every reader-facing text a task writes or changes goes through the `clarity` skill (review, then rewrite) without inventing facts.
 
 ## Open Questions
 

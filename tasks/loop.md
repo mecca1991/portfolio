@@ -21,6 +21,7 @@ Each iteration completes exactly one task from `tasks/todo.md`, then schedules t
 - Reuse `src/styles/tokens.css`, existing components and `src/data/site.ts`. Plain CSS, zero client JS except the Rust playground.
 - Keep canvas placeholder text verbatim, and keep the "Illustrative reconstruction" badges.
 - Stay inside the task's scope. If something else needs fixing, note it in `tasks/todo.md` instead of doing it.
+- Reader-facing text (page copy, captions, alt text, meta descriptions, README) goes through the `clarity` skill before you commit: review mode first, then apply rewrites that keep every fact. Never invent facts, and leave canvas placeholder text verbatim.
 
 ## 4. Verify
 - `npm run build && npm run check` must both pass with 0 errors.
@@ -28,8 +29,8 @@ Each iteration completes exactly one task from `tasks/todo.md`, then schedules t
 - Tick a box in `tasks/todo.md` only once it has actually been verified. Anything that needs me goes under the task as `> Needs Wilfred: …`.
 
 ## 5. Commit and push
-- Work on the phase branch (`phase-2-pages`, then `phase-3-ship`). Create it from `main` if it doesn't exist yet.
-- **Never push to `main`.** It deploys straight to www.wilfredchetat.com. Merge into `main` only after I approve the checkpoint.
+- Work on the phase branch: `phase-3-ship`, branched from `phase-2-pages` (it already exists, with an Amplify preview at https://phase-3-ship.dshdhrt6lgmzs.amplifyapp.com).
+- **Never push to `main`.** It deploys straight to www.wilfredchetat.com. Everything merges into `main` only at launch (Task 12), after I approve the final checkpoint.
 - One commit per task, covering the code plus the `tasks/todo.md` update. Imperative subject line ≤ 60 chars; the body says why.
 - **No `Co-Authored-By: Claude` line and no other Claude attribution in commit messages or PRs.** After committing, run `git log -1 --format=%B | grep -i 'co-authored-by'`. If it prints anything, amend the message before pushing.
 - `git push -u origin <branch>`. Never force-push.
