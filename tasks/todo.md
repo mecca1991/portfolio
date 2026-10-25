@@ -157,14 +157,16 @@ Design source: https://claude.ai/artifact/1u5mcMR1p11RRbJGzR2qVF · Plan: `tasks
 **Description:** `/work/sysconnector/` on `CaseStudyLayout`: the three illustrative UI reconstructions (connection setup, field mapping, lead status), "Also in this engagement", decision/tradeoff tables, outcomes, next link to the Rust parser.
 
 **Acceptance criteria:**
-- [ ] Reconstructions are HTML (not images), each with the dashed "Illustrative reconstruction" badge
-- [ ] The scope disclaimer ("earlier version of the product…") is present under the intro
+- [x] Reconstructions are HTML (not images), each with the dashed "Illustrative reconstruction" badge
+- [x] The scope disclaimer ("earlier version of the product…") is present under the intro
 
 **Verification:**
-- [ ] Build succeeds
-- [ ] Manual: 1440 / 390 comparison
+- [x] Build succeeds
+- [x] Manual: 1440 / 390 comparison
 
 > Needs Wilfred: real screenshots. Checked app.sysconnector.com on 2026-10-25 (read-only): the signed-in workspace has no connections or connected apps, and Create Connection is blocked by the free plan's 1/1 connection limit, so none of the screens you built can be captured. The current app also uses OAuth ("credentials are never stored"), which suggests it differs from the earlier version you built. Until real captures exist (older screenshots from the engagement, or a workspace with demo data and the client's OK), build this task with the illustrative reconstructions as designed.
+
+> Note: built with the illustrative reconstructions (HTML, no real controls inside). Phones use the desktop copy and the five-section index, as on Intrvuer; the phone artboard merged "Purpose and problem".
 
 **Dependencies:** Task 6 (layout)
 
@@ -277,6 +279,8 @@ Design source: https://claude.ai/artifact/1u5mcMR1p11RRbJGzR2qVF · Plan: `tasks
 
 **Verification:**
 - [ ] Manual: smoke-test every route on the production URL, phone and desktop
+
+> Note: the reconstructions use bracketed example names on purpose (`[Page]`, `[Lead form]`, `[Account]`, `[Campaign field]`), and `check:placeholders` flags them. Add an allowlist for those before using the check as the launch gate.
 
 **Dependencies:** Task 11, your content (captures, dates, decision text)
 

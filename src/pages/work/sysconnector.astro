@@ -1,0 +1,407 @@
+---
+import CaseStudyLayout from '../../layouts/CaseStudyLayout.astro';
+import CaseSection from '../../components/CaseSection.astro';
+import ImplementedStep from '../../components/ImplementedStep.astro';
+import UiReconstruction from '../../components/UiReconstruction.astro';
+import ReconTable from '../../components/ReconTable.astro';
+import Decision from '../../components/Decision.astro';
+import Outcomes from '../../components/Outcomes.astro';
+
+const sections = [
+  { id: 'purpose', label: 'Purpose and users' },
+  { id: 'problem', label: 'The problem' },
+  { id: 'implemented', label: 'What I implemented' },
+  { id: 'decisions', label: 'Decisions and tradeoffs' },
+  { id: 'outcomes', label: 'Outcomes' },
+];
+---
+
+<CaseStudyLayout
+  title="Sysconnector case study · Wilfred Chetat"
+  description="Freelance work on Sysconnector: moving Facebook Lead Ads into Adobe Campaign with field mapping and sync status."
+  label="Freelance client project"
+  detail="Upwork"
+  heading="Sysconnector"
+  subtitle="Moving Facebook Lead Ads into Adobe Campaign, with mapping and sync status people can check."
+  intro="As a freelance engineer, I built the lead integration across backend and frontend, plus audience-management and reporting features in the same product."
+  note="This case covers my work on an earlier version of the product. Later features and the current marketing website are not my work."
+  facts={[
+    { term: 'Engagement', detail: 'Freelance client project via Upwork' },
+    { term: 'My role', detail: 'Freelance Full-Stack Engineer' },
+    { term: 'Users', detail: 'Marketing teams connecting lead forms to their campaign tools' },
+    { term: 'Scope', detail: 'Backend APIs and webhooks; React interfaces' },
+    { term: 'Dates', detail: '[Engagement dates]' },
+  ]}
+  sections={sections}
+  next={{
+    label: 'Next · Personal project · Rust cohort',
+    title: 'Rust JSON Parser',
+    href: '/experiments/rust-json-parser/',
+  }}
+  contact={{
+    title: 'Need an integration built?',
+    intro:
+      'I’m Wilfred Chetat, a senior backend engineer in Dubai. Send a short outline of the systems you need to connect.',
+  }}
+>
+  <CaseSection id="purpose" number="01" title="Purpose and users">
+    <p>
+      Sysconnector connects lead sources to marketing destinations. The people using it set up a connection once, then
+      rely on new leads arriving in Adobe Campaign with the right fields, and need to see when one doesn’t.
+    </p>
+  </CaseSection>
+
+  <CaseSection id="problem" number="02" title="The problem">
+    <ul>
+      <li>Leads arrive by webhook in each lead form’s own shape; Adobe Campaign expects its own fields.</li>
+      <li>A connection can fail because of credentials, so it should be checked before it is relied on.</li>
+      <li>Operators need to know which leads synced and which didn’t, without reading logs.</li>
+    </ul>
+  </CaseSection>
+
+  <CaseSection id="implemented" number="03" title="What I implemented" wide>
+    <p class="aside">The screens below are illustrative reconstructions of the interfaces I worked on.</p>
+
+    <ImplementedStep title="1 · Connection setup" task="connect a lead form to Adobe Campaign and confirm it works.">
+      <ul>
+        <li>Connection validation and credential handling</li>
+        <li>Reuse of existing destination credentials</li>
+        <li>Integration toggles that reflect the saved status</li>
+        <li>Loading states and clearer error messages</li>
+      </ul>
+      <Fragment slot="figure">
+        <UiReconstruction title="Connection setup">
+          <div class="setup">
+            <div>
+              <div class="field-label">Source</div>
+              <div class="field">Facebook Lead Ads · [Page] · [Lead form]</div>
+            </div>
+            <div>
+              <div class="field-label">Destination</div>
+              <div class="field">Adobe Campaign</div>
+            </div>
+            <div class="choices">
+              <div class="field-label">Credentials</div>
+              <div class="choice"><span class="radio on" aria-hidden="true"></span>Use saved credentials · [Account]</div>
+              <div class="choice status-muted"><span class="radio" aria-hidden="true"></span>Add new credentials</div>
+            </div>
+            <div class="validate">
+              <span class="fake-button">Validate connection</span>
+              <span class="status-ok validated">
+                <svg
+                  aria-hidden="true"
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"><path d="M5 12l5 5 9-10"></path></svg
+                >Connection validated
+              </span>
+            </div>
+            <div class="error">
+              <strong>Example error: </strong>Adobe Campaign rejected the client secret. Check it and validate again.
+            </div>
+            <div class="toggle-row">
+              <span>Integration</span>
+              <span class="toggle"><span class="track" aria-hidden="true"></span><strong>On · saved</strong></span>
+            </div>
+          </div>
+        </UiReconstruction>
+        <figcaption>Illustrative reconstruction. Names in brackets and the error text are examples.</figcaption>
+      </Fragment>
+    </ImplementedStep>
+
+    <ImplementedStep title="2 · Field mapping" task="decide where each lead-form field lands in Adobe Campaign.">
+      <ul>
+        <li>Webhook processing for incoming Facebook leads</li>
+        <li>Lead field mapping between the form and Adobe Campaign</li>
+      </ul>
+      <Fragment slot="figure">
+        <UiReconstruction title="Field mapping">
+          <ReconTable
+            columns={['Lead form field', 'Campaign field', 'Status']}
+            rows={[
+              ['full_name', '[Campaign field]', { text: 'Mapped', tone: 'ok' }],
+              ['email', '[Campaign field]', { text: 'Mapped', tone: 'ok' }],
+              ['city', '[Campaign field]', { text: 'Mapped', tone: 'ok' }],
+              ['phone_number', { text: 'Not mapped', tone: 'muted' }, { text: 'Needs a field', tone: 'fail' }],
+            ]}
+          />
+        </UiReconstruction>
+        <figcaption>Illustrative reconstruction. Field names are examples, not captured data.</figcaption>
+      </Fragment>
+    </ImplementedStep>
+
+    <ImplementedStep title="3 · Lead status and export" task="see which leads reached Adobe Campaign, and export them.">
+      <ul>
+        <li>Sync-status handling per lead</li>
+        <li>CSV lead export with tracking fields</li>
+        <li>Data that refreshes after user actions</li>
+      </ul>
+      <Fragment slot="figure">
+        <UiReconstruction title="Leads">
+          <div class="toolbar">
+            <span class="status-muted">Updated after your last action</span>
+            <span class="fake-button outline">Export CSV</span>
+          </div>
+          <ReconTable
+            columns={['Lead', 'Received', 'Sync status']}
+            rows={[
+              ['Lead 1042', '09:14', { text: 'Synced', tone: 'ok' }],
+              ['Lead 1043', '09:20', { text: 'Failed · field not mapped', tone: 'fail' }],
+              ['Lead 1044', '09:31', { text: 'Pending', tone: 'strong' }],
+            ]}
+          />
+        </UiReconstruction>
+        <figcaption>
+          Illustrative reconstruction with fictional leads. Status labels to match the implementation.
+        </figcaption>
+      </Fragment>
+    </ImplementedStep>
+
+    <div class="also">
+      <h3>Also in this engagement</h3>
+      <div class="also-items">
+        <div>
+          <h4>Audience management</h4>
+          <p>APIs and React interfaces for managing audiences.</p>
+        </div>
+        <div>
+          <h4>Configurable charts</h4>
+          <p>Creating, editing and previewing charts before saving them.</p>
+        </div>
+      </div>
+    </div>
+  </CaseSection>
+
+  <CaseSection id="decisions" number="04" title="Decisions and tradeoffs">
+    <Decision
+      title="Toggles show what was saved, not what was clicked"
+      decision="An integration toggle reflects the status stored on the server."
+      tradeoff="A brief loading state, in exchange for a toggle that never claims an integration is on when it isn’t."
+    />
+    <Decision
+      title="Reuse destination credentials"
+      decision="New connections can use Adobe Campaign credentials that were already saved."
+      tradeoff="[What this required, such as handling credentials shared across connections]"
+    />
+  </CaseSection>
+
+  <CaseSection id="outcomes" number="05" title="Outcomes">
+    <Outcomes
+      items={[
+        {
+          label: 'Delivered',
+          text: 'A working lead path from Facebook Lead Ads to Adobe Campaign, with setup, mapping and status screens.',
+        },
+        { label: 'Not claimed', text: 'Performance, revenue, adoption or conversion figures.' },
+      ]}
+    />
+  </CaseSection>
+</CaseStudyLayout>
+
+<style>
+  .aside {
+    max-width: 680px;
+    margin-top: 16px;
+    font-size: 16px;
+    color: var(--muted);
+  }
+
+  .setup {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    padding: 18px;
+  }
+
+  .field-label {
+    font-size: 13px;
+    color: var(--muted);
+  }
+
+  .field {
+    margin-top: 4px;
+    padding: 9px 12px;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-sm);
+  }
+
+  .choices {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .choice {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .radio {
+    flex: none;
+    width: 16px;
+    height: 16px;
+    border: 1px solid var(--muted);
+    border-radius: 50%;
+  }
+
+  .radio.on {
+    border: 5px solid var(--ink);
+  }
+
+  .validate {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .fake-button {
+    padding: 9px 14px;
+    border-radius: var(--radius-sm);
+    background: var(--ink);
+    color: var(--white);
+    font-weight: 500;
+  }
+
+  .fake-button.outline {
+    padding: 6px 12px;
+    border: 1px solid var(--ink);
+    background: none;
+    color: var(--ink);
+  }
+
+  .validated {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .error {
+    padding: 10px 12px;
+    border: 1px solid var(--error-line);
+    border-radius: var(--radius-sm);
+    background: var(--error-bg);
+    font-size: 14px;
+    color: var(--error-text);
+  }
+
+  .error strong,
+  .toggle strong {
+    font-weight: 600;
+  }
+
+  .toggle-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding-top: 14px;
+    border-top: 1px solid var(--line);
+  }
+
+  .toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .toggle strong {
+    font-weight: 500;
+  }
+
+  .track {
+    position: relative;
+    width: 40px;
+    height: 22px;
+    border-radius: var(--radius-pill);
+    background: var(--accent);
+  }
+
+  .track::after {
+    content: '';
+    position: absolute;
+    top: 3px;
+    right: 3px;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: var(--white);
+  }
+
+  .toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    padding: 12px 18px;
+    border-bottom: 1px solid var(--line);
+    font-size: 14px;
+  }
+
+  .also {
+    margin-top: 40px;
+  }
+
+  .also h3 {
+    font-size: clamp(1.125rem, 1.032rem + 0.381vw, 1.375rem);
+    font-weight: 500;
+  }
+
+  .also-items {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px 24px;
+    margin-top: 16px;
+  }
+
+  .also-items > div {
+    flex: 1 1 280px;
+    padding-top: 14px;
+    border-top: 1px solid var(--ink);
+    font-size: 16px;
+  }
+
+  h4 {
+    font-size: 17px;
+    font-weight: 600;
+  }
+
+  .also-items p {
+    margin-top: 6px;
+  }
+
+  @media (max-width: 47.99rem) {
+    .aside {
+      margin-top: 12px;
+      font-size: 15px;
+    }
+
+    .setup {
+      gap: 10px;
+      padding: 14px;
+    }
+
+    .toolbar {
+      padding: 10px 14px;
+    }
+
+    .also {
+      margin-top: 32px;
+    }
+
+    .also-items > div {
+      font-size: 15px;
+    }
+
+    h4 {
+      font-size: 16px;
+    }
+  }
+</style>

@@ -144,6 +144,10 @@ a:hover {
   color: var(--muted);
 }
 
+.status-strong {
+  font-weight: 500;
+}
+
 @media (max-width: 47.99rem) {
   .btn-sm {
     padding: 11px 16px;

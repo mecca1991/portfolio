@@ -1,6 +1,6 @@
 ---
 /* Table inside a UiReconstruction. A cell is plain text or text with a status tone. */
-type Tone = 'ok' | 'fail' | 'muted';
+type Tone = 'ok' | 'fail' | 'muted' | 'strong';
 type Cell = string | { text: string; tone: Tone };
 
 interface Props {
@@ -62,6 +62,10 @@ const { columns, rows } = Astro.props;
     th,
     td {
       padding-inline: 12px;
+    }
+
+    td:first-child {
+      white-space: nowrap;
     }
   }
 </style>
