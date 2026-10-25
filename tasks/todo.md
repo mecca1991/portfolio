@@ -181,13 +181,15 @@ Design source: https://claude.ai/artifact/1u5mcMR1p11RRbJGzR2qVF · Plan: `tasks
 **Description:** `/experiments/rust-json-parser/`: intro and facts, input → parsed-structure figure, "How it works" steps, before/after code panel, and the playground (three example tabs, editable textarea, live tree output, error state, expand/collapse), ported from the canvas logic to a vanilla script.
 
 **Acceptance criteria:**
-- [ ] Playground keeps the dashed "Proposed feature" frame and the note that it uses the browser's JSON parser, not the Rust code
-- [ ] Tabs use `aria-pressed`; output region is `aria-live="polite"`; invalid input shows the error box
-- [ ] Page is readable and usable without JS (playground hidden or static if JS off)
+- [x] Playground keeps the dashed "Proposed feature" frame and the note that it uses the browser's JSON parser, not the Rust code
+- [x] Tabs use `aria-pressed`; output region is `aria-live="polite"`; invalid input shows the error box
+- [x] Page is readable and usable without JS (playground hidden or static if JS off)
 
 **Verification:**
-- [ ] Build succeeds
-- [ ] Manual: switch all three examples, type invalid JSON, toggle expand; check with JS disabled
+- [x] Build succeeds
+- [x] Manual: switch all three examples, type invalid JSON, toggle expand; check with JS disabled
+
+> Note: there's no phone artboard for this page, so phones follow the case-study patterns (stacked panels, ↓ arrow). Without JS the playground renders its starting example at build time, with disabled controls, a read-only input and a visible "Turn on JavaScript" note. The script enables the controls and hides the note. Tested with scripts blocked in a sandboxed iframe; `<noscript>` wasn't used because Chrome doesn't render it in that test setup. It's the only client JS on the site (inlined, this page only). The header leaves out the CV button, as in the artboard.
 
 **Dependencies:** Task 3
 

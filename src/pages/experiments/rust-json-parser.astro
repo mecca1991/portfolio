@@ -1,0 +1,420 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import Label from '../../components/Label.astro';
+import Tags from '../../components/Tags.astro';
+import JsonPlayground from '../../components/JsonPlayground.astro';
+import { site } from '../../data/site';
+
+const source = 'https://github.com/mecca1991/rust-cohort/tree/main/rust-json-parser';
+
+const input = `{
+  "name": "Ada",
+  "tags": ["rust", "json"],
+  "active": true
+}`;
+
+const parsed = `Object (3 keys)
+├ name: String "Ada"
+├ tags: Array (2 items)
+│  ├ String "rust"
+│  └ String "json"
+└ active: Bool true`;
+---
+
+<BaseLayout
+  title="Rust JSON Parser · Wilfred Chetat"
+  description="A custom JSON tokenizer and parser in Rust with typed values, structured errors and formatting, built in a Rust cohort."
+>
+  <Header current="experiments" showCv={false} />
+  <main id="main">
+    <div class="container back">
+      <a href="/#experiments"><span aria-hidden="true">← </span>Engineering experiments</a>
+    </div>
+
+    <section class="container intro" aria-labelledby="rp-title">
+      <div class="lede">
+        <Label>Personal project · Rust cohort</Label>
+        <h1 id="rp-title" class="display">Rust JSON Parser</h1>
+        <p class="summary">
+          A custom tokenizer and parser supporting nested arrays and objects, typed JSON values, structured errors and
+          JSON formatting. I developed it in a Rust cohort and revised it based on cohort feedback.
+        </p>
+        <div class="tags"><Tags items={['Rust', 'Parsing', 'Testing']} /></div>
+        <a class="btn btn-primary source" href={source}>View source <span aria-hidden="true">↗</span></a>
+      </div>
+      <dl class="facts">
+        <div><dt>Engagement</dt><dd>Personal learning project</dd></div>
+        <div><dt>Tests</dt><dd>105 test functions in the repository</dd></div>
+        <div><dt>Status</dt><dd>Learning project, not intended for production use</dd></div>
+      </dl>
+    </section>
+
+    <section class="io-section" aria-labelledby="rp-io">
+      <div class="container">
+        <h2 id="rp-io" class="display">From text to typed values</h2>
+        <figure>
+          <div class="panels">
+            <div class="panel dark-panel">
+              <span>Input</span>
+              <pre><code>{input}</code></pre>
+            </div>
+            <div class="arrow" aria-hidden="true"><span>→</span></div>
+            <div class="panel light-panel">
+              <span>Parsed structure</span>
+              <pre><code>{parsed}</code></pre>
+            </div>
+          </div>
+          <figcaption>Illustrative output. Type names are simplified.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section aria-labelledby="rp-how">
+      <div class="container">
+        <h2 id="rp-how" class="display">How it works</h2>
+        <ol class="steps">
+          <li>
+            <h3>1 · Tokenization</h3>
+            <p>
+              The tokenizer reads characters and produces tokens: braces, brackets, strings, numbers, literals and
+              separators.
+            </p>
+          </li>
+          <li>
+            <h3>2 · Recursive parsing</h3>
+            <p>The parser builds typed values from tokens, calling itself for each nested array or object.</p>
+          </li>
+          <li>
+            <h3>3 · Explicit errors</h3>
+            <p>Places that assumed well-formed input now return a structured error instead of panicking.</p>
+          </li>
+        </ol>
+        <figure class="snippet">
+          <pre><code><span class="comment">// Before: assumes another character exists</span>
+let ch = chars.next().unwrap();
+
+<span class="comment">// After: the caller receives a structured error</span>
+let ch = chars.next().ok_or(ParseError::UnexpectedEnd)?;</code></pre>
+          <figcaption>Illustrative pattern, not copied from the repository.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <JsonPlayground />
+
+    <nav class="container more" aria-label="More work">
+      <a href="/#work">
+        <span class="title">Back to selected work</span>
+        <span class="cta"><span aria-hidden="true">← </span>All projects</span>
+      </a>
+    </nav>
+  </main>
+
+  <footer id="contact" class="dark site-footer">
+    <div class="container">
+      <a class="email" href={`mailto:${site.email}`}>{site.email}</a>
+      <div class="links">
+        <a href={site.links.linkedin}>LinkedIn <span aria-hidden="true">↗</span></a>
+        <a href={site.links.github}>GitHub <span aria-hidden="true">↗</span></a>
+      </div>
+    </div>
+  </footer>
+</BaseLayout>
+
+<style>
+  .back {
+    padding-top: clamp(0.75rem, 0.379rem + 1.524vw, 2rem);
+  }
+
+  .back a {
+    display: inline-block;
+    padding: 10px 0;
+    font-size: clamp(0.9375rem, 0.914rem + 0.095vw, 1rem);
+    color: var(--ink);
+  }
+
+  .intro {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: 24px 56px;
+    padding-block: clamp(0.75rem, 0.379rem + 1.524vw, 1.75rem) clamp(2rem, 1.443rem + 2.286vw, 3.5rem);
+  }
+
+  .lede {
+    flex: 999 1 560px;
+    min-width: 0;
+  }
+
+  h1 {
+    margin-top: clamp(1rem, 0.907rem + 0.381vw, 1.25rem);
+    font-size: clamp(2.5rem, 2.175rem + 1.333vw, 3.375rem);
+    line-height: 1.06;
+  }
+
+  .summary {
+    max-width: 34em;
+    margin-top: 18px;
+  }
+
+  .tags {
+    margin-top: 18px;
+  }
+
+  .source {
+    margin-top: 28px;
+    font-size: 16px;
+  }
+
+  .facts {
+    flex: 1 1 320px;
+    border-top: 1px solid var(--ink);
+    font-size: clamp(0.9375rem, 0.914rem + 0.095vw, 1rem);
+    line-height: 1.5;
+  }
+
+  .facts div {
+    display: flex;
+    gap: 16px;
+    padding-block: 12px;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .facts dt {
+    flex: 0 0 96px;
+    color: var(--muted);
+  }
+
+  section > .container {
+    padding-top: clamp(2.5rem, 1.757rem + 3.048vw, 4.5rem);
+  }
+
+  .io-section {
+    border-top: 1px solid var(--line);
+  }
+
+  h2 {
+    font-size: clamp(1.75rem, 1.611rem + 0.571vw, 2.125rem);
+    line-height: 1.15;
+  }
+
+  figure {
+    margin-top: 28px;
+  }
+
+  figcaption {
+    margin-top: 10px;
+    font-size: 15px;
+    color: var(--muted);
+  }
+
+  .panels {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+    gap: 16px;
+  }
+
+  .panel {
+    flex: 1 1 320px;
+    min-width: 0;
+    padding: 20px 24px;
+    border-radius: var(--radius);
+  }
+
+  .panel span {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 13px;
+  }
+
+  .dark-panel {
+    background: var(--ink);
+    color: var(--canvas);
+  }
+
+  .dark-panel span {
+    color: var(--dark-muted);
+  }
+
+  .light-panel {
+    border: 1px solid var(--line);
+    background: var(--white);
+  }
+
+  .light-panel span {
+    color: var(--muted);
+  }
+
+  .arrow {
+    align-self: center;
+    font-size: 22px;
+    color: var(--muted);
+  }
+
+  pre {
+    margin: 0;
+    overflow-x: auto;
+    font-family: var(--font-mono);
+    font-size: 15px;
+    line-height: 1.65;
+  }
+
+  .steps {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
+    gap: 24px;
+    margin: 28px 0 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .steps li {
+    padding-top: 16px;
+    border-top: 2px solid var(--ink);
+  }
+
+  h3 {
+    font-size: clamp(1.125rem, 1.079rem + 0.19vw, 1.25rem);
+    font-weight: 500;
+  }
+
+  .steps p {
+    margin-top: 8px;
+    font-size: 16px;
+  }
+
+  .snippet {
+    max-width: 760px;
+  }
+
+  .snippet pre {
+    padding: 18px 22px;
+    border-radius: var(--radius);
+    background: var(--ink);
+    color: var(--canvas);
+    font-size: 14px;
+    line-height: 1.7;
+  }
+
+  .comment {
+    color: var(--dark-muted);
+  }
+
+  .more {
+    margin-top: clamp(2.5rem, 1.757rem + 3.048vw, 4.5rem);
+  }
+
+  .more a {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 8px 16px;
+    padding-block: clamp(1.25rem, 0.807rem + 1.818vw, 2rem);
+    border-top: 1px solid var(--ink);
+    border-bottom: 1px solid var(--line);
+    color: var(--ink);
+    text-decoration: none;
+  }
+
+  .more a:hover .title {
+    text-decoration: underline;
+    text-underline-offset: 6px;
+  }
+
+  .more .title {
+    font-family: var(--font-display);
+    font-size: clamp(1.625rem, 1.346rem + 1.143vw, 2.125rem);
+    line-height: 1.1;
+  }
+
+  .more .cta {
+    padding: 8px 0;
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--accent);
+  }
+
+  .site-footer {
+    margin-top: clamp(2.5rem, 1.757rem + 3.048vw, 4.5rem);
+    background: var(--ink);
+    color: var(--canvas);
+  }
+
+  .site-footer .container {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding-block: clamp(2rem, 1.443rem + 2.286vw, 3rem);
+  }
+
+  .email {
+    padding: 5px 0;
+    font-family: var(--font-display);
+    font-size: clamp(1.375rem, 1.282rem + 0.381vw, 1.625rem);
+    overflow-wrap: anywhere;
+  }
+
+  .links {
+    display: flex;
+    gap: 24px;
+    font-size: 16px;
+  }
+
+  .links a {
+    padding: 10px 0;
+  }
+
+  @media (max-width: 47.99rem) {
+    .facts div {
+      gap: 12px;
+      padding-block: 10px;
+    }
+
+    .facts dt {
+      flex-basis: 92px;
+    }
+
+    .panel {
+      padding: 14px 16px;
+    }
+
+    pre {
+      font-size: 13px;
+    }
+
+    /* panels stack, so the arrow points down */
+    .arrow {
+      flex-basis: 100%;
+      line-height: 1;
+      text-align: center;
+    }
+
+    .arrow span {
+      display: inline-block;
+      transform: rotate(90deg);
+    }
+
+    .steps {
+      gap: 20px;
+    }
+
+    .steps p,
+    figcaption {
+      font-size: 14px;
+    }
+
+    .snippet pre {
+      padding: 14px 16px;
+      font-size: 13px;
+    }
+
+    .more .cta {
+      font-size: 16px;
+    }
+  }
+</style>
