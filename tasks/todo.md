@@ -230,7 +230,7 @@ Design source: https://claude.ai/artifact/1u5mcMR1p11RRbJGzR2qVF · Plan: `tasks
 > Note: `clarity` review found the copy specific and plain (0 hedges, boosters or participial openers in its lint). Seven small fixes went in, listed in the commit body: three repetitions removed, one mixed-tense list split, one vague phrase made concrete from its own figure, and two notes-to-self cut from captions. No facts changed; placeholders untouched; 17 left.
 
 > Needs Wilfred:
-> - The H1 "Building reliable backend systems and AI-powered products." is your positioning line, so it's unchanged. It reads like a tagline many engineers could use. What's the one thing you most want a hiring manager to remember (payments backends, for example)?
+> - ~~H1 positioning line~~ Answered 2026-10-30: "Python backends that hold up under retries, duplicates and bad input." (Task 19). Original note: the H1 "Building reliable backend systems and AI-powered products." is your positioning line, so it's unchanged. It reads like a tagline many engineers could use. What's the one thing you most want a hiring manager to remember (payments backends, for example)?
 > - ~~Intrvuer flow figure: name the providers?~~ Answered 2026-10-25: no, provider names stay off the site.
 > - Sysconnector leads figure: do "Synced", "Failed · field not mapped" and "Pending" match the real status labels? If yes, the caption can say so again.
 
@@ -527,18 +527,20 @@ Wilfred's answers (2026-10-30): the Rust parser is a project, not a learning exe
 **Description:** Wilfred chose option 1 on 2026-10-30: "Python backends that hold up under retries, duplicates and bad input." Every claim in it is shown by a project below it.
 
 **Acceptance criteria:**
-- [ ] The H1 reads "Python backends that hold up under retries, duplicates and bad input."
-- [ ] It sits well with the lede below it (no awkward repeat) at 1440 and 390
-- [ ] README banners recaptured (light and dark)
+- [x] The H1 reads "Python backends that hold up under retries, duplicates and bad input."
+- [x] It sits well with the lede below it (no awkward repeat) at 1440 and 390
+- [x] README banners recaptured (light and dark)
 
 **Verification:**
-- [ ] `npm run build && npm run check` pass
-- [ ] Manual: homepage at 1440 and 390; README on GitHub if the banners changed
+- [x] `npm run build && npm run check` pass
+- [x] Manual: homepage at 1440 and 390; README on GitHub if the banners changed
 
 > Answered 2026-10-30: option 1. The options offered, each drawn from what the case studies show:
 > 1. "Python backends that hold up under retries, duplicates and bad input." (Intrvuer's idempotent answers, LeaseSurance's duplicate prevention, EduClick's replay-safe upserts and rejected records, the parser's structured errors)
 > 2. "Python backends for payments, integrations and data systems." (the lede's own list; the lede would lose its repeat)
 > 3. "Python backends, and the products built on them." (Intrvuer end to end, Sysconnector's React screens, About's second sentence)
+
+> Note: done 2026-10-30. The lede dropped "mainly in Python" so it doesn't repeat the H1; it now reads "I work on APIs, integrations, payments and data systems, and I built Intrvuer, my own product, from interface to deployment." The H1 keeps four lines at 1440 and fits at 390. The OG image doesn't carry the H1, so it's unchanged. README banners recaptured in light and dark.
 
 **Dependencies:** None (answered 2026-10-30)
 
