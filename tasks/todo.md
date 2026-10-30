@@ -482,13 +482,15 @@ Wilfred's answers (2026-10-30): the Rust parser is a project, not a learning exe
 **Description:** EduClick is labelled "Engineering contribution" and described as backend work. Wilfred built the whole platform as a volunteer: backend, frontend and deployment.
 
 **Acceptance criteria:**
-- [ ] EduClick's label reads "Volunteer project" instead of "Engineering contribution"
-- [ ] The card says he built the platform end to end (backend, frontend, deployment); the one-liner describes the platform, and the ingestion detail and figure stay as the example
-- [ ] About's "contribute to EduClick's opportunity-ingestion backend" says he built EduClick as a volunteer
+- [x] EduClick's label reads "Volunteer project" instead of "Engineering contribution"
+- [x] The card says he built the platform end to end (backend, frontend, deployment); the one-liner describes the platform, and the ingestion detail and figure stay as the example
+- [x] About's "contribute to EduClick's opportunity-ingestion backend" says he built EduClick as a volunteer
 
 **Verification:**
-- [ ] `npm run build && npm run check` pass
-- [ ] Manual: homepage projects and About at 1440 and 390
+- [x] `npm run build && npm run check` pass
+- [x] Manual: homepage projects and About at 1440 and 390
+
+> Note: done 2026-10-30. The card names the FastAPI backend and Next.js frontend (verified in `educlick-be` and `educlick-fe`); "as a volunteer" stays in the label rather than the description. About now reads: "I built EduClick end to end as a volunteer, and Intrvuer as my own product." No horizontal scroll at 1440 or 390.
 
 **Dependencies:** None (answered 2026-10-30)
 
