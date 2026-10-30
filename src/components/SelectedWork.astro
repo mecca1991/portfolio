@@ -77,11 +77,11 @@ import ReconTable from './ReconTable.astro';
     <div class="cards">
       <ProjectCard
         id="p3-title"
-        label="Professional work"
+        label="Contract project"
         detail="Alphathesis · 2023–2024"
-        title="Lease Insurance"
-        oneLiner="Data ingestion for lease-insurance operations."
-        description="Source files had inconsistent periods, repeated transactions and running totals that couldn’t be trusted. I worked on ingestion rules, the relational model, APIs, duplicate prevention and client-scoped access."
+        title="LeaseSurance"
+        oneLiner="Lease insurance that replaces rental deposits, for residential and commercial portfolios."
+        description="As a contractor with Alphathesis, I built the backend: ingestion rules, the relational model, APIs, duplicate prevention and client-scoped access. Source files arrived with inconsistent periods, repeated transactions and running totals that couldn’t be trusted."
       >
         <Fragment slot="figure">
           <dl class="ledger">
@@ -90,7 +90,7 @@ import ReconTable from './ReconTable.astro';
             <div class="status-muted"><dt>Repeated ext-7781</dt><dd>skipped</dd></div>
             <div class="total"><dt>Derived period balance</dt><dd>1,430.00</dd></div>
           </dl>
-          <figcaption>Fictional example: balances come from accepted transactions, not insertion order.</figcaption>
+          <figcaption>Sample data; the real data can’t be shown publicly. The balance comes from accepted transactions, and repeats are skipped.</figcaption>
         </Fragment>
       </ProjectCard>
 

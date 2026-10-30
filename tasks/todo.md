@@ -458,14 +458,16 @@ Wilfred's answers (2026-10-30): the Rust parser is a project, not a learning exe
 **Description:** The "Lease Insurance" card is LeaseSurance, a South African insurtech that replaces rental deposits with lease insurance for residential and commercial portfolios (from leasesurance.co). Wilfred built its backend as a contractor with Alphathesis. The card names the product and says how he was involved; the figure stays sample data.
 
 **Acceptance criteria:**
-- [ ] The card title is "LeaseSurance" (the company's own spelling), its label is "Contract project", and the detail stays "Alphathesis · 2023–2024"
-- [ ] The one-liner says what LeaseSurance does, from its public site; the description says he built the backend as a contractor with Alphathesis and keeps the source-file problem and what he built
-- [ ] The figure caption says it's sample data because the real data can't be shown publicly, and drops "not insertion order", which the figure doesn't show
-- [ ] The Alphathesis experience entry says it was a contract and names the LeaseSurance backend (draft: "Contract Software Engineer · LeaseSurance backend")
+- [x] The card title is "LeaseSurance" (the company's own spelling), its label is "Contract project", and the detail stays "Alphathesis · 2023–2024"
+- [x] The one-liner says what LeaseSurance does, from its public site; the description says he built the backend as a contractor with Alphathesis and keeps the source-file problem and what he built
+- [x] The figure caption says it's sample data because the real data can't be shown publicly, and drops "not insertion order", which the figure doesn't show
+- [x] The Alphathesis experience entry says it was a contract and names the LeaseSurance backend (draft: "Contract Software Engineer · LeaseSurance backend")
 
 **Verification:**
-- [ ] `npm run build && npm run check` pass
-- [ ] Manual: homepage projects and About at 1440 and 390
+- [x] `npm run build && npm run check` pass
+- [x] Manual: homepage projects and About at 1440 and 390
+
+> Note: done 2026-10-30. The one-liner follows LeaseSurance's own tagline ("Lease insurance for residential and commercial portfolios") and its deposit-free model. The caption now also says repeats are skipped, which the figure shows. No horizontal scroll at 1440 or 390.
 
 **Dependencies:** None (answered 2026-10-30)
 

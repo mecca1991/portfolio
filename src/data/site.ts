@@ -21,7 +21,7 @@ export const site = {
       dates: 'Sep 2024 – present',
       role: 'Senior Backend Engineer · video analytics services',
     },
-    { company: 'Alphathesis', dates: 'Aug 2023 – Aug 2024', role: 'Software Engineer · lease-data workflows' },
+    { company: 'Alphathesis', dates: 'Aug 2023 – Aug 2024', role: 'Contract Software Engineer · LeaseSurance backend' },
     { company: 'PaySika', dates: 'Nov 2021 – Jun 2023', role: 'Founding Backend Engineer · wallets and payments' },
     {
       company: 'Upwork and independent work',
