@@ -435,13 +435,15 @@ Wilfred's answers (2026-10-30): the Rust parser is a project, not a learning exe
 **Description:** The iOS app carries the spoken-practice screenshot and all of Decision 2, but the homepage role line, the Stack fact and the flow diagram only name Next.js. Verified: `intrvuer-ios` is SwiftUI, and the app is Wilfred's; a hired designer refined its design. The `prod` branch of `intrvuer-be` grants 2 free sessions (`free_sessions = 2`), which Wilfred confirmed.
 
 **Acceptance criteria:**
-- [ ] The homepage role line, the Stack fact and the flow diagram include the SwiftUI iOS app
-- [ ] Outcomes keeps "anyone can try" and adds the two free practice sessions
-- [ ] "No figures are claimed here" is cut; "Not yet measured" stays (no usage figure to publish)
+- [x] The homepage role line, the Stack fact and the flow diagram include the SwiftUI iOS app
+- [x] Outcomes keeps "anyone can try" and adds the two free practice sessions
+- [x] "No figures are claimed here" is cut; "Not yet measured" stays (no usage figure to publish)
 
 **Verification:**
-- [ ] `npm run build && npm run check` pass
-- [ ] Manual: homepage and Intrvuer page at 1440 and 390; the flow diagram still fits at 390
+- [x] `npm run build && npm run check` pass
+- [x] Manual: homepage and Intrvuer page at 1440 and 390; the flow diagram still fits at 390
+
+> Note: done 2026-10-30. Also credited in the case study's "My role" fact ("web and iOS apps") and in step 2's "What I built" ("the session interface on web and iOS"), since step 2 shows the iOS app. The flow diagram's Interface node reads "Next.js web, SwiftUI iOS" and fits at 390. No horizontal scroll at 1440 or 390.
 
 **Dependencies:** None (answered 2026-10-30)
 
