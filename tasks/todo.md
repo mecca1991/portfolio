@@ -359,17 +359,19 @@ Wilfred's answers (2026-10-30): the Rust parser is a project, not a learning exe
 **Description:** The parser is presented as a personal project. The site stops saying it was a learning project or built in a cohort. The `rust-cohort` repo keeps its name, so the source links still contain the word. The playground stays a proposed feature and now says what's planned.
 
 **Acceptance criteria:**
-- [ ] `grep -rniE "learn|cohort" src` matches only the two `rust-cohort` source URLs
-- [ ] The label reads "Personal project" on the homepage card, the Rust page and Sysconnector's next link ("Next · Personal project")
-- [ ] "developed with cohort feedback" (homepage card) and "I developed it in a Rust cohort and revised it based on cohort feedback" (Rust page) say it was revised after code review. Verified: PRs #4, #5, #8 and #9 on `mecca1991/rust-cohort` have reviews from two other reviewers
-- [ ] The Rust meta description drops "built in a Rust cohort"
-- [ ] Facts: Engagement "Personal project", Status "Not intended for production use" (already changed in the working tree)
-- [ ] "How it works" step 3 says the structured errors came out of review only if those PRs' review comments asked for them; otherwise it stays as is
-- [ ] The playground note says the plan is to run the Rust parser in the browser as WebAssembly, and that until then the preview uses the browser's own JSON parser. The "Proposed feature" frame stays
+- [x] `grep -rniE "learn|cohort" src` matches only the two `rust-cohort` source URLs
+- [x] The label reads "Personal project" on the homepage card, the Rust page and Sysconnector's next link ("Next · Personal project")
+- [x] "developed with cohort feedback" (homepage card) and "I developed it in a Rust cohort and revised it based on cohort feedback" (Rust page) say it was revised after code review. Verified: PRs #4, #5, #8 and #9 on `mecca1991/rust-cohort` have reviews from two other reviewers
+- [x] The Rust meta description drops "built in a Rust cohort"
+- [x] Facts: Engagement "Personal project", Status "Not intended for production use" (already changed in the working tree)
+- [x] "How it works" step 3 says the structured errors came out of review only if those PRs' review comments asked for them; otherwise it stays as is
+- [x] The playground note says the plan is to run the Rust parser in the browser as WebAssembly, and that until then the preview uses the browser's own JSON parser. The "Proposed feature" frame stays
 
 **Verification:**
-- [ ] `npm run build && npm run check` pass
-- [ ] Manual: homepage experiments card and Rust page at 1440 and 390; no horizontal scroll
+- [x] `npm run build && npm run check` pass
+- [x] Manual: homepage experiments card and Rust page at 1440 and 390; no horizontal scroll
+
+> Note: done 2026-10-30. Review comments on PR #4 flagged panics on truncated `\u` escapes and swallowed errors, so step 3 now says code review caught them. The playground note names the WebAssembly plan. No horizontal scroll at 1440 or 390 on the homepage, the Rust page or Sysconnector's next link.
 
 **Dependencies:** None
 

@@ -24,7 +24,7 @@ const parsed = `Object (3 keys)
 
 <BaseLayout
   title="Rust JSON Parser · Wilfred Chetat"
-  description="A custom JSON tokenizer and parser in Rust with typed values, structured errors and formatting, built in a Rust cohort."
+  description="A custom JSON tokenizer and parser in Rust with typed values, structured errors and formatting."
 >
   <Header current="experiments" showCv={false} />
   <main id="main">
@@ -34,19 +34,19 @@ const parsed = `Object (3 keys)
 
     <section class="container intro" aria-labelledby="rp-title">
       <div class="lede">
-        <Label>Personal project · Rust cohort</Label>
+        <Label>Personal project</Label>
         <h1 id="rp-title" class="display">Rust JSON Parser</h1>
         <p class="summary">
           A custom tokenizer and parser supporting nested arrays and objects, typed JSON values, structured errors and
-          JSON formatting. I developed it in a Rust cohort and revised it based on cohort feedback.
+          JSON formatting. I revised it after code review.
         </p>
         <div class="tags"><Tags items={['Rust', 'Parsing', 'Testing']} /></div>
         <a class="btn btn-primary source" href={source}>View source <span aria-hidden="true">↗</span></a>
       </div>
       <dl class="facts">
-        <div><dt>Engagement</dt><dd>Personal learning project</dd></div>
+        <div><dt>Engagement</dt><dd>Personal project</dd></div>
         <div><dt>Tests</dt><dd>105 test functions in the repository</dd></div>
-        <div><dt>Status</dt><dd>Learning project, not intended for production use</dd></div>
+        <div><dt>Status</dt><dd>Not intended for production use</dd></div>
       </dl>
     </section>
 
@@ -87,7 +87,10 @@ const parsed = `Object (3 keys)
           </li>
           <li>
             <h3>3 · Explicit errors</h3>
-            <p>Places that assumed well-formed input now return a structured error instead of panicking.</p>
+            <p>
+              Code review caught places that assumed well-formed input and could panic. They now return a structured
+              error instead.
+            </p>
           </li>
         </ol>
         <figure class="snippet">
