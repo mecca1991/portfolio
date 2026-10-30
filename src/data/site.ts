@@ -10,8 +10,8 @@ export const site = {
 
   glance: [
     { term: 'Currently', detail: 'Senior Backend Engineer, UXE Security Solutions, since Sep 2024' },
-    { term: 'Experience', detail: '6+ years across payments, data systems, video analytics and AI' },
-    { term: 'Works on', detail: 'Employed roles and freelance client projects' },
+    { term: 'Experience', detail: '7+ years across payments, data systems, video analytics and AI' },
+    { term: 'Work type', detail: 'Employed roles and freelance client projects' },
     { term: 'Languages', detail: 'English, French' },
   ],
 

@@ -410,15 +410,17 @@ Wilfred's answers (2026-10-30): the Rust parser is a project, not a learning exe
 **Description:** Small accuracy fixes on the homepage. No new claims beyond Wilfred's answers.
 
 **Acceptance criteria:**
-- [ ] "products like Intrvuer" becomes singular in the hero lede and the homepage meta description, since there is one product (draft lede: "…and I built Intrvuer, my own product, from interface to deployment.")
-- [ ] The homepage meta description is 120 characters or fewer (opengraph.xyz warned that 145 may truncate on mobile)
-- [ ] The glance term "Works on" reads "Work type" (the same data shows in About on phones)
-- [ ] Experience reads "7+ years" (the timeline starts Mar 2019)
-- [ ] The video search card's "Separate from production work." says plainly that it isn't in production
+- [x] "products like Intrvuer" becomes singular in the hero lede and the homepage meta description, since there is one product (draft lede: "…and I built Intrvuer, my own product, from interface to deployment.")
+- [x] The homepage meta description is 120 characters or fewer (opengraph.xyz warned that 145 may truncate on mobile)
+- [x] The glance term "Works on" reads "Work type" (the same data shows in About on phones)
+- [x] Experience reads "7+ years" (the timeline starts Mar 2019)
+- [x] The video search card's "Separate from production work." says plainly that it isn't in production
 
 **Verification:**
-- [ ] `npm run build && npm run check` pass
-- [ ] Manual: homepage at 1440 and 390; no layout change from the new text lengths
+- [x] `npm run build && npm run check` pass
+- [x] Manual: homepage at 1440 and 390; no layout change from the new text lengths
+
+> Note: done 2026-10-30. The meta description is now 108 characters and no longer names Intrvuer, which is the first project on the page. The hero lede changed, so the README banners were recaptured (light and dark, 1456×832). No horizontal scroll at 1440 or 390; the glance strip still fits one row at 1440.
 
 **Dependencies:** None
 
