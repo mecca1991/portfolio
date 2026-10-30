@@ -1,9 +1,9 @@
-![The wilfredchetat.com homepage: Wilfred Chetat, Senior Backend Engineer in Dubai, with a portrait and links to projects, CV, GitHub and LinkedIn.](.github/assets/banner-light.png#gh-light-mode-only)
-![The wilfredchetat.com homepage: Wilfred Chetat, Senior Backend Engineer in Dubai, with a portrait and links to projects, CV, GitHub and LinkedIn.](.github/assets/banner-dark.png#gh-dark-mode-only)
+![The wilfredchetat.com homepage: Wilfred Chetat, Senior Software Engineer in Dubai, with a portrait and links to projects, CV, GitHub and LinkedIn.](.github/assets/banner-light.png#gh-light-mode-only)
+![The wilfredchetat.com homepage: Wilfred Chetat, Senior Software Engineer in Dubai, with a portrait and links to projects, CV, GitHub and LinkedIn.](.github/assets/banner-dark.png#gh-dark-mode-only)
 
 # wilfredchetat.com
 
-Source for [www.wilfredchetat.com](https://www.wilfredchetat.com), the portfolio of Wilfred Chetat, a senior backend engineer in Dubai.
+Source for [www.wilfredchetat.com](https://www.wilfredchetat.com), the portfolio of Wilfred Chetat, a senior software engineer in Dubai.
 
 [![Astro 7](https://img.shields.io/badge/Astro-7-BC52EE?logo=astro&logoColor=white)](https://astro.build)
 [![TypeScript](https://img.shields.io/badge/TypeScript-strict-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org)

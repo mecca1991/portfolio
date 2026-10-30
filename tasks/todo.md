@@ -230,7 +230,7 @@ Design source: https://claude.ai/artifact/1u5mcMR1p11RRbJGzR2qVF · Plan: `tasks
 > Note: `clarity` review found the copy specific and plain (0 hedges, boosters or participial openers in its lint). Seven small fixes went in, listed in the commit body: three repetitions removed, one mixed-tense list split, one vague phrase made concrete from its own figure, and two notes-to-self cut from captions. No facts changed; placeholders untouched; 17 left.
 
 > Needs Wilfred:
-> - ~~H1 positioning line~~ Answered 2026-10-30: "Python backends that hold up under retries, duplicates and bad input." (Task 19). Original note: the H1 "Building reliable backend systems and AI-powered products." is your positioning line, so it's unchanged. It reads like a tagline many engineers could use. What's the one thing you most want a hiring manager to remember (payments backends, for example)?
+> - ~~H1 positioning line~~ Answered 2026-10-30: "Building reliable systems." (Task 19). Original note: the H1 "Building reliable backend systems and AI-powered products." is your positioning line, so it's unchanged. It reads like a tagline many engineers could use. What's the one thing you most want a hiring manager to remember (payments backends, for example)?
 > - ~~Intrvuer flow figure: name the providers?~~ Answered 2026-10-25: no, provider names stay off the site.
 > - Sysconnector leads figure: do "Synced", "Failed · field not mapped" and "Pending" match the real status labels? If yes, the caption can say so again.
 
@@ -522,29 +522,25 @@ Wilfred's answers (2026-10-30): the Rust parser is a project, not a learning exe
 
 ---
 
-### Task 19: Homepage H1
+### Task 19: Homepage H1 and title
 
-**Description:** Wilfred chose option 1 on 2026-10-30: "Python backends that hold up under retries, duplicates and bad input." Every claim in it is shown by a project below it.
+**Description:** Wilfred first chose option 1 ("Python backends that hold up under retries, duplicates and bad input."), saw it and rejected it on 2026-10-30. His call: the H1 is "Building reliable systems.", and he is a Senior Software Engineer, not only backend, because he builds frontends too and the projects show it (Intrvuer's web and iOS apps, EduClick's Next.js frontend, Sysconnector's React screens).
 
 **Acceptance criteria:**
-- [x] The H1 reads "Python backends that hold up under retries, duplicates and bad input."
-- [x] It sits well with the lede below it (no awkward repeat) at 1440 and 390
-- [x] README banners recaptured (light and dark)
+- [x] The H1 reads "Building reliable systems." (sentence case, like every other heading)
+- [x] "Senior Software Engineer" replaces "Senior Backend Engineer" wherever it describes Wilfred: hero eyebrow, homepage `<title>` and meta description, OG image and its alt text, both case-study contact lines, README, and the CV note. Job titles he actually held (UXE, PaySika) stay as they were
+- [x] The lede is back to "I work mainly in Python on APIs, integrations, payments and data systems…", since the H1 no longer names Python
+- [x] README banners and the OG card recaptured
 
 **Verification:**
-- [x] `npm run build && npm run check` pass
-- [x] Manual: homepage at 1440 and 390; README on GitHub if the banners changed
+- [x] `npm run build && npm run check` pass; `check:placeholders` clean
+- [x] Manual: hero at 1440 and 390; every route free of horizontal scroll at 320, 390 and 1440
 
-> Answered 2026-10-30: option 1. The options offered, each drawn from what the case studies show:
-> 1. "Python backends that hold up under retries, duplicates and bad input." (Intrvuer's idempotent answers, LeaseSurance's duplicate prevention, EduClick's replay-safe upserts and rejected records, the parser's structured errors)
-> 2. "Python backends for payments, integrations and data systems." (the lede's own list; the lede would lose its repeat)
-> 3. "Python backends, and the products built on them." (Intrvuer end to end, Sysconnector's React screens, About's second sentence)
-
-> Note: done 2026-10-30. The lede dropped "mainly in Python" so it doesn't repeat the H1; it now reads "I work on APIs, integrations, payments and data systems, and I built Intrvuer, my own product, from interface to deployment." The H1 keeps four lines at 1440 and fits at 390. The OG image doesn't carry the H1, so it's unchanged. README banners recaptured in light and dark.
+> Note: done 2026-10-30. The OG card was re-rendered from the built site's own fonts, tokens and portrait to match the original layout, with only the eyebrow changed.
 
 **Dependencies:** None (answered 2026-10-30)
 
-**Files likely touched:** `src/components/Hero.astro`, `.github/assets/banner-*.png`
+**Files likely touched:** `src/components/Hero.astro`, `src/pages/index.astro`, `src/layouts/BaseLayout.astro`, case-study pages, `public/og.png`, `README.md`, `.github/assets/banner-*.png`, `tasks/cv-bullets.md`
 
 **Estimated scope:** S
 

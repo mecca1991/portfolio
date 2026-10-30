@@ -5,8 +5,8 @@ The CV (`Wilfred_Chetat_CV.pdf`, served from S3) uses older or different terms t
 ## Summary
 
 - Now: "Software Engineer with more than 6 years of experience designing and scaling distributed backend systems, payment infrastructures, and AI-driven analytics platforms."
-- New: "Senior Backend Engineer with 7+ years of experience designing and scaling distributed backend systems, payment infrastructure, and AI-driven analytics platforms."
-- Why: the site's title, and the 7+ years Wilfred confirmed (the timeline starts March 2019). "Payment infrastructure" takes no plural.
+- New: "Senior Software Engineer with 7+ years of experience designing and scaling distributed backend systems, payment infrastructure, and AI-driven analytics platforms."
+- Why: the site's title (Senior Software Engineer, Wilfred's choice on 2026-10-30, since he builds frontends too), and the 7+ years Wilfred confirmed (the timeline starts March 2019). "Payment infrastructure" takes no plural.
 
 ## Skills
 

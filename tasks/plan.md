@@ -72,7 +72,7 @@ Desktop and phone artboards merge into one responsive page each.
 - [ ] Task 17: LeaseSurance: name the product and the contract
 - [ ] Task 18: EduClick: show it as a volunteer project built end to end
 - [ ] Task 18b: Sysconnector: name the stack
-- [ ] Task 19: Homepage H1 (option 1, chosen 2026-10-30)
+- [ ] Task 19: Homepage H1 and title ("Building reliable systems.", Senior Software Engineer)
 
 ### Checkpoint: Wording fixes
 - [ ] Preview reviewed; PR merged into `main`
