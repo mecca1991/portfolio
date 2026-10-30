@@ -547,7 +547,7 @@ Wilfred's answers (2026-10-30): the Rust parser is a project, not a learning exe
 ---
 
 ### ✅ Checkpoint: Wording fixes
-- [ ] Tasks 13–19 committed and pushed; Amplify preview build succeeded
+- [x] Tasks 13–19 committed and pushed; Amplify preview build succeeded (78d5b40 live on the preview 2026-10-30, checked over HTTP: the H1, title and `og.png` serve the new versions)
 - [ ] Wilfred reviews https://phase-3-ship.dshdhrt6lgmzs.amplifyapp.com
 - [ ] After approval: PR into `main`, merged; the changed pages checked on production
 
