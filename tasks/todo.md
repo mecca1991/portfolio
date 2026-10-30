@@ -505,12 +505,14 @@ Wilfred's answers (2026-10-30): the Rust parser is a project, not a learning exe
 **Description:** Intrvuer's facts list its stack; Sysconnector's only say "Backend APIs and webhooks; React interfaces". Wilfred gave the stack on 2026-10-30, including the exact Adobe product, Adobe Campaign Standard.
 
 **Acceptance criteria:**
-- [ ] The Sysconnector facts gain a Stack row: FastAPI, PostgreSQL, React, Stripe, Facebook Graph API, Adobe Campaign Standard
-- [ ] The full name "Adobe Campaign Standard" appears in the Stack row; the rest of the page keeps the short "Adobe Campaign"
+- [x] The Sysconnector facts gain a Stack row: FastAPI, PostgreSQL, React, Stripe, Facebook Graph API, Adobe Campaign Standard
+- [x] The full name "Adobe Campaign Standard" appears in the Stack row; the rest of the page keeps the short "Adobe Campaign"
 
 **Verification:**
-- [ ] `npm run build && npm run check` pass
-- [ ] Manual: Sysconnector page at 1440 and 390; the facts column doesn't overflow
+- [x] `npm run build && npm run check` pass
+- [x] Manual: Sysconnector page at 1440 and 390; the facts column doesn't overflow
+
+> Note: done 2026-10-30. The Stack row sits between Scope and Dates; the facts column fits at 1440 and 390 with no horizontal scroll.
 
 **Dependencies:** None
 
