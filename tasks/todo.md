@@ -516,34 +516,36 @@ Wilfred's answers (2026-10-30): the Rust parser is a project, not a learning exe
 
 ---
 
-### ✅ Checkpoint: Wording fixes
-- [ ] Tasks 13–18b committed and pushed; Amplify preview build succeeded
-- [ ] Wilfred reviews https://phase-3-ship.dshdhrt6lgmzs.amplifyapp.com
-- [ ] After approval: PR into `main`, merged; the changed pages checked on production
-
----
-
 ### Task 19: Homepage H1
 
-**Description:** The H1 is the one homepage line still waiting on a decision.
+**Description:** Wilfred chose option 1 on 2026-10-30: "Python backends that hold up under retries, duplicates and bad input." Every claim in it is shown by a project below it.
 
 **Acceptance criteria:**
-- [ ] The H1 is the line Wilfred picks; if it changed, README banners recaptured and checked on GitHub in light and dark
+- [ ] The H1 reads "Python backends that hold up under retries, duplicates and bad input."
+- [ ] It sits well with the lede below it (no awkward repeat) at 1440 and 390
+- [ ] README banners recaptured (light and dark)
 
 **Verification:**
 - [ ] `npm run build && npm run check` pass
 - [ ] Manual: homepage at 1440 and 390; README on GitHub if the banners changed
 
-> Needs Wilfred: pick one, or keep the current line. Each is drawn from what the case studies show:
+> Answered 2026-10-30: option 1. The options offered, each drawn from what the case studies show:
 > 1. "Python backends that hold up under retries, duplicates and bad input." (Intrvuer's idempotent answers, LeaseSurance's duplicate prevention, EduClick's replay-safe upserts and rejected records, the parser's structured errors)
 > 2. "Python backends for payments, integrations and data systems." (the lede's own list; the lede would lose its repeat)
 > 3. "Python backends, and the products built on them." (Intrvuer end to end, Sysconnector's React screens, About's second sentence)
 
-**Dependencies:** Wilfred's answer
+**Dependencies:** None (answered 2026-10-30)
 
 **Files likely touched:** `src/components/Hero.astro`, `.github/assets/banner-*.png`
 
 **Estimated scope:** S
+
+---
+
+### ✅ Checkpoint: Wording fixes
+- [ ] Tasks 13–19 committed and pushed; Amplify preview build succeeded
+- [ ] Wilfred reviews https://phase-3-ship.dshdhrt6lgmzs.amplifyapp.com
+- [ ] After approval: PR into `main`, merged; the changed pages checked on production
 
 ---
 
@@ -595,5 +597,5 @@ Not in this phase: the Rust page's "Back to projects / ← All projects" pair (c
 ---
 
 ### ✅ Checkpoint: Copy cleanup complete
-- [ ] Tasks 19–21 done, or deferred by Wilfred
+- [ ] Tasks 20–21 done, or deferred by Wilfred
 - [ ] PR into `main` merged after approval; the changed pages checked on production at 1440 and 390

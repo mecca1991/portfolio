@@ -72,11 +72,11 @@ Desktop and phone artboards merge into one responsive page each.
 - [ ] Task 17: LeaseSurance: name the product and the contract
 - [ ] Task 18: EduClick: show it as a volunteer project built end to end
 - [ ] Task 18b: Sysconnector: name the stack
+- [ ] Task 19: Homepage H1 (option 1, chosen 2026-10-30)
 
 ### Checkpoint: Wording fixes
 - [ ] Preview reviewed; PR merged into `main`
 
-- [ ] Task 19: Homepage H1 (needs Wilfred)
 - [ ] Task 20: Lines only Wilfred can write (optional, interview)
 - [ ] Task 21: CV: use the site's terms (Wilfred edits the CV; drafts in `tasks/cv-bullets.md`)
 
@@ -125,4 +125,4 @@ Task 1 scaffold + tokens + layout
 
 ## Open Questions
 
-Phase 4 questions for Wilfred are listed under Tasks 19–21 in `tasks/todo.md`.
+Phase 4 questions for Wilfred are listed under Tasks 20–21 in `tasks/todo.md`.
