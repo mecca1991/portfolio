@@ -30,7 +30,7 @@ const sections = [
     { term: 'Engagement', detail: 'Personal product' },
     { term: 'My role', detail: 'Design, frontend, backend, integrations, deployment' },
     { term: 'Users', detail: 'Job candidates preparing for interviews' },
-    { term: 'Stack', detail: 'Next.js, FastAPI, background processing, speech and LLM services' },
+    { term: 'Stack', detail: 'Next.js, FastAPI, Celery and Redis, PostgreSQL, speech and LLM services' },
     { term: 'Dates', detail: 'Nov 2025 – present' },
     {
       term: 'Links',
@@ -137,8 +137,8 @@ const sections = [
           An answer turn claims its question in a short transaction. Transcription and the follow-up decision then run
           with no transaction open, and the result is saved only if the attempt still holds the claim. The whole turn
           has a 90-second budget, under the app’s 120-second timeout; past that, the app gets a 503 it knows to retry.
-          The interviewer’s reply is synthesised after the commit, so a synthesis failure costs the audio, not the
-          answer.
+          The interviewer’s reply is synthesised after the commit, so if synthesis fails, the reply arrives as text
+          and the answer is still saved.
         </li>
         <li>
           Feedback and résumé analysis run on Celery workers with Redis. Feedback is claimed under a lease and saved
@@ -157,10 +157,10 @@ const sections = [
     <Decision
       title="Bring the role into the session first"
       decision="Before the first question, an LLM reads the job description into requirements and the résumé into past roles. Questions are written from the top ten requirements and up to five roles, and the interviewer’s introduction names the company and position. After each answer, an LLM decides whether to ask a follow-up, with the conversation so far as context."
-      tradeoff="Practice can’t start until the candidate has added both documents and the questions are generated, which the server allows up to 90 seconds. Follow-ups cost time on every answer too. I tried generating them in the background before they were needed, but when a candidate stopped halfway, the follow-ups already paid for were wasted. I dropped that in August 2026, so each answer now waits for one LLM call inside the turn’s budget."
+      tradeoff="Practice can’t start until the candidate has added both documents and the questions are generated, which the server allows up to 90 seconds. Follow-ups cost time on every answer too. I tried generating them in the background before they were needed, but when a candidate stopped halfway, the follow-ups already paid for were wasted. I dropped that in August 2026, so each answer now waits for one LLM call inside the 90-second turn budget."
     />
     <Decision
-      title="Show listening, processing and recovery"
+      title="Keep each answer until the server accepts it"
       decision="The iOS app shows whether the interviewer is speaking or the candidate is recording. Each answer is written to disk as it is recorded and kept until the server accepts it; every retry reuses one idempotency key, so the server records the answer once. After five automatic attempts, not counting time offline, the answer waits in a saved-answers list with Retry and Discard. In a simulator test, an app killed mid-answer sent the answer on relaunch."
       tradeoff="There is no pause. A phone call ends the recording, and the app saves what was said and tells the candidate, instead of offering to resume. The server keeps only the transcript and the app deletes its copy once the server accepts it, so a bad transcript can’t be re-run from the audio. Keeping audio would have needed storage, a retention policy and a privacy position, and I declined it."
     />

@@ -386,14 +386,16 @@ Wilfred's answers (2026-10-30): the Rust parser is a project, not a learning exe
 **Description:** Three sentences that read wrong or depend on the collapsed technical notes, plus a vague Stack fact. No new claims.
 
 **Acceptance criteria:**
-- [ ] Technical notes: "a synthesis failure costs the audio, not the answer" says instead that the interviewer's reply arrives as text and the answer is still saved (verified: synthesis runs after the commit, and a failure gives a text-only turn)
-- [ ] Decision 1: "inside the turn's budget" reads "inside the 90-second turn budget", since the budget is only defined in the collapsed notes
-- [ ] Decision 2's title matches its body, which is mostly about not losing answers (draft: "Never lose a recorded answer")
-- [ ] The Stack fact names Celery, Redis and PostgreSQL instead of "background processing" (the technical notes already name them)
+- [x] Technical notes: "a synthesis failure costs the audio, not the answer" says instead that the interviewer's reply arrives as text and the answer is still saved (verified: synthesis runs after the commit, and a failure gives a text-only turn)
+- [x] Decision 1: "inside the turn's budget" reads "inside the 90-second turn budget", since the budget is only defined in the collapsed notes
+- [x] Decision 2's title matches its body, which is mostly about not losing answers (draft: "Never lose a recorded answer")
+- [x] The Stack fact names Celery, Redis and PostgreSQL instead of "background processing" (the technical notes already name them)
 
 **Verification:**
-- [ ] `npm run build && npm run check` pass
-- [ ] Manual: Intrvuer page at 1440 and 390; open the technical notes with the keyboard
+- [x] `npm run build && npm run check` pass
+- [x] Manual: Intrvuer page at 1440 and 390; open the technical notes with the keyboard
+
+> Note: done 2026-10-30. Decision 2 is titled "Keep each answer until the server accepts it" rather than the draft, because the other decision titles state the decision itself. Technical notes open from the keyboard (Enter on the summary); no horizontal scroll at 1440 or 390.
 
 **Dependencies:** None
 
