@@ -7,7 +7,6 @@ import Experiments from '../components/Experiments.astro';
 import WritingList from '../components/WritingList.astro';
 import About from '../components/About.astro';
 import ContactSection from '../components/ContactSection.astro';
-import { site } from '../data/site';
 ---
 
 <BaseLayout
@@ -17,20 +16,6 @@ import { site } from '../data/site';
   <Header />
   <main id="main">
     <Hero />
-
-    <section class="glance" aria-label="At a glance">
-      <dl class="container">
-        {
-          site.glance.map((g) => (
-            <div>
-              <dt>{g.term}</dt>
-              <dd>{g.detail}</dd>
-            </div>
-          ))
-        }
-      </dl>
-    </section>
-
     <SelectedWork />
     <Experiments />
     <WritingList />
@@ -44,34 +29,3 @@ import { site } from '../data/site';
   </main>
 </BaseLayout>
 
-<style>
-  .glance {
-    border-block: 1px solid var(--line);
-    background: var(--surface);
-  }
-
-  dl {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 16px 32px;
-    padding-block: 24px;
-    font-size: 16px;
-    line-height: 1.45;
-  }
-
-  dt {
-    font-size: 14px;
-    color: var(--muted);
-  }
-
-  dd {
-    margin-top: 4px;
-  }
-
-  /* phones show these facts inside About instead */
-  @media (max-width: 47.99rem) {
-    .glance {
-      display: none;
-    }
-  }
-</style>

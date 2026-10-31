@@ -621,23 +621,23 @@ Plan: `tasks/plan.md` › Phase 5. Branch `phase-5-design` from `phase-3-ship`. 
 ### Task 23: Direction round
 
 **Acceptance criteria:**
-- [ ] Impeccable `concept-seed` run for the homepage (experience mode); directions presented on the decision page
-- [ ] Wilfred picks a direction; the direction contract is written to the homepage surface brief
-- [ ] New self-hosted typefaces chosen (none from Impeccable's list of defaults)
+- [x] Impeccable `concept-seed` run for the homepage (experience mode); three hands presented (the decision page closed twice, so rounds 2–3 finished in chat)
+- [x] Wilfred picks a direction: the category standard at Linear/Stripe polish (2026-10-31); contract in `.impeccable/surfaces/src-pages-index-astro.md`
+- [x] New self-hosted typeface: Mona Sans (one family), replacing Newsreader and IBM Plex Sans
 
 ### Task 24: Homepage in the new world
 
 **Acceptance criteria:**
-- [ ] Tokens, type scale (about 5 sizes, nothing readable under 13 px) and motion tokens rewritten
-- [ ] Fresh captures of intrvuer.com and educlick.africa in `src/assets/captures/`
-- [ ] Every homepage section rebuilt to the direction; no pill labels, small labels above headings, hairlines or outlined boxes
-- [ ] Motion: section entrances, press, hover and focus feedback, the signature move; reduced motion and no-JS keep all content visible
-- [ ] Reworded sentences listed for Wilfred's approval
+- [x] Tokens, type scale (nothing readable under 13 px) and motion tokens rewritten
+- [x] Fresh captures of intrvuer.com and educlick.africa in `src/assets/captures/`
+- [x] Every homepage section rebuilt to the direction; no pill labels, small labels above headings, hairlines or outlined boxes
+- [x] Motion: section entrances, press, hover and focus feedback, the Intrvuer step tabs; reduced motion and no-JS keep all content visible
+- [x] Reworded sentences listed for Wilfred's approval
 
 **Verification:**
-- [ ] `npm run build && npm run check && npm run check:placeholders` pass
-- [ ] Taste `inspect.mjs`: 0 FAIL at 1440, 768 and 390; `lint.mjs` clean; `impeccable detect` clean
-- [ ] Lighthouse 95 or higher on mobile; axe 0 violations; keyboard pass; no horizontal scroll at 390
+- [x] `npm run build && npm run check && npm run check:placeholders` pass
+- [x] Taste `inspect.mjs`: 0 FAIL at 1440, 768 and 390 (4 WARN defended); `lint.mjs` clean; `impeccable detect` clean
+- [x] Lighthouse mobile 100/100/100/100 (LCP 1.7 s, CLS 0); axe 0 violations at 1440 and 390; tabs, menu and copy driven in headless Chrome; no horizontal scroll at 390
 
 ### ✅ Checkpoint: Homepage design
 - [ ] Wilfred reviews the homepage on the preview (before and after side by side)

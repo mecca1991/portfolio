@@ -37,6 +37,7 @@ He ships whole products end to end. He works backend first, mainly in Python, an
 - Name: Wilfred Chetat. Title: Senior Software Engineer (Wilfred, 2026-10-30). Job titles he actually held keep their wording (Senior Backend Engineer at UXE, Founding Backend Engineer at PaySika).
 - H1: "Building reliable systems." (Wilfred, 2026-10-30).
 - Voice: plain, specific and first person. No hype, no jokes, no emoji. The site must not feel dense or CV-like, generic or template-like, or playful (Wilfred, 2026-10-31).
+- Visual direction (Wilfred, 2026-10-31): after three direction rounds he chose the category standard, a clean modern developer portfolio, with Linear and Stripe's product-marketing polish as the craft bar. Future work keeps that convention and its craft level instead of proposing concept worlds.
 - Every reader-facing change goes through the `clarity` skill. Wording changes need Wilfred's approval, and facts never change without his answer.
 
 ## Evidence on Hand

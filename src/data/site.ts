@@ -58,7 +58,8 @@ export const site = {
     },
     {
       meta: 'Tutorials · Numerica Ideas',
-      title: 'Python on AWS Lambda, and Apache Superset with Docker Compose',
+      title: 'Numerica Ideas tutorials',
+      description: 'Python on AWS Lambda, and Apache Superset with Docker Compose.',
       links: [{ label: 'Read on Numerica Ideas', href: 'https://numericaideas.com/blog/author/wilfredchetat/' }],
     },
   ],

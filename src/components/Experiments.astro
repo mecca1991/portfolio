@@ -1,5 +1,5 @@
 ---
-import ExperimentCard from './ExperimentCard.astro';
+import Icon from './Icon.astro';
 
 const input = `{
   "name": "Ada",
@@ -15,152 +15,214 @@ const parsed = `Object
 └ active: Bool true`;
 ---
 
-<section id="experiments" class="experiments" aria-labelledby="exp-title">
+<section id="experiments" class="dark experiments" aria-labelledby="exp-title">
   <div class="container">
-    <div class="intro">
+    <div class="head" data-reveal>
       <h2 id="exp-title" class="display">Engineering experiments</h2>
       <p>Smaller builds for testing ideas.</p>
     </div>
-    <div class="cards">
-      <ExperimentCard
-        id="rust-title"
-        wide
-        label="Personal project"
-        title="Rust JSON Parser"
-        description="A custom tokenizer and parser supporting nested arrays and objects, typed JSON values, structured errors and formatting, revised after code review."
-        tags={['Rust', 'Parsing', 'Testing']}
-      >
-        <Fragment slot="links">
-          <a class="source" href="https://github.com/mecca1991/rust-cohort/tree/main/rust-json-parser"
-            >View source <span aria-hidden="true">↗</span></a
-          >
-          <a class="link-ink" href="/experiments/rust-json-parser/">How it works</a>
-        </Fragment>
-        <Fragment slot="figure">
+
+    <div class="grid">
+      <article class="rust" aria-labelledby="rust-title">
+        <div class="words" data-reveal>
+          <h3 id="rust-title">Rust JSON Parser</h3>
+          <p class="meta">Personal project · Rust, parsing, testing</p>
+          <p class="description">
+            A custom tokenizer and parser supporting nested arrays and objects, typed JSON values, structured errors
+            and formatting, revised after code review.
+          </p>
+          <div class="links">
+            <a class="btn btn-sm btn-light" href="/experiments/rust-json-parser/"
+              >How it works <Icon name="arrow-right" /></a
+            >
+            <a class="link-ink" href="https://github.com/mecca1991/rust-cohort/tree/main/rust-json-parser"
+              >View source <Icon name="arrow-up-right" /></a
+            >
+          </div>
+        </div>
+        <figure data-reveal style="--i: 1">
           <div class="panels">
-            <div class="panel dark-panel">
-              <span>Input</span>
-              <pre tabindex="0"><code>{input}</code></pre>
+            <div class="panel">
+              <p class="panel-name">Input</p>
+              <pre tabindex="0" role="region" aria-label="JSON input"><code>{input}</code></pre>
             </div>
-            <div class="panel light-panel">
-              <span>Parsed structure</span>
-              <pre tabindex="0"><code>{parsed}</code></pre>
+            <div class="panel parsed">
+              <p class="panel-name">Parsed structure</p>
+              <pre tabindex="0" role="region" aria-label="Parsed structure"><code>{parsed}</code></pre>
             </div>
           </div>
           <figcaption>Illustrative output. Type names simplified.</figcaption>
-        </Fragment>
-      </ExperimentCard>
+        </figure>
+      </article>
 
-      <ExperimentCard
-        id="vs-title"
-        label="Proof of concept"
-        title="Natural-language search over video detections"
-        description="Find a detection by describing clothing or belongings, using generated descriptions, text embeddings and Qdrant retrieval. I built the backend and search interface. Not in production."
-      />
+      <article class="search" aria-labelledby="vs-title" data-reveal style="--i: 2">
+        <h3 id="vs-title">Natural-language search over video detections</h3>
+        <p class="meta">Proof of concept</p>
+        <p class="description">
+          Find a detection by describing clothing or belongings, using generated descriptions, text embeddings and
+          Qdrant retrieval. I built the backend and search interface. Not in production.
+        </p>
+        <ol class="pipeline" aria-label="How a search runs">
+          <li>Detections get generated descriptions</li>
+          <li>Descriptions become text embeddings</li>
+          <li>Qdrant retrieves the closest matches</li>
+        </ol>
+      </article>
     </div>
   </div>
 </section>
 
 <style>
   .experiments {
-    border-block: 1px solid var(--line);
-    background: var(--surface);
+    margin-top: var(--section);
+    background: var(--dark);
+    color: var(--white);
   }
 
   .experiments > .container {
-    padding-block: clamp(2.5rem, 1.386rem + 4.571vw, 5.5rem);
+    padding-block: clamp(4.5rem, 3rem + 6vw, 8rem);
   }
 
-  .intro {
+  .head {
     display: flex;
     flex-wrap: wrap;
     align-items: baseline;
     justify-content: space-between;
-    gap: 6px 12px;
-    margin-bottom: clamp(1.25rem, 0.786rem + 1.905vw, 2.5rem);
+    gap: 8px 24px;
   }
 
   h2 {
-    font-size: clamp(1.75rem, 1.564rem + 0.762vw, 2.25rem);
-    line-height: 1.15;
+    font-size: var(--text-h2);
   }
 
-  .intro p {
-    font-size: clamp(0.9375rem, 0.914rem + 0.095vw, 1rem);
-    color: var(--muted);
-  }
-
-  .cards {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: flex-start;
-    gap: clamp(1rem, 0.814rem + 0.762vw, 1.5rem);
-  }
-
-  .source {
-    font-weight: 600;
-  }
-
-  .panels {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 12px;
-  }
-
-  /* stacks inside the card's figure column; side by side only when there's room for the JSON */
-  .panel {
-    flex: 1 1 240px;
-    min-width: 0;
-    padding: 14px 16px;
-    border-radius: var(--radius-sm);
-  }
-
-  .panel span {
-    display: block;
-    margin-bottom: 6px;
-    font-size: 12px;
-  }
-
-  .dark-panel {
-    background: var(--ink);
-    color: var(--canvas);
-  }
-
-  .dark-panel span {
+  .head p {
+    font-size: var(--text-lead);
     color: var(--dark-muted);
   }
 
-  /* panels are focusable so they can scroll by keyboard; keep the ring visible on dark */
-  .dark-panel pre:focus-visible {
-    outline-color: var(--canvas);
+  .grid {
+    display: grid;
+    grid-template-columns: minmax(0, 8fr) minmax(0, 4fr);
+    gap: 48px clamp(2.5rem, 0.5rem + 4vw, 5rem);
+    margin-top: clamp(2.5rem, 1.9rem + 2.5vw, 4rem);
   }
 
-  .light-panel {
-    border: 1px solid var(--line);
-    background: var(--canvas);
+  .rust {
+    display: grid;
+    grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+    gap: 32px 40px;
+    align-items: start;
   }
 
-  .light-panel span {
-    color: var(--muted);
+  h3 {
+    font-size: var(--text-h3);
+    font-weight: 650;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
   }
 
-  /* long lines scroll inside the panel instead of widening the page */
+  .meta {
+    margin-top: 10px;
+    font-size: 15px;
+    color: var(--dark-muted);
+  }
+
+  .description {
+    margin-top: 16px;
+    color: var(--dark-text-soft);
+  }
+
+  .links {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px 22px;
+    margin-top: 24px;
+  }
+
+  .links .link-ink {
+    color: var(--white);
+  }
+
+  .btn-light {
+    background: var(--white);
+    color: var(--ink);
+  }
+
+  .btn-light:hover {
+    background: #e7ebef;
+    color: var(--ink);
+  }
+
+  .panels {
+    display: grid;
+    gap: 10px;
+  }
+
+  .panel {
+    padding: 16px 18px;
+    border-radius: var(--radius);
+    background: var(--dark-surface);
+  }
+
+  .parsed {
+    background: #11171c;
+  }
+
+  .panel-name {
+    margin-bottom: 8px;
+    font-size: 13px;
+    color: var(--dark-muted);
+  }
+
   pre {
     margin: 0;
     overflow-x: auto;
     font-family: var(--font-mono);
-    font-size: 13px;
-    line-height: 1.6;
+    font-size: 14px;
+    line-height: 1.65;
+    color: var(--dark-text-soft);
+  }
+
+  figcaption {
+    margin-top: 12px;
+    font-size: var(--text-caption);
+    color: var(--dark-muted);
+  }
+
+  .pipeline {
+    display: grid;
+    gap: 8px;
+    margin: 24px 0 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .pipeline li {
+    padding: 12px 16px;
+    border-radius: var(--radius-sm);
+    background: var(--dark-surface);
+    font-size: 15px;
+    color: var(--dark-text-soft);
+  }
+
+  @media (max-width: 63.99rem) {
+    .grid {
+      grid-template-columns: minmax(0, 1fr);
+    }
   }
 
   @media (max-width: 47.99rem) {
-    .panel {
-      padding: 10px 12px;
+    .rust {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    .description {
+      font-size: 16px;
     }
 
     pre {
-      font-size: 12px;
-      line-height: 1.5;
+      font-size: 13px;
     }
   }
 </style>

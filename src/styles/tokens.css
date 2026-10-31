@@ -1,51 +1,67 @@
 /*
- * Design tokens from the "Reusable components" artboard.
- * Fluid sizes interpolate between the phone (390px) and desktop (1440px) artboards.
+ * Design tokens: a light, product-grade portfolio (direction chosen 2026-10-31).
+ * One ground, one ink, one green accent; dark bands for code and the close.
+ * Fluid sizes interpolate between a 390px phone and a 1440px desktop.
  */
 :root {
   /* colour */
-  --canvas: #f7f5f0;
-  --ink: #192522;
-  --muted: #53645e; /* 5.7:1 on canvas */
-  --accent: #155e52; /* 7:1 on canvas */
-  --accent-hover: #0e4239;
-  --accent-pressed: #0a332c;
-  --surface: #eef3ef;
-  --line: #ccd6cf;
-  --attention: #8a3b12; /* always paired with a word */
+  --canvas: #ffffff;
+  --surface: #f4f5f7; /* one tone step: panels behind screenshots and code */
+  --surface-2: #eaedf1; /* the step below: pressed and hovered panels */
+  --ink: #0c1014; /* 19:1 on canvas */
+  --muted: #4f5966; /* 7.1:1 on canvas, 6.5:1 on surface */
+  --accent: #087050; /* 6.1:1 on canvas: primary action and links only */
+  --accent-hover: #065c42;
+  --accent-pressed: #054a35;
+  --live: #1e9e6a; /* the status dot beside the word Live; never text */
+  --line: #e2e6eb; /* real tables only */
+  --attention: #a8360c; /* always paired with a word */
   --white: #ffffff;
 
-  /* dark band (contact, footer, code input) */
-  --dark-text-soft: #d9e2dc;
-  --dark-muted: #b9c6bf;
-  --dark-line: #2e3c38;
+  /* dark band (experiments, contact, footer, code) */
+  --dark: #0c1014;
+  --dark-surface: #161c22;
+  --dark-text-soft: #d3d9e0;
+  --dark-muted: #9aa4b0; /* 7.6:1 on dark */
+  --dark-line: #232a32;
+  --dark-accent: #3ddc97; /* links on dark, 10.8:1 */
 
   /* error notice */
-  --error-bg: #fbf3ee;
-  --error-line: #e3c7b5;
-  --error-text: #6b2e0e;
+  --error-bg: #fbf1ec;
+  --error-line: #efcdbd;
+  --error-text: #7a2c0b;
 
-  /* type */
-  --font-display: 'Newsreader Variable', Georgia, serif;
-  --font-body: 'IBM Plex Sans Variable', system-ui, sans-serif;
+  /* type: one family */
+  --font-display: 'Mona Sans Variable', ui-sans-serif, system-ui, sans-serif;
+  --font-body: 'Mona Sans Variable', ui-sans-serif, system-ui, sans-serif;
   --font-mono: ui-monospace, 'SFMono-Regular', Menlo, monospace;
 
-  --text-h1: clamp(2.25rem, 1.6rem + 2.667vw, 4rem); /* 36 → 64 */
-  --text-h2: clamp(1.875rem, 1.55rem + 1.333vw, 2.75rem); /* 30 → 44 */
-  --text-body: clamp(1.0625rem, 1.039rem + 0.095vw, 1.125rem); /* 17 → 18 */
-  --text-caption: clamp(0.875rem, 0.852rem + 0.095vw, 0.9375rem); /* 14 → 15 */
-  --text-small: 0.8125rem; /* 13: labels */
+  --text-display: clamp(2.5rem, 1.25rem + 5.2vw, 6rem); /* 40 → 96: the homepage H1 */
+  --text-h1: clamp(2.5rem, 1.8rem + 2.9vw, 4.5rem); /* 40 → 72: page titles */
+  --text-h2: clamp(2rem, 1.55rem + 1.85vw, 3.25rem); /* 32 → 52 */
+  --text-h3: clamp(1.375rem, 1.2rem + 0.75vw, 1.875rem); /* 22 → 30 */
+  --text-lead: clamp(1.125rem, 1.04rem + 0.38vw, 1.375rem); /* 18 → 22 */
+  --text-body: clamp(1.0625rem, 1.04rem + 0.1vw, 1.125rem); /* 17 → 18 */
+  --text-caption: 0.9375rem; /* 15 */
+  --text-small: 0.875rem; /* 14: meta lines; nothing readable goes below 13 */
 
-  /* shape */
-  --radius-sm: 4px;
-  --radius: 6px;
+  /* shape: controls are pills, media panels are softly rounded */
+  --radius-sm: 6px;
+  --radius: 12px;
+  --radius-lg: 20px;
   --radius-pill: 999px;
 
   /* layout */
-  --content-max: 1200px;
-  --gutter: clamp(1.25rem, 0.971rem + 1.143vw, 2rem); /* 20 → 32 */
+  --content-max: 1280px;
+  --gutter: clamp(1.25rem, 0.86rem + 1.6vw, 2.5rem); /* 20 → 40 */
+  --section: clamp(5rem, 3.14rem + 7.6vw, 10rem); /* 80 → 160 between sections */
   --tap: 44px;
 
-  /* motion: colour fades only, removed under reduced motion */
-  --fade: 180ms ease;
+  /* motion: strong ease-out for anything entering or responding */
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+  --dur-press: 160ms;
+  --dur-ui: 220ms;
+  --dur-enter: 700ms;
+  --fade: 180ms ease; /* colour changes on hover */
 }

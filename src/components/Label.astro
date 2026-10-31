@@ -1,50 +1,35 @@
 ---
 /*
- * Solid outline: how I was involved. Dashed outline: not real or not built.
- * `plain` drops the caps for in-frame badges like "Illustrative reconstruction".
+ * A small sentence-case chip. Default: how I was involved.
+ * `dashed`: not real or not built yet ("Illustrative reconstruction", "Proposed feature"),
+ * shown on a warm tint so it never reads as a captured screen. `plain` is kept for old call sites.
  */
 interface Props {
   dashed?: boolean;
   plain?: boolean;
 }
 
-const { dashed = false, plain = false } = Astro.props;
+const { dashed = false } = Astro.props;
 ---
 
-<span class:list={['label', { dashed, plain }]}><slot /></span>
+<span class:list={['label', { dashed }]}><slot /></span>
 
 <style>
   .label {
-    display: inline-block;
-    padding: 5px 12px;
-    border: 1px solid var(--line);
+    display: inline-flex;
+    align-items: center;
+    padding: 3px 10px;
     border-radius: var(--radius-pill);
-    background: var(--white);
-    font-size: var(--text-small);
+    background: var(--surface-2);
+    font-size: 13px;
     font-weight: 600;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
+    line-height: 1.5;
     color: var(--ink);
+    white-space: nowrap;
   }
 
   .dashed {
-    border: 1px dashed var(--muted);
-  }
-
-  .plain {
-    padding: 3px 10px;
-    letter-spacing: 0;
-    text-transform: none;
-  }
-
-  @media (max-width: 47.99rem) {
-    .label {
-      padding: 4px 10px;
-      font-size: 12px;
-    }
-
-    .plain {
-      padding: 2px 8px;
-    }
+    background: #fbefdf;
+    color: #6b3d0c;
   }
 </style>

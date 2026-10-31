@@ -1,236 +1,335 @@
 ---
 import ProjectFeature from './ProjectFeature.astro';
-import ProjectCard from './ProjectCard.astro';
-import Capture from './Capture.astro';
-import feedbackAnswer from '../assets/captures/intrvuer/feedback-answer.png';
+import IntrvuerShowcase from './IntrvuerShowcase.astro';
+import BrowserFrame from './BrowserFrame.astro';
 import UiReconstruction from './UiReconstruction.astro';
 import ReconTable from './ReconTable.astro';
+import Icon from './Icon.astro';
+import opportunities from '../assets/captures/educlick/opportunities.png';
 ---
 
 <section id="work" class="work" aria-labelledby="work-title">
   <div class="container">
-    <div class="intro">
-      <h2 id="work-title" class="display">Projects</h2>
-      <p>Each project is labelled with how I was involved.</p>
-    </div>
+    <h2 id="work-title" class="display section-title" data-reveal>Projects</h2>
 
-    <ProjectFeature
-      id="p1-title"
-      primary
-      label="Personal product"
-      detail="Live"
-      title="Intrvuer"
-      oneLiner="A voice interview coach that ties practice to the role you’re preparing for."
-      description="Candidates add a résumé and target job, answer questions out loud, and get feedback on each answer."
-      roleLabel="My contribution"
-      role="design, Next.js web app, SwiftUI iOS app, FastAPI backend, speech and LLM integrations, deployment."
-    >
-      <Fragment slot="actions">
-        <a class="btn btn-primary btn-sm" href="/work/intrvuer/">Read the case study</a>
-        <a class="link-ink" href="https://intrvuer.com/">Visit intrvuer.com <span aria-hidden="true">↗</span></a>
-      </Fragment>
-      <Fragment slot="figure">
-        <Capture
-          src={feedbackAnswer}
-          alt="Feedback on one answer in the Intrvuer sample report: the question, the candidate's response, STAR scores, written feedback and a suggested improvement."
-          sizes="(max-width: 47.99rem) calc(100vw - 40px), 440px"
-          maxWidth={440}
-        />
-        <figcaption class="capture-caption">
-          Each spoken answer gets its own feedback. The public sample report uses a fictional candidate.
+    <article class="flagship" aria-labelledby="p1-title">
+      <div class="flag-head">
+        <div data-reveal>
+          <h3 id="p1-title" class="display">Intrvuer</h3>
+          <p class="one-liner">A voice interview coach that ties practice to the role you’re preparing for.</p>
+          <p class="meta">
+            <span class="live-dot" aria-hidden="true"></span><span class="live">Live</span>{' · '}Personal product
+          </p>
+        </div>
+        <div data-reveal style="--i: 1">
+          <p class="description">
+            Candidates add a résumé and target job, answer questions out loud, and get feedback on each answer.
+          </p>
+          <p class="role">
+            <span>My contribution: </span>design, Next.js web app, SwiftUI iOS app, FastAPI backend, speech and LLM
+            integrations, deployment.
+          </p>
+          <div class="actions">
+            <a class="btn btn-primary" href="/work/intrvuer/">Read the case study <Icon name="arrow-right" /></a>
+            <a class="link-ink" href="https://intrvuer.com/">Visit intrvuer.com <Icon name="arrow-up-right" /></a>
+          </div>
+        </div>
+      </div>
+      <IntrvuerShowcase />
+    </article>
+
+    <div class="rows">
+      <ProjectFeature
+        id="p2-title"
+        title="EduClick"
+        oneLiner="A platform that lists opportunities for African talent."
+        kind="Volunteer project"
+        detail="Public platform"
+        live
+        description="I built it end to end: the FastAPI backend, the Next.js frontend and the deployment. Its ingestion turns source listings into consistent records through per-record validation and replay-safe upserts, with an outcome for every record: created, updated or rejected."
+      >
+        <a slot="actions" class="link-ink" href="https://www.educlick.africa/opportunities"
+          >Browse EduClick opportunities <Icon name="arrow-up-right" /></a
+        >
+        <Fragment slot="figure">
+          <div class="edu">
+            <BrowserFrame
+              src={opportunities}
+              url="educlick.africa/opportunities"
+              alt="The EduClick opportunities page: a search bar with sorting and filters above listings that each show the organisation, location, posting date, deadline and a category."
+              sizes="(max-width: 47.99rem) 88vw, 700px"
+            />
+            <div class="batch-card" data-ui>
+              <p class="batch-title">Ingestion outcomes</p>
+              <ul class="batch">
+                <li><span>Scholarship · src-104</span><span class="status-ok">Created</span></li>
+                <li><span>Internship · src-221</span><span class="status-fail">Rejected · no deadline</span></li>
+                <li><span>Scholarship · src-104 again</span><span class="status-strong">Updated · no duplicate</span></li>
+              </ul>
+            </div>
+          </div>
+        </Fragment>
+        <figcaption slot="caption">
+          The live opportunities page, captured October 2026. The ingestion outcomes are an illustrative batch with fictional data; the labels follow the implementation.
         </figcaption>
-      </Fragment>
-    </ProjectFeature>
+      </ProjectFeature>
 
-    <ProjectFeature
-      id="p2-title"
-      reverse
-      label="Freelance client project"
-      detail="Upwork"
-      title="Sysconnector"
-      oneLiner="Facebook Lead Ads to Adobe Campaign, from webhook to sync status."
-      description="I built the lead integration end to end: webhook processing, field mapping, sync status and connection validation, plus audience-management APIs and the React screens around them."
-      roleLabel="My role"
-      role="Freelance Full-Stack Engineer · Upwork"
-    >
-      <Fragment slot="actions">
-        <a class="btn btn-primary btn-sm" href="/work/sysconnector/">Read the case study</a>
-      </Fragment>
-      <Fragment slot="figure">
-        <UiReconstruction title="Field mapping · Facebook Lead Ads → Adobe Campaign">
-          <ReconTable
-            columns={['Lead form field', 'Campaign field', 'Status']}
-            rows={[
-              ['full_name', '[Campaign field]', { text: 'Mapped', tone: 'ok' }],
-              ['email', '[Campaign field]', { text: 'Mapped', tone: 'ok' }],
-              ['phone_number', { text: 'Not mapped', tone: 'muted' }, { text: 'Needs a field', tone: 'fail' }],
-            ]}
-          />
-          <p class="recon-note">Leads sync once required fields are mapped.</p>
-        </UiReconstruction>
-        <figcaption>
+      <ProjectFeature
+        id="p3-title"
+        reverse
+        title="Sysconnector"
+        oneLiner="Facebook Lead Ads to Adobe Campaign, from webhook to sync status."
+        kind="Freelance client project"
+        detail="Upwork"
+        description="I built the lead integration end to end: webhook processing, field mapping, sync status and connection validation, plus audience-management APIs and the React screens around them."
+        roleLabel="My role"
+        role="Freelance Full-Stack Engineer · Upwork"
+      >
+        <a slot="actions" class="btn btn-secondary" href="/work/sysconnector/"
+          >Read the case study <Icon name="arrow-right" /></a
+        >
+        <Fragment slot="figure">
+          <UiReconstruction title="Field mapping · Facebook Lead Ads → Adobe Campaign">
+            <ReconTable
+              columns={['Lead form field', 'Campaign field', 'Status']}
+              rows={[
+                ['full_name', '[Campaign field]', { text: 'Mapped', tone: 'ok' }],
+                ['email', '[Campaign field]', { text: 'Mapped', tone: 'ok' }],
+                ['phone_number', { text: 'Not mapped', tone: 'muted' }, { text: 'Needs a field', tone: 'fail' }],
+              ]}
+            />
+            <p class="recon-note">Leads sync once required fields are mapped.</p>
+          </UiReconstruction>
+        </Fragment>
+        <figcaption slot="caption">
           Illustrative reconstruction of the mapping step. Field names and labels are examples, not captured data.
         </figcaption>
-      </Fragment>
-    </ProjectFeature>
+      </ProjectFeature>
 
-    <div class="cards">
-      <ProjectCard
-        id="p3-title"
-        label="Contract project"
-        detail="Alphathesis · 2023–2024"
+      <ProjectFeature
+        id="p4-title"
         title="LeaseSurance"
         oneLiner="Lease insurance that replaces rental deposits, for residential and commercial portfolios."
+        kind="Contract project"
+        detail="Alphathesis · 2023–2024"
         description="As a contractor with Alphathesis, I built the backend: ingestion rules, the relational model, APIs, duplicate prevention and client-scoped access. Source files arrived with inconsistent periods, repeated transactions and running totals that couldn’t be trusted."
       >
         <Fragment slot="figure">
-          <dl class="ledger">
-            <div><dt>Opening balance</dt><dd>1,200.00</dd></div>
-            <div><dt>Accepted transactions</dt><dd>+ 230.00</dd></div>
-            <div class="status-muted"><dt>Repeated ext-7781</dt><dd>skipped</dd></div>
-            <div class="total"><dt>Derived period balance</dt><dd>1,430.00</dd></div>
-          </dl>
-          <figcaption>Sample data; the real data can’t be shown publicly. The balance comes from accepted transactions, and repeats are skipped.</figcaption>
+          <div class="ledger-card" data-ui>
+            <table class="ledger">
+              <caption class="visually-hidden">Derived period balance, sample data</caption>
+              <tbody>
+                <tr><th scope="row">Opening balance</th><td>1,200.00</td></tr>
+                <tr><th scope="row">Accepted transactions</th><td>+ 230.00</td></tr>
+                <tr class="status-muted"><th scope="row">Repeated ext-7781</th><td>skipped</td></tr>
+                <tr class="total"><th scope="row">Derived period balance</th><td>1,430.00</td></tr>
+              </tbody>
+            </table>
+          </div>
         </Fragment>
-      </ProjectCard>
-
-      <ProjectCard
-        id="p4-title"
-        label="Volunteer project"
-        detail="Public platform"
-        title="EduClick"
-        oneLiner="A platform that lists opportunities for African talent."
-        description="I built it end to end: the FastAPI backend, the Next.js frontend and the deployment. Its ingestion turns source listings into consistent records through per-record validation and replay-safe upserts, with an outcome for every record: created, updated or rejected."
-      >
-        <Fragment slot="figure">
-          <ul class="batch">
-            <li><span>Scholarship · src-104</span><span class="status-ok">Created</span></li>
-            <li><span>Internship · src-221</span><span class="status-fail">Rejected · no deadline</span></li>
-            <li><span>Scholarship · src-104 again</span><span class="outcome">Updated · no duplicate</span></li>
-          </ul>
-          <figcaption>Illustrative batch with fictional data. Labels follow the implementation.</figcaption>
-        </Fragment>
-        <a slot="actions" class="link-ink" href="https://www.educlick.africa/opportunities"
-          >Browse EduClick opportunities <span aria-hidden="true">↗</span></a
-        >
-      </ProjectCard>
+        <figcaption slot="caption">
+          Sample data; the real data can’t be shown publicly. The balance comes from accepted transactions, and
+          repeats are skipped.
+        </figcaption>
+      </ProjectFeature>
     </div>
   </div>
 </section>
 
 <style>
   .work > .container {
-    padding-block: clamp(2.5rem, 1.2rem + 5.333vw, 6rem) clamp(0.5rem, 0.129rem + 1.524vw, 1.5rem);
+    padding-block: var(--section) 0;
   }
 
-  .intro {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: baseline;
-    justify-content: space-between;
-    gap: 6px 12px;
-    margin-bottom: clamp(1.75rem, 1.286rem + 1.905vw, 3rem);
-  }
-
-  h2 {
+  .section-title {
     font-size: var(--text-h2);
   }
 
-  .intro p {
-    font-size: clamp(0.9375rem, 0.914rem + 0.095vw, 1rem);
-    color: var(--muted);
+  .flagship {
+    margin-top: clamp(2rem, 1.4rem + 2.5vw, 3.5rem);
   }
 
-  .capture-caption {
-    max-width: 440px;
-  }
-
-  .recon-note {
-    padding: 12px 20px 14px;
-    border-top: 1px solid var(--line);
-    font-size: 14px;
-    color: var(--muted);
-  }
-
-  .cards {
+  .flag-head {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(min(420px, 100%), 1fr));
-    gap: 32px;
-    padding-block: 80px 24px;
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+    align-items: end;
+    gap: 24px clamp(2.5rem, 0.5rem + 4vw, 5rem);
   }
 
-  .ledger {
-    padding: 16px 20px;
-    border: 1px solid var(--line);
-    border-radius: var(--radius);
-    background: var(--surface);
+  h3 {
+    font-size: var(--text-h1);
+  }
+
+  .one-liner {
+    margin-top: 14px;
+    font-size: var(--text-lead);
+    font-weight: 500;
+    line-height: 1.4;
+    letter-spacing: -0.01em;
+  }
+
+  .meta {
+    margin-top: 16px;
     font-size: 15px;
-    font-variant-numeric: tabular-nums;
+    color: var(--muted);
   }
 
-  .ledger div {
-    display: flex;
-    justify-content: space-between;
-    gap: 12px;
-    padding: 7px 0;
-    border-bottom: 1px solid var(--line);
-  }
-
-  .ledger .total {
-    padding-bottom: 0;
-    border-bottom: 0;
+  .live {
+    color: var(--ink);
     font-weight: 600;
   }
 
-  .batch {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-    border: 1px solid var(--line);
+  .description {
+    max-width: 38em;
+    color: var(--muted);
+  }
+
+  .role {
+    max-width: 38em;
+    margin-top: 12px;
+    font-size: 16px;
+  }
+
+  .role span {
+    color: var(--muted);
+  }
+
+  .actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px 24px;
+    margin-top: 24px;
+  }
+
+  .rows {
+    display: grid;
+    gap: clamp(5rem, 3.5rem + 6vw, 9rem);
+    margin-top: clamp(5rem, 3.5rem + 6vw, 9rem);
+  }
+
+  /* EduClick: the live page, with an ingestion batch resting on its corner */
+  .edu {
+    position: relative;
+    width: 100%;
+    padding-bottom: 56px;
+  }
+
+  .edu :global(.browser) {
+    width: 92%;
+  }
+
+  .batch-card {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: min(78%, 400px);
+    padding: 16px 18px 6px;
     border-radius: var(--radius);
     background: var(--white);
+    /* this card overlaps the capture, so it floats above it */
+    box-shadow: /* taste-skill-ignore */
+      0 24px 48px -20px rgb(12 16 20 / 0.3),
+      0 8px 16px -8px rgb(12 16 20 / 0.12);
     font-size: 15px;
     line-height: 1.4;
+  }
+
+  .batch-title {
+    font-weight: 650;
+  }
+
+  .batch {
+    margin: 8px 0 0;
+    padding: 0;
+    list-style: none;
   }
 
   .batch li {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    gap: 8px 12px;
-    padding: 10px 18px;
-    border-bottom: 1px solid var(--line);
+    gap: 2px 12px;
+    padding: 9px 0;
   }
 
-  .batch li:last-child {
-    border-bottom: 0;
+  /* rows inside an interface fragment (data-ui) */
+  .batch li + li {
+    border-top: 1px solid var(--line); /* taste-skill-ignore */
   }
 
-  .outcome {
-    font-weight: 500;
+  .recon-note {
+    padding: 12px 20px 14px;
+    font-size: 14px;
+    color: var(--muted);
+    background: #fafbfc;
+  }
+
+  .ledger-card {
+    width: min(100%, 460px);
+    padding: 10px 24px;
+    border-radius: var(--radius);
+    background: var(--white);
+  }
+
+  .ledger {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 16px;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .ledger th {
+    padding: 14px 0;
+    font-weight: 400;
+    text-align: left;
+  }
+
+  .ledger td {
+    padding: 14px 0;
+    text-align: right;
+  }
+
+  .ledger tr + tr > * {
+    border-top: 1px solid var(--line);
+  }
+
+  .ledger .total > * {
+    font-weight: 650;
+  }
+
+  @media (max-width: 63.99rem) {
+    .flag-head {
+      grid-template-columns: minmax(0, 1fr);
+      align-items: start;
+    }
   }
 
   @media (max-width: 47.99rem) {
-    .work {
-      border-top: 1px solid var(--line);
+    .description {
+      font-size: 16px;
     }
 
-    .recon-note {
-      padding: 10px 14px 12px;
+    .edu {
+      padding-bottom: 72px;
     }
 
-    .cards {
-      gap: 0;
-      padding: 0;
+    .edu :global(.browser) {
+      width: 100%;
     }
 
-    .ledger,
-    .batch {
+    .batch-card {
+      width: 92%;
+      padding: 12px 14px 4px;
       font-size: 14px;
     }
 
+    .ledger-card {
+      padding: 6px 16px;
+    }
+
     .ledger {
-      padding: 12px 16px;
+      font-size: 15px;
     }
   }
 </style>
