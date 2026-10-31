@@ -603,3 +603,57 @@ Not in this phase: the Rust page's "Back to projects / ← All projects" pair (c
 ### ✅ Checkpoint: Copy cleanup complete
 - [ ] Tasks 20–21 done, or deferred by Wilfred
 - [ ] PR into `main` merged after approval; the changed pages checked on production at 1440 and 390
+
+---
+
+## Phase 5: Design pass 2 (new visual world)
+
+Plan: `tasks/plan.md` › Phase 5. Branch `phase-5-design` from `phase-3-ship`. Answers from Wilfred (2026-10-31): new visual world, all pages with the homepage first, labels may move but rewritten sentences need his approval, fresh captures of intrvuer.com and educlick.africa, main visitor = hiring managers and recruiters, first-10-seconds belief = "ships whole products end to end", must not feel dense or CV-like, generic or template-like, or playful.
+
+### Task 22: Setup: branch, PRODUCT.md, baseline
+
+**Acceptance criteria:**
+- [x] Branch `phase-5-design` created from `phase-3-ship`
+- [x] `PRODUCT.md` records users, positioning, constraints and evidence on hand
+- [x] Baseline inspection of the phase-3 preview saved (Taste inspector: 8–11 FAILs per page; the "On this page" nav covers text at 768–1000 px)
+- [ ] Amplify branch preview for `phase-5-design` (personal account; Wilfred confirms first)
+
+### Task 23: Direction round
+
+**Acceptance criteria:**
+- [ ] Impeccable `concept-seed` run for the homepage (experience mode); directions presented on the decision page
+- [ ] Wilfred picks a direction; the direction contract is written to the homepage surface brief
+- [ ] New self-hosted typefaces chosen (none from Impeccable's list of defaults)
+
+### Task 24: Homepage in the new world
+
+**Acceptance criteria:**
+- [ ] Tokens, type scale (about 5 sizes, nothing readable under 13 px) and motion tokens rewritten
+- [ ] Fresh captures of intrvuer.com and educlick.africa in `src/assets/captures/`
+- [ ] Every homepage section rebuilt to the direction; no pill labels, small labels above headings, hairlines or outlined boxes
+- [ ] Motion: section entrances, press, hover and focus feedback, the signature move; reduced motion and no-JS keep all content visible
+- [ ] Reworded sentences listed for Wilfred's approval
+
+**Verification:**
+- [ ] `npm run build && npm run check && npm run check:placeholders` pass
+- [ ] Taste `inspect.mjs`: 0 FAIL at 1440, 768 and 390; `lint.mjs` clean; `impeccable detect` clean
+- [ ] Lighthouse 95 or higher on mobile; axe 0 violations; keyboard pass; no horizontal scroll at 390
+
+### ✅ Checkpoint: Homepage design
+- [ ] Wilfred reviews the homepage on the preview (before and after side by side)
+
+### Task 25: Case studies, Rust page and 404 in the new world
+
+**Acceptance criteria:**
+- [ ] Case-study template rebuilt; the "On this page" overlap at 768–1000 px fixed; no 01–05 numbering
+- [ ] Intrvuer, Sysconnector and Rust parser pages rebuilt; Sysconnector has no near-empty screens; the Rust page body is 16 px or larger on phones and monospace appears only in code
+- [ ] 404 page rebuilt
+- [ ] OG image, favicons, `theme-color` and README banners regenerated
+
+**Verification:**
+- [ ] Same gates as Task 24 on every route; no overlap at 768, 900 and 1024 px
+
+### ✅ Checkpoint: Design pass complete
+- [ ] Impeccable finish review: ship verdict
+- [ ] `DESIGN.md` and `.impeccable/design.json` written from the build
+- [ ] Wilfred reviews every page; PR into `main` after approval

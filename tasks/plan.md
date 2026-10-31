@@ -83,6 +83,19 @@ Desktop and phone artboards merge into one responsive page each.
 ### Checkpoint: Copy cleanup complete
 - [ ] PR merged into `main`; changed pages checked on production
 
+### Phase 5: Design pass 2 (2026-10-31)
+- [ ] Task 22: Setup: branch `phase-5-design`, PRODUCT.md, baseline inspection
+- [ ] Task 23: Direction round (Impeccable decision page; Wilfred picks)
+- [ ] Task 24: Homepage in the new world
+
+### Checkpoint: Homepage design
+- [ ] Wilfred reviews the homepage on the preview
+
+- [ ] Task 25: Case studies, Rust page and 404 in the new world
+
+### Checkpoint: Design pass complete
+- [ ] Finish review, DESIGN.md, PR into `main` after approval
+
 ## Dependency Graph
 
 ```
