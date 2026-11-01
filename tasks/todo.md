@@ -640,7 +640,7 @@ Plan: `tasks/plan.md` › Phase 5. Branch `phase-5-design` from `phase-3-ship`. 
 - [x] Lighthouse mobile 100/100/100/100 (LCP 1.7 s, CLS 0); axe 0 violations at 1440 and 390; tabs, menu and copy driven in headless Chrome; no horizontal scroll at 390
 
 ### ✅ Checkpoint: Homepage design
-- [ ] Wilfred reviews the homepage on the preview (before and after side by side)
+- [x] Wilfred reviews the homepage on the preview (2026-11-01): wording approved with edits (no "mainly in Python", no "in Dubai"; original project order), then two-column hero and pill buttons confirmed
 
 ### Task 25: Case studies, Rust page and 404 in the new world
 
@@ -654,6 +654,6 @@ Plan: `tasks/plan.md` › Phase 5. Branch `phase-5-design` from `phase-3-ship`. 
 - [x] Same gates as Task 24 on every route: Lighthouse mobile 100/100/100/100 on all four pages, axe 0 violations at 1440 and 390 on all five, lint clean; no overlap at 768, 900 and 1024 px. Taste inspector 0 FAIL on home and Intrvuer; "few pictures" stands on Sysconnector (client product, only labelled reconstructions), the Rust page (a code project) and the 404, rather than inventing screens
 
 ### ✅ Checkpoint: Design pass complete
-- [ ] Impeccable finish review: ship verdict
-- [ ] `DESIGN.md` and `.impeccable/design.json` written from the build
+- [x] Impeccable finish review: ship verdict (2026-11-01, after three fix rounds: hero two columns as Wilfred asked, pills kept, showcase and hero phone framed whole, tracking floor, outcomes, header, experience table, Rust steps as rows, intrvuer.com capture retouched)
+- [x] `DESIGN.md` and `.impeccable/design.json` written from the build (documenter noted token drift: unused `--text-display`, `--ease-in-out`, `--dark-line`; some hard-coded hover shades; reported, not repaired)
 - [ ] Wilfred reviews every page; PR into `main` after approval
