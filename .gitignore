@@ -24,3 +24,8 @@ npm-debug.log*
 .vscode/*
 !.vscode/extensions.json
 .idea/
+
+# design-skill working files
+.taste-skill/
+.impeccable/mocks/
+.impeccable/review/

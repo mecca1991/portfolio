@@ -1,7 +1,8 @@
 ---
 /*
- * Section index: sticky sidebar on wide screens, inline box on phones.
- * The link for the section in the URL hash is highlighted with :has(:target), no JS.
+ * Section index. Wide screens: a sticky column beside the article, with the section
+ * in view marked as you scroll. Narrow screens: a row of links above the article,
+ * never sticky, so it can't sit on top of the text.
  */
 interface Props {
   sections: readonly { id: string; label: string }[];
@@ -10,8 +11,8 @@ interface Props {
 const { sections } = Astro.props;
 ---
 
-<nav class="toc" aria-label="On this page">
-  <p>On this page</p>
+<nav class="toc" aria-labelledby="toc-title" data-toc>
+  <p id="toc-title" class="title">On this page</p>
   <ol>
     {
       sections.map((s) => (
@@ -28,82 +29,86 @@ const { sections } = Astro.props;
 <style>
   .toc {
     position: sticky;
-    top: 24px;
-    flex: 1 1 200px;
-    min-width: 0;
-    max-width: 230px;
-    padding-top: 32px;
+    top: 100px;
     font-size: 15px;
   }
 
-  p {
-    margin-bottom: 12px;
-    font-size: 13px;
-    font-weight: 500;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    color: var(--muted);
+  .title {
+    margin-bottom: 10px;
+    font-weight: 600;
   }
 
   ol {
+    display: grid;
+    gap: 2px;
     margin: 0;
     padding: 0;
     list-style: none;
-    border-left: 1px solid var(--line);
   }
 
   a {
     display: block;
-    margin-left: -1px;
-    padding: 8px 0 8px 16px;
-    border-left: 2px solid transparent;
+    padding: 7px 12px;
+    margin-left: -12px;
+    border-radius: var(--radius-sm);
     color: var(--muted);
     text-decoration: none;
   }
 
   a:hover {
+    background: var(--surface);
     color: var(--ink);
-    border-left-color: var(--line);
   }
 
-  /* section ids shared by every case study */
-  :global(body:has(#purpose:target)) a[data-for='purpose'],
-  :global(body:has(#problem:target)) a[data-for='problem'],
-  :global(body:has(#implemented:target)) a[data-for='implemented'],
-  :global(body:has(#decisions:target)) a[data-for='decisions'],
-  :global(body:has(#outcomes:target)) a[data-for='outcomes'] {
-    border-left-color: var(--accent);
+  a[aria-current] {
+    background: var(--surface);
     color: var(--ink);
-    font-weight: 500;
+    font-weight: 600;
   }
 
-  @media (max-width: 47.99rem) {
+  @media (max-width: 63.99rem) {
     .toc {
       position: static;
-      max-width: none;
-      flex-basis: auto;
-      padding: 14px 16px;
-      border-radius: var(--radius);
-      background: var(--surface);
     }
 
-    p {
-      margin-bottom: 4px;
-      font-size: 12px;
+    .title {
+      margin-bottom: 8px;
     }
 
     ol {
-      padding-left: 20px;
-      border-left: 0;
-      list-style: decimal;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
     }
 
     a {
-      display: inline-block;
       margin-left: 0;
-      padding: 10px 0;
-      border-left: 0;
+      padding: 8px 14px;
+      border-radius: var(--radius-pill);
+      background: var(--surface);
       color: var(--ink);
     }
   }
 </style>
+
+<script>
+  // mark the section currently being read; the links work without this
+  const toc = document.querySelector<HTMLElement>('[data-toc]');
+  const sections = [...document.querySelectorAll<HTMLElement>('[data-section]')];
+  if (toc && sections.length && 'IntersectionObserver' in window) {
+    const links = new Map([...toc.querySelectorAll<HTMLAnchorElement>('a[data-for]')].map((a) => [a.dataset.for, a]));
+    const visible = new Set<string>();
+    const mark = () => {
+      const current = sections.find((s) => visible.has(s.id))?.id;
+      links.forEach((a, id) => (id === current ? a.setAttribute('aria-current', 'location') : a.removeAttribute('aria-current')));
+    };
+    const io = new IntersectionObserver(
+      (entries) => {
+        for (const e of entries) e.isIntersecting ? visible.add(e.target.id) : visible.delete(e.target.id);
+        mark();
+      },
+      { rootMargin: '-110px 0px -55% 0px' },
+    );
+    sections.forEach((s) => io.observe(s));
+  }
+</script>

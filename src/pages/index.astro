@@ -7,30 +7,15 @@ import Experiments from '../components/Experiments.astro';
 import WritingList from '../components/WritingList.astro';
 import About from '../components/About.astro';
 import ContactSection from '../components/ContactSection.astro';
-import { site } from '../data/site';
 ---
 
 <BaseLayout
-  title="Wilfred Chetat · Senior Backend Engineer"
-  description="Senior backend engineer in Dubai, working mainly in Python on APIs, integrations, payments and data systems, and building products like Intrvuer."
+  title="Wilfred Chetat · Senior Software Engineer"
+  description="Senior software engineer who builds products end to end, across payments, data systems, video analytics and AI."
 >
   <Header />
   <main id="main">
     <Hero />
-
-    <section class="glance" aria-label="At a glance">
-      <dl class="container">
-        {
-          site.glance.map((g) => (
-            <div>
-              <dt>{g.term}</dt>
-              <dd>{g.detail}</dd>
-            </div>
-          ))
-        }
-      </dl>
-    </section>
-
     <SelectedWork />
     <Experiments />
     <WritingList />
@@ -38,40 +23,9 @@ import { site } from '../data/site';
 
     <ContactSection
       title="Tell me what you’re building."
-      intro="For an engineering role or a freelance project involving Python backends, integrations, data workflows or AI, send a short outline of what you need."
+      intro="For an engineering role or a freelance project, whether it’s a backend, an integration, a data workflow or an AI feature, send a short outline of what you need."
       footer
     />
   </main>
 </BaseLayout>
 
-<style>
-  .glance {
-    border-block: 1px solid var(--line);
-    background: var(--surface);
-  }
-
-  dl {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 16px 32px;
-    padding-block: 24px;
-    font-size: 16px;
-    line-height: 1.45;
-  }
-
-  dt {
-    font-size: 14px;
-    color: var(--muted);
-  }
-
-  dd {
-    margin-top: 4px;
-  }
-
-  /* phones show these facts inside About instead */
-  @media (max-width: 47.99rem) {
-    .glance {
-      display: none;
-    }
-  }
-</style>

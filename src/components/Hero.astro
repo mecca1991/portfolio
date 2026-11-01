@@ -1,210 +1,264 @@
 ---
 import { Picture } from 'astro:assets';
 import portrait from '../assets/portrait.jpg';
+import sampleReport from '../assets/captures/intrvuer/sample-report.png';
+import practiceIos from '../assets/captures/intrvuer/spoken-practice-ios.png';
 import { site } from '../data/site';
+import BrowserFrame from './BrowserFrame.astro';
+import PhoneFrame from './PhoneFrame.astro';
+import Icon from './Icon.astro';
 ---
 
-<section class="container hero" aria-labelledby="hero-title">
-  <div class="hero-text">
-    <p class="eyebrow">
-      <span>Senior Backend Engineer</span><span class="sep" aria-hidden="true"> · </span><span
-        >Dubai, UAE</span
-      >
-    </p>
-    <h1 id="hero-title" class="display">Building reliable backend systems and AI-powered products.</h1>
-    <p class="lede">
-      I’m Wilfred Chetat. I work mainly in Python on APIs, integrations, payments and data systems,
-      and I build products like Intrvuer from interface to deployment.
-    </p>
-    <div class="actions">
-      <a class="btn btn-primary" href="#work">View projects</a>
-      <a class="btn btn-secondary" href="#contact">Get in touch</a>
+<section class="hero" aria-labelledby="hero-title">
+  <div class="container">
+    <div class="split">
+      <div class="copy">
+        <h1 id="hero-title" class="display" data-reveal>Building reliable systems.</h1>
+        <p class="lede" data-reveal style="--i: 1">
+          I’m <span class="who"
+            ><Picture
+              src={portrait}
+              formats={['avif', 'webp']}
+              widths={[56, 112]}
+              sizes="56px"
+              alt=""
+              loading="eager"
+              class="avatar"
+            />Wilfred Chetat</span
+          >, a senior software engineer. For 7+ years I’ve built products in payments, data systems, video analytics
+          and AI, and I took Intrvuer, my own product, from interface to deployment.
+        </p>
+        <div class="actions" data-reveal style="--i: 2">
+          <a class="btn btn-primary" href="#work">View projects <Icon name="arrow-right" /></a>
+          <a class="btn btn-secondary" href="#contact">Get in touch</a>
+        </div>
+        <ul class="profiles" aria-label="Profiles and CV" data-reveal style="--i: 2">
+          <li><a class="link-ink" href={site.links.cv}>CV (PDF)</a></li>
+          <li><a class="link-ink" href={site.links.github}>GitHub <Icon name="arrow-up-right" /></a></li>
+          <li><a class="link-ink" href={site.links.linkedin}>LinkedIn <Icon name="arrow-up-right" /></a></li>
+        </ul>
+      </div>
+
+      <figure class="showcase" data-reveal style="--i: 2">
+        <div class="stage">
+          <div class="desk">
+            <BrowserFrame
+              src={sampleReport}
+              url="intrvuer.com/sample-report"
+              alt="Intrvuer's public sample report: an overall score of 4.2 out of 5, a coach summary and a performance analysis across five dimensions."
+              sizes="(max-width: 63.99rem) 92vw, 900px"
+              eager
+            />
+          </div>
+          <PhoneFrame
+            class="device"
+            src={practiceIos}
+            alt="The Intrvuer iOS app during a spoken practice session, with the interviewer's question and the candidate's answer."
+            sizes="(max-width: 47.99rem) 30vw, 220px"
+            eager
+          />
+        </div>
+        <figcaption>Intrvuer: the web sample report (fictional candidate) and the iOS practice session.</figcaption>
+      </figure>
     </div>
-    <ul class="profiles" aria-label="Profiles and CV">
-      <li class="cv-item"><a href={site.links.cv}>CV (PDF)</a></li>
-      <li><a href={site.links.github}>GitHub <span aria-hidden="true">↗</span></a></li>
-      <li><a href={site.links.linkedin}>LinkedIn <span aria-hidden="true">↗</span></a></li>
-    </ul>
-  </div>
-  <div class="portrait">
-    <Picture
-      src={portrait}
-      formats={['avif', 'webp']}
-      widths={[132, 264, 420, 840]}
-      sizes="(max-width: 47.99rem) 132px, 420px"
-      alt="Wilfred Chetat, smiling, in a navy blazer and white shirt"
-      loading="eager"
-      fetchpriority="high"
-    />
+
+    <dl class="glance" aria-label="At a glance">
+      {
+        site.glance.map((g, i) => (
+          <div data-reveal style={`--i: ${i}`}>
+            <dt>{g.term}</dt>
+            <dd>{g.detail}</dd>
+          </div>
+        ))
+      }
+    </dl>
   </div>
 </section>
 
 <style>
+  /* the stage bleeds past the right margin, so clip the page's edge, not the stage */
   .hero {
-    display: flex;
-    flex-wrap: wrap;
+    overflow-x: clip;
+  }
+
+  .hero > .container {
+    padding-block: clamp(2rem, 1.2rem + 3.3vw, 4rem) 0;
+  }
+
+  /* text on the left; the product, the larger half, on the right */
+  .split {
+    display: grid;
+    grid-template-columns: minmax(0, 6fr) minmax(0, 6fr);
     align-items: center;
-    gap: 64px;
-    padding-block: clamp(1.75rem, 0.729rem + 4.19vw, 4.5rem) clamp(2.5rem, 1.943rem + 2.286vw, 4rem);
-  }
-
-  .hero-text {
-    flex: 999 1 560px;
-    min-width: 0;
-  }
-
-  .eyebrow {
-    margin-bottom: 20px;
-    font-size: 15px;
-    font-weight: 500;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--muted);
+    gap: 40px clamp(2.5rem, 0.5rem + 4vw, 5rem);
   }
 
   h1 {
-    max-width: 14ch;
-    font-size: var(--text-h1);
-    line-height: 1.06;
-    letter-spacing: -0.015em;
+    font-size: clamp(2.5rem, 0.9rem + 4.6vw, 5rem); /* two lines in the text column */
+    letter-spacing: -0.04em;
+    line-height: 0.98;
   }
 
   .lede {
-    margin-top: 28px;
-    max-width: 32em;
-    font-size: clamp(1.0625rem, 0.993rem + 0.286vw, 1.25rem);
+    max-width: 34em;
+    margin-top: clamp(1.25rem, 0.9rem + 1.4vw, 2rem);
+    font-size: var(--text-lead);
+    line-height: 1.5;
+    color: var(--muted);
+  }
+
+  .who {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 8px;
+    color: var(--ink);
+    font-weight: 600;
+    white-space: nowrap;
+  }
+
+  .who :global(.avatar) {
+    width: 1.5em;
+    height: 1.5em;
+    align-self: center;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: 50% 18%;
+    background: var(--surface);
   }
 
   .actions {
     display: flex;
     flex-wrap: wrap;
-    align-items: center;
-    gap: 12px;
-    margin-top: 36px;
+    gap: 10px;
+    margin-top: clamp(1.5rem, 1.1rem + 1.6vw, 2.25rem);
   }
 
   .actions .btn {
-    padding: 14px 24px;
-    font-size: 17px;
-  }
-
-  .actions .btn-secondary {
-    padding: 13px 23px;
+    min-height: 48px;
+    padding-inline: 24px;
   }
 
   .profiles {
     display: flex;
     flex-wrap: wrap;
-    gap: 4px 28px;
-    margin: 28px 0 0;
-    padding: 0;
+    gap: 0 24px;
+    margin: 10px 0 0;
+    padding: 0 0 0 4px;
     list-style: none;
-    font-size: 16px;
+    font-size: 15px;
   }
 
-  .profiles a {
-    display: inline-block;
-    padding: 8px 0;
-    color: var(--ink);
+  /*
+   * The stage runs from the column's left edge to the viewport's right edge:
+   * --edge is the distance from the container's content box to the screen edge.
+   */
+  .showcase {
+    --edge: max(var(--gutter), (100vw - var(--content-max)) / 2);
+    margin-right: calc(-1 * var(--edge));
   }
 
-  .portrait {
-    flex: 1 1 340px;
-    max-width: 420px;
-  }
-
-  .portrait :global(img) {
-    width: 100%;
-    height: auto;
-    aspect-ratio: 4 / 5;
-    object-fit: cover;
-    object-position: 50% 20%;
-    border: 1px solid var(--line);
-    border-radius: var(--radius);
+  .stage {
+    position: relative;
+    height: clamp(26rem, 14rem + 20vw, 37rem);
+    padding: clamp(1.5rem, 0.6rem + 2.4vw, 3rem) 0 0 clamp(1.5rem, 0.6rem + 2.4vw, 3rem);
+    overflow: hidden;
+    border-radius: var(--radius-lg) 0 0 var(--radius-lg);
     background: var(--surface);
   }
 
-  /* phone: small portrait beside the eyebrow, everything else full width below */
+  /* the browser starts a phone's width in, so the phone covers only its left edge */
+  .desk {
+    width: clamp(40rem, 20rem + 30vw, 58rem);
+    margin-left: clamp(5rem, 1rem + 6vw, 8.5rem);
+    overflow: hidden;
+    border-radius: var(--radius) 0 0 0;
+  }
+
+  /* the phone stands whole on the stage's floor, over the browser's left edge, record button in view */
+  .stage :global(.device) {
+    position: absolute;
+    left: clamp(1.25rem, 0.5rem + 1.2vw, 2rem);
+    bottom: clamp(1rem, 0.6rem + 0.8vw, 1.75rem);
+    width: clamp(8rem, 4rem + 8vw, 11.5rem);
+    /* it overlaps the browser, so it floats above it */
+    box-shadow: /* taste-skill-ignore */
+      0 30px 60px -20px rgb(12 16 20 / 0.35),
+      0 12px 24px -12px rgb(12 16 20 / 0.25);
+  }
+
+  figcaption {
+    max-width: 34em;
+    margin-top: 14px;
+    font-size: var(--text-caption);
+    color: var(--muted);
+  }
+
+  .glance {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 24px 40px;
+    margin-top: clamp(3rem, 2.4rem + 2.4vw, 4.5rem);
+  }
+
+  .glance dt {
+    font-size: var(--text-small);
+    color: var(--muted);
+  }
+
+  .glance dd {
+    margin-top: 6px;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1.45;
+  }
+
+  /* below 64rem the stage moves under the text and sits inside the margins */
+  @media (max-width: 63.99rem) {
+    .split {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    .showcase {
+      margin-right: 0;
+    }
+
+    .stage {
+      height: clamp(18rem, 8rem + 40vw, 30rem);
+      padding: clamp(1rem, 0.2rem + 3.3vw, 2.5rem) clamp(1rem, 0.2rem + 3.3vw, 2.5rem) 0;
+      border-radius: var(--radius-lg);
+    }
+
+    .desk {
+      width: 88%;
+      margin-left: 0;
+      border-radius: var(--radius) var(--radius) 0 0;
+    }
+
+    .stage :global(.device) {
+      left: auto;
+      right: clamp(1rem, -0.5rem + 4vw, 3rem);
+      bottom: clamp(-5rem, -1rem - 3vw, -2rem);
+      width: clamp(6.5rem, 3rem + 14vw, 12rem);
+    }
+
+    .glance {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
   @media (max-width: 47.99rem) {
-    .hero {
-      display: grid;
-      grid-template-columns: 132px 1fr;
-      align-items: end;
-      gap: 0 16px;
-    }
-
-    .hero-text {
-      display: contents;
-    }
-
-    .portrait {
-      grid-row: 1;
-      grid-column: 1;
-      width: 132px;
-    }
-
-    .eyebrow {
-      grid-row: 1;
-      grid-column: 2;
-      margin: 0;
-      font-size: 13px;
-      line-height: 1.5;
-    }
-
-    .eyebrow span {
-      display: block;
-    }
-
-    .eyebrow .sep {
-      display: none;
-    }
-
-    h1,
-    .lede,
-    .actions,
-    .profiles {
-      grid-column: 1 / -1;
-    }
-
-    h1 {
-      margin-top: 24px;
-      line-height: 1.1;
-    }
-
     .lede {
-      margin-top: 16px;
-    }
-
-    .actions {
-      flex-wrap: nowrap;
-      gap: 10px;
-      margin-top: 24px;
+      font-size: 18px;
     }
 
     .actions .btn {
       flex: 1 1 0;
-      padding: 13px 10px;
-      font-size: 16px;
-      text-align: center;
+      padding-inline: 12px;
     }
 
-    .actions .btn-secondary {
-      padding: 12px 10px;
-    }
-
-    .profiles {
-      gap: 0 24px;
-      margin-top: 10px;
-      font-size: 15px;
-    }
-
-    .profiles a {
-      padding: 10px 0;
-    }
-
-    /* the header carries the CV link on phones */
-    .cv-item {
-      display: none;
+    .glance {
+      gap: 20px 24px;
+      margin-top: 40px;
     }
   }
 </style>

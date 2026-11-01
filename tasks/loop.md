@@ -30,7 +30,7 @@ Each iteration completes exactly one task from `tasks/todo.md`, then schedules t
 
 ## 5. Commit and push
 - Work on the phase branch: `phase-3-ship`, branched from `phase-2-pages` (it already exists, with an Amplify preview at https://phase-3-ship.dshdhrt6lgmzs.amplifyapp.com).
-- **Never push to `main`.** It deploys straight to www.wilfredchetat.com. Everything merges into `main` only at launch (Task 12), after I approve the final checkpoint.
+- **Never push to `main`.** It deploys straight to www.wilfredchetat.com. Since launch, changes reach `main` only through a PR from `phase-3-ship`, merged after I approve a checkpoint.
 - One commit per task, covering the code plus the `tasks/todo.md` update. Imperative subject line ≤ 60 chars; the body says why.
 - **No `Co-Authored-By: Claude` line and no other Claude attribution in commit messages or PRs.** After committing, run `git log -1 --format=%B | grep -i 'co-authored-by'`. If it prints anything, amend the message before pushing.
 - `git push -u origin <branch>`. Never force-push.

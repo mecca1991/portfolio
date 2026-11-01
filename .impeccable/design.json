@@ -1,0 +1,550 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-11-01T12:00:00Z",
+  "title": "Design System: Wilfred Chetat",
+  "extensions": {
+    "colorMeta": {
+      "canvas": {
+        "role": "neutral",
+        "displayName": "Paper White",
+        "tonalRamp": [
+          "oklch(15% 0.001 250)",
+          "oklch(25% 0.002 250)",
+          "oklch(35% 0.003 250)",
+          "oklch(48% 0.003 250)",
+          "oklch(60% 0.004 250)",
+          "oklch(72% 0.003 250)",
+          "oklch(85% 0.002 250)",
+          "oklch(95% 0.001 250)"
+        ]
+      },
+      "surface": {
+        "role": "neutral",
+        "displayName": "Stage Grey",
+        "tonalRamp": [
+          "oklch(15% 0.002 250)",
+          "oklch(25% 0.003 250)",
+          "oklch(35% 0.004 250)",
+          "oklch(48% 0.005 250)",
+          "oklch(60% 0.005 250)",
+          "oklch(72% 0.004 250)",
+          "oklch(85% 0.003 250)",
+          "oklch(95% 0.002 250)"
+        ]
+      },
+      "surface-2": {
+        "role": "neutral",
+        "displayName": "Pressed Grey",
+        "tonalRamp": [
+          "oklch(15% 0.003 250)",
+          "oklch(25% 0.005 250)",
+          "oklch(35% 0.006 250)",
+          "oklch(48% 0.009 250)",
+          "oklch(60% 0.009 250)",
+          "oklch(72% 0.007 250)",
+          "oklch(85% 0.005 250)",
+          "oklch(95% 0.003 250)"
+        ]
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Graphite Ink",
+        "tonalRamp": [
+          "oklch(15% 0.003 250)",
+          "oklch(25% 0.005 250)",
+          "oklch(35% 0.008 250)",
+          "oklch(48% 0.01 250)",
+          "oklch(60% 0.011 250)",
+          "oklch(72% 0.008 250)",
+          "oklch(85% 0.005 250)",
+          "oklch(95% 0.003 250)"
+        ]
+      },
+      "muted": {
+        "role": "neutral",
+        "displayName": "Slate Muted",
+        "tonalRamp": [
+          "oklch(15% 0.007 250)",
+          "oklch(25% 0.011 250)",
+          "oklch(35% 0.016 250)",
+          "oklch(48% 0.022 250)",
+          "oklch(60% 0.023 250)",
+          "oklch(72% 0.017 250)",
+          "oklch(85% 0.011 250)",
+          "oklch(95% 0.007 250)"
+        ]
+      },
+      "accent": {
+        "role": "primary",
+        "displayName": "Ship Green",
+        "tonalRamp": [
+          "oklch(15% 0.03 165)",
+          "oklch(25% 0.05 165)",
+          "oklch(35% 0.07 165)",
+          "oklch(48% 0.096 165)",
+          "oklch(60% 0.1 165)",
+          "oklch(72% 0.076 165)",
+          "oklch(85% 0.05 165)",
+          "oklch(95% 0.03 165)"
+        ]
+      },
+      "accent-hover": {
+        "role": "primary",
+        "displayName": "Ship Green Deep",
+        "tonalRamp": [
+          "oklch(15% 0.027 165)",
+          "oklch(25% 0.045 165)",
+          "oklch(35% 0.064 165)",
+          "oklch(48% 0.087 165)",
+          "oklch(60% 0.091 165)",
+          "oklch(72% 0.069 165)",
+          "oklch(85% 0.045 165)",
+          "oklch(95% 0.027 165)"
+        ]
+      },
+      "accent-pressed": {
+        "role": "primary",
+        "displayName": "Ship Green Pressed",
+        "tonalRamp": [
+          "oklch(15% 0.025 165)",
+          "oklch(25% 0.041 165)",
+          "oklch(35% 0.057 165)",
+          "oklch(48% 0.079 165)",
+          "oklch(60% 0.082 165)",
+          "oklch(72% 0.062 165)",
+          "oklch(85% 0.041 165)",
+          "oklch(95% 0.025 165)"
+        ]
+      },
+      "live": {
+        "role": "tertiary",
+        "displayName": "Live Dot Green",
+        "tonalRamp": [
+          "oklch(15% 0.038 160)",
+          "oklch(25% 0.064 160)",
+          "oklch(35% 0.089 160)",
+          "oklch(48% 0.122 160)",
+          "oklch(60% 0.127 160)",
+          "oklch(72% 0.097 160)",
+          "oklch(85% 0.064 160)",
+          "oklch(95% 0.038 160)"
+        ]
+      },
+      "line": {
+        "role": "neutral",
+        "displayName": "Table Rule",
+        "tonalRamp": [
+          "oklch(15% 0.002 250)",
+          "oklch(25% 0.004 250)",
+          "oklch(35% 0.005 250)",
+          "oklch(48% 0.007 250)",
+          "oklch(60% 0.007 250)",
+          "oklch(72% 0.006 250)",
+          "oklch(85% 0.004 250)",
+          "oklch(95% 0.002 250)"
+        ]
+      },
+      "attention": {
+        "role": "tertiary",
+        "displayName": "Fault Rust",
+        "tonalRamp": [
+          "oklch(15% 0.044 40)",
+          "oklch(25% 0.073 40)",
+          "oklch(35% 0.102 40)",
+          "oklch(48% 0.14 40)",
+          "oklch(60% 0.145 40)",
+          "oklch(72% 0.111 40)",
+          "oklch(85% 0.073 40)",
+          "oklch(95% 0.044 40)"
+        ]
+      },
+      "white": {
+        "role": "neutral",
+        "displayName": "White",
+        "tonalRamp": [
+          "oklch(15% 0.0 250)",
+          "oklch(25% 0.0 250)",
+          "oklch(35% 0.0 250)",
+          "oklch(48% 0.0 250)",
+          "oklch(60% 0.0 250)",
+          "oklch(72% 0.0 250)",
+          "oklch(85% 0.0 250)",
+          "oklch(95% 0.0 250)"
+        ]
+      },
+      "dark": {
+        "role": "neutral",
+        "displayName": "Night Ink",
+        "tonalRamp": [
+          "oklch(15% 0.003 250)",
+          "oklch(25% 0.005 250)",
+          "oklch(35% 0.008 250)",
+          "oklch(48% 0.01 250)",
+          "oklch(60% 0.011 250)",
+          "oklch(72% 0.008 250)",
+          "oklch(85% 0.005 250)",
+          "oklch(95% 0.003 250)"
+        ]
+      },
+      "dark-surface": {
+        "role": "neutral",
+        "displayName": "Night Panel",
+        "tonalRamp": [
+          "oklch(15% 0.004 250)",
+          "oklch(25% 0.007 250)",
+          "oklch(35% 0.01 250)",
+          "oklch(48% 0.013 250)",
+          "oklch(60% 0.014 250)",
+          "oklch(72% 0.01 250)",
+          "oklch(85% 0.007 250)",
+          "oklch(95% 0.004 250)"
+        ]
+      },
+      "dark-text-soft": {
+        "role": "neutral",
+        "displayName": "Night Soft",
+        "tonalRamp": [
+          "oklch(15% 0.003 250)",
+          "oklch(25% 0.005 250)",
+          "oklch(35% 0.008 250)",
+          "oklch(48% 0.01 250)",
+          "oklch(60% 0.011 250)",
+          "oklch(72% 0.008 250)",
+          "oklch(85% 0.005 250)",
+          "oklch(95% 0.003 250)"
+        ]
+      },
+      "dark-muted": {
+        "role": "neutral",
+        "displayName": "Night Muted",
+        "tonalRamp": [
+          "oklch(15% 0.005 250)",
+          "oklch(25% 0.009 250)",
+          "oklch(35% 0.013 250)",
+          "oklch(48% 0.017 250)",
+          "oklch(60% 0.018 250)",
+          "oklch(72% 0.014 250)",
+          "oklch(85% 0.009 250)",
+          "oklch(95% 0.005 250)"
+        ]
+      },
+      "dark-accent": {
+        "role": "primary",
+        "displayName": "Signal Mint",
+        "tonalRamp": [
+          "oklch(15% 0.046 160)",
+          "oklch(25% 0.077 160)",
+          "oklch(35% 0.108 160)",
+          "oklch(48% 0.148 160)",
+          "oklch(60% 0.155 160)",
+          "oklch(72% 0.117 160)",
+          "oklch(85% 0.077 160)",
+          "oklch(95% 0.046 160)"
+        ]
+      },
+      "error-bg": {
+        "role": "tertiary",
+        "displayName": "Error Notice Tint",
+        "tonalRamp": [
+          "oklch(15% 0.011 45)",
+          "oklch(25% 0.018 45)",
+          "oklch(35% 0.025 45)",
+          "oklch(48% 0.035 45)",
+          "oklch(60% 0.036 45)",
+          "oklch(72% 0.028 45)",
+          "oklch(85% 0.018 45)",
+          "oklch(95% 0.011 45)"
+        ]
+      },
+      "error-line": {
+        "role": "tertiary",
+        "displayName": "Error Notice Edge",
+        "tonalRamp": [
+          "oklch(15% 0.016 45)",
+          "oklch(25% 0.027 45)",
+          "oklch(35% 0.038 45)",
+          "oklch(48% 0.052 45)",
+          "oklch(60% 0.055 45)",
+          "oklch(72% 0.041 45)",
+          "oklch(85% 0.027 45)",
+          "oklch(95% 0.016 45)"
+        ]
+      },
+      "error-text": {
+        "role": "tertiary",
+        "displayName": "Error Notice Text",
+        "tonalRamp": [
+          "oklch(15% 0.035 45)",
+          "oklch(25% 0.059 45)",
+          "oklch(35% 0.083 45)",
+          "oklch(48% 0.113 45)",
+          "oklch(60% 0.118 45)",
+          "oklch(72% 0.09 45)",
+          "oklch(85% 0.059 45)",
+          "oklch(95% 0.035 45)"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "The homepage H1 only; two lines in the hero text column."
+      },
+      "headline-lg": {
+        "displayName": "Headline Large",
+        "purpose": "Case-study page titles, the flagship project name, the contact heading."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Section headings."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Project names in rows, case-study section headings, showcase step titles, the contact email."
+      },
+      "lead": {
+        "displayName": "Lead",
+        "purpose": "Project one-liners, outcome sentences, decision titles; ledes use the same size at 400 in muted."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Running text, capped at 36 to 38em."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Button text; 15px in small pills, tabs and nav."
+      },
+      "caption": {
+        "displayName": "Caption",
+        "purpose": "Figcaptions and meta lines in muted."
+      },
+      "small": {
+        "displayName": "Small",
+        "purpose": "Fine print and glance terms; nothing readable below 13px."
+      },
+      "chip": {
+        "displayName": "Chip",
+        "purpose": "Sentence-case chips."
+      },
+      "mono": {
+        "displayName": "Mono",
+        "purpose": "Code panels only; 13px on phones."
+      }
+    },
+    "shadows": [
+      {
+        "name": "header-scrolled",
+        "value": "0 10px 30px -18px rgb(12 16 20 / 0.28)",
+        "purpose": "Sticky header, only once content scrolls under it."
+      },
+      {
+        "name": "menu-sheet",
+        "value": "0 24px 40px -24px rgb(12 16 20 / 0.3)",
+        "purpose": "Phone menu sheet dropping over the page."
+      },
+      {
+        "name": "floating-device",
+        "value": "0 30px 60px -20px rgb(12 16 20 / 0.35), 0 12px 24px -12px rgb(12 16 20 / 0.25)",
+        "purpose": "A phone frame standing over a browser capture."
+      },
+      {
+        "name": "floating-card",
+        "value": "0 24px 48px -20px rgb(12 16 20 / 0.3), 0 8px 16px -8px rgb(12 16 20 / 0.12)",
+        "purpose": "A data card resting on a capture's corner."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease-out",
+        "value": "cubic-bezier(0.23, 1, 0.32, 1)",
+        "purpose": "Strong ease-out for anything entering or responding."
+      },
+      {
+        "name": "dur-press",
+        "value": "160ms",
+        "purpose": "Press feedback: scale(0.97) on buttons, tabs and the copy pill."
+      },
+      {
+        "name": "dur-ui",
+        "value": "220ms",
+        "purpose": "Icon nudges, header lift, menu sheet, copy label cross-fade."
+      },
+      {
+        "name": "dur-enter",
+        "value": "700ms",
+        "purpose": "Section entrances: 16px rise with opacity, staggered 70ms by --i."
+      },
+      {
+        "name": "fade",
+        "value": "180ms ease",
+        "purpose": "Colour and background changes on hover."
+      },
+      {
+        "name": "tab-indicator",
+        "value": "320ms cubic-bezier(0.23, 1, 0.32, 1)",
+        "purpose": "The white pill sliding to the selected showcase tab."
+      },
+      {
+        "name": "panel-in",
+        "value": "360ms cubic-bezier(0.23, 1, 0.32, 1)",
+        "purpose": "Incoming showcase panel settles from 4px blur and 6px rise."
+      },
+      {
+        "name": "reduced-motion",
+        "value": "opacity 400ms ease",
+        "purpose": "Under prefers-reduced-motion entrances keep only the fade; press scale and icon nudges are removed."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "phone",
+        "value": "47.99rem",
+        "note": "max-width: type and padding step down, disclosure menu"
+      },
+      {
+        "name": "tablet",
+        "value": "63.99rem",
+        "note": "max-width: every split collapses to one column"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "The one green action per view: View projects, Read the case study.",
+      "html": "<a class=\"ds-btn ds-btn-primary\" href=\"#\">View projects <svg class=\"ds-icon\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M5 12h14\"/><path d=\"m12 5 7 7-7 7\"/></svg></a>",
+      "css": ".ds-btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: var(--tap, 44px); padding: 11px 22px; border: 0; border-radius: 999px; font-family: var(--font-body); font-size: 16px; font-weight: 600; line-height: 1.25; letter-spacing: -0.005em; text-decoration: none; white-space: nowrap; cursor: pointer; transition: transform 160ms cubic-bezier(0.23, 1, 0.32, 1), background-color 180ms ease, color 180ms ease; } .ds-btn:active { transform: scale(0.97); } .ds-btn:focus-visible { outline: 2px solid var(--accent, #087050); outline-offset: 3px; } .ds-btn-primary { background: var(--accent, #087050); color: #fff; } .ds-btn-primary:hover { background: var(--accent-hover, #065c42); } .ds-btn-primary:active { background: var(--accent-pressed, #054a35); } .ds-icon { width: 1em; height: 1em; transition: transform 220ms cubic-bezier(0.23, 1, 0.32, 1); } .ds-btn:hover .ds-icon { transform: translateX(3px); }"
+    },
+    {
+      "name": "Secondary Button",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "Tone-step pill for the second action; no drawn outline.",
+      "html": "<a class=\"ds-btn-secondary\" href=\"#\">Get in touch</a>",
+      "css": ".ds-btn-secondary { display: inline-flex; align-items: center; min-height: 44px; padding: 11px 22px; border-radius: 999px; background: var(--surface-2, #eaedf1); color: var(--ink, #0c1014); font-family: var(--font-body); font-size: 16px; font-weight: 600; line-height: 1.25; text-decoration: none; transition: transform 160ms cubic-bezier(0.23, 1, 0.32, 1), background-color 180ms ease; } .ds-btn-secondary:hover { background: #dfe3e8; } .ds-btn-secondary:active { transform: scale(0.97); } .ds-btn-secondary:focus-visible { outline: 2px solid var(--accent, #087050); outline-offset: 3px; }"
+    },
+    {
+      "name": "Ink Button",
+      "kind": "button",
+      "refersTo": "button-ink",
+      "description": "Small graphite pill for strong secondary actions such as the header CV link.",
+      "html": "<a class=\"ds-btn-ink\" href=\"#\">CV (PDF)</a>",
+      "css": ".ds-btn-ink { display: inline-flex; align-items: center; min-height: 40px; padding: 9px 18px; border-radius: 999px; background: var(--ink, #0c1014); color: #fff; font-family: var(--font-body); font-size: 15px; font-weight: 600; text-decoration: none; transition: transform 160ms cubic-bezier(0.23, 1, 0.32, 1), background-color 180ms ease; } .ds-btn-ink:hover { background: #252c34; } .ds-btn-ink:active { transform: scale(0.97); } .ds-btn-ink:focus-visible { outline: 2px solid var(--accent, #087050); outline-offset: 3px; }"
+    },
+    {
+      "name": "Navigation",
+      "kind": "nav",
+      "refersTo": "nav-link",
+      "description": "Sticky white bar: name, muted pill links, ink CV pill.",
+      "html": "<nav class=\"ds-nav\"><a class=\"ds-logo\" href=\"#\">Wilfred Chetat</a><a class=\"ds-navlink\" href=\"#\" aria-current=\"true\">Projects</a><a class=\"ds-navlink\" href=\"#\">Experiments</a><a class=\"ds-navlink\" href=\"#\">About</a></nav>",
+      "css": ".ds-nav { display: flex; align-items: center; gap: 2px; min-height: 68px; padding: 0 20px; background: var(--canvas, #fff); font-family: var(--font-body); } .ds-logo { margin-right: auto; font-size: 18px; font-weight: 650; letter-spacing: -0.015em; color: var(--ink, #0c1014); text-decoration: none; } .ds-navlink { padding: 9px 14px; border-radius: 999px; font-size: 15px; font-weight: 500; color: var(--muted, #4f5966); text-decoration: none; transition: background-color 180ms ease, color 180ms ease; } .ds-navlink:hover, .ds-navlink[aria-current] { background: var(--surface, #f4f5f7); color: var(--ink, #0c1014); } .ds-navlink:focus-visible { outline: 2px solid var(--accent, #087050); outline-offset: 3px; }"
+    },
+    {
+      "name": "Chips",
+      "kind": "chip",
+      "refersTo": "chip",
+      "description": "Sentence-case involvement chip, and the warm variant for anything illustrative.",
+      "html": "<span class=\"ds-chip\">Personal product</span> <span class=\"ds-chip ds-chip-illustrative\">Illustrative reconstruction</span>",
+      "css": ".ds-chip { display: inline-flex; align-items: center; padding: 3px 10px; border-radius: 999px; background: var(--surface-2, #eaedf1); color: var(--ink, #0c1014); font-family: var(--font-body); font-size: 13px; font-weight: 600; line-height: 1.5; white-space: nowrap; } .ds-chip-illustrative { background: #fbefdf; color: #6b3d0c; }"
+    },
+    {
+      "name": "Showcase Tabs",
+      "kind": "custom",
+      "refersTo": "tab-group",
+      "description": "Pill track with a sliding white indicator over the selected step.",
+      "html": "<div class=\"ds-tabs\" role=\"tablist\"><span class=\"ds-tab-ind\"></span><button class=\"ds-tab\" role=\"tab\" aria-selected=\"true\">Context setup</button><button class=\"ds-tab\" role=\"tab\" aria-selected=\"false\">Spoken practice</button><button class=\"ds-tab\" role=\"tab\" aria-selected=\"false\">Feedback report</button></div>",
+      "css": ".ds-tabs { position: relative; display: inline-flex; padding: 4px; border-radius: 999px; background: var(--surface, #f4f5f7); font-family: var(--font-body); } .ds-tab-ind { position: absolute; top: 4px; left: 4px; width: 138px; height: calc(100% - 8px); border-radius: 999px; background: #fff; transition: transform 320ms cubic-bezier(0.23, 1, 0.32, 1), width 320ms cubic-bezier(0.23, 1, 0.32, 1); } .ds-tab { position: relative; z-index: 1; min-height: 40px; padding: 8px 18px; border: 0; border-radius: 999px; background: none; font: inherit; font-size: 15px; font-weight: 600; color: var(--muted, #4f5966); cursor: pointer; transition: color 180ms ease, transform 160ms cubic-bezier(0.23, 1, 0.32, 1); } .ds-tab:hover, .ds-tab[aria-selected='true'] { color: var(--ink, #0c1014); } .ds-tab:active { transform: scale(0.97); } .ds-tab:focus-visible { outline: 2px solid var(--accent, #087050); outline-offset: 3px; }"
+    },
+    {
+      "name": "Media Stage with Browser Frame",
+      "kind": "card",
+      "refersTo": "media-panel",
+      "description": "A real capture in a light browser frame on a 20px Stage Grey stage; no outline, no shadow.",
+      "html": "<div class=\"ds-stage\"><div class=\"ds-browser\"><div class=\"ds-chrome\"><span class=\"ds-dots\"><i></i><i></i><i></i></span><span class=\"ds-url\">intrvuer.com/sample-report</span></div><div class=\"ds-shot\"></div></div></div>",
+      "css": ".ds-stage { padding: 32px 32px 0; border-radius: 20px; background: var(--surface, #f4f5f7); } .ds-browser { overflow: hidden; border-radius: 12px 12px 0 0; background: #fff; } .ds-chrome { display: flex; align-items: center; gap: 16px; height: 36px; padding: 0 14px; background: #f7f8fa; } .ds-dots { display: flex; gap: 6px; } .ds-dots i { width: 10px; height: 10px; border-radius: 50%; background: #d9dde3; } .ds-url { flex: 0 1 320px; margin-inline: auto; padding: 3px 12px; border-radius: 999px; background: var(--surface-2, #eaedf1); font-family: var(--font-body); font-size: 13px; color: var(--muted, #4f5966); text-align: center; } .ds-shot { height: 180px; background: #fff; }"
+    },
+    {
+      "name": "Code Panel",
+      "kind": "custom",
+      "refersTo": "code-panel",
+      "description": "Monospace code on the dark band, 12px corners, named in muted 13px.",
+      "html": "<div class=\"ds-dark\"><div class=\"ds-code\"><div class=\"ds-code-name\">Input</div><pre>{\n  \"name\": \"Ada\",\n  \"active\": true\n}</pre></div></div>",
+      "css": ".ds-dark { padding: 24px; background: var(--dark, #0c1014); } .ds-code { padding: 16px 18px; border-radius: 12px; background: var(--dark-surface, #161c22); } .ds-code-name { margin-bottom: 8px; font-family: var(--font-body); font-size: 13px; color: var(--dark-muted, #9aa4b0); } .ds-code pre { margin: 0; font-family: ui-monospace, 'SFMono-Regular', Menlo, monospace; font-size: 14px; line-height: 1.65; color: var(--dark-text-soft, #d3d9e0); }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Launch Page",
+    "overview": "The portfolio is presented the way Linear and Stripe present a product: a white page, large real screens set on quiet tinted stages, a single green that means \"act here\", and pill controls that answer a press. It is the category standard for a modern developer portfolio, executed straight; the polish is the point, not a concept laid over it. Shipped products carry the proof, so the system's job is to give real captures room, scale and a calm ground.\n\nDensity is generous. Sections sit 80 to 160px apart, copy columns stay near 34 to 38em, and depth comes from one tone step of cool grey rather than from lines or boxes. Dark ink bands (experiments, code, the contact close and footer) are the only change of ground, and they invert the same rules rather than introducing a second palette. Motion is short and strong-eased: things rise in once, controls compress on press, and nothing moves under reduced motion.\n\nThe confirmed rejections come from the chosen direction: no cream-and-serif editorial look, no dark gradient hero, no grid of uniform cards.",
+    "keyCharacteristics": [
+      "White canvas, one cool grey tone step for panels, near-black ink, one green accent.",
+      "Mona Sans as the only text family, set tight and heavy (650) for headings; tabular figures where numbers align.",
+      "Every control is a pill at least 44px tall with scale(0.97) press feedback.",
+      "Real screenshots in browser and phone frames on 20px-rounded tinted stages, never in outlined boxes.",
+      "Shadows only where something floats over something else.",
+      "Dark ink bands for code and the close."
+    ],
+    "rules": [
+      {
+        "name": "The One Green Rule",
+        "body": "Green means \"act here\" or \"this is live\": primary action, links, focus, selection, the Live dot. Nothing decorative is green.",
+        "section": "colors"
+      },
+      {
+        "name": "The Word-With-Colour Rule",
+        "body": "Status colour never stands alone. Green, rust and the Live dot always sit beside the word they qualify.",
+        "section": "colors"
+      },
+      {
+        "name": "The Tone-Step Rule",
+        "body": "Depth on the light ground comes from Stage Grey and Pressed Grey, not from borders. If a region needs separating, put it on the next tone step.",
+        "section": "colors"
+      },
+      {
+        "name": "The One Family Rule",
+        "body": "Mona Sans sets every word; the system monospace sets only code. No second display face.",
+        "section": "typography"
+      },
+      {
+        "name": "The Sentence-Case Rule",
+        "body": "No uppercase and no positive letter-spacing anywhere. Hierarchy comes from size and weight (400, 500, 600, 650), never from caps or tracking.",
+        "section": "typography"
+      },
+      {
+        "name": "The Tabular Figures Rule",
+        "body": "Columns of numbers and dates (ledger, timeline) use tabular-nums.",
+        "section": "typography"
+      },
+      {
+        "name": "The Float-Only Shadow Rule",
+        "body": "A shadow is allowed only when an element overlaps or floats above other content. Panels, cards in flow, and buttons are flat.",
+        "section": "elevation"
+      },
+      {
+        "name": "The Real-Table Rule",
+        "body": "A drawn 1px line appears only between rows of a real table (the ledger, the timeline, reconstruction tables) or inside a reconstructed interface that draws its own UI. No section dividers, no outlined panels.",
+        "section": "shapes"
+      }
+    ],
+    "dos": [
+      "**Do** keep Ship Green to the primary action, links, focus, selection and the Live dot.",
+      "**Do** separate regions with a tone step (Stage Grey, then Pressed Grey) instead of a line.",
+      "**Do** make every control a pill at least 44px tall with scale(0.97) press feedback.",
+      "**Do** set real captures in browser or phone frames on 20px-rounded Stage Grey stages.",
+      "**Do** label anything not captured from a real screen with the warm illustrative chip.",
+      "**Do** set headings in Mona Sans at 650 with negative tracking (-0.015em to -0.04em).",
+      "**Do** use the strong ease-out (cubic-bezier(0.23, 1, 0.32, 1)) for entrances and responses, and drop movement under reduced motion.",
+      "**Do** pair every status colour with its word."
+    ],
+    "donts": [
+      "**Don't** use gradients.",
+      "**Don't** draw lines outside real tables and reconstructed interfaces: no section dividers, no outlined panels, no outline buttons.",
+      "**Don't** put screenshots in outlined boxes.",
+      "**Don't** add a shadow to anything that doesn't float over other content.",
+      "**Don't** introduce a second type family, uppercase text or positive letter-spacing.",
+      "**Don't** place small labels or kickers above headings.",
+      "**Don't** use the cream-and-serif editorial look, a dark gradient hero, or a grid of uniform cards."
+    ]
+  }
+}

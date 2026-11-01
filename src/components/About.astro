@@ -1,265 +1,220 @@
 ---
+import { Picture } from 'astro:assets';
+import portrait from '../assets/portrait.jpg';
 import { site } from '../data/site';
+import Icon from './Icon.astro';
 ---
 
 <section id="about" class="about" aria-labelledby="about-title">
-  <div class="container layout">
-    <div class="col">
-      <h2 id="about-title" class="display">About</h2>
-      <p class="lead">
-        My work spans payment and wallet systems, data ingestion and video analytics. Most of it is in Python, and I
-        also build the interfaces and integrations that turn a backend into a usable product.
-      </p>
-      <p class="lead second">
-        Alongside employed roles, I take on freelance client work and contribute to EduClick’s opportunity-ingestion
-        backend. I also built Intrvuer, my own product.
-      </p>
-      <!-- phones hide the at-a-glance strip, so its facts move here -->
-      <dl class="facts">
-        {
-          site.glance.map((g) => (
-            <div>
-              <dt>{g.term}</dt>
-              <dd>{g.detail}</dd>
-            </div>
-          ))
-        }
-      </dl>
-      <h3 class="eyebrow stack-title">What I work with</h3>
-      <dl class="stack">
-        {
-          site.stack.map((s) => (
-            <div>
-              <dt>{s.area}</dt>
-              <dd>{s.tools}</dd>
-            </div>
-          ))
-        }
-      </dl>
+  <div class="container">
+    <div class="top">
+      <div class="photo" data-reveal>
+        <Picture
+          src={portrait}
+          formats={['avif', 'webp']}
+          widths={[320, 480, 640, 840]}
+          sizes="(max-width: 47.99rem) 60vw, 400px"
+          alt="Wilfred Chetat, smiling, in a navy blazer and white shirt"
+          loading="lazy"
+        />
+      </div>
+      <div class="bio" data-reveal style="--i: 1">
+        <h2 id="about-title" class="display">About</h2>
+        <p class="lead">
+          My work spans payment and wallet systems, data ingestion and video analytics. I build the backends, and the
+          interfaces and integrations that turn them into usable products.
+        </p>
+        <p class="lead">
+          Alongside employed roles, I take on freelance client work. I built EduClick end to end as a volunteer, and
+          Intrvuer as my own product.
+        </p>
+      </div>
     </div>
-    <div class="col">
-      <h3 class="eyebrow exp-title">Experience</h3>
-      <ol class="experience">
-        {
-          site.experience.map((e) => (
-            <li>
-              <div class="row">
-                <span class="company">{e.company}</span>
-                <span class="dates">{e.dates}</span>
+
+    <div class="details">
+      <div data-reveal>
+        <h3>Experience</h3>
+        <table class="experience">
+          <caption class="visually-hidden">Experience, most recent first</caption>
+          <tbody>
+            {
+              site.experience.map((e) => (
+                <tr>
+                  <th scope="row">
+                    <span class="company">{e.company}</span>
+                    <span class="role">{e.role}</span>
+                  </th>
+                  <td class="dates">{e.dates}</td>
+                </tr>
+              ))
+            }
+          </tbody>
+        </table>
+        <a class="link-ink cv" href={site.links.cv}>Full history in my CV (PDF) <Icon name="arrow-up-right" /></a>
+      </div>
+      <div data-reveal style="--i: 1">
+        <h3>What I work with</h3>
+        <dl class="stack">
+          {
+            site.stack.map((s) => (
+              <div>
+                <dt>{s.area}</dt>
+                <dd>{s.tools}</dd>
               </div>
-              <div class="role">{e.role}</div>
-            </li>
-          ))
-        }
-      </ol>
-      <p class="cv"><a href={site.links.cv}>Full history in my CV (PDF)</a></p>
+            ))
+          }
+        </dl>
+      </div>
     </div>
   </div>
 </section>
 
 <style>
-  .layout {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 64px;
-    padding-block: clamp(3rem, 1.886rem + 4.571vw, 6rem);
+  .about > .container {
+    padding-block: var(--section);
   }
 
-  .col {
-    flex: 1 1 420px;
-    min-width: 0;
+  .top {
+    display: grid;
+    grid-template-columns: minmax(0, 4fr) minmax(0, 8fr);
+    align-items: end;
+    gap: 32px clamp(2.5rem, 0.5rem + 4vw, 5rem);
   }
 
-  .col + .col {
-    flex-basis: 380px;
+  .photo :global(img) {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    object-position: 50% 20%;
+    border-radius: var(--radius-lg);
+    background: var(--surface);
   }
 
   h2 {
-    font-size: clamp(1.875rem, 1.643rem + 0.952vw, 2.5rem);
-    line-height: 1.15;
+    font-size: var(--text-h2);
   }
 
   .lead {
     max-width: 34em;
-    margin-top: 24px;
-  }
-
-  .lead.second {
-    margin-top: 18px;
-  }
-
-  .facts {
-    display: none;
-  }
-
-  .eyebrow {
-    margin-bottom: 14px;
-    font-size: 15px;
-    font-weight: 500;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    color: var(--muted);
-  }
-
-  .stack-title {
-    margin-top: 44px;
-  }
-
-  .exp-title {
-    margin-top: 12px;
-  }
-
-  .stack {
-    border-top: 1px solid var(--line);
-    font-size: 16px;
+    margin-top: 20px;
+    font-size: var(--text-lead);
     line-height: 1.5;
-  }
-
-  .stack div {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 4px 16px;
-    padding-block: 12px;
-    border-bottom: 1px solid var(--line);
-  }
-
-  .stack dt {
-    flex: 0 0 190px;
-    font-weight: 500;
-  }
-
-  .stack dd {
-    flex: 1 1 240px;
     color: var(--muted);
   }
 
+  h2 + .lead {
+    margin-top: 24px;
+    color: var(--ink);
+  }
+
+  .details {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 48px clamp(2.5rem, 0.5rem + 4vw, 5rem);
+    margin-top: clamp(3.5rem, 2.6rem + 3.7vw, 6rem);
+  }
+
+  h3 {
+    font-size: var(--text-lead);
+    font-weight: 650;
+    letter-spacing: -0.015em;
+  }
+
+  /* a real table: one row per role, ruled between rows */
   .experience {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-    border-top: 1px solid var(--ink);
+    width: 100%;
+    margin-top: 12px;
+    border-collapse: collapse;
   }
 
-  .experience li {
-    padding-block: 16px;
-    border-bottom: 1px solid var(--line);
+  .experience tr + tr > * {
+    border-top: 1px solid var(--line);
   }
 
-  .row {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    gap: 4px 16px;
+  .experience th {
+    padding: 16px 16px 16px 0;
+    font-weight: 400;
+    text-align: left;
+    vertical-align: top;
   }
 
   .company {
-    font-weight: 500;
-  }
-
-  .dates {
-    font-size: 15px;
-    color: var(--muted);
+    display: block;
+    font-weight: 600;
   }
 
   .role {
+    display: block;
+    margin-top: 2px;
     font-size: 16px;
+    color: var(--muted);
+  }
+
+  .dates {
+    padding: 16px 0;
+    font-size: 15px;
+    font-variant-numeric: tabular-nums;
+    color: var(--muted);
+    text-align: right;
+    vertical-align: top;
+    white-space: nowrap;
   }
 
   .cv {
-    margin-top: 18px;
+    margin-top: 8px;
     font-size: 16px;
   }
 
-  .cv a {
-    display: inline-block;
-    padding: 10px 0;
+  .stack {
+    display: grid;
+    gap: 22px;
+    margin-top: 20px;
   }
 
-  /* phone: facts, then experience, then the stack, as in the phone artboard */
+  .stack dt {
+    font-weight: 600;
+  }
+
+  .stack dd {
+    margin-top: 4px;
+    font-size: 16px;
+    color: var(--muted);
+  }
+
+  @media (max-width: 63.99rem) {
+    .details {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
+
   @media (max-width: 47.99rem) {
-    .layout {
-      flex-direction: column;
-      flex-wrap: nowrap;
-      gap: 0;
+    .top {
+      grid-template-columns: minmax(0, 1fr);
+      align-items: start;
     }
 
-    .col {
-      display: contents;
+    .photo :global(img) {
+      aspect-ratio: 1 / 1;
     }
 
     .lead {
-      margin-top: 16px;
+      font-size: 18px;
     }
 
-    .lead.second {
-      margin-top: 12px;
+    .experience tr {
+      display: grid;
     }
 
-    .facts {
-      display: block;
-      margin-top: 20px;
-      border-top: 1px solid var(--line);
-      font-size: 15px;
+    .experience th {
+      padding: 14px 0 0;
     }
 
-    .facts div {
-      padding-block: 10px;
-      border-bottom: 1px solid var(--line);
-    }
-
-    .facts dt {
-      font-size: 13px;
-      color: var(--muted);
-    }
-
-    .eyebrow {
-      margin-bottom: 10px;
-      font-size: 13px;
-    }
-
-    .exp-title {
-      order: 1;
-      margin-top: 32px;
-    }
-
-    .experience {
-      order: 2;
-      font-size: 15px;
-    }
-
-    .experience li {
-      padding-block: 12px;
-    }
-
-    .company {
-      font-size: 16px;
-    }
-
-    .cv {
-      order: 3;
-      margin-top: 8px;
-    }
-
-    .stack-title {
-      order: 4;
-      margin-top: 32px;
-    }
-
-    .stack {
-      order: 5;
-      font-size: 15px;
-    }
-
-    .stack div {
-      padding-block: 10px;
-    }
-
-    .stack dt {
-      flex-basis: 100%;
-    }
-
-    .stack dd {
-      flex-basis: 100%;
+    .experience .dates {
+      padding: 2px 0 14px;
+      border-top: 0;
+      font-size: 14px;
+      text-align: left;
     }
   }
 </style>

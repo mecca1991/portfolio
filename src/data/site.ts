@@ -10,8 +10,8 @@ export const site = {
 
   glance: [
     { term: 'Currently', detail: 'Senior Backend Engineer, UXE Security Solutions, since Sep 2024' },
-    { term: 'Experience', detail: '6+ years across payments, data systems, video analytics and AI' },
-    { term: 'Works on', detail: 'Employed roles and freelance client projects' },
+    { term: 'Experience', detail: '7+ years across payments, data systems, video analytics and AI' },
+    { term: 'Work type', detail: 'Employed roles and freelance client projects' },
     { term: 'Languages', detail: 'English, French' },
   ],
 
@@ -21,7 +21,7 @@ export const site = {
       dates: 'Sep 2024 – present',
       role: 'Senior Backend Engineer · video analytics services',
     },
-    { company: 'Alphathesis', dates: 'Aug 2023 – Aug 2024', role: 'Software Engineer · lease-data workflows' },
+    { company: 'Alphathesis', dates: 'Aug 2023 – Aug 2024', role: 'Contract Software Engineer · LeaseSurance backend' },
     { company: 'PaySika', dates: 'Nov 2021 – Jun 2023', role: 'Founding Backend Engineer · wallets and payments' },
     {
       company: 'Upwork and independent work',
@@ -58,7 +58,8 @@ export const site = {
     },
     {
       meta: 'Tutorials · Numerica Ideas',
-      title: 'Python on AWS Lambda, and Apache Superset with Docker Compose',
+      title: 'Numerica Ideas tutorials',
+      description: 'Python on AWS Lambda, and Apache Superset with Docker Compose.',
       links: [{ label: 'Read on Numerica Ideas', href: 'https://numericaideas.com/blog/author/wilfredchetat/' }],
     },
   ],

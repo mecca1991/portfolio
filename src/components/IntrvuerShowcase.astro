@@ -1,0 +1,388 @@
+---
+/*
+ * Intrvuer's three real steps as tabs. Without JavaScript the three panels simply
+ * stack in order; with it, one shows at a time and the indicator slides between tabs.
+ */
+import contextSetup from '../assets/captures/intrvuer/context-setup.png';
+import spokenPractice from '../assets/captures/intrvuer/spoken-practice-ios.png';
+import feedbackAnswer from '../assets/captures/intrvuer/feedback-answer.png';
+import { Picture } from 'astro:assets';
+import BrowserFrame from './BrowserFrame.astro';
+import PhoneFrame from './PhoneFrame.astro';
+
+const steps = [
+  {
+    id: 'context',
+    tab: 'Context setup',
+    short: 'Context',
+    task: 'add a résumé and the job being targeted.',
+    built: 'the intake screens and the API that stores this context for the session.',
+  },
+  {
+    id: 'practice',
+    tab: 'Spoken practice',
+    short: 'Practice',
+    task: 'answer questions and follow-ups out loud.',
+    built: 'the session interface on web and iOS, speech handling and the backend that sequences questions and follow-ups.',
+  },
+  {
+    id: 'report',
+    tab: 'Feedback report',
+    short: 'Report',
+    task: 'review what worked and what to change in each answer.',
+    built: 'background processing with LLM integrations that produce per-answer feedback, and the report view.',
+  },
+];
+---
+
+<div class="showcase" data-tabs data-reveal style="--i: 1">
+  <div class="tablist" role="tablist" aria-label="Intrvuer, step by step">
+    <span class="indicator" aria-hidden="true"></span>
+    {
+      steps.map((s, i) => (
+        <button
+          type="button"
+          role="tab"
+          id={`tab-${s.id}`}
+          aria-controls={`panel-${s.id}`}
+          aria-selected={i === 0 ? 'true' : 'false'}
+          tabindex={i === 0 ? 0 : -1}
+        >
+          <span class="long">{s.tab}</span>
+          <span class="short">{s.short}</span>
+        </button>
+      ))
+    }
+  </div>
+
+  {
+    steps.map((s) => (
+      <div class="panel" role="tabpanel" id={`panel-${s.id}`} aria-labelledby={`tab-${s.id}`} data-panel>
+        <div class="words">
+          <h4>{s.tab}</h4>
+          <p>
+            <strong>User’s task: </strong>
+            {s.task}
+          </p>
+          <p>
+            <strong>What I built: </strong>
+            {s.built}
+          </p>
+          {s.id === 'report' && <p class="note">The public sample report uses a fictional candidate.</p>}
+        </div>
+        <div class:list={['stage', `stage-${s.id}`]}>
+          {s.id === 'context' && (
+            <BrowserFrame
+              src={contextSetup}
+              url="intrvuer.com"
+              alt="Intrvuer practice setup, step 1 of 3: fields for the target role, the company and the job description to practise for."
+              sizes="(max-width: 47.99rem) 88vw, 760px"
+            />
+          )}
+          {s.id === 'practice' && (
+            <PhoneFrame
+              src={spokenPractice}
+              alt="Intrvuer iOS app mid-session: the interviewer, Sarah, asks about a high-stakes project, the candidate's spoken answer appears as text, Sarah asks a follow-up, and a microphone button waits for the next answer."
+              sizes="(max-width: 47.99rem) 52vw, 260px"
+              class="ios"
+            />
+          )}
+          {s.id === 'report' && (
+            <div class="card" data-ui>
+              <Picture
+                src={feedbackAnswer}
+                formats={['avif', 'webp']}
+                widths={[360, 560, 760, 952]}
+                sizes="(max-width: 47.99rem) 80vw, 520px"
+                alt="Feedback on one answer in the Intrvuer sample report: the question, the candidate's response, STAR scores for completeness, specificity, relevance, impact and conciseness, written feedback and a suggested improvement."
+                loading="lazy"
+              />
+            </div>
+          )}
+        </div>
+      </div>
+    ))
+  }
+</div>
+
+<style>
+  .showcase {
+    margin-top: clamp(2.5rem, 1.9rem + 2.5vw, 4rem);
+  }
+
+  /* tabs only exist once the script can drive them */
+  .tablist {
+    position: relative;
+    display: none;
+    width: fit-content;
+    max-width: 100%;
+    margin-bottom: 20px;
+    padding: 4px;
+    border-radius: var(--radius-pill);
+    background: var(--surface);
+  }
+
+  :global(.js) .tablist {
+    display: flex;
+  }
+
+  .tablist button {
+    position: relative;
+    z-index: 1;
+    min-height: 40px;
+    padding: 8px 18px;
+    border: 0;
+    border-radius: var(--radius-pill);
+    background: none;
+    font: inherit;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--muted);
+    white-space: nowrap;
+    cursor: pointer;
+    transition:
+      color var(--fade),
+      transform var(--dur-press) var(--ease-out);
+  }
+
+  .tablist button:hover,
+  .tablist button[aria-selected='true'] {
+    color: var(--ink);
+  }
+
+  .tablist button:active {
+    transform: scale(0.97);
+  }
+
+  /* one white pill slides to the selected tab */
+  .indicator {
+    position: absolute;
+    top: 4px;
+    left: 0;
+    height: calc(100% - 8px);
+    width: var(--w, 0);
+    border-radius: var(--radius-pill);
+    background: var(--white);
+    transform: translateX(var(--x, 0));
+    transition:
+      transform 320ms var(--ease-out),
+      width 320ms var(--ease-out);
+  }
+
+  .panel {
+    display: grid;
+    grid-template-columns: minmax(0, 4fr) minmax(0, 8fr);
+    align-items: center;
+    gap: 24px clamp(2rem, 0.5rem + 4vw, 4.5rem);
+  }
+
+  .panel + .panel {
+    margin-top: 40px;
+  }
+
+  :global(.js) .panel + .panel {
+    margin-top: 0;
+  }
+
+  .panel[hidden] {
+    display: none;
+  }
+
+  /* the incoming step settles in from a slight blur */
+  :global(.js) .panel.is-active {
+    animation: panel-in 360ms var(--ease-out);
+  }
+
+  @keyframes panel-in {
+    from {
+      opacity: 0;
+      filter: blur(4px);
+      transform: translateY(6px);
+    }
+  }
+
+  h4 {
+    font-size: var(--text-h3);
+    font-weight: 650;
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+  }
+
+  .words p {
+    margin-top: 14px;
+    color: var(--muted);
+  }
+
+  .words strong {
+    color: var(--ink);
+    font-weight: 600;
+  }
+
+  .stage {
+    display: grid;
+    grid-template-rows: minmax(0, 1fr); /* a definite row, so the phone can size to the stage's height */
+    place-items: center;
+    height: clamp(19rem, 11rem + 20vw, 30rem);
+    padding: clamp(1.25rem, 0.5rem + 3vw, 3rem);
+    overflow: hidden;
+    border-radius: var(--radius-lg);
+    background: var(--surface);
+  }
+
+  .stage-context :global(.browser) {
+    width: 100%;
+  }
+
+  /* the phone fits whole, record button included */
+  .stage-practice {
+    padding-block: clamp(1rem, 0.6rem + 1.6vw, 2rem);
+  }
+
+  .stage :global(.ios) {
+    height: 100%;
+    width: auto;
+    aspect-ratio: 1320 / 2868;
+  }
+
+  .stage :global(.ios picture) {
+    display: block;
+    height: 100%;
+  }
+
+  .stage :global(.ios img) {
+    height: 100%;
+    width: auto;
+  }
+
+  .stage-report {
+    align-items: start;
+    padding-bottom: 0;
+  }
+
+  .card {
+    width: min(100%, 520px);
+    overflow: hidden;
+    border-radius: var(--radius) var(--radius) 0 0;
+    background: var(--white);
+  }
+
+  .card :global(img) {
+    width: 100%;
+    height: auto;
+  }
+
+  .words .note {
+    margin-top: 18px;
+    font-size: var(--text-caption);
+  }
+
+  .short {
+    display: none;
+  }
+
+  @media (max-width: 63.99rem) {
+    .panel {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    .words {
+      order: 1;
+    }
+  }
+
+  @media (max-width: 47.99rem) {
+    .tablist {
+      width: 100%;
+    }
+
+    .tablist button {
+      flex: 1 1 0;
+      padding-inline: 8px;
+    }
+
+    .long {
+      display: none;
+    }
+
+    .short {
+      display: inline;
+    }
+
+    .stage {
+      height: 22rem;
+    }
+
+    .stage-context {
+      height: auto;
+    }
+
+    .words p {
+      font-size: 16px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .indicator {
+      transition: none;
+    }
+
+    :global(.js) .panel.is-active {
+      animation: fade-in 200ms ease;
+    }
+
+    @keyframes fade-in {
+      from {
+        opacity: 0;
+      }
+    }
+  }
+</style>
+
+<script>
+  // ARIA tabs: click or arrow keys select; the indicator follows the selected tab
+  for (const root of document.querySelectorAll<HTMLElement>('[data-tabs]')) {
+    const list = root.querySelector<HTMLElement>('[role="tablist"]')!;
+    const tabs = [...root.querySelectorAll<HTMLButtonElement>('[role="tab"]')];
+    const panels = [...root.querySelectorAll<HTMLElement>('[data-panel]')];
+
+    const place = (tab: HTMLElement) => {
+      list.style.setProperty('--x', `${tab.offsetLeft}px`);
+      list.style.setProperty('--w', `${tab.offsetWidth}px`);
+    };
+
+    const select = (index: number, focus = false) => {
+      tabs.forEach((tab, i) => {
+        const on = i === index;
+        tab.setAttribute('aria-selected', String(on));
+        tab.tabIndex = on ? 0 : -1;
+        panels[i].hidden = !on;
+        panels[i].classList.toggle('is-active', on);
+      });
+      place(tabs[index]);
+      if (focus) tabs[index].focus();
+    };
+
+    tabs.forEach((tab, i) => {
+      tab.addEventListener('click', () => select(i));
+      tab.addEventListener('keydown', (event) => {
+        const last = tabs.length - 1;
+        const next =
+          event.key === 'ArrowRight' ? (i === last ? 0 : i + 1)
+          : event.key === 'ArrowLeft' ? (i === 0 ? last : i - 1)
+          : event.key === 'Home' ? 0
+          : event.key === 'End' ? last
+          : -1;
+        if (next < 0) return;
+        event.preventDefault();
+        select(next, true);
+      });
+    });
+
+    // first paint: no slide, just place the indicator
+    list.querySelector<HTMLElement>('.indicator')!.style.transition = 'none';
+    select(0);
+    panels[0].classList.remove('is-active');
+    requestAnimationFrame(() => list.querySelector<HTMLElement>('.indicator')!.style.removeProperty('transition'));
+    new ResizeObserver(() => place(tabs[tabs.findIndex((t) => t.tabIndex === 0)])).observe(list);
+  }
+</script>

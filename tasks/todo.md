@@ -230,7 +230,7 @@ Design source: https://claude.ai/artifact/1u5mcMR1p11RRbJGzR2qVF · Plan: `tasks
 > Note: `clarity` review found the copy specific and plain (0 hedges, boosters or participial openers in its lint). Seven small fixes went in, listed in the commit body: three repetitions removed, one mixed-tense list split, one vague phrase made concrete from its own figure, and two notes-to-self cut from captions. No facts changed; placeholders untouched; 17 left.
 
 > Needs Wilfred:
-> - The H1 "Building reliable backend systems and AI-powered products." is your positioning line, so it's unchanged. It reads like a tagline many engineers could use. What's the one thing you most want a hiring manager to remember (payments backends, for example)?
+> - ~~H1 positioning line~~ Answered 2026-10-30: "Building reliable systems." (Task 19). Original note: the H1 "Building reliable backend systems and AI-powered products." is your positioning line, so it's unchanged. It reads like a tagline many engineers could use. What's the one thing you most want a hiring manager to remember (payments backends, for example)?
 > - ~~Intrvuer flow figure: name the providers?~~ Answered 2026-10-25: no, provider names stay off the site.
 > - Sysconnector leads figure: do "Synced", "Failed · field not mapped" and "Pending" match the real status labels? If yes, the caption can say so again.
 
@@ -345,3 +345,315 @@ Design source: https://claude.ai/artifact/1u5mcMR1p11RRbJGzR2qVF · Plan: `tasks
 ### ✅ Checkpoint: Complete
 - [ ] All acceptance criteria met
 - [ ] Live, fast, accessible, README done
+
+---
+
+## Phase 4: Copy cleanup (after launch)
+
+From the end-to-end `clarity` review on 2026-10-30. Work on `phase-3-ship`; changes reach `main` only through a PR, after Wilfred approves a checkpoint. A change either rewords what the page already says or uses a fact that Wilfred gave in chat or that was verified in the source repos (named in the task). Every changed text goes through `clarity` before it's committed.
+
+Wilfred's answers (2026-10-30): the Rust parser is a project, not a learning exercise; the playground stays as a proposed feature, planned to run the Rust parser in the browser as WebAssembly; the iOS app is his, with a hired designer (Theryx) paid for design refinement; Intrvuer gives 2 free sessions, and "anyone can try" stays as his line; the video search proof of concept is not in production; experience is over 7 years; the Lease Insurance figure is sample data because the real data can't be shown publicly; he built EduClick end to end as a volunteer (backend, frontend, deployment; every commit in `educlick-be`, `educlick-fe`, `educlickadmin` and `server-infra` is his, from April 2024). No usage figure for Intrvuer. The "Lease Insurance" project is LeaseSurance (https://www.leasesurance.co/), whose backend he built as a contractor with Alphathesis; the public CV already lists Alphathesis as "Contract – Remote" and "an insurance platform".
+
+### Task 13: Rust parser: drop the learning framing, name the WebAssembly plan
+
+**Description:** The parser is presented as a personal project. The site stops saying it was a learning project or built in a cohort. The `rust-cohort` repo keeps its name, so the source links still contain the word. The playground stays a proposed feature and now says what's planned.
+
+**Acceptance criteria:**
+- [x] `grep -rniE "learn|cohort" src` matches only the two `rust-cohort` source URLs
+- [x] The label reads "Personal project" on the homepage card, the Rust page and Sysconnector's next link ("Next · Personal project")
+- [x] "developed with cohort feedback" (homepage card) and "I developed it in a Rust cohort and revised it based on cohort feedback" (Rust page) say it was revised after code review. Verified: PRs #4, #5, #8 and #9 on `mecca1991/rust-cohort` have reviews from two other reviewers
+- [x] The Rust meta description drops "built in a Rust cohort"
+- [x] Facts: Engagement "Personal project", Status "Not intended for production use" (already changed in the working tree)
+- [x] "How it works" step 3 says the structured errors came out of review only if those PRs' review comments asked for them; otherwise it stays as is
+- [x] The playground note says the plan is to run the Rust parser in the browser as WebAssembly, and that until then the preview uses the browser's own JSON parser. The "Proposed feature" frame stays
+
+**Verification:**
+- [x] `npm run build && npm run check` pass
+- [x] Manual: homepage experiments card and Rust page at 1440 and 390; no horizontal scroll
+
+> Note: done 2026-10-30. Review comments on PR #4 flagged panics on truncated `\u` escapes and swallowed errors, so step 3 now says code review caught them. The playground note names the WebAssembly plan. No horizontal scroll at 1440 or 390 on the homepage, the Rust page or Sysconnector's next link.
+
+**Dependencies:** None
+
+**Files likely touched:** `src/components/Experiments.astro`, `src/pages/experiments/rust-json-parser.astro`, `src/components/JsonPlayground.astro`, `src/pages/work/sysconnector.astro`
+
+**Estimated scope:** S
+
+---
+
+### Task 14: Intrvuer: wording fixes from the review
+
+**Description:** Three sentences that read wrong or depend on the collapsed technical notes, plus a vague Stack fact. No new claims.
+
+**Acceptance criteria:**
+- [x] Technical notes: "a synthesis failure costs the audio, not the answer" says instead that the interviewer's reply arrives as text and the answer is still saved (verified: synthesis runs after the commit, and a failure gives a text-only turn)
+- [x] Decision 1: "inside the turn's budget" reads "inside the 90-second turn budget", since the budget is only defined in the collapsed notes
+- [x] Decision 2's title matches its body, which is mostly about not losing answers (draft: "Never lose a recorded answer")
+- [x] The Stack fact names Celery, Redis and PostgreSQL instead of "background processing" (the technical notes already name them)
+
+**Verification:**
+- [x] `npm run build && npm run check` pass
+- [x] Manual: Intrvuer page at 1440 and 390; open the technical notes with the keyboard
+
+> Note: done 2026-10-30. Decision 2 is titled "Keep each answer until the server accepts it" rather than the draft, because the other decision titles state the decision itself. Technical notes open from the keyboard (Enter on the summary); no horizontal scroll at 1440 or 390.
+
+**Dependencies:** None
+
+**Files likely touched:** `src/pages/work/intrvuer.astro`
+
+**Estimated scope:** S
+
+---
+
+### Task 15: Homepage: wording fixes from the review
+
+**Description:** Small accuracy fixes on the homepage. No new claims beyond Wilfred's answers.
+
+**Acceptance criteria:**
+- [x] "products like Intrvuer" becomes singular in the hero lede and the homepage meta description, since there is one product (draft lede: "…and I built Intrvuer, my own product, from interface to deployment.")
+- [x] The homepage meta description is 120 characters or fewer (opengraph.xyz warned that 145 may truncate on mobile)
+- [x] The glance term "Works on" reads "Work type" (the same data shows in About on phones)
+- [x] Experience reads "7+ years" (the timeline starts Mar 2019)
+- [x] The video search card's "Separate from production work." says plainly that it isn't in production
+
+**Verification:**
+- [x] `npm run build && npm run check` pass
+- [x] Manual: homepage at 1440 and 390; no layout change from the new text lengths
+
+> Note: done 2026-10-30. The meta description is now 108 characters and no longer names Intrvuer, which is the first project on the page. The hero lede changed, so the README banners were recaptured (light and dark, 1456×832). No horizontal scroll at 1440 or 390; the glance strip still fits one row at 1440.
+
+**Dependencies:** None
+
+**Files likely touched:** `src/components/Hero.astro`, `src/pages/index.astro`, `src/data/site.ts`, `src/components/Experiments.astro`
+
+**Estimated scope:** S
+
+---
+
+### Task 16: Intrvuer: credit the iOS app and firm up Outcomes
+
+**Description:** The iOS app carries the spoken-practice screenshot and all of Decision 2, but the homepage role line, the Stack fact and the flow diagram only name Next.js. Verified: `intrvuer-ios` is SwiftUI, and the app is Wilfred's; a hired designer refined its design. The `prod` branch of `intrvuer-be` grants 2 free sessions (`free_sessions = 2`), which Wilfred confirmed.
+
+**Acceptance criteria:**
+- [x] The homepage role line, the Stack fact and the flow diagram include the SwiftUI iOS app
+- [x] Outcomes keeps "anyone can try" and adds the two free practice sessions
+- [x] "No figures are claimed here" is cut; "Not yet measured" stays (no usage figure to publish)
+
+**Verification:**
+- [x] `npm run build && npm run check` pass
+- [x] Manual: homepage and Intrvuer page at 1440 and 390; the flow diagram still fits at 390
+
+> Note: done 2026-10-30. Also credited in the case study's "My role" fact ("web and iOS apps") and in step 2's "What I built" ("the session interface on web and iOS"), since step 2 shows the iOS app. The flow diagram's Interface node reads "Next.js web, SwiftUI iOS" and fits at 390. No horizontal scroll at 1440 or 390.
+
+**Dependencies:** None (answered 2026-10-30)
+
+**Files likely touched:** `src/components/SelectedWork.astro`, `src/pages/work/intrvuer.astro`
+
+**Estimated scope:** S
+
+---
+
+### Task 17: LeaseSurance: name the product and the contract
+
+**Description:** The "Lease Insurance" card is LeaseSurance, a South African insurtech that replaces rental deposits with lease insurance for residential and commercial portfolios (from leasesurance.co). Wilfred built its backend as a contractor with Alphathesis. The card names the product and says how he was involved; the figure stays sample data.
+
+**Acceptance criteria:**
+- [x] The card title is "LeaseSurance" (the company's own spelling), its label is "Contract project", and the detail stays "Alphathesis · 2023–2024"
+- [x] The one-liner says what LeaseSurance does, from its public site; the description says he built the backend as a contractor with Alphathesis and keeps the source-file problem and what he built
+- [x] The figure caption says it's sample data because the real data can't be shown publicly, and drops "not insertion order", which the figure doesn't show
+- [x] The Alphathesis experience entry says it was a contract and names the LeaseSurance backend (draft: "Contract Software Engineer · LeaseSurance backend")
+
+**Verification:**
+- [x] `npm run build && npm run check` pass
+- [x] Manual: homepage projects and About at 1440 and 390
+
+> Note: done 2026-10-30. The one-liner follows LeaseSurance's own tagline ("Lease insurance for residential and commercial portfolios") and its deposit-free model. The caption now also says repeats are skipped, which the figure shows. No horizontal scroll at 1440 or 390.
+
+**Dependencies:** None (answered 2026-10-30)
+
+**Files likely touched:** `src/components/SelectedWork.astro`, `src/data/site.ts`
+
+**Estimated scope:** S
+
+---
+
+### Task 18: EduClick: show it as a volunteer project built end to end
+
+**Description:** EduClick is labelled "Engineering contribution" and described as backend work. Wilfred built the whole platform as a volunteer: backend, frontend and deployment.
+
+**Acceptance criteria:**
+- [x] EduClick's label reads "Volunteer project" instead of "Engineering contribution"
+- [x] The card says he built the platform end to end (backend, frontend, deployment); the one-liner describes the platform, and the ingestion detail and figure stay as the example
+- [x] About's "contribute to EduClick's opportunity-ingestion backend" says he built EduClick as a volunteer
+
+**Verification:**
+- [x] `npm run build && npm run check` pass
+- [x] Manual: homepage projects and About at 1440 and 390
+
+> Note: done 2026-10-30. The card names the FastAPI backend and Next.js frontend (verified in `educlick-be` and `educlick-fe`); "as a volunteer" stays in the label rather than the description. About now reads: "I built EduClick end to end as a volunteer, and Intrvuer as my own product." No horizontal scroll at 1440 or 390.
+
+**Dependencies:** None (answered 2026-10-30)
+
+**Files likely touched:** `src/components/SelectedWork.astro`, `src/components/About.astro`
+
+**Estimated scope:** S
+
+---
+
+### Task 18b: Sysconnector: name the stack
+
+**Description:** Intrvuer's facts list its stack; Sysconnector's only say "Backend APIs and webhooks; React interfaces". Wilfred gave the stack on 2026-10-30, including the exact Adobe product, Adobe Campaign Standard.
+
+**Acceptance criteria:**
+- [x] The Sysconnector facts gain a Stack row: FastAPI, PostgreSQL, React, Stripe, Facebook Graph API, Adobe Campaign Standard
+- [x] The full name "Adobe Campaign Standard" appears in the Stack row; the rest of the page keeps the short "Adobe Campaign"
+
+**Verification:**
+- [x] `npm run build && npm run check` pass
+- [x] Manual: Sysconnector page at 1440 and 390; the facts column doesn't overflow
+
+> Note: done 2026-10-30. The Stack row sits between Scope and Dates; the facts column fits at 1440 and 390 with no horizontal scroll.
+
+**Dependencies:** None
+
+**Files likely touched:** `src/pages/work/sysconnector.astro`
+
+**Estimated scope:** XS
+
+---
+
+### Task 19: Homepage H1 and title
+
+**Description:** Wilfred first chose option 1 ("Python backends that hold up under retries, duplicates and bad input."), saw it and rejected it on 2026-10-30. His call: the H1 is "Building reliable systems.", and he is a Senior Software Engineer, not only backend, because he builds frontends too and the projects show it (Intrvuer's web and iOS apps, EduClick's Next.js frontend, Sysconnector's React screens).
+
+**Acceptance criteria:**
+- [x] The H1 reads "Building reliable systems." (sentence case, like every other heading)
+- [x] "Senior Software Engineer" replaces "Senior Backend Engineer" wherever it describes Wilfred: hero eyebrow, homepage `<title>` and meta description, OG image and its alt text, both case-study contact lines, README, and the CV note. Job titles he actually held (UXE, PaySika) stay as they were
+- [x] The lede is back to "I work mainly in Python on APIs, integrations, payments and data systems…", since the H1 no longer names Python
+- [x] README banners and the OG card recaptured
+
+**Verification:**
+- [x] `npm run build && npm run check` pass; `check:placeholders` clean
+- [x] Manual: hero at 1440 and 390; every route free of horizontal scroll at 320, 390 and 1440
+
+> Note: done 2026-10-30. The OG card was re-rendered from the built site's own fonts, tokens and portrait to match the original layout, with only the eyebrow changed.
+
+**Dependencies:** None (answered 2026-10-30)
+
+**Files likely touched:** `src/components/Hero.astro`, `src/pages/index.astro`, `src/layouts/BaseLayout.astro`, case-study pages, `public/og.png`, `README.md`, `.github/assets/banner-*.png`, `tasks/cv-bullets.md`
+
+**Estimated scope:** S
+
+---
+
+### ✅ Checkpoint: Wording fixes
+- [x] Tasks 13–19 committed and pushed; Amplify preview build succeeded (78d5b40 live on the preview 2026-10-30, checked over HTTP: the H1, title and `og.png` serve the new versions)
+- [ ] Wilfred reviews https://phase-3-ship.dshdhrt6lgmzs.amplifyapp.com
+- [ ] After approval: PR into `main`, merged; the changed pages checked on production
+
+---
+
+### Task 20: Lines only Wilfred can write (optional)
+
+**Description:** A short `clarity` interview for the places where a page restates itself instead of saying something only Wilfred knows. Skipped if he prefers the current text.
+
+**Acceptance criteria:**
+- [ ] Intrvuer's Purpose says why he built it, instead of a third summary of what it does
+- [ ] About adds one sentence on how he works, in his words
+- [ ] Sysconnector: the credentials tradeoff says how they were stored, and the lead status labels are confirmed real or kept illustrative (open since Task 8b)
+
+**Verification:**
+- [ ] `npm run build && npm run check` pass
+- [ ] Manual: homepage, Intrvuer and Sysconnector at 1440 and 390
+
+> Needs Wilfred: 3–4 interview questions, asked in chat.
+
+**Dependencies:** Wilfred's answers
+
+**Files likely touched:** `src/pages/work/intrvuer.astro`, `src/components/About.astro`, `src/pages/work/sysconnector.astro`
+
+**Estimated scope:** S
+
+### Task 21: CV: use the site's terms
+
+**Description:** The CV predates the Phase 4 answers. It doesn't name LeaseSurance, leaves out Sysconnector and EduClick, says "more than 6 years", and describes Intrvuer's retired Qdrant follow-ups and removed speech providers. The line-by-line changes and their sources are in `tasks/cv-bullets.md`. The CV source isn't in the repo, so Wilfred makes the edit; the new PDF then goes to S3.
+
+**Acceptance criteria:**
+- [ ] The CV carries the changes in `tasks/cv-bullets.md`
+- [ ] The site and the CV agree on titles, dates, years of experience and how each engagement worked (employed, contract, freelance, volunteer)
+- [ ] The new PDF is uploaded with `npm run cv:upload`, and the site's CV link serves it
+
+**Verification:**
+- [ ] Manual: download the CV from www.wilfredchetat.com and compare it with `tasks/cv-bullets.md`
+
+> Needs Wilfred: edit the CV source using `tasks/cv-bullets.md`. (Answered 2026-10-30: UXE is a full-time role; Sysconnector used FastAPI, PostgreSQL, React, Stripe, the Facebook Graph API and Adobe Campaign Standard.)
+
+**Dependencies:** Wilfred's edit
+
+**Files likely touched:** `Wilfred_Chetat_CV.pdf` (gitignored; uploaded to S3)
+
+**Estimated scope:** S
+
+---
+
+Not in this phase: the Rust page's "Back to projects / ← All projects" pair (canvas layout).
+
+---
+
+### ✅ Checkpoint: Copy cleanup complete
+- [ ] Tasks 20–21 done, or deferred by Wilfred
+- [ ] PR into `main` merged after approval; the changed pages checked on production at 1440 and 390
+
+---
+
+## Phase 5: Design pass 2 (new visual world)
+
+Plan: `tasks/plan.md` › Phase 5. Branch `phase-5-design` from `phase-3-ship`. Answers from Wilfred (2026-10-31): new visual world, all pages with the homepage first, labels may move but rewritten sentences need his approval, fresh captures of intrvuer.com and educlick.africa, main visitor = hiring managers and recruiters, first-10-seconds belief = "ships whole products end to end", must not feel dense or CV-like, generic or template-like, or playful.
+
+### Task 22: Setup: branch, PRODUCT.md, baseline
+
+**Acceptance criteria:**
+- [x] Branch `phase-5-design` created from `phase-3-ship`
+- [x] `PRODUCT.md` records users, positioning, constraints and evidence on hand
+- [x] Baseline inspection of the phase-3 preview saved (Taste inspector: 8–11 FAILs per page; the "On this page" nav covers text at 768–1000 px)
+- [x] Amplify branch preview for `phase-5-design` (personal account 338573231383, confirmed 2026-11-01): https://phase-5-design.dshdhrt6lgmzs.amplifyapp.com
+
+### Task 23: Direction round
+
+**Acceptance criteria:**
+- [x] Impeccable `concept-seed` run for the homepage (experience mode); three hands presented (the decision page closed twice, so rounds 2–3 finished in chat)
+- [x] Wilfred picks a direction: the category standard at Linear/Stripe polish (2026-10-31); contract in `.impeccable/surfaces/src-pages-index-astro.md`
+- [x] New self-hosted typeface: Mona Sans (one family), replacing Newsreader and IBM Plex Sans
+
+### Task 24: Homepage in the new world
+
+**Acceptance criteria:**
+- [x] Tokens, type scale (nothing readable under 13 px) and motion tokens rewritten
+- [x] Fresh captures of intrvuer.com and educlick.africa in `src/assets/captures/`
+- [x] Every homepage section rebuilt to the direction; no pill labels, small labels above headings, hairlines or outlined boxes
+- [x] Motion: section entrances, press, hover and focus feedback, the Intrvuer step tabs; reduced motion and no-JS keep all content visible
+- [x] Reworded sentences listed for Wilfred's approval
+
+**Verification:**
+- [x] `npm run build && npm run check && npm run check:placeholders` pass
+- [x] Taste `inspect.mjs`: 0 FAIL at 1440, 768 and 390 (4 WARN defended); `lint.mjs` clean; `impeccable detect` clean
+- [x] Lighthouse mobile 100/100/100/100 (LCP 1.7 s, CLS 0); axe 0 violations at 1440 and 390; tabs, menu and copy driven in headless Chrome; no horizontal scroll at 390
+
+### ✅ Checkpoint: Homepage design
+- [x] Wilfred reviews the homepage on the preview (2026-11-01): wording approved with edits (no "mainly in Python", no "in Dubai"; original project order), then two-column hero and pill buttons confirmed
+
+### Task 25: Case studies, Rust page and 404 in the new world
+
+**Acceptance criteria:**
+- [x] Case-study template rebuilt; the "On this page" overlap at 768–1000 px fixed (static below 1024 px, sticky with its own column above, marks the section in view); no 01–05 numbering
+- [x] Intrvuer, Sysconnector and Rust parser pages rebuilt; Sysconnector has no near-empty screens; the Rust page body is 16 px or larger on phones and monospace appears only in code
+- [x] 404 page rebuilt
+- [x] OG image, favicons, `theme-color` and README banners regenerated
+
+**Verification:**
+- [x] Same gates as Task 24 on every route: Lighthouse mobile 100/100/100/100 on all four pages, axe 0 violations at 1440 and 390 on all five, lint clean; no overlap at 768, 900 and 1024 px. Taste inspector 0 FAIL on home and Intrvuer; "few pictures" stands on Sysconnector (client product, only labelled reconstructions), the Rust page (a code project) and the 404, rather than inventing screens
+
+### ✅ Checkpoint: Design pass complete
+- [x] Impeccable finish review: ship verdict (2026-11-01, after three fix rounds: hero two columns as Wilfred asked, pills kept, showcase and hero phone framed whole, tracking floor, outcomes, header, experience table, Rust steps as rows, intrvuer.com capture retouched)
+- [x] `DESIGN.md` and `.impeccable/design.json` written from the build (documenter noted token drift: unused `--text-display`, `--ease-in-out`, `--dark-line`; some hard-coded hover shades; reported, not repaired)
+- [ ] Wilfred reviews every page; PR into `main` after approval

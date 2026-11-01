@@ -1,5 +1,6 @@
 ---
 import { site } from '../data/site';
+import Icon from './Icon.astro';
 
 interface Props {
   current?: 'work' | 'experiments';
@@ -19,106 +20,169 @@ const nav = [
 <header class="site-header">
   <div class="container bar">
     <a class="logo" href="/">{site.name}</a>
-    <nav aria-label="Primary">
+    <nav class="nav-wide" aria-label="Primary">
       {
         nav.map((item) => (
-          <a
-            class="navlink"
-            href={item.href}
-            aria-current={item.id === current ? 'true' : undefined}
-          >
+          <a class="navlink" href={item.href} aria-current={item.id === current ? 'true' : undefined}>
             {item.label}
           </a>
         ))
       }
     </nav>
-    {showCv && <a class="btn btn-outline cv" href={site.links.cv}>CV (PDF)</a>}
+    {showCv && <a class="btn btn-sm btn-ink cv" href={site.links.cv}>CV (PDF)</a>}
+    <details class="menu" data-menu>
+      <summary aria-label="Menu">
+        <Icon name="menu" class="open-icon" />
+        <Icon name="close" class="close-icon" />
+      </summary>
+      <nav class="sheet" aria-label="Primary">
+        {
+          nav.map((item) => (
+            <a href={item.href} aria-current={item.id === current ? 'true' : undefined}>
+              {item.label}
+            </a>
+          ))
+        }
+      </nav>
+    </details>
   </div>
 </header>
 
 <style>
   .site-header {
-    border-bottom: 1px solid var(--line);
+    position: sticky;
+    top: 0;
+    z-index: 30;
+    background: var(--canvas);
+    transition: box-shadow var(--dur-ui) var(--ease-out);
+  }
+
+  /* it floats once content passes under it, so only then does it lift off the page */
+  .site-header[data-scrolled] {
+    /* sticky bar over scrolling content */
+    box-shadow: 0 10px 30px -18px rgb(12 16 20 / 0.28); /* taste-skill-ignore */
   }
 
   .bar {
     display: flex;
-    flex-wrap: wrap;
     align-items: center;
-    gap: 4px;
-    padding-block: 14px;
+    gap: 8px;
+    min-height: 68px;
   }
 
   .logo {
     margin-right: auto;
-    padding: 8px 0;
-    font-family: var(--font-display);
-    font-size: 24px;
+    padding: 10px 0;
+    font-size: 18px;
+    font-weight: 650;
+    letter-spacing: -0.015em;
     color: var(--ink);
     text-decoration: none;
   }
 
-  nav {
+  .nav-wide {
     display: flex;
-    flex-wrap: wrap;
     align-items: center;
-    gap: 4px;
-    font-size: 16px;
+    gap: 2px;
+    margin-right: 10px;
   }
 
   .navlink {
-    padding: 10px 12px;
-    color: var(--ink);
+    padding: 9px 14px;
+    border-radius: var(--radius-pill);
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--muted);
     text-decoration: none;
-    text-underline-offset: 6px;
   }
 
-  .navlink:hover,
+  .navlink:hover {
+    background: var(--surface);
+    color: var(--ink);
+  }
+
   .navlink[aria-current] {
     color: var(--ink);
-    text-decoration: underline;
+    background: var(--surface);
   }
 
-  .cv {
-    margin-left: 8px;
-    font-size: 16px;
+  .menu {
+    display: none;
   }
 
-  /* phone: logo and CV on one row, every nav link visible on the next */
   @media (max-width: 47.99rem) {
     .bar {
+      min-height: 60px;
+    }
+
+    .nav-wide {
+      display: none;
+    }
+
+    .menu {
+      display: block;
+    }
+
+    summary {
       display: grid;
-      grid-template-columns: 1fr auto;
-      grid-template-areas:
-        'logo cv'
-        'nav nav';
-      column-gap: 12px;
-      row-gap: 0;
-      padding-block: 8px 4px;
-    }
-
-    .logo {
-      grid-area: logo;
-      padding: 10px 0;
+      place-items: center;
+      width: var(--tap);
+      height: var(--tap);
+      margin-right: -10px;
+      border-radius: var(--radius-pill);
       font-size: 22px;
+      list-style: none;
+      cursor: pointer;
     }
 
-    .cv {
-      grid-area: cv;
-      margin-left: 0;
-      padding-inline: 12px;
-      font-size: 15px;
+    summary::-webkit-details-marker {
+      display: none;
     }
 
-    nav {
-      grid-area: nav;
-      gap: 2px;
-      margin-left: -10px;
-      font-size: 15px;
+    summary:active {
+      background: var(--surface);
     }
 
-    .navlink {
-      padding: 11px 10px;
+    .menu :global(.close-icon),
+    .menu[open] :global(.open-icon) {
+      display: none;
+    }
+
+    .menu[open] :global(.close-icon) {
+      display: block;
+    }
+
+    /* the sheet drops from the header and grows from its top edge */
+    .sheet {
+      position: absolute;
+      inset: 100% 0 auto;
+      display: grid;
+      padding: 8px var(--gutter) 20px;
+      background: var(--canvas);
+      /* overlay menu */
+      box-shadow: 0 24px 40px -24px rgb(12 16 20 / 0.3); /* taste-skill-ignore */
+      transform-origin: top;
+      animation: sheet-in var(--dur-ui) var(--ease-out);
+    }
+
+    .sheet a {
+      padding: 14px 0;
+      font-size: 22px;
+      font-weight: 600;
+      letter-spacing: -0.015em;
+      color: var(--ink);
+      text-decoration: none;
+    }
+
+    .sheet a[aria-current] {
+      color: var(--accent);
+    }
+  }
+
+  @keyframes sheet-in {
+    from {
+      opacity: 0;
+      transform: translateY(-8px);
     }
   }
 </style>

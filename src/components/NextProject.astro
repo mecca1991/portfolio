@@ -1,4 +1,6 @@
 ---
+import Icon from './Icon.astro';
+
 interface Props {
   label: string;
   title: string;
@@ -11,104 +13,95 @@ const { label, title, href, backLabel = 'Back to projects', backHref = '/#work' 
 ---
 
 <nav class="container next" aria-label="Next project">
-  <a class="card" href={href}>
+  <a class="card" href={href} data-reveal>
     <span class="body">
+      <span class="title">{title}</span>
       <span class="label">{label}</span>
-      <span class="title">{title} <span class="arrow-phone" aria-hidden="true">→</span></span>
     </span>
-    <span class="cta">Read next <span aria-hidden="true">→</span></span>
+    <span class="go" aria-hidden="true"><Icon name="arrow-right" /></span>
   </a>
-  <a class="back" href={backHref}><span aria-hidden="true">← </span>{backLabel}</a>
+  <a class="link-ink back" href={backHref}><Icon name="arrow-left" /> {backLabel}</a>
 </nav>
 
 <style>
   .next {
-    margin-top: clamp(3rem, 1.4rem + 5.333vw, 6.5rem);
+    margin-top: var(--section);
+    margin-bottom: var(--section);
   }
 
   .card {
     display: flex;
-    flex-wrap: wrap;
-    align-items: flex-end;
+    align-items: center;
     justify-content: space-between;
-    gap: 16px;
-    padding-block: 36px;
-    border-top: 1px solid var(--ink);
-    border-bottom: 1px solid var(--line);
+    gap: 24px;
+    padding: clamp(1.5rem, 0.8rem + 2.8vw, 3rem);
+    border-radius: var(--radius-lg);
+    background: var(--surface);
     color: var(--ink);
     text-decoration: none;
+    transition:
+      background-color var(--fade),
+      transform var(--dur-press) var(--ease-out);
   }
 
-  .card:hover .title {
-    text-decoration: underline;
-    text-underline-offset: 6px;
+  .card:hover {
+    background: var(--surface-2);
+    color: var(--ink);
+  }
+
+  .card:active {
+    transform: scale(0.99);
   }
 
   .body {
     display: flex;
     flex-direction: column;
-    gap: 6px;
+    gap: 8px;
     min-width: 0;
   }
 
+  .title {
+    font-size: var(--text-h2);
+    font-weight: 650;
+    line-height: 1.02;
+    letter-spacing: -0.035em;
+  }
+
   .label {
-    font-size: 14px;
-    font-weight: 500;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
+    font-size: 15px;
     color: var(--muted);
   }
 
-  .title {
-    font-family: var(--font-display);
-    font-size: clamp(1.75rem, 1.304rem + 1.829vw, 2.5rem);
-    line-height: 1.1;
+  .go {
+    display: grid;
+    flex: none;
+    place-items: center;
+    width: clamp(3rem, 2.4rem + 2.4vw, 4.5rem);
+    height: clamp(3rem, 2.4rem + 2.4vw, 4.5rem);
+    border-radius: 50%;
+    background: var(--ink);
+    color: var(--white);
+    font-size: clamp(1.25rem, 1rem + 1vw, 1.75rem);
   }
 
-  .arrow-phone {
-    display: none;
-    color: var(--accent);
+  .go :global(.icon) {
+    transition: transform var(--dur-ui) var(--ease-out);
   }
 
-  .cta {
-    padding: 8px 0;
-    font-size: 17px;
-    font-weight: 600;
-    color: var(--accent);
+  @media (hover: hover) and (pointer: fine) {
+    .card:hover .go :global(.icon) {
+      transform: translateX(3px);
+    }
   }
 
   .back {
-    display: inline-block;
-    margin-top: 14px;
-    padding: 10px 0;
-    font-size: 16px;
-    color: var(--ink);
+    margin-top: 12px;
+    font-size: 15px;
   }
 
-  @media (max-width: 47.99rem) {
-    .card {
-      padding-block: 20px;
-    }
-
-    .body {
-      gap: 4px;
-    }
-
-    .label {
-      font-size: 12px;
-    }
-
-    .arrow-phone {
-      display: inline;
-    }
-
-    .cta {
-      display: none;
-    }
-
-    .back {
-      margin-top: 8px;
-      font-size: 15px;
+  @media (prefers-reduced-motion: reduce) {
+    .card:active {
+      transform: none;
     }
   }
 </style>
