@@ -3,7 +3,7 @@
 
 # wilfredchetat.com
 
-Source for [www.wilfredchetat.com](https://www.wilfredchetat.com), the portfolio of Wilfred Chetat, a senior software engineer in Dubai.
+Source for [www.wilfredchetat.com](https://www.wilfredchetat.com), the portfolio of Wilfred Chetat, a senior software engineer.
 
 [![Astro 7](https://img.shields.io/badge/Astro-7-BC52EE?logo=astro&logoColor=white)](https://astro.build)
 [![TypeScript](https://img.shields.io/badge/TypeScript-strict-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org)

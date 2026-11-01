@@ -16,7 +16,7 @@ The personal site of Wilfred Chetat, a Senior Software Engineer in Dubai. It sho
 
 ## Positioning
 
-He ships whole products end to end. He works backend first, mainly in Python, and also builds the web and iOS apps, the integrations and the deployment. Intrvuer is his own product: he designed it and built the Next.js web app, the SwiftUI iOS app, the FastAPI backend and the deployment. He built EduClick end to end as a volunteer. Each project has a story about holding up under failure: idempotency keys and a durable answer outbox (Intrvuer), replay-safe upserts (EduClick), skipped repeat transactions (LeaseSurance) and per-lead sync status (Sysconnector). The H1 "Building reliable systems." states that thread.
+He ships whole products end to end, across payments, data systems, video analytics and AI, using whatever technology the problem needs: backends, web and iOS apps, integrations and deployment. Intrvuer is his own product: he designed it and built the Next.js web app, the SwiftUI iOS app, the FastAPI backend and the deployment. He built EduClick end to end as a volunteer. Each project has a story about holding up under failure: idempotency keys and a durable answer outbox (Intrvuer), replay-safe upserts (EduClick), skipped repeat transactions (LeaseSurance) and per-lead sync status (Sysconnector). The H1 "Building reliable systems." states that thread.
 
 ## Operating Context
 
@@ -38,6 +38,7 @@ He ships whole products end to end. He works backend first, mainly in Python, an
 - H1: "Building reliable systems." (Wilfred, 2026-10-30).
 - Voice: plain, specific and first person. No hype, no jokes, no emoji. The site must not feel dense or CV-like, generic or template-like, or playful (Wilfred, 2026-10-31).
 - Visual direction (Wilfred, 2026-10-31): after three direction rounds he chose the category standard, a clean modern developer portfolio, with Linear and Stripe's product-marketing polish as the craft bar. Future work keeps that convention and its craft level instead of proposing concept worlds.
+- Positioning copy never boxes him into one technology ("mainly in Python") and doesn't lead with his location (Wilfred, 2026-11-01). Technology names belong in stack lists and case-study details.
 - Every reader-facing change goes through the `clarity` skill. Wording changes need Wilfred's approval, and facts never change without his answer.
 
 ## Evidence on Hand
