@@ -45,14 +45,14 @@ const sections = [
       'I’m Wilfred Chetat, a senior software engineer. Send a short outline of the systems you need to connect.',
   }}
 >
-  <CaseSection id="purpose" number="01" title="Purpose and users">
+  <CaseSection id="purpose" title="Purpose and users">
     <p>
       Sysconnector connects lead sources to marketing destinations. The people using it set up a connection once, then
       rely on new leads arriving in Adobe Campaign with the right fields, and need to see when one doesn’t.
     </p>
   </CaseSection>
 
-  <CaseSection id="problem" number="02" title="The problem">
+  <CaseSection id="problem" title="The problem">
     <ul>
       <li>Leads arrive by webhook in each lead form’s own shape; Adobe Campaign expects its own fields.</li>
       <li>A connection can fail because of credentials, so it should be checked before it is relied on.</li>
@@ -60,10 +60,10 @@ const sections = [
     </ul>
   </CaseSection>
 
-  <CaseSection id="implemented" number="03" title="What I implemented" wide>
+  <CaseSection id="implemented" title="What I implemented" wide>
     <p class="aside">The screens below are illustrative reconstructions of the interfaces I worked on.</p>
 
-    <ImplementedStep title="1 · Connection setup" task="connect a lead form to Adobe Campaign and confirm it works.">
+    <ImplementedStep title="Connection setup" task="connect a lead form to Adobe Campaign and confirm it works.">
       <ul>
         <li>Connection validation and credential handling</li>
         <li>Reuse of existing destination credentials</li>
@@ -115,7 +115,7 @@ const sections = [
       </Fragment>
     </ImplementedStep>
 
-    <ImplementedStep title="2 · Field mapping" task="decide where each lead-form field lands in Adobe Campaign.">
+    <ImplementedStep title="Field mapping" task="decide where each lead-form field lands in Adobe Campaign.">
       <ul>
         <li>Webhook processing for incoming Facebook leads</li>
         <li>Lead field mapping between the form and Adobe Campaign</li>
@@ -136,7 +136,7 @@ const sections = [
       </Fragment>
     </ImplementedStep>
 
-    <ImplementedStep title="3 · Lead status and export" task="see which leads reached Adobe Campaign, and export them.">
+    <ImplementedStep title="Lead status and export" task="see which leads reached Adobe Campaign, and export them.">
       <ul>
         <li>Sync-status handling per lead</li>
         <li>CSV lead export with tracking fields</li>
@@ -161,6 +161,16 @@ const sections = [
       </Fragment>
     </ImplementedStep>
 
+    <figure class="flow" data-reveal>
+      <ol>
+        <li><span class="node"><strong>Facebook Lead Ads</strong><span>A new lead arrives by webhook</span></span></li>
+        <li><span class="node key"><strong>Sysconnector</strong><span>Maps fields, checks the connection</span></span></li>
+        <li><span class="node"><strong>Adobe Campaign</strong><span>Receives the mapped lead</span></span></li>
+        <li><span class="node"><strong>Lead status</strong><span>Synced, failed or pending, per lead</span></span></li>
+      </ol>
+      <figcaption>How a lead travels, as built in this engagement.</figcaption>
+    </figure>
+
     <div class="also">
       <h3>Also in this engagement</h3>
       <div class="also-items">
@@ -176,7 +186,7 @@ const sections = [
     </div>
   </CaseSection>
 
-  <CaseSection id="decisions" number="04" title="Decisions and tradeoffs">
+  <CaseSection id="decisions" title="Decisions and tradeoffs">
     <Decision
       title="Toggles show what was saved, not what was clicked"
       decision="An integration toggle reflects the status stored on the server."
@@ -189,7 +199,7 @@ const sections = [
     />
   </CaseSection>
 
-  <CaseSection id="outcomes" number="05" title="Outcomes">
+  <CaseSection id="outcomes" title="Outcomes">
     <Outcomes
       items={[
         {
@@ -204,9 +214,8 @@ const sections = [
 
 <style>
   .aside {
-    max-width: 680px;
+    max-width: 720px;
     margin-top: 16px;
-    font-size: 16px;
     color: var(--muted);
   }
 
@@ -225,7 +234,7 @@ const sections = [
   .field {
     margin-top: 4px;
     padding: 9px 12px;
-    border: 1px solid var(--line);
+    border: 1px solid var(--line); /* taste-skill-ignore: inside a reconstructed screen (data-ui) */
     border-radius: var(--radius-sm);
   }
 
@@ -245,7 +254,7 @@ const sections = [
     flex: none;
     width: 16px;
     height: 16px;
-    border: 1px solid var(--muted);
+    border: 1px solid var(--muted); /* taste-skill-ignore: inside a reconstructed screen (data-ui) */
     border-radius: 50%;
   }
 
@@ -261,8 +270,8 @@ const sections = [
   }
 
   .fake-button {
-    padding: 9px 14px;
-    border-radius: var(--radius-sm);
+    padding: 9px 16px;
+    border-radius: var(--radius-pill);
     background: var(--ink);
     color: var(--white);
     font-weight: 500;
@@ -270,7 +279,7 @@ const sections = [
 
   .fake-button.outline {
     padding: 6px 12px;
-    border: 1px solid var(--ink);
+    border: 1px solid var(--ink); /* taste-skill-ignore: inside a reconstructed screen (data-ui) */
     background: none;
     color: var(--ink);
   }
@@ -283,7 +292,7 @@ const sections = [
 
   .error {
     padding: 10px 12px;
-    border: 1px solid var(--error-line);
+    border: 1px solid var(--error-line); /* taste-skill-ignore: inside a reconstructed screen (data-ui) */
     border-radius: var(--radius-sm);
     background: var(--error-bg);
     font-size: 14px;
@@ -301,7 +310,7 @@ const sections = [
     justify-content: space-between;
     gap: 12px;
     padding-top: 14px;
-    border-top: 1px solid var(--line);
+    border-top: 1px solid var(--line); /* taste-skill-ignore: inside a reconstructed screen (data-ui) */
   }
 
   .toggle {
@@ -340,46 +349,119 @@ const sections = [
     justify-content: space-between;
     gap: 8px;
     padding: 12px 18px;
-    border-bottom: 1px solid var(--line);
+    border-bottom: 1px solid var(--line); /* taste-skill-ignore: inside a reconstructed screen (data-ui) */
     font-size: 14px;
   }
 
+  .flow {
+    --arrow: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12h14'/%3E%3Cpath d='m12 5 7 7-7 7'/%3E%3C/svg%3E");
+    margin-top: clamp(3rem, 2.4rem + 2.5vw, 4.5rem);
+  }
+
+  .flow > ol {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+    gap: 28px;
+    margin: 0;
+    padding: clamp(1.25rem, 0.6rem + 2.6vw, 2.75rem);
+    list-style: none;
+    border-radius: var(--radius-lg);
+    background: var(--surface);
+    font-size: 15px;
+    line-height: 1.4;
+  }
+
+  .flow > ol > li {
+    position: relative;
+    display: flex;
+    flex: 1 1 150px;
+  }
+
+  .flow > ol > li:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: -21px;
+    width: 14px;
+    height: 14px;
+    background: var(--muted);
+    -webkit-mask: var(--arrow) center / contain no-repeat;
+    mask: var(--arrow) center / contain no-repeat;
+    transform: translateY(-50%);
+  }
+
+  .node {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    gap: 4px;
+    padding: 14px 16px;
+    border-radius: var(--radius);
+    background: var(--white);
+  }
+
+  .node strong {
+    font-weight: 600;
+  }
+
+  .node span {
+    color: var(--muted);
+  }
+
+  .key {
+    background: var(--ink);
+    color: var(--white);
+  }
+
+  .key span {
+    color: var(--dark-muted);
+  }
+
+  .flow figcaption {
+    margin-top: 12px;
+    font-size: var(--text-caption);
+    color: var(--muted);
+  }
+
   .also {
-    margin-top: 40px;
+    margin-top: clamp(3rem, 2.4rem + 2.5vw, 4.5rem);
   }
 
   .also h3 {
-    font-size: clamp(1.125rem, 1.032rem + 0.381vw, 1.375rem);
-    font-weight: 500;
+    font-size: var(--text-lead);
+    font-weight: 650;
+    letter-spacing: -0.015em;
   }
 
   .also-items {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 16px 24px;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
     margin-top: 16px;
   }
 
   .also-items > div {
-    flex: 1 1 280px;
-    padding-top: 14px;
-    border-top: 1px solid var(--ink);
+    padding: clamp(1.25rem, 0.8rem + 1.8vw, 2rem);
+    border-radius: var(--radius-lg);
+    background: var(--surface);
     font-size: 16px;
   }
 
   h4 {
-    font-size: 17px;
-    font-weight: 600;
+    font-size: 18px;
+    font-weight: 650;
   }
 
   .also-items p {
     margin-top: 6px;
+    color: var(--muted);
   }
 
   @media (max-width: 47.99rem) {
     .aside {
       margin-top: 12px;
-      font-size: 15px;
+      font-size: 16px;
     }
 
     .setup {
@@ -395,12 +477,25 @@ const sections = [
       margin-top: 32px;
     }
 
-    .also-items > div {
-      font-size: 15px;
+    .also-items {
+      grid-template-columns: minmax(0, 1fr);
     }
 
-    h4 {
-      font-size: 16px;
+    .flow > ol {
+      flex-direction: column;
+      gap: 26px;
+    }
+
+    .flow > ol > li {
+      flex: none;
+    }
+
+    .flow > ol > li:not(:last-child)::after {
+      top: auto;
+      right: auto;
+      bottom: -20px;
+      left: 50%;
+      transform: translateX(-50%) rotate(90deg);
     }
   }
 </style>

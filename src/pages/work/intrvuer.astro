@@ -8,6 +8,8 @@ import spokenPractice from '../../assets/captures/intrvuer/spoken-practice-ios.p
 import feedbackAnswer from '../../assets/captures/intrvuer/feedback-answer.png';
 import Decision from '../../components/Decision.astro';
 import Outcomes from '../../components/Outcomes.astro';
+import BrowserFrame from '../../components/BrowserFrame.astro';
+import landing from '../../assets/captures/intrvuer/landing.png';
 
 const sections = [
   { id: 'purpose', label: 'Purpose and users' },
@@ -47,14 +49,24 @@ const sections = [
     intro: 'I’m Wilfred Chetat, a senior software engineer. Send a short outline of what you’re building.',
   }}
 >
-  <CaseSection id="purpose" number="01" title="Purpose and users">
+  <div slot="cover" class="cover-stage">
+    <BrowserFrame
+      src={landing}
+      url="intrvuer.com"
+      alt="The intrvuer.com home page: 'Practice your next interview before it happens', with buttons to start practising free or see sample feedback, and a live practice bar showing question 4 of 8."
+      sizes="(max-width: 47.99rem) 92vw, 1100px"
+      eager
+    />
+  </div>
+
+  <CaseSection id="purpose" title="Purpose and users">
     <p>
       Intrvuer is for candidates who want to rehearse for a specific role. It uses their résumé and the job they are
       targeting so practice questions and feedback relate to that role.
     </p>
   </CaseSection>
 
-  <CaseSection id="problem" number="02" title="The problem">
+  <CaseSection id="problem" title="The problem">
     <p>
       Reading a list of likely questions is different from answering one out loud. Candidates rarely get feedback on a
       specific answer unless someone sits with them.
@@ -66,9 +78,9 @@ const sections = [
     </ul>
   </CaseSection>
 
-  <CaseSection id="implemented" number="03" title="What I implemented" wide>
+  <CaseSection id="implemented" title="What I implemented" wide>
     <ImplementedStep
-      title="1 · Context setup"
+      title="Context setup"
       task="add a résumé and the job being targeted."
       built="the intake screens and the API that stores this context for the session."
     >
@@ -80,7 +92,7 @@ const sections = [
     </ImplementedStep>
 
     <ImplementedStep
-      title="2 · Spoken practice"
+      title="Spoken practice"
       task="answer questions and follow-ups out loud."
       built="the session interface on web and iOS, speech handling and the backend that sequences questions and follow-ups."
     >
@@ -95,7 +107,7 @@ const sections = [
     </ImplementedStep>
 
     <ImplementedStep
-      title="3 · Feedback report"
+      title="Feedback report"
       task="review what worked and what to change in each answer."
       built="background processing with LLM integrations that produce per-answer feedback, and the report view."
     >
@@ -108,7 +120,7 @@ const sections = [
       </Fragment>
     </ImplementedStep>
 
-    <figure class="flow">
+    <figure class="flow" data-reveal>
       <ol>
         <li><span class="node"><strong>Context</strong><span>Résumé, target job</span></span></li>
         <li><span class="node"><strong>Interface</strong><span>Next.js web, SwiftUI iOS</span></span></li>
@@ -153,7 +165,7 @@ const sections = [
     </details>
   </CaseSection>
 
-  <CaseSection id="decisions" number="04" title="Decisions and tradeoffs">
+  <CaseSection id="decisions" title="Decisions and tradeoffs">
     <Decision
       title="Bring the role into the session first"
       decision="Before the first question, an LLM reads the job description into requirements and the résumé into past roles. Questions are written from the top ten requirements and up to five roles, and the interviewer’s introduction names the company and position. After each answer, an LLM decides whether to ask a follow-up, with the conversation so far as context."
@@ -166,7 +178,7 @@ const sections = [
     />
   </CaseSection>
 
-  <CaseSection id="outcomes" number="05" title="Outcomes">
+  <CaseSection id="outcomes" title="Outcomes">
     <Outcomes
       items={[
         {
@@ -180,36 +192,58 @@ const sections = [
 </CaseStudyLayout>
 
 <style>
+  /* cover: the live home page on a tinted field, bleeding off its foot */
+  .cover-stage {
+    padding: clamp(1rem, 0.2rem + 3.3vw, 3.5rem) clamp(1rem, 0.2rem + 3.3vw, 3.5rem) 0;
+    border-radius: var(--radius-lg);
+    background: var(--surface);
+  }
+
+  .cover-stage :global(.browser) {
+    max-height: clamp(14rem, 6rem + 32vw, 34rem);
+    border-radius: var(--radius) var(--radius) 0 0;
+  }
+
   .flow {
-    margin-top: 48px;
+    margin-top: clamp(2.5rem, 1.9rem + 2.5vw, 4rem);
   }
 
   .flow > ol {
     display: flex;
     flex-wrap: wrap;
     align-items: stretch;
-    gap: 12px;
+    gap: 28px;
     margin: 0;
-    padding: 28px;
+    padding: clamp(1.25rem, 0.6rem + 2.6vw, 2.75rem);
     list-style: none;
-    border: 1px solid var(--line);
-    border-radius: var(--radius);
+    border-radius: var(--radius-lg);
     background: var(--surface);
     font-size: 15px;
     line-height: 1.4;
   }
 
-  /* each step carries the arrow to the next one */
+  /* each step points at the next one with a drawn arrow */
   .flow > ol > li {
+    position: relative;
     display: flex;
-    flex: 1 1 140px;
-    align-items: center;
-    gap: 12px;
+    flex: 1 1 130px;
   }
 
   .flow > ol > li:not(:last-child)::after {
-    content: '→';
-    color: var(--muted);
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: -21px;
+    width: 14px;
+    height: 14px;
+    background: var(--muted);
+    -webkit-mask: var(--arrow) center / contain no-repeat;
+    mask: var(--arrow) center / contain no-repeat;
+    transform: translateY(-50%);
+  }
+
+  .flow {
+    --arrow: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12h14'/%3E%3Cpath d='m12 5 7 7-7 7'/%3E%3C/svg%3E");
   }
 
   .flow > ol > li.group {
@@ -221,10 +255,8 @@ const sections = [
     flex: 1;
     flex-direction: column;
     gap: 4px;
-    align-self: stretch;
-    padding: 14px;
-    border: 1px solid var(--line);
-    border-radius: var(--radius-sm);
+    padding: 14px 16px;
+    border-radius: var(--radius);
     background: var(--white);
   }
 
@@ -233,7 +265,12 @@ const sections = [
   }
 
   .key {
-    border-color: var(--ink);
+    background: var(--ink);
+    color: var(--white);
+  }
+
+  .key span {
+    color: var(--dark-muted);
   }
 
   .group ul {
@@ -247,7 +284,7 @@ const sections = [
   }
 
   .group .node {
-    padding: 9px 14px;
+    padding: 10px 16px;
   }
 
   strong {
@@ -255,15 +292,18 @@ const sections = [
   }
 
   .flow figcaption {
-    margin-top: 10px;
-    font-size: 15px;
+    margin-top: 12px;
+    font-size: var(--text-caption);
     color: var(--muted);
   }
 
+  /* technical notes: a quiet panel that opens in place */
   .notes {
-    max-width: 680px;
-    margin-top: 24px;
-    border-block: 1px solid var(--line);
+    --plus: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.5' stroke-linecap='round'%3E%3Cpath d='M12 4v16M4 12h16'/%3E%3C/svg%3E");
+    max-width: 720px;
+    margin-top: 16px;
+    border-radius: var(--radius-lg);
+    background: var(--surface);
   }
 
   .notes summary {
@@ -271,76 +311,81 @@ const sections = [
     align-items: center;
     justify-content: space-between;
     gap: 16px;
-    min-height: 52px;
-    padding-block: 12px;
-    font-size: 17px;
-    font-weight: 500;
+    min-height: 56px;
+    padding: 14px 24px;
+    border-radius: var(--radius-lg);
+    font-weight: 600;
     list-style: none;
     cursor: pointer;
+    transition: background-color var(--fade);
+  }
+
+  .notes summary:hover {
+    background: var(--surface-2);
   }
 
   .notes summary::-webkit-details-marker {
     display: none;
   }
 
+  /* a drawn plus that turns into a cross */
   .notes summary::after {
-    content: '+';
-    font-size: 22px;
-    line-height: 1;
-    color: var(--accent);
+    content: '';
+    flex: none;
+    width: 14px;
+    height: 14px;
+    background: var(--accent);
+    -webkit-mask: var(--plus) center / contain no-repeat;
+    mask: var(--plus) center / contain no-repeat;
+    transition: transform var(--dur-ui) var(--ease-out);
   }
 
   .notes[open] summary::after {
-    content: '−';
+    transform: rotate(45deg);
   }
 
   .notes ul {
     margin: 0;
-    padding: 0 0 20px 20px;
+    padding: 0 28px 24px 44px;
     font-size: 16px;
+    color: var(--muted);
   }
 
   .notes li {
-    padding-block: 4px;
+    padding-block: 5px;
   }
 
   @media (max-width: 47.99rem) {
-    .flow {
-      margin-top: 28px;
-    }
-
     .flow > ol {
       flex-direction: column;
-      gap: 6px;
-      padding: 16px;
+      gap: 26px;
     }
 
     .flow > ol > li {
       flex: none;
-      flex-direction: column;
-      align-items: stretch;
-      gap: 6px;
     }
 
     .flow > ol > li:not(:last-child)::after {
-      content: '↓';
-      text-align: center;
-    }
-
-    .node {
-      padding: 10px 12px;
-    }
-
-    .flow figcaption {
-      font-size: 13px;
+      top: auto;
+      right: auto;
+      bottom: -20px;
+      left: 50%;
+      transform: translateX(-50%) rotate(90deg);
     }
 
     .notes summary {
-      font-size: 16px;
+      padding-inline: 18px;
     }
 
     .notes ul {
+      padding: 0 18px 20px 36px;
       font-size: 15px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .notes summary::after {
+      transition: none;
     }
   }
 </style>

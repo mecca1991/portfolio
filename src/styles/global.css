@@ -303,6 +303,14 @@ a:hover {
   transition-delay: calc(var(--i, 0) * 70ms);
 }
 
+/* code keeps one monospace stack; the browser default would add a second face */
+code,
+kbd,
+samp,
+pre {
+  font-family: var(--font-mono);
+}
+
 /* code panels scroll with a quiet scrollbar */
 pre {
   scrollbar-width: thin;

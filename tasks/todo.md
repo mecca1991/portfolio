@@ -616,7 +616,7 @@ Plan: `tasks/plan.md` › Phase 5. Branch `phase-5-design` from `phase-3-ship`. 
 - [x] Branch `phase-5-design` created from `phase-3-ship`
 - [x] `PRODUCT.md` records users, positioning, constraints and evidence on hand
 - [x] Baseline inspection of the phase-3 preview saved (Taste inspector: 8–11 FAILs per page; the "On this page" nav covers text at 768–1000 px)
-- [ ] Amplify branch preview for `phase-5-design` (personal account; Wilfred confirms first)
+- [x] Amplify branch preview for `phase-5-design` (personal account 338573231383, confirmed 2026-11-01): https://phase-5-design.dshdhrt6lgmzs.amplifyapp.com
 
 ### Task 23: Direction round
 
@@ -645,13 +645,13 @@ Plan: `tasks/plan.md` › Phase 5. Branch `phase-5-design` from `phase-3-ship`. 
 ### Task 25: Case studies, Rust page and 404 in the new world
 
 **Acceptance criteria:**
-- [ ] Case-study template rebuilt; the "On this page" overlap at 768–1000 px fixed; no 01–05 numbering
-- [ ] Intrvuer, Sysconnector and Rust parser pages rebuilt; Sysconnector has no near-empty screens; the Rust page body is 16 px or larger on phones and monospace appears only in code
-- [ ] 404 page rebuilt
-- [ ] OG image, favicons, `theme-color` and README banners regenerated
+- [x] Case-study template rebuilt; the "On this page" overlap at 768–1000 px fixed (static below 1024 px, sticky with its own column above, marks the section in view); no 01–05 numbering
+- [x] Intrvuer, Sysconnector and Rust parser pages rebuilt; Sysconnector has no near-empty screens; the Rust page body is 16 px or larger on phones and monospace appears only in code
+- [x] 404 page rebuilt
+- [x] OG image, favicons, `theme-color` and README banners regenerated
 
 **Verification:**
-- [ ] Same gates as Task 24 on every route; no overlap at 768, 900 and 1024 px
+- [x] Same gates as Task 24 on every route: Lighthouse mobile 100/100/100/100 on all four pages, axe 0 violations at 1440 and 390 on all five, lint clean; no overlap at 768, 900 and 1024 px. Taste inspector 0 FAIL on home and Intrvuer; "few pictures" stands on Sysconnector (client product, only labelled reconstructions), the Rust page (a code project) and the 404, rather than inventing screens
 
 ### ✅ Checkpoint: Design pass complete
 - [ ] Impeccable finish review: ship verdict

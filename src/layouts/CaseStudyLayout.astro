@@ -1,14 +1,14 @@
 ---
 /*
- * Shared frame for case studies: intro and facts, an "On this page" index beside the
- * numbered sections (default slot), the next-project link and a compact contact block.
+ * Shared frame for case studies: title and facts, an optional cover, a section index
+ * beside the article on wide screens (above it on narrow ones), the next project and contact.
  */
 import BaseLayout from './BaseLayout.astro';
 import Header from '../components/Header.astro';
-import Label from '../components/Label.astro';
 import OnThisPage from '../components/OnThisPage.astro';
 import NextProject from '../components/NextProject.astro';
 import ContactSection from '../components/ContactSection.astro';
+import Icon from '../components/Icon.astro';
 
 type Fact = { term: string; detail?: string; links?: readonly { label: string; href: string }[] };
 
@@ -30,44 +30,45 @@ interface Props {
 
 const { title, description, label, detail, heading, subtitle, intro, note, facts, sections, next, contact } =
   Astro.props;
+const live = detail === 'Live';
 ---
 
 <BaseLayout title={title} description={description}>
   <Header current="work" />
   <main id="main">
-    <div class="container back">
-      <a href="/#work"><span aria-hidden="true">← </span>Projects</a>
-    </div>
-
-    <section class="container intro" aria-labelledby="case-title">
-      <div class="lede">
-        <div class="meta">
-          <Label>{label}</Label>
-          {detail && <span class="detail">{detail}</span>}
+    <div class="container top">
+      <section class="intro" aria-labelledby="case-title">
+        <div class="lede">
+          <h1 id="case-title" class="display" data-reveal>{heading}</h1>
+          <p class="subtitle" data-reveal style="--i: 1">{subtitle}</p>
+          <p class="meta" data-reveal style="--i: 1">
+            {live && <span class="live-dot" aria-hidden="true" />}
+            {live ? <><span class="live">Live</span>{` · ${label}`}</> : <>{label}{detail && ` · ${detail}`}</>}
+          </p>
+          <p class="summary" data-reveal style="--i: 2">{intro}</p>
+          {note && <p class="note" data-reveal style="--i: 2">{note}</p>}
         </div>
-        <h1 id="case-title" class="display">{heading}</h1>
-        <p class="subtitle">{subtitle}</p>
-        <p class="summary">{intro}</p>
-        {note && <p class="note">{note}</p>}
-      </div>
-      <dl class="facts">
-        {
-          facts.map((f) => (
-            <div>
-              <dt>{f.term}</dt>
-              <dd>
-                {f.detail}
-                {f.links?.map((l) => (
-                  <a href={l.href}>
-                    {l.label} <span aria-hidden="true">↗</span>
-                  </a>
-                ))}
-              </dd>
-            </div>
-          ))
-        }
-      </dl>
-    </section>
+        <dl class="facts" data-reveal style="--i: 2">
+          {
+            facts.map((f) => (
+              <div>
+                <dt>{f.term}</dt>
+                <dd>
+                  {f.detail}
+                  {f.links?.map((l) => (
+                    <a href={l.href}>
+                      {l.label} <Icon name="arrow-up-right" />
+                    </a>
+                  ))}
+                </dd>
+              </div>
+            ))
+          }
+        </dl>
+      </section>
+
+      {Astro.slots.has('cover') && <figure class="cover" data-reveal style="--i: 3"><slot name="cover" /></figure>}
+    </div>
 
     <div class="container body">
       <OnThisPage sections={sections} />
@@ -82,148 +83,134 @@ const { title, description, label, detail, heading, subtitle, intro, note, facts
 </BaseLayout>
 
 <style>
-  .back {
-    padding-top: clamp(0.75rem, 0.379rem + 1.524vw, 2rem);
-  }
-
-  .back a {
-    display: inline-block;
-    padding: 10px 0;
-    font-size: clamp(0.9375rem, 0.914rem + 0.095vw, 1rem);
-    color: var(--ink);
+  .top {
+    padding-top: clamp(1rem, 0.6rem + 1.6vw, 2rem);
   }
 
   .intro {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: flex-start;
-    gap: 20px 56px;
-    padding-block: clamp(0.75rem, 0.157rem + 2.438vw, 2rem) clamp(2rem, 1.257rem + 3.048vw, 4rem);
-  }
-
-  .lede {
-    flex: 999 1 600px;
-    min-width: 0;
-  }
-
-  .meta {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 8px;
-  }
-
-  .detail {
-    font-size: clamp(0.8125rem, 0.789rem + 0.095vw, 0.875rem);
-    color: var(--muted);
+    display: grid;
+    grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+    align-items: start;
+    gap: 32px clamp(2.5rem, 0.5rem + 4vw, 5rem);
+    padding-block: clamp(1.5rem, 0.9rem + 2.4vw, 3.5rem) 0;
   }
 
   h1 {
-    margin-top: clamp(1rem, 0.907rem + 0.381vw, 1.25rem);
-    font-size: clamp(2.5rem, 2.036rem + 1.905vw, 3.75rem);
-    line-height: 1.06;
-    letter-spacing: -0.015em;
+    font-size: var(--text-h1);
+    letter-spacing: -0.045em;
   }
 
   .subtitle {
-    max-width: 26ch;
-    margin-top: clamp(0.5rem, 0.407rem + 0.381vw, 0.75rem);
-    font-family: var(--font-display);
-    font-size: clamp(1.3125rem, 1.15rem + 0.667vw, 1.75rem);
-    line-height: 1.3;
+    max-width: 30ch;
+    margin-top: 16px;
+    font-size: var(--text-lead);
+    font-weight: 500;
+    line-height: 1.4;
+    letter-spacing: -0.01em;
+  }
+
+  .meta {
+    margin-top: 16px;
+    font-size: 15px;
+    color: var(--muted);
+  }
+
+  .live {
+    color: var(--ink);
+    font-weight: 600;
   }
 
   .summary {
     max-width: 36em;
-    margin-top: clamp(0.875rem, 0.643rem + 0.952vw, 1.5rem);
+    margin-top: 24px;
   }
 
   .note {
     max-width: 36em;
-    margin-top: 16px;
-    font-size: clamp(0.9375rem, 0.914rem + 0.095vw, 1rem);
+    margin-top: 14px;
+    font-size: 16px;
     color: var(--muted);
   }
 
+  /* facts sit on one tinted panel, rows separated by space */
   .facts {
-    flex: 1 1 340px;
-    border-top: 1px solid var(--ink);
-    font-size: clamp(0.9375rem, 0.914rem + 0.095vw, 1rem);
+    display: grid;
+    gap: 16px;
+    padding: clamp(1.25rem, 0.9rem + 1.4vw, 2rem);
+    border-radius: var(--radius-lg);
+    background: var(--surface);
+    font-size: 16px;
     line-height: 1.5;
   }
 
   .facts div {
-    display: flex;
+    display: grid;
+    grid-template-columns: 104px minmax(0, 1fr);
     gap: 16px;
-    padding-block: 12px;
-    border-bottom: 1px solid var(--line);
   }
 
   .facts dt {
-    flex: 0 0 104px;
     color: var(--muted);
   }
 
   .facts dd {
     display: flex;
     flex-direction: column;
+    align-items: flex-start;
     min-width: 0;
   }
 
   .facts dd a {
-    padding: 3px 0;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    min-height: 32px;
+  }
+
+  .cover {
+    margin-top: clamp(2.5rem, 1.9rem + 2.5vw, 4rem);
   }
 
   .body {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: flex-start;
-    gap: 64px;
-    border-top: 1px solid var(--line);
+    display: grid;
+    grid-template-columns: 200px minmax(0, 1fr);
+    align-items: start;
+    gap: clamp(3rem, 1rem + 4vw, 6rem);
+    padding-top: clamp(4rem, 3rem + 4vw, 7rem);
   }
 
   article {
-    flex: 999 1 640px;
     min-width: 0;
-    padding-top: 32px;
   }
 
-  @media (max-width: 47.99rem) {
-    .facts {
-      margin-top: 0;
-      line-height: 1.45;
-    }
-
-    .facts div {
-      gap: 12px;
-      padding-block: 10px;
-    }
-
-    .facts dt {
-      flex-basis: 92px;
-    }
-
-    .facts dd a {
-      display: inline-flex;
-      align-items: center;
-      min-height: 44px;
-      padding: 0;
+  /* below 64rem the index sits above the article and nothing is sticky */
+  @media (max-width: 63.99rem) {
+    .intro {
+      grid-template-columns: minmax(0, 1fr);
     }
 
     .body {
-      flex-direction: column;
-      flex-wrap: nowrap;
-      gap: 0;
-      border-top: 0;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 40px;
+    }
+  }
+
+  @media (max-width: 47.99rem) {
+    .summary {
+      font-size: 17px;
     }
 
-    .body > :global(*) {
-      flex: none;
-      width: 100%;
+    .facts div {
+      grid-template-columns: 92px minmax(0, 1fr);
+      gap: 12px;
     }
 
-    article {
-      padding-top: 40px;
+    .facts dd a {
+      min-height: 44px;
+    }
+
+    .body {
+      padding-top: 56px;
     }
   }
 </style>

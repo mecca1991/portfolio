@@ -8,64 +8,65 @@ interface Props {
 const { title, decision, tradeoff } = Astro.props;
 ---
 
-<div class="decision">
+<div class="decision" data-reveal>
   <h3>{title}</h3>
   <dl>
-    <div><dt>Decision</dt><dd>{decision}</dd></div>
-    <div><dt>Tradeoff</dt><dd>{tradeoff}</dd></div>
+    <div>
+      <dt>Decision</dt>
+      <dd>{decision}</dd>
+    </div>
+    <div class="tradeoff">
+      <dt>Tradeoff</dt>
+      <dd>{tradeoff}</dd>
+    </div>
   </dl>
 </div>
 
 <style>
   .decision {
+    margin-top: 20px;
+    padding: clamp(1.25rem, 0.8rem + 1.8vw, 2.25rem);
+    border-radius: var(--radius-lg);
+    background: var(--surface);
+  }
+
+  .case-section > h2 + .decision {
     margin-top: 28px;
-    border-top: 1px solid var(--ink);
   }
 
   h3 {
-    margin: 18px 0 12px;
-    font-size: clamp(1.0625rem, 1rem + 0.286vw, 1.25rem);
-    font-weight: 500;
+    font-size: var(--text-lead);
+    font-weight: 650;
+    letter-spacing: -0.015em;
+    line-height: 1.3;
   }
 
+  /* the decision and what it cost, side by side */
   dl {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px clamp(1.5rem, 0.8rem + 2vw, 2.5rem);
+    margin-top: 18px;
     font-size: 16px;
-  }
-
-  dl div {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 4px 20px;
-    padding-block: 10px;
-    border-bottom: 1px solid var(--line);
+    line-height: 1.6;
   }
 
   dt {
-    flex: 0 0 110px;
-    font-weight: 500;
-    color: var(--muted);
+    font-weight: 600;
   }
 
   dd {
-    flex: 1 1 360px;
+    margin-top: 6px;
+    color: var(--muted);
+  }
+
+  .tradeoff dt {
+    color: var(--attention);
   }
 
   @media (max-width: 47.99rem) {
-    .decision {
-      margin-top: 16px;
-    }
-
-    h3 {
-      margin: 12px 0 6px;
-    }
-
     dl {
-      font-size: 15px;
-    }
-
-    dt,
-    dd {
-      flex-basis: 100%;
+      grid-template-columns: minmax(0, 1fr);
     }
   }
 </style>

@@ -1,70 +1,83 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Header from '../components/Header.astro';
+import Icon from '../components/Icon.astro';
 import { site } from '../data/site';
 ---
 
 <BaseLayout title="Page not found · Wilfred Chetat" description="This page doesn’t exist." noindex>
   <Header />
   <main id="main" class="container not-found">
-    <p class="code">404</p>
-    <h1 class="display">This page doesn’t exist.</h1>
-    <p class="lede">The link may be out of date, or the address may have a typo.</p>
-    <div class="actions">
-      <a class="btn btn-primary" href="/">Go to the homepage</a>
-      <a class="btn btn-secondary" href="/#work">See projects</a>
+    <div class="words">
+      <h1 class="display" data-reveal>This page doesn’t exist.</h1>
+      <p class="lede" data-reveal style="--i: 1">The link may be out of date, or the address may have a typo.</p>
+      <div class="actions" data-reveal style="--i: 2">
+        <a class="btn btn-primary" href="/">Go to the homepage <Icon name="arrow-right" /></a>
+        <a class="btn btn-secondary" href="/#work">See projects</a>
+      </div>
+      <p class="contact" data-reveal style="--i: 3">
+        Looking for something specific? Email <a href={`mailto:${site.email}`}>{site.email}</a>.
+      </p>
     </div>
-    <p class="contact">
-      Looking for something specific? Email <a href={`mailto:${site.email}`}>{site.email}</a>.
-    </p>
+    <p class="code" aria-hidden="true">404</p>
   </main>
 </BaseLayout>
 
 <style>
   .not-found {
-    padding-block: clamp(3rem, 1.886rem + 4.571vw, 6rem);
-  }
-
-  .code {
-    font-size: 15px;
-    font-weight: 500;
-    letter-spacing: 0.08em;
-    color: var(--muted);
+    display: grid;
+    grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+    align-items: center;
+    gap: 32px clamp(2.5rem, 0.5rem + 4vw, 5rem);
+    min-height: calc(100svh - 68px);
+    padding-block: clamp(3rem, 2rem + 4vw, 6rem);
   }
 
   h1 {
-    max-width: 16ch;
-    margin-top: 16px;
     font-size: var(--text-h1);
-    line-height: 1.06;
-    letter-spacing: -0.015em;
+    letter-spacing: -0.045em;
   }
 
   .lede {
-    max-width: 32em;
+    max-width: 30em;
     margin-top: 20px;
+    font-size: var(--text-lead);
+    line-height: 1.5;
+    color: var(--muted);
   }
 
   .actions {
     display: flex;
     flex-wrap: wrap;
-    gap: 12px;
+    gap: 10px;
     margin-top: 32px;
   }
 
-  .actions .btn {
-    font-size: 16px;
-  }
-
   .contact {
-    margin-top: 40px;
+    margin-top: 28px;
     font-size: 16px;
     color: var(--muted);
   }
 
-  .contact a {
-    display: inline-block;
-    padding-block: 10px;
-    overflow-wrap: anywhere;
+  /* the number is set as a large figure, read by no one but seen by everyone */
+  .code {
+    justify-self: end;
+    font-size: clamp(6rem, 2rem + 16vw, 16rem);
+    font-weight: 700;
+    line-height: 0.8;
+    letter-spacing: -0.06em;
+    color: #858f9b; /* 3.3:1: large type, quiet but legible */
+  }
+
+  @media (max-width: 63.99rem) {
+    .not-found {
+      grid-template-columns: minmax(0, 1fr);
+      align-content: center;
+    }
+
+    .code {
+      order: -1;
+      justify-self: start;
+    }
   }
 </style>

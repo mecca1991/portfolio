@@ -24,7 +24,7 @@ if ('IntersectionObserver' in window) {
 }
 root.dataset.revealReady = 'true';
 
-// header: a soft shadow once content scrolls under it
+// header: marked once content scrolls under it, so it can lift off the page
 const header = document.querySelector<HTMLElement>('.site-header');
 if (header) {
   const update = () => header.toggleAttribute('data-scrolled', window.scrollY > 4);

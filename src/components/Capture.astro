@@ -26,15 +26,24 @@ const widths = [...new Set([280, 360, 480, 640, 800, 960, 1200, src.width])].fil
 </div>
 
 <style>
+  .capture {
+    margin-inline: auto;
+  }
+
   .capture :global(img) {
     width: 100%;
     height: auto;
-    border: 1px solid var(--line);
     border-radius: var(--radius);
     background: var(--white);
   }
 
+  .phone {
+    padding: 6px;
+    border-radius: 40px;
+    background: var(--ink);
+  }
+
   .phone :global(img) {
-    border-radius: 28px;
+    border-radius: 34px;
   }
 </style>
