@@ -10,8 +10,9 @@ const { items } = Astro.props;
   {
     items.map((o, i) => (
       <div class="outcome" data-reveal style={`--i: ${i}`}>
-        <h3>{o.label}</h3>
-        <p>{o.text}</p>
+        <p>
+          <strong>{o.label}.</strong> {o.text}
+        </p>
       </div>
     ))
   }
@@ -31,14 +32,11 @@ const { items } = Astro.props;
     background: var(--surface);
   }
 
-  h3 {
-    font-size: 15px;
-    font-weight: 600;
-    color: var(--muted);
+  strong {
+    font-weight: 650;
   }
 
   p {
-    margin-top: 10px;
     font-size: var(--text-lead);
     font-weight: 500;
     line-height: 1.4;

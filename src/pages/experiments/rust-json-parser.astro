@@ -41,7 +41,7 @@ const steps = [
   title="Rust JSON Parser · Wilfred Chetat"
   description="A custom JSON tokenizer and parser in Rust with typed values, structured errors and formatting."
 >
-  <Header current="experiments" showCv={false} />
+  <Header current="experiments" />
   <main id="main">
     <section class="container intro" aria-labelledby="rp-title">
       <div class="lede">
@@ -134,7 +134,7 @@ let ch = chars.next().ok_or(ParseError::UnexpectedEnd)?;</code></pre>
 
   h1 {
     font-size: var(--text-h1);
-    letter-spacing: -0.045em;
+    letter-spacing: -0.04em;
   }
 
   .meta {
@@ -261,19 +261,20 @@ let ch = chars.next().ok_or(ParseError::UnexpectedEnd)?;</code></pre>
     padding-top: var(--section);
   }
 
+  /* the three stages in order, as rows: name on the left, what happens on the right */
   .steps {
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 12px;
+    gap: clamp(1.5rem, 1.1rem + 1.6vw, 2.5rem);
+    max-width: 960px;
     margin: clamp(2rem, 1.4rem + 2.5vw, 3.5rem) 0 0;
     padding: 0;
     list-style: none;
   }
 
   .steps li {
-    padding: clamp(1.25rem, 0.8rem + 1.8vw, 2rem);
-    border-radius: var(--radius-lg);
-    background: var(--surface);
+    display: grid;
+    grid-template-columns: minmax(0, 4fr) minmax(0, 8fr);
+    gap: 8px clamp(1.5rem, 0.8rem + 2.8vw, 3.5rem);
   }
 
   h3 {
@@ -283,11 +284,11 @@ let ch = chars.next().ok_or(ParseError::UnexpectedEnd)?;</code></pre>
   }
 
   .steps p {
-    margin-top: 10px;
+    margin: 0;
   }
 
   .snippet {
-    margin-top: 12px;
+    margin-top: clamp(2.5rem, 1.9rem + 2.5vw, 4rem);
   }
 
   .snippet pre {
@@ -306,7 +307,7 @@ let ch = chars.next().ok_or(ParseError::UnexpectedEnd)?;</code></pre>
       grid-template-columns: minmax(0, 1fr);
     }
 
-    .steps {
+    .steps li {
       grid-template-columns: minmax(0, 1fr);
     }
   }

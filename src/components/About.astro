@@ -34,17 +34,22 @@ import Icon from './Icon.astro';
     <div class="details">
       <div data-reveal>
         <h3>Experience</h3>
-        <ol class="experience">
-          {
-            site.experience.map((e) => (
-              <li>
-                <span class="company">{e.company}</span>
-                <span class="dates">{e.dates}</span>
-                <span class="role">{e.role}</span>
-              </li>
-            ))
-          }
-        </ol>
+        <table class="experience">
+          <caption class="visually-hidden">Experience, most recent first</caption>
+          <tbody>
+            {
+              site.experience.map((e) => (
+                <tr>
+                  <th scope="row">
+                    <span class="company">{e.company}</span>
+                    <span class="role">{e.role}</span>
+                  </th>
+                  <td class="dates">{e.dates}</td>
+                </tr>
+              ))
+            }
+          </tbody>
+        </table>
         <a class="link-ink cv" href={site.links.cv}>Full history in my CV (PDF) <Icon name="arrow-up-right" /></a>
       </div>
       <div data-reveal style="--i: 1">
@@ -116,37 +121,44 @@ import Icon from './Icon.astro';
     letter-spacing: -0.015em;
   }
 
+  /* a real table: one row per role, ruled between rows */
   .experience {
-    display: grid;
-    gap: 6px;
-    margin: 16px 0 0;
-    padding: 0;
-    list-style: none;
+    width: 100%;
+    margin-top: 12px;
+    border-collapse: collapse;
   }
 
-  .experience li {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) auto;
-    gap: 2px 16px;
-    padding: 14px 18px;
-    border-radius: var(--radius);
-    background: var(--surface);
+  .experience tr + tr > * {
+    border-top: 1px solid var(--line);
+  }
+
+  .experience th {
+    padding: 16px 16px 16px 0;
+    font-weight: 400;
+    text-align: left;
+    vertical-align: top;
   }
 
   .company {
+    display: block;
     font-weight: 600;
   }
 
-  .dates {
-    font-size: 15px;
-    font-variant-numeric: tabular-nums;
+  .role {
+    display: block;
+    margin-top: 2px;
+    font-size: 16px;
     color: var(--muted);
   }
 
-  .role {
-    grid-column: 1 / -1;
-    font-size: 16px;
+  .dates {
+    padding: 16px 0;
+    font-size: 15px;
+    font-variant-numeric: tabular-nums;
     color: var(--muted);
+    text-align: right;
+    vertical-align: top;
+    white-space: nowrap;
   }
 
   .cv {
@@ -190,13 +202,19 @@ import Icon from './Icon.astro';
       font-size: 18px;
     }
 
-    .experience li {
-      grid-template-columns: minmax(0, 1fr);
-      padding: 14px 16px;
+    .experience tr {
+      display: grid;
     }
 
-    .dates {
+    .experience th {
+      padding: 14px 0 0;
+    }
+
+    .experience .dates {
+      padding: 2px 0 14px;
+      border-top: 0;
       font-size: 14px;
+      text-align: left;
     }
   }
 </style>

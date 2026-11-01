@@ -17,7 +17,7 @@ const { src, alt, phone = false } = Astro.props;
 const maxWidth = Astro.props.maxWidth ?? (phone ? 280 : undefined);
 const sizes =
   Astro.props.sizes ??
-  (phone ? '280px' : '(max-width: 47.99rem) calc(100vw - 40px), 500px');
+  (phone ? '280px' : '(max-width: 47.99rem) calc(100vw - 40px), 760px');
 const widths = [...new Set([280, 360, 480, 640, 800, 960, 1200, src.width])].filter((w) => w <= src.width);
 ---
 

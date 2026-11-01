@@ -41,7 +41,7 @@ const { title, task, built } = Astro.props;
 <style>
   .step {
     display: grid;
-    grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+    grid-template-columns: minmax(0, 8fr) minmax(0, 4fr);
     grid-template-areas: 'figure text';
     align-items: center;
     gap: 24px clamp(2rem, 0.5rem + 3vw, 4rem);
@@ -88,7 +88,7 @@ const { title, task, built } = Astro.props;
     display: grid;
     justify-items: center;
     gap: 14px;
-    padding: clamp(1.25rem, 0.6rem + 2.6vw, 2.75rem);
+    padding: clamp(1rem, 0.5rem + 2vw, 2rem);
     border-radius: var(--radius-lg);
     background: var(--surface);
   }

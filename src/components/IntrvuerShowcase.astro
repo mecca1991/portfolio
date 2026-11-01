@@ -220,6 +220,7 @@ const steps = [
 
   .stage {
     display: grid;
+    grid-template-rows: minmax(0, 1fr); /* a definite row, so the phone can size to the stage's height */
     place-items: center;
     height: clamp(19rem, 11rem + 20vw, 30rem);
     padding: clamp(1.25rem, 0.5rem + 3vw, 3rem);
@@ -228,23 +229,29 @@ const steps = [
     background: var(--surface);
   }
 
-  .stage-context {
-    place-items: start;
-    padding-right: 0;
-    padding-bottom: 0;
-  }
-
   .stage-context :global(.browser) {
-    width: 118%;
+    width: 100%;
   }
 
+  /* the phone fits whole, record button included */
   .stage-practice {
-    align-items: start;
-    padding-bottom: 0;
+    padding-block: clamp(1rem, 0.6rem + 1.6vw, 2rem);
   }
 
   .stage :global(.ios) {
-    width: clamp(10rem, 6rem + 12vw, 16rem);
+    height: 100%;
+    width: auto;
+    aspect-ratio: 1320 / 2868;
+  }
+
+  .stage :global(.ios picture) {
+    display: block;
+    height: 100%;
+  }
+
+  .stage :global(.ios img) {
+    height: 100%;
+    width: auto;
   }
 
   .stage-report {
