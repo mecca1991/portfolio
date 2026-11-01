@@ -174,12 +174,12 @@ import Icon from './Icon.astro';
     border-radius: var(--radius) 0 0 0;
   }
 
-  /* the phone stands on the browser's lower-left edge */
+  /* the phone stands whole on the stage's floor, over the browser's left edge, record button in view */
   .stage :global(.device) {
     position: absolute;
     left: clamp(1.25rem, 0.5rem + 1.2vw, 2rem);
-    bottom: clamp(-7rem, -1rem - 5vw, -3rem);
-    width: clamp(9rem, 5rem + 8vw, 13.5rem);
+    bottom: clamp(1rem, 0.6rem + 0.8vw, 1.75rem);
+    width: clamp(8rem, 4rem + 8vw, 11.5rem);
     /* it overlaps the browser, so it floats above it */
     box-shadow: /* taste-skill-ignore */
       0 30px 60px -20px rgb(12 16 20 / 0.35),
