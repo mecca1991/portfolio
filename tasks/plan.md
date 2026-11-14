@@ -64,6 +64,38 @@ Desktop and phone artboards merge into one responsive page each.
 - [ ] No unresolved `[placeholder]` text on the live site (or each one approved by you)
 - [ ] README renders correctly on GitHub
 
+### Phase 4: Copy cleanup (after launch)
+- [ ] Task 13: Rust parser: drop the learning framing, name the WebAssembly plan
+- [ ] Task 14: Intrvuer: wording fixes from the review
+- [ ] Task 15: Homepage: wording fixes from the review
+- [ ] Task 16: Intrvuer: credit the iOS app and firm up Outcomes
+- [ ] Task 17: LeaseSurance: name the product and the contract
+- [ ] Task 18: EduClick: show it as a volunteer project built end to end
+- [ ] Task 18b: Sysconnector: name the stack
+- [ ] Task 19: Homepage H1 and title ("Building reliable systems.", Senior Software Engineer)
+
+### Checkpoint: Wording fixes
+- [ ] Preview reviewed; PR merged into `main`
+
+- [ ] Task 20: Lines only Wilfred can write (optional, interview)
+- [ ] Task 21: CV: use the site's terms (Wilfred edits the CV; drafts in `tasks/cv-bullets.md`)
+
+### Checkpoint: Copy cleanup complete
+- [ ] PR merged into `main`; changed pages checked on production
+
+### Phase 5: Design pass 2 (2026-10-31)
+- [ ] Task 22: Setup: branch `phase-5-design`, PRODUCT.md, baseline inspection
+- [ ] Task 23: Direction round (Impeccable decision page; Wilfred picks)
+- [ ] Task 24: Homepage in the new world
+
+### Checkpoint: Homepage design
+- [ ] Wilfred reviews the homepage on the preview
+
+- [ ] Task 25: Case studies, Rust page and 404 in the new world
+
+### Checkpoint: Design pass complete
+- [ ] Finish review, DESIGN.md, PR into `main` after approval
+
 ## Dependency Graph
 
 ```
@@ -101,8 +133,9 @@ Task 1 scaffold + tokens + layout
 - **CV:** served from S3, not the repo: `https://wilfredchetat-public.s3.us-east-1.amazonaws.com/Wilfred_Chetat_CV.pdf` (bucket `wilfredchetat-public`, versioned, public read on that one key only). URL lives in `src/data/site.ts`; update with `npm run cv:upload`. The source PDF at the repo root is gitignored.
 
 - **Release:** `main` keeps the holding page until launch so placeholders never go public. Phase branches chain (`phase-3-ship` from `phase-2-pages`), each with its own Amplify preview, and everything merges into `main` at Task 12.
+- **After launch (2026-10-30):** changes go on `phase-3-ship` and reach `main` through a PR, merged only after Wilfred approves. The site doesn't describe the Rust parser as a learning or cohort project.
 - **Copy:** from Phase 3 on, every reader-facing text a task writes or changes goes through the `clarity` skill (review, then rewrite) without inventing facts.
 
 ## Open Questions
 
-None right now.
+Phase 4 questions for Wilfred are listed under Tasks 20–21 in `tasks/todo.md`.

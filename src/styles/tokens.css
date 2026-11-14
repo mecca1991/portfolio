@@ -1,51 +1,80 @@
 /*
- * Design tokens from the "Reusable components" artboard.
- * Fluid sizes interpolate between the phone (390px) and desktop (1440px) artboards.
+ * Design tokens: a dark, single-hue portfolio (revamp v2, 2026-11-14).
+ * One ground, one panel step, one accent hue. Every accent colour is
+ * oklch(L C var(--h)), so changing --h re-tints the whole site.
  */
 :root {
+  /* the one hue */
+  --h: 295;
+
   /* colour */
-  --canvas: #f7f5f0;
-  --ink: #192522;
-  --muted: #53645e; /* 5.7:1 on canvas */
-  --accent: #155e52; /* 7:1 on canvas */
-  --accent-hover: #0e4239;
-  --accent-pressed: #0a332c;
-  --surface: #eef3ef;
-  --line: #ccd6cf;
-  --attention: #8a3b12; /* always paired with a word */
+  --canvas: #07050d;
+  --surface: #0c0916; /* panels and cards */
+  --surface-2: #17122a; /* the step above: chips, pressed and hovered panels */
+  --ink: #ece8f5; /* 16:1 on canvas */
+  --ink-soft: #d8d2e6;
+  --muted: #a59fb8; /* 8.0:1 on canvas, 7.7:1 on surface */
+  --muted-2: #b9b2cc;
+  --faint: #8f89a3; /* 5.9:1 on surface: axis ticks and fine print */
+  --accent: oklch(0.8 0.14 var(--h)); /* links */
+  --accent-hover: #ffffff;
+  --accent-pressed: oklch(0.46 0.24 var(--h));
+  --accent-label: oklch(0.8 0.15 var(--h)); /* mono kickers */
+  --accent-soft: oklch(0.82 0.15 var(--h)); /* italic words in headings */
+  --accent-fill: oklch(0.52 0.24 var(--h)); /* primary buttons; white text sits at 6.2:1 */
+  --accent-fill-hover: oklch(0.58 0.24 var(--h)); /* white text at 4.8:1 */
+  --accent-glow: oklch(0.6 0.25 var(--h));
+  --accent-line: oklch(0.65 0.2 var(--h) / 0.6);
+  --live: #3ddc97; /* the status dot beside the word Live; never text */
+  --line: rgb(255 255 255 / 0.08);
+  --line-strong: rgb(255 255 255 / 0.16);
+  --attention: oklch(0.8 0.13 45); /* always paired with a word */
   --white: #ffffff;
 
-  /* dark band (contact, footer, code input) */
-  --dark-text-soft: #d9e2dc;
-  --dark-muted: #b9c6bf;
-  --dark-line: #2e3c38;
+  /* the old dark bands now sit on the same ground as the page */
+  --dark: var(--canvas);
+  --dark-surface: var(--surface);
+  --dark-text-soft: var(--ink-soft);
+  --dark-muted: var(--muted);
+  --dark-line: var(--line);
+  --dark-accent: var(--accent);
 
   /* error notice */
-  --error-bg: #fbf3ee;
-  --error-line: #e3c7b5;
-  --error-text: #6b2e0e;
+  --error-bg: oklch(0.24 0.06 35);
+  --error-line: oklch(0.42 0.1 35);
+  --error-text: oklch(0.88 0.07 45);
 
-  /* type */
-  --font-display: 'Newsreader Variable', Georgia, serif;
-  --font-body: 'IBM Plex Sans Variable', system-ui, sans-serif;
-  --font-mono: ui-monospace, 'SFMono-Regular', Menlo, monospace;
+  /* type: serif headings, sans body, mono labels */
+  --font-display: 'Instrument Serif', 'Iowan Old Style', 'Times New Roman', serif;
+  --font-body: 'Geist Variable', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'Geist Mono Variable', ui-monospace, 'SFMono-Regular', Menlo, monospace;
 
-  --text-h1: clamp(2.25rem, 1.6rem + 2.667vw, 4rem); /* 36 → 64 */
-  --text-h2: clamp(1.875rem, 1.55rem + 1.333vw, 2.75rem); /* 30 → 44 */
-  --text-body: clamp(1.0625rem, 1.039rem + 0.095vw, 1.125rem); /* 17 → 18 */
-  --text-caption: clamp(0.875rem, 0.852rem + 0.095vw, 0.9375rem); /* 14 → 15 */
-  --text-small: 0.8125rem; /* 13: labels */
+  --text-display: clamp(2.75rem, 8.4vw, 6.5rem); /* 44 → 104: the homepage H1 */
+  --text-h1: clamp(2.5rem, 1.8rem + 2.9vw, 4.5rem); /* 40 → 72: page titles */
+  --text-h2: clamp(2.25rem, 5vw, 3.75rem); /* 36 → 60 */
+  --text-h3: clamp(1.5rem, 1.3rem + 0.75vw, 1.875rem); /* 24 → 30 */
+  --text-lead: clamp(1.0625rem, 1rem + 0.3vw, 1.1875rem); /* 17 → 19 */
+  --text-body: 1rem;
+  --text-caption: 0.9375rem; /* 15 */
+  --text-small: 0.875rem; /* 14 */
 
-  /* shape */
-  --radius-sm: 4px;
-  --radius: 6px;
+  /* shape: controls are pills, panels are softly rounded */
+  --radius-sm: 6px;
+  --radius: 14px;
+  --radius-lg: 18px;
   --radius-pill: 999px;
 
   /* layout */
-  --content-max: 1200px;
-  --gutter: clamp(1.25rem, 0.971rem + 1.143vw, 2rem); /* 20 → 32 */
+  --content-max: 1120px;
+  --gutter: clamp(20px, 5vw, 56px);
+  --section: 56px; /* top and bottom of every section */
   --tap: 44px;
 
-  /* motion: colour fades only, removed under reduced motion */
-  --fade: 180ms ease;
+  /* motion */
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+  --dur-press: 160ms;
+  --dur-ui: 220ms;
+  --dur-enter: 700ms;
+  --fade: 180ms ease; /* colour changes on hover */
 }

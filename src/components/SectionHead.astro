@@ -1,0 +1,48 @@
+---
+/*
+ * The opening of a home-page section: a mono request line ("GET /projects"),
+ * the serif heading and an optional sentence under it.
+ */
+interface Props {
+  id: string;
+  kicker: string;
+  title: string;
+  sub?: string;
+}
+
+const { id, kicker, title, sub } = Astro.props;
+---
+
+<div class="head">
+  <p class="kicker">{kicker}</p>
+  <h2 id={id}>{title}</h2>
+  {sub && <p class="sub">{sub}</p>}
+</div>
+
+<style>
+  .head {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 36px;
+  }
+
+  .kicker {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 1.3;
+    color: var(--accent-label);
+  }
+
+  h2 {
+    font-size: var(--text-h2);
+    line-height: 1.05;
+    letter-spacing: 0;
+  }
+
+  .sub {
+    font-size: 16px;
+    color: var(--muted);
+  }
+</style>

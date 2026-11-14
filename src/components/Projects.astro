@@ -1,0 +1,256 @@
+---
+import { site } from '../data/site';
+import Icon from './Icon.astro';
+import SectionHead from './SectionHead.astro';
+---
+
+<section id="work" class="projects" aria-labelledby="work-title">
+  <div class="container">
+    <SectionHead
+      id="work-title"
+      kicker="GET /projects"
+      title="Three systems, three kinds of involvement."
+      sub="Each project is labelled with how I was involved. Pick one."
+    />
+    <div class="split">
+      <div class="list" role="tablist" aria-labelledby="work-title" aria-orientation="vertical" data-project-tabs>
+        {
+          site.projects.map((project, i) => (
+            <button
+              type="button"
+              role="tab"
+              id={`project-tab-${i}`}
+              aria-controls={`project-panel-${i}`}
+              aria-selected={i === 0 ? 'true' : 'false'}
+              tabindex={i === 0 ? 0 : -1}
+            >
+              <span class="num">{String(i + 1).padStart(2, '0')}</span>
+              <span class="what">
+                <span class="name">{project.name}</span>
+                <span class="kind">{project.kind}</span>
+              </span>
+            </button>
+          ))
+        }
+      </div>
+
+      <div class="stage" data-spot>
+        <span class="bracket top" aria-hidden="true"></span>
+        <span class="bracket bottom" aria-hidden="true"></span>
+        {
+          site.projects.map((project, i) => (
+            <div
+              class:list={['panel', { 'is-active': i === 0 }]}
+              role="tabpanel"
+              id={`project-panel-${i}`}
+              aria-labelledby={`project-tab-${i}`}
+            >
+              <h3>{project.headline}</h3>
+              <p class="body">{project.body}</p>
+              {project.note && (
+                <p class="note">
+                  <span>{project.note.label}</span> {project.note.text}
+                </p>
+              )}
+              <p class="links">
+                {project.links.map((link) => (
+                  <a href={link.href}>
+                    {link.label} <Icon name={link.external ? 'arrow-up-right' : 'arrow-right'} />
+                  </a>
+                ))}
+              </p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  import { initTabs } from '../scripts/tabs';
+
+  const list = document.querySelector<HTMLElement>('[data-project-tabs]');
+  if (list) initTabs(list);
+
+  // the stage's glow follows the cursor
+  const stage = document.querySelector<HTMLElement>('[data-spot]');
+  stage?.addEventListener('pointermove', (event) => {
+    const r = stage.getBoundingClientRect();
+    stage.style.setProperty('--mx', `${event.clientX - r.left}px`);
+    stage.style.setProperty('--my', `${event.clientY - r.top}px`);
+  });
+</script>
+
+<style>
+  .projects {
+    padding-block: var(--section);
+    scroll-margin-top: 60px;
+  }
+
+  .split {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+    gap: 20px;
+  }
+
+  .list {
+    display: flex;
+    flex: 1 1 260px;
+    flex-direction: column;
+    gap: 10px;
+    min-width: 0;
+  }
+
+  [role='tab'] {
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+    padding: 18px 20px;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: rgb(255 255 255 / 0.03);
+    color: var(--ink);
+    text-align: left;
+    cursor: pointer;
+    transition:
+      border-color var(--fade),
+      background-color var(--fade);
+  }
+
+  [role='tab']:hover {
+    border-color: oklch(0.6 0.2 var(--h) / 0.6);
+  }
+
+  [role='tab'][aria-selected='true'] {
+    border-color: oklch(0.7 0.2 var(--h) / 0.7);
+    background: linear-gradient(90deg, oklch(0.45 0.22 var(--h) / 0.5), oklch(0.45 0.22 var(--h) / 0.08));
+  }
+
+  .num {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--muted);
+  }
+
+  .what {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .name {
+    font-family: var(--font-display);
+    font-size: 26px;
+    line-height: 1;
+  }
+
+  .kind {
+    font-size: 12px;
+    line-height: 1.4;
+    color: var(--muted-2);
+  }
+
+  .stage {
+    position: relative;
+    display: flex;
+    flex: 2.2 1 420px;
+    flex-direction: column;
+    justify-content: center;
+    gap: 32px;
+    min-width: 0;
+    padding: clamp(24px, 4vw, 40px);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-sm);
+    background:
+      radial-gradient(520px circle at var(--mx, 70%) var(--my, 0%), oklch(0.5 0.22 var(--h) / 0.28), transparent 60%),
+      var(--surface);
+  }
+
+  .bracket {
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    border: 0 solid oklch(0.8 0.16 var(--h));
+  }
+
+  .bracket.top {
+    top: -1px;
+    left: -1px;
+    border-top-width: 2px;
+    border-left-width: 2px;
+  }
+
+  .bracket.bottom {
+    right: -1px;
+    bottom: -1px;
+    border-right-width: 2px;
+    border-bottom-width: 2px;
+  }
+
+  .panel {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    animation: wordin 0.45s ease both;
+  }
+
+  /* with the script, one panel at a time; without it, all three stack */
+  :global(.js) .panel:not(.is-active) {
+    display: none;
+  }
+
+  h3 {
+    font-size: clamp(24px, 3vw, 32px);
+    line-height: 1.2;
+    letter-spacing: 0;
+    text-wrap: pretty;
+  }
+
+  .body {
+    font-size: 15px;
+    line-height: 1.65;
+    color: var(--muted-2);
+  }
+
+  .note {
+    font-size: 14px;
+    line-height: 1.65;
+    color: var(--muted-2);
+  }
+
+  .note span {
+    color: var(--ink);
+  }
+
+  .links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0 20px;
+    font-size: 14px;
+    font-weight: 500;
+  }
+
+  .links a {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    min-height: var(--tap);
+    text-decoration: none;
+  }
+
+  .links a + a {
+    color: #cfc8e2;
+  }
+
+  .links a:hover {
+    color: var(--white);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .panel {
+      animation: none;
+    }
+  }
+</style>

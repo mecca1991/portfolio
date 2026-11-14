@@ -1,0 +1,43 @@
+---
+/*
+ * Stroke icons, 24px grid, 1.75 stroke, drawn from Lucide (ISC licence).
+ * Decorative by default: the link or button around an icon carries the name.
+ */
+interface Props {
+  name: 'arrow-up-right' | 'arrow-right' | 'arrow-left' | 'copy' | 'check' | 'menu' | 'close' | 'file';
+  class?: string;
+}
+
+const { name, class: extra } = Astro.props;
+
+const paths: Record<Props['name'], string[]> = {
+  'arrow-up-right': ['M7 7h10v10', 'M7 17 17 7'],
+  'arrow-right': ['M5 12h14', 'm12 5 7 7-7 7'],
+  'arrow-left': ['M19 12H5', 'm12 19-7-7 7-7'],
+  copy: ['M8 8h12v12H8z', 'M4 16V4h12'],
+  check: ['M20 6 9 17l-5-5'],
+  menu: ['M4 7h16', 'M4 12h16', 'M4 17h16'],
+  close: ['M18 6 6 18', 'm6 6 12 12'],
+  file: ['M14 3H6v18h12V7z', 'M14 3v4h4', 'M9 13h6', 'M9 17h6'],
+};
+
+const direction: Partial<Record<Props['name'], string>> = {
+  'arrow-up-right': 'icon-up-right',
+  'arrow-right': 'icon-right',
+  'arrow-left': 'icon-left',
+};
+---
+
+<svg
+  class:list={['icon', direction[name], extra]}
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="1.75"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  aria-hidden="true"
+  focusable="false"
+>
+  {paths[name].map((d) => <path d={d} />)}
+</svg>

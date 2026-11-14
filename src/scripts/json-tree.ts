@@ -60,3 +60,31 @@ export function parseToRows(source: string, expanded: boolean): { rows: Row[]; e
     return { rows: [], error: e instanceof Error ? e.message : String(e) };
   }
 }
+
+/** The home-page demo's input. */
+export const DEMO_JSON = '{\n  "name": "Ada",\n  "tags": ["rust", "json"],\n  "active": true\n}';
+
+function treeLines(v: unknown, key: string | null, prefix: string, last: boolean, root: boolean): string[] {
+  const type = typeOf(v);
+  const label =
+    type === 'String' ? `String ${JSON.stringify(v)}` : type === 'Bool' || type === 'Number' ? `${type} ${v}` : type;
+  let out = [(root ? '' : prefix + (last ? '└ ' : '├ ')) + (key != null ? `${key}: ` : '') + label];
+  if (v && typeof v === 'object') {
+    const entries: [string | null, unknown][] = Array.isArray(v) ? v.map((x) => [null, x]) : Object.entries(v);
+    const next = root ? '' : prefix + (last ? '  ' : '│ ');
+    entries.forEach(([k, x], i) => {
+      out = out.concat(treeLines(x, k, next, i === entries.length - 1, false));
+    });
+  }
+  return out;
+}
+
+/** A drawn tree of typed values, or a ParseError with the parser's message. */
+export function toTree(source: string): { text: string; error: boolean } {
+  try {
+    return { text: treeLines(JSON.parse(source), null, '', true, true).join('\n'), error: false };
+  } catch (e) {
+    const message = (e instanceof Error ? e.message : String(e)).replace(/^JSON\.parse: /, '');
+    return { text: `ParseError\n└ ${message}`, error: true };
+  }
+}

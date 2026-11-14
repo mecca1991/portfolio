@@ -1,0 +1,211 @@
+---
+import { site } from '../data/site';
+import Icon from './Icon.astro';
+import SectionHead from './SectionHead.astro';
+import { layoutTimeline } from '../scripts/timeline';
+
+const roles = site.experience;
+const { bars, ticks } = layoutTimeline(roles, new Date());
+const spans = roles.map(({ start, end }) => ({ start, end }));
+---
+
+<section id="trace" class="experience" aria-labelledby="trace-title">
+  <div class="container">
+    <SectionHead id="trace-title" kicker="GET /career · trace view" title="Experience" />
+    <div class="card" data-timeline data-spans={JSON.stringify(spans)}>
+      <div class="axis" aria-hidden="true" data-axis>
+        {
+          ticks.map((tick) => (
+            <span style={tick.left === null ? 'right:0' : `left:${tick.left}%`}>{tick.label}</span>
+          ))
+        }
+      </div>
+      <ol>
+        {
+          roles.map((role, i) => (
+            <li class:list={{ current: role.end === null }}>
+              <div class="row">
+                <p class="who">
+                  <strong>{role.company}</strong>
+                  <span> · {role.role}</span>
+                </p>
+                <p class="dates">{role.dates}</p>
+              </div>
+              <div class="track" aria-hidden="true">
+                <span
+                  class="bar"
+                  data-bar
+                  style={`left:${bars[i].left}%;width:${bars[i].width}%;--i:${i}`}
+                />
+                {role.end === null && <span class="now" />}
+              </div>
+            </li>
+          ))
+        }
+      </ol>
+      <a class="cv" href={site.links.cv}>Full history in my CV (PDF) <Icon name="arrow-right" /></a>
+    </div>
+  </div>
+</section>
+
+<script>
+  import { layoutTimeline, type Span } from '../scripts/timeline';
+
+  // the page was built on some earlier day; place the bars against today
+  const card = document.querySelector<HTMLElement>('[data-timeline]');
+  if (card) {
+    const spans: Span[] = JSON.parse(card.dataset.spans ?? '[]');
+    const { bars, ticks } = layoutTimeline(spans, new Date());
+    card.querySelectorAll<HTMLElement>('[data-bar]').forEach((bar, i) => {
+      bar.style.left = `${bars[i].left}%`;
+      bar.style.width = `${bars[i].width}%`;
+    });
+    const axis = card.querySelector<HTMLElement>('[data-axis]');
+    if (axis) {
+      axis.replaceChildren(
+        ...ticks.map((tick) => {
+          const span = document.createElement('span');
+          span.textContent = tick.label;
+          if (tick.left === null) span.style.right = '0';
+          else span.style.left = `${tick.left}%`;
+          return span;
+        }),
+      );
+    }
+  }
+</script>
+
+<style>
+  .experience {
+    padding-block: var(--section);
+    scroll-margin-top: 60px;
+  }
+
+  .card {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+    padding: clamp(20px, 3vw, 32px);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    background: var(--surface);
+  }
+
+  .axis {
+    position: relative;
+    height: 16px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--line);
+    box-sizing: content-box;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    line-height: 16px;
+    color: var(--faint);
+  }
+
+  /* the script redraws the ticks, so they are styled from outside the scope */
+  .axis :global(span) {
+    position: absolute;
+  }
+
+  ol {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  li {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 6px 16px;
+  }
+
+  .who {
+    font-size: 15px;
+    line-height: 1.5;
+    color: var(--muted);
+  }
+
+  .who strong {
+    font-weight: 500;
+    color: var(--ink);
+  }
+
+  .dates {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--muted);
+  }
+
+  .current .who {
+    color: #cfc8e2;
+  }
+
+  .current .dates {
+    color: oklch(0.85 0.14 var(--h));
+  }
+
+  .track {
+    position: relative;
+    height: 10px;
+    border-radius: 5px;
+    background: rgb(255 255 255 / 0.04);
+  }
+
+  /* bars brighten toward the present: --i is the role's position in the list */
+  .bar {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    border-radius: 5px;
+    background: oklch(calc(0.5 + var(--i) * 0.05) calc(0.14 + var(--i) * 0.02) var(--h));
+    transform-origin: left;
+    animation: grow 1s ease both;
+    animation-delay: calc(var(--i) * 0.1s);
+  }
+
+  .current .bar {
+    background: linear-gradient(90deg, oklch(0.6 0.24 var(--h)), oklch(0.82 0.16 var(--h)));
+    box-shadow: 0 0 20px oklch(0.6 0.25 var(--h) / 0.8);
+  }
+
+  .now {
+    position: absolute;
+    top: -4px;
+    right: -4px;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: oklch(0.85 0.16 var(--h) / 0.5);
+    animation: pulse 1.6s ease-in-out infinite;
+  }
+
+  .cv {
+    display: inline-flex;
+    align-items: center;
+    align-self: flex-start;
+    gap: 6px;
+    min-height: var(--tap);
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .bar,
+    .now {
+      animation: none;
+    }
+  }
+</style>

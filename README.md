@@ -1,14 +1,14 @@
-![The wilfredchetat.com homepage: Wilfred Chetat, Senior Backend Engineer in Dubai, with a portrait and links to projects, CV, GitHub and LinkedIn.](.github/assets/banner-light.png#gh-light-mode-only)
-![The wilfredchetat.com homepage: Wilfred Chetat, Senior Backend Engineer in Dubai, with a portrait and links to projects, CV, GitHub and LinkedIn.](.github/assets/banner-dark.png#gh-dark-mode-only)
+![The wilfredchetat.com homepage: "Building reliable systems." above an introduction to Wilfred Chetat, Senior Software Engineer, and screens from Intrvuer on the web and iOS.](.github/assets/banner-light.png#gh-light-mode-only)
+![The wilfredchetat.com homepage: "Building reliable systems." above an introduction to Wilfred Chetat, Senior Software Engineer, and screens from Intrvuer on the web and iOS.](.github/assets/banner-dark.png#gh-dark-mode-only)
 
 # wilfredchetat.com
 
-Source for [www.wilfredchetat.com](https://www.wilfredchetat.com), the portfolio of Wilfred Chetat, a senior backend engineer in Dubai.
+Source for [www.wilfredchetat.com](https://www.wilfredchetat.com), the portfolio of Wilfred Chetat, a senior software engineer.
 
 [![Astro 7](https://img.shields.io/badge/Astro-7-BC52EE?logo=astro&logoColor=white)](https://astro.build)
 [![TypeScript](https://img.shields.io/badge/TypeScript-strict-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org)
 [![AWS Amplify](https://img.shields.io/badge/AWS_Amplify-hosting-FF9900?logo=awsamplify&logoColor=white)](https://aws.amazon.com/amplify/)
-[![Lighthouse](https://img.shields.io/badge/Lighthouse-99%2B_mobile-0CCE6B?logo=lighthouse&logoColor=white)](tasks/reports/README.md)
+[![Lighthouse](https://img.shields.io/badge/Lighthouse-100_mobile-0CCE6B?logo=lighthouse&logoColor=white)](tasks/reports/README.md)
 
 ## Run it
 

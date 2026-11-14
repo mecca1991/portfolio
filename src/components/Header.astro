@@ -1,5 +1,6 @@
 ---
 import { site } from '../data/site';
+import Icon from './Icon.astro';
 
 interface Props {
   current?: 'work' | 'experiments';
@@ -7,118 +8,201 @@ interface Props {
 }
 
 const { current, showCv = true } = Astro.props;
-
-const nav = [
-  { id: 'work', href: '/#work', label: 'Projects' },
-  { id: 'experiments', href: '/#experiments', label: 'Experiments' },
-  { id: 'about', href: '/#about', label: 'About' },
-  { id: 'contact', href: '#contact', label: 'Contact' },
-];
 ---
 
 <header class="site-header">
-  <div class="container bar">
-    <a class="logo" href="/">{site.name}</a>
-    <nav aria-label="Primary">
+  <div class="bar">
+    <a class="brand" href="/#top">
+      <span class="dot" aria-hidden="true"></span>
+      <span>{site.name}</span>
+    </a>
+    <nav class="nav-wide" aria-label="Primary">
       {
-        nav.map((item) => (
-          <a
-            class="navlink"
-            href={item.href}
-            aria-current={item.id === current ? 'true' : undefined}
-          >
+        site.nav.map((item) => (
+          <a href={item.href} aria-current={item.id === current ? 'true' : undefined}>
             {item.label}
           </a>
         ))
       }
     </nav>
-    {showCv && <a class="btn btn-outline cv" href={site.links.cv}>CV (PDF)</a>}
+    {showCv && <a class="cv" href={site.links.cv}>CV (PDF)</a>}
+    <button class="menu-button" type="button" data-menu-toggle aria-expanded="false" aria-controls="site-menu">
+      Menu
+    </button>
   </div>
+  <nav id="site-menu" class="sheet" aria-label="Primary">
+    {
+      site.nav.map((item) => (
+        <a href={item.href} aria-current={item.id === current ? 'true' : undefined}>
+          {item.label}
+        </a>
+      ))
+    }
+    {
+      showCv && (
+        <a class="sheet-cv" href={site.links.cv}>
+          CV (PDF) <Icon name="arrow-up-right" />
+        </a>
+      )
+    }
+  </nav>
 </header>
 
 <style>
   .site-header {
-    border-bottom: 1px solid var(--line);
+    position: sticky;
+    top: 0;
+    z-index: 30;
+    padding: 14px var(--gutter);
+    background: rgb(7 5 13 / 0.6);
+    border-bottom: 1px solid rgb(255 255 255 / 0.06);
+    -webkit-backdrop-filter: blur(14px);
+    backdrop-filter: blur(14px);
+  }
+
+  /* an open menu needs a firmer ground than the blur gives it */
+  .site-header:has(.sheet[data-open]) {
+    background: rgb(7 5 13 / 0.94);
   }
 
   .bar {
     display: flex;
-    flex-wrap: wrap;
     align-items: center;
-    gap: 4px;
-    padding-block: 14px;
+    justify-content: space-between;
+    gap: 16px;
+    max-width: var(--content-max);
+    min-height: 34px;
+    margin-inline: auto;
   }
 
-  .logo {
-    margin-right: auto;
-    padding: 8px 0;
-    font-family: var(--font-display);
-    font-size: 24px;
-    color: var(--ink);
+  a {
     text-decoration: none;
   }
 
-  nav {
+  /* links stay small on screen; ::after gives each one a 44px target */
+  .brand,
+  .nav-wide a,
+  .cv {
+    position: relative;
+  }
+
+  .brand::after,
+  .nav-wide a::after,
+  .cv::after {
+    content: '';
+    position: absolute;
+    inset: 50% -8px auto;
+    height: var(--tap);
+    transform: translateY(-50%);
+  }
+
+  .brand {
     display: flex;
-    flex-wrap: wrap;
     align-items: center;
-    gap: 4px;
-    font-size: 16px;
+    gap: 10px;
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--white);
   }
 
-  .navlink {
-    padding: 10px 12px;
-    color: var(--ink);
-    text-decoration: none;
-    text-underline-offset: 6px;
+  .dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: oklch(0.7 0.22 var(--h));
+    box-shadow: 0 0 14px var(--accent-glow);
   }
 
-  .navlink:hover,
-  .navlink[aria-current] {
-    color: var(--ink);
-    text-decoration: underline;
+  .nav-wide {
+    display: flex;
+    gap: 22px;
+    font-family: var(--font-mono);
+    font-size: 13px;
+  }
+
+  .nav-wide a {
+    color: var(--muted-2);
+  }
+
+  .nav-wide a:hover,
+  .nav-wide a[aria-current] {
+    color: var(--white);
   }
 
   .cv {
-    margin-left: 8px;
-    font-size: 16px;
+    padding: 8px 16px;
+    border: 1px solid var(--line-strong);
+    border-radius: var(--radius-pill);
+    background: rgb(255 255 255 / 0.05);
+    font-size: 13px;
+    line-height: 1.25;
+    color: var(--white);
   }
 
-  /* phone: logo and CV on one row, every nav link visible on the next */
-  @media (max-width: 47.99rem) {
-    .bar {
-      display: grid;
-      grid-template-columns: 1fr auto;
-      grid-template-areas:
-        'logo cv'
-        'nav nav';
-      column-gap: 12px;
-      row-gap: 0;
-      padding-block: 8px 4px;
-    }
+  .cv:hover {
+    background: oklch(0.5 0.22 var(--h));
+    border-color: transparent;
+    color: var(--white);
+  }
 
-    .logo {
-      grid-area: logo;
-      padding: 10px 0;
-      font-size: 22px;
-    }
+  .menu-button,
+  .sheet {
+    display: none;
+  }
 
+  @media (max-width: 760px) {
+    .nav-wide,
     .cv {
-      grid-area: cv;
-      margin-left: 0;
-      padding-inline: 12px;
+      display: none;
+    }
+
+    .bar {
+      min-height: var(--tap);
+    }
+
+    /* the button only works with the script, so it only shows with it */
+    :global(.js) .menu-button {
+      display: block;
+      min-height: var(--tap);
+      padding: 0 18px;
+      border: 1px solid var(--line-strong);
+      border-radius: var(--radius-pill);
+      background: rgb(255 255 255 / 0.05);
+      font-family: var(--font-mono);
+      font-size: 13px;
+      color: var(--white);
+      cursor: pointer;
+    }
+
+    .sheet {
+      display: flex;
+      flex-direction: column;
+      max-width: var(--content-max);
+      margin: 12px auto 0;
+      border-top: 1px solid var(--line);
+      font-family: var(--font-mono);
       font-size: 15px;
     }
 
-    nav {
-      grid-area: nav;
-      gap: 2px;
-      margin-left: -10px;
-      font-size: 15px;
+    /* without the script the list simply stays open under the bar */
+    :global(.js) .sheet:not([data-open]) {
+      display: none;
     }
 
-    .navlink {
-      padding: 11px 10px;
+    .sheet a {
+      padding: 15px 0;
+      border-bottom: 1px solid rgb(255 255 255 / 0.06);
+      color: var(--ink-soft);
+    }
+
+    .sheet a:hover,
+    .sheet a[aria-current],
+    .sheet .sheet-cv {
+      color: var(--white);
+    }
+
+    .sheet .sheet-cv {
+      border-bottom: 0;
     }
   }
 </style>

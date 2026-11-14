@@ -1,0 +1,681 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-11-14T00:00:00Z",
+  "title": "Design System: Wilfred Chetat",
+  "extensions": {
+    "colorMeta": {
+      "canvas": {
+        "role": "neutral",
+        "displayName": "Ground",
+        "tonalRamp": [
+          "oklch(15% 0.006 295)",
+          "oklch(25% 0.01 295)",
+          "oklch(35% 0.014 295)",
+          "oklch(48% 0.019 295)",
+          "oklch(60% 0.02 295)",
+          "oklch(72% 0.015 295)",
+          "oklch(85% 0.01 295)",
+          "oklch(95% 0.006 295)"
+        ]
+      },
+      "surface": {
+        "role": "neutral",
+        "displayName": "Panel",
+        "tonalRamp": [
+          "oklch(15% 0.007 295)",
+          "oklch(25% 0.013 295)",
+          "oklch(35% 0.018 295)",
+          "oklch(48% 0.024 295)",
+          "oklch(60% 0.025 295)",
+          "oklch(72% 0.019 295)",
+          "oklch(85% 0.013 295)",
+          "oklch(95% 0.007 295)"
+        ]
+      },
+      "surface-2": {
+        "role": "neutral",
+        "displayName": "Raised Panel",
+        "tonalRamp": [
+          "oklch(15% 0.012 295)",
+          "oklch(25% 0.02 295)",
+          "oklch(35% 0.029 295)",
+          "oklch(48% 0.038 295)",
+          "oklch(60% 0.04 295)",
+          "oklch(72% 0.03 295)",
+          "oklch(85% 0.02 295)",
+          "oklch(95% 0.012 295)"
+        ]
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Ink",
+        "tonalRamp": [
+          "oklch(15% 0.006 295)",
+          "oklch(25% 0.01 295)",
+          "oklch(35% 0.014 295)",
+          "oklch(48% 0.019 295)",
+          "oklch(60% 0.02 295)",
+          "oklch(72% 0.015 295)",
+          "oklch(85% 0.01 295)",
+          "oklch(95% 0.006 295)"
+        ]
+      },
+      "ink-soft": {
+        "role": "neutral",
+        "displayName": "Soft Ink",
+        "tonalRamp": [
+          "oklch(15% 0.007 295)",
+          "oklch(25% 0.013 295)",
+          "oklch(35% 0.018 295)",
+          "oklch(48% 0.024 295)",
+          "oklch(60% 0.025 295)",
+          "oklch(72% 0.019 295)",
+          "oklch(85% 0.013 295)",
+          "oklch(95% 0.007 295)"
+        ]
+      },
+      "muted": {
+        "role": "neutral",
+        "displayName": "Muted",
+        "tonalRamp": [
+          "oklch(15% 0.011 295)",
+          "oklch(25% 0.018 295)",
+          "oklch(35% 0.025 295)",
+          "oklch(48% 0.033 295)",
+          "oklch(60% 0.035 295)",
+          "oklch(72% 0.027 295)",
+          "oklch(85% 0.018 295)",
+          "oklch(95% 0.011 295)"
+        ]
+      },
+      "muted-2": {
+        "role": "neutral",
+        "displayName": "Muted Light",
+        "tonalRamp": [
+          "oklch(15% 0.011 295)",
+          "oklch(25% 0.018 295)",
+          "oklch(35% 0.025 295)",
+          "oklch(48% 0.033 295)",
+          "oklch(60% 0.035 295)",
+          "oklch(72% 0.027 295)",
+          "oklch(85% 0.018 295)",
+          "oklch(95% 0.011 295)"
+        ]
+      },
+      "faint": {
+        "role": "neutral",
+        "displayName": "Faint",
+        "tonalRamp": [
+          "oklch(15% 0.011 295)",
+          "oklch(25% 0.018 295)",
+          "oklch(35% 0.025 295)",
+          "oklch(48% 0.033 295)",
+          "oklch(60% 0.035 295)",
+          "oklch(72% 0.027 295)",
+          "oklch(85% 0.018 295)",
+          "oklch(95% 0.011 295)"
+        ]
+      },
+      "accent": {
+        "role": "primary",
+        "displayName": "Link Violet",
+        "canonical": "oklch(0.8 0.14 295)",
+        "tonalRamp": [
+          "oklch(15% 0.042 295)",
+          "oklch(25% 0.07 295)",
+          "oklch(35% 0.101 295)",
+          "oklch(48% 0.133 295)",
+          "oklch(60% 0.14 295)",
+          "oklch(72% 0.106 295)",
+          "oklch(85% 0.07 295)",
+          "oklch(95% 0.042 295)"
+        ]
+      },
+      "accent-hover": {
+        "role": "neutral",
+        "displayName": "White",
+        "tonalRamp": [
+          "oklch(15% 0.0 295)",
+          "oklch(25% 0.0 295)",
+          "oklch(35% 0.0 295)",
+          "oklch(48% 0.0 295)",
+          "oklch(60% 0 295)",
+          "oklch(72% 0.0 295)",
+          "oklch(85% 0.0 295)",
+          "oklch(95% 0.0 295)"
+        ]
+      },
+      "accent-pressed": {
+        "role": "primary",
+        "displayName": "Fill Violet Pressed",
+        "canonical": "oklch(0.46 0.24 295)",
+        "tonalRamp": [
+          "oklch(15% 0.072 295)",
+          "oklch(25% 0.12 295)",
+          "oklch(35% 0.173 295)",
+          "oklch(48% 0.228 295)",
+          "oklch(60% 0.24 295)",
+          "oklch(72% 0.182 295)",
+          "oklch(85% 0.12 295)",
+          "oklch(95% 0.072 295)"
+        ]
+      },
+      "accent-label": {
+        "role": "primary",
+        "displayName": "Label Violet",
+        "canonical": "oklch(0.8 0.15 295)",
+        "tonalRamp": [
+          "oklch(15% 0.045 295)",
+          "oklch(25% 0.075 295)",
+          "oklch(35% 0.108 295)",
+          "oklch(48% 0.142 295)",
+          "oklch(60% 0.15 295)",
+          "oklch(72% 0.114 295)",
+          "oklch(85% 0.075 295)",
+          "oklch(95% 0.045 295)"
+        ]
+      },
+      "accent-soft": {
+        "role": "primary",
+        "displayName": "Heading Italic Violet",
+        "canonical": "oklch(0.82 0.15 295)",
+        "tonalRamp": [
+          "oklch(15% 0.045 295)",
+          "oklch(25% 0.075 295)",
+          "oklch(35% 0.108 295)",
+          "oklch(48% 0.142 295)",
+          "oklch(60% 0.15 295)",
+          "oklch(72% 0.114 295)",
+          "oklch(85% 0.075 295)",
+          "oklch(95% 0.045 295)"
+        ]
+      },
+      "accent-fill": {
+        "role": "primary",
+        "displayName": "Fill Violet",
+        "canonical": "oklch(0.52 0.24 295)",
+        "tonalRamp": [
+          "oklch(15% 0.072 295)",
+          "oklch(25% 0.12 295)",
+          "oklch(35% 0.173 295)",
+          "oklch(48% 0.228 295)",
+          "oklch(60% 0.24 295)",
+          "oklch(72% 0.182 295)",
+          "oklch(85% 0.12 295)",
+          "oklch(95% 0.072 295)"
+        ]
+      },
+      "accent-fill-hover": {
+        "role": "primary",
+        "displayName": "Fill Violet Hover",
+        "canonical": "oklch(0.58 0.24 295)",
+        "tonalRamp": [
+          "oklch(15% 0.072 295)",
+          "oklch(25% 0.12 295)",
+          "oklch(35% 0.173 295)",
+          "oklch(48% 0.228 295)",
+          "oklch(60% 0.24 295)",
+          "oklch(72% 0.182 295)",
+          "oklch(85% 0.12 295)",
+          "oklch(95% 0.072 295)"
+        ]
+      },
+      "accent-glow": {
+        "role": "primary",
+        "displayName": "Glow Violet",
+        "canonical": "oklch(0.6 0.25 295)",
+        "tonalRamp": [
+          "oklch(15% 0.075 295)",
+          "oklch(25% 0.125 295)",
+          "oklch(35% 0.18 295)",
+          "oklch(48% 0.237 295)",
+          "oklch(60% 0.25 295)",
+          "oklch(72% 0.19 295)",
+          "oklch(85% 0.125 295)",
+          "oklch(95% 0.075 295)"
+        ]
+      },
+      "accent-line": {
+        "role": "primary",
+        "displayName": "Chip Edge Violet",
+        "canonical": "oklch(0.65 0.2 295 / 0.6)",
+        "tonalRamp": [
+          "oklch(15% 0.06 295)",
+          "oklch(25% 0.1 295)",
+          "oklch(35% 0.144 295)",
+          "oklch(48% 0.19 295)",
+          "oklch(60% 0.2 295)",
+          "oklch(72% 0.152 295)",
+          "oklch(85% 0.1 295)",
+          "oklch(95% 0.06 295)"
+        ]
+      },
+      "live": {
+        "role": "tertiary",
+        "displayName": "Live Dot Green",
+        "tonalRamp": [
+          "oklch(15% 0.038 160)",
+          "oklch(25% 0.064 160)",
+          "oklch(35% 0.091 160)",
+          "oklch(48% 0.121 160)",
+          "oklch(60% 0.127 160)",
+          "oklch(72% 0.097 160)",
+          "oklch(85% 0.064 160)",
+          "oklch(95% 0.038 160)"
+        ]
+      },
+      "line": {
+        "role": "neutral",
+        "displayName": "Hairline",
+        "tonalRamp": [
+          "oklch(15% 0.0 295)",
+          "oklch(25% 0.0 295)",
+          "oklch(35% 0.0 295)",
+          "oklch(48% 0.0 295)",
+          "oklch(60% 0 295)",
+          "oklch(72% 0.0 295)",
+          "oklch(85% 0.0 295)",
+          "oklch(95% 0.0 295)"
+        ]
+      },
+      "line-strong": {
+        "role": "neutral",
+        "displayName": "Strong Hairline",
+        "tonalRamp": [
+          "oklch(15% 0.0 295)",
+          "oklch(25% 0.0 295)",
+          "oklch(35% 0.0 295)",
+          "oklch(48% 0.0 295)",
+          "oklch(60% 0 295)",
+          "oklch(72% 0.0 295)",
+          "oklch(85% 0.0 295)",
+          "oklch(95% 0.0 295)"
+        ]
+      },
+      "attention": {
+        "role": "tertiary",
+        "displayName": "Attention Amber",
+        "canonical": "oklch(0.8 0.13 45)",
+        "tonalRamp": [
+          "oklch(15% 0.039 45)",
+          "oklch(25% 0.065 45)",
+          "oklch(35% 0.094 45)",
+          "oklch(48% 0.123 45)",
+          "oklch(60% 0.13 45)",
+          "oklch(72% 0.099 45)",
+          "oklch(85% 0.065 45)",
+          "oklch(95% 0.039 45)"
+        ]
+      },
+      "white": {
+        "role": "neutral",
+        "displayName": "White",
+        "tonalRamp": [
+          "oklch(15% 0.0 295)",
+          "oklch(25% 0.0 295)",
+          "oklch(35% 0.0 295)",
+          "oklch(48% 0.0 295)",
+          "oklch(60% 0 295)",
+          "oklch(72% 0.0 295)",
+          "oklch(85% 0.0 295)",
+          "oklch(95% 0.0 295)"
+        ]
+      },
+      "error-bg": {
+        "role": "tertiary",
+        "displayName": "Error Notice Tint",
+        "canonical": "oklch(0.24 0.06 35)",
+        "tonalRamp": [
+          "oklch(15% 0.018 35)",
+          "oklch(25% 0.03 35)",
+          "oklch(35% 0.043 35)",
+          "oklch(48% 0.057 35)",
+          "oklch(60% 0.06 35)",
+          "oklch(72% 0.046 35)",
+          "oklch(85% 0.03 35)",
+          "oklch(95% 0.018 35)"
+        ]
+      },
+      "error-line": {
+        "role": "tertiary",
+        "displayName": "Error Notice Edge",
+        "canonical": "oklch(0.42 0.1 35)",
+        "tonalRamp": [
+          "oklch(15% 0.03 35)",
+          "oklch(25% 0.05 35)",
+          "oklch(35% 0.072 35)",
+          "oklch(48% 0.095 35)",
+          "oklch(60% 0.1 35)",
+          "oklch(72% 0.076 35)",
+          "oklch(85% 0.05 35)",
+          "oklch(95% 0.03 35)"
+        ]
+      },
+      "error-text": {
+        "role": "tertiary",
+        "displayName": "Error Notice Text",
+        "canonical": "oklch(0.88 0.07 45)",
+        "tonalRamp": [
+          "oklch(15% 0.021 45)",
+          "oklch(25% 0.035 45)",
+          "oklch(35% 0.05 45)",
+          "oklch(48% 0.067 45)",
+          "oklch(60% 0.07 45)",
+          "oklch(72% 0.053 45)",
+          "oklch(85% 0.035 45)",
+          "oklch(95% 0.021 45)"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "the home page H1 only. Its second line is italic in Heading Italic Violet."
+      },
+      "headline-lg": {
+        "displayName": "Headline Large",
+        "purpose": "page titles on case studies, the Rust parser page and the 404 page."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "home page section headings and the next-project title. The contact close uses its own larger size, 40 to 76px fluid at 1.03."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "section headings inside case studies. Card and tab names on the home page use the serif at fixed sizes: 30px for experiment cards, 26px for project and skill-category names, 22px for writing titles."
+      },
+      "lead": {
+        "displayName": "Lead",
+        "purpose": "ledes and intros. The case-study subtitle uses the same size at 500 weight and 1.4."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "running text. Case-study text is capped at 720px."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "button text. Text links with an icon use 14px at 500."
+      },
+      "caption": {
+        "displayName": "Caption",
+        "purpose": "figcaptions, meta lines and timeline rows."
+      },
+      "small": {
+        "displayName": "Small",
+        "purpose": "card descriptions and notes. Fine print is 12px in Faint."
+      },
+      "chip": {
+        "displayName": "Chip",
+        "purpose": "the sentence-case involvement chip on detail pages."
+      },
+      "mono-label": {
+        "displayName": "Mono Label",
+        "purpose": "dates, list numbers and skill chips. Nav links use the same face at 13px, axis ticks at 11px, the email address at 13 to 15px."
+      },
+      "mono-caps": {
+        "displayName": "Mono Caps",
+        "purpose": "fact terms and field labels. Fact terms use 0.1em tracking."
+      },
+      "mono": {
+        "displayName": "Mono",
+        "purpose": "the home page JSON demo. Detail pages set code at 14px in the playground and 15px at 1.7 in the input and output panels."
+      }
+    },
+    "shadows": [
+      {
+        "name": "primary-button",
+        "value": "inset 0 0 0 1px oklch(0.7 0.2 var(--h) / 0.5), 0 10px 40px oklch(0.5 0.25 var(--h) / 0.5)",
+        "purpose": "an inner edge and a glow under the one filled action."
+      },
+      {
+        "name": "brand-dot",
+        "value": "0 0 14px var(--accent-glow)",
+        "purpose": "the 10px dot beside the name in the header."
+      },
+      {
+        "name": "skill-chip",
+        "value": "0 0 18px oklch(0.55 0.25 var(--h) / 0.35)",
+        "purpose": "each chip in the orbit and in the static list."
+      },
+      {
+        "name": "current-role-bar",
+        "value": "0 0 20px oklch(0.6 0.25 var(--h) / 0.8)",
+        "purpose": "only the timeline bar that runs to today."
+      },
+      {
+        "name": "email-capsule",
+        "value": "0 10px 50px oklch(0.5 0.25 var(--h) / 0.35)",
+        "purpose": "the contact close's address field."
+      },
+      {
+        "name": "horizon",
+        "value": "0 -24px 110px oklch(0.55 0.26 var(--h) / 0.7), 0 -4px 24px oklch(0.8 0.18 var(--h) / 0.6)",
+        "purpose": "the lit edge under the contact close."
+      },
+      {
+        "name": "heading-glow",
+        "value": "0 0 50px oklch(0.6 0.25 var(--h) / 0.7)",
+        "purpose": "the italic line of the H1."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease-out",
+        "value": "cubic-bezier(0.23, 1, 0.32, 1)",
+        "purpose": "Press feedback, icon nudges and entrances."
+      },
+      {
+        "name": "ease-in-out",
+        "value": "cubic-bezier(0.77, 0, 0.175, 1)",
+        "purpose": "Defined in tokens.css; no use found in the files read."
+      },
+      {
+        "name": "dur-press",
+        "value": "160ms",
+        "purpose": "Press feedback: scale(0.97) on buttons."
+      },
+      {
+        "name": "dur-ui",
+        "value": "220ms",
+        "purpose": "Icon nudges and the copy label cross-fade on detail pages."
+      },
+      {
+        "name": "dur-enter",
+        "value": "700ms",
+        "purpose": "Entrances: 16px rise with opacity, staggered 70ms by --i."
+      },
+      {
+        "name": "fade",
+        "value": "180ms ease",
+        "purpose": "Colour, background and border changes on hover."
+      },
+      {
+        "name": "orb",
+        "value": "90s linear infinite",
+        "purpose": "The skills orbit turning; orbr turns each chip the other way so it stays level."
+      },
+      {
+        "name": "pulse",
+        "value": "2.4s ease-in-out infinite",
+        "purpose": "Opacity between 0.45 and 1 on small dots; the current-role dot uses 1.6s."
+      },
+      {
+        "name": "wordin",
+        "value": "0.6s ease both",
+        "purpose": "The hero word entering from 0.25em below with a 6px blur; project panels use 0.45s."
+      },
+      {
+        "name": "grow",
+        "value": "1s ease both",
+        "purpose": "Timeline bars growing from the left, staggered by 0.1s."
+      },
+      {
+        "name": "hero-word-interval",
+        "value": "2400ms",
+        "purpose": "How often the italic word in the H1 changes."
+      },
+      {
+        "name": "reduced-motion",
+        "value": "opacity 400ms ease",
+        "purpose": "Under prefers-reduced-motion entrances keep only the fade; the canvas holds one frame and the orbit, rotating word, press scale and icon nudges stop."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "header-menu",
+        "value": "760px",
+        "note": "max-width: nav links and the CV pill give way to the Menu button"
+      },
+      {
+        "name": "detail-phone",
+        "value": "47.99rem",
+        "note": "max-width, detail pages only: type and padding step down"
+      },
+      {
+        "name": "detail-tablet",
+        "value": "63.99rem",
+        "note": "max-width, detail pages only: two-column splits collapse"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "The filled violet action, such as View projects.",
+      "html": "<div class=\"ds-ground\"><a class=\"ds-btn ds-btn-primary\" href=\"#\">View projects</a></div>",
+      "css": ".ds-ground { padding: 24px; background: var(--canvas, #07050d); } .ds-btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 44px; padding: 11px 22px; border: 0; border-radius: 999px; font-family: var(--font-body, 'Geist Variable', system-ui, sans-serif); font-size: 15px; font-weight: 500; line-height: 1.25; text-decoration: none; white-space: nowrap; cursor: pointer; transition: transform 160ms cubic-bezier(0.23, 1, 0.32, 1), background-color 180ms ease, border-color 180ms ease, color 180ms ease; } .ds-btn:active { transform: scale(0.97); } .ds-btn:focus-visible { outline: 2px solid var(--accent, oklch(0.8 0.14 295)); outline-offset: 3px; } .ds-btn-primary { background: var(--accent-fill, oklch(0.52 0.24 295)); color: #fff; box-shadow: inset 0 0 0 1px oklch(0.7 0.2 295 / 0.5), 0 10px 40px oklch(0.5 0.25 295 / 0.5); } .ds-btn-primary:hover { background: var(--accent-fill-hover, oklch(0.58 0.24 295)); } .ds-btn-primary:active { background: var(--accent-pressed, oklch(0.46 0.24 295)); }"
+    },
+    {
+      "name": "Secondary Button",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "A translucent pill with a hairline edge for the second action.",
+      "html": "<div class=\"ds-ground\"><a class=\"ds-btn-secondary\" href=\"#\">GitHub <svg class=\"ds-icon\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M7 7h10v10\"/><path d=\"M7 17 17 7\"/></svg></a></div>",
+      "css": ".ds-ground { padding: 24px; background: var(--canvas, #07050d); } .ds-btn-secondary { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 11px 22px; border: 1px solid var(--line-strong, rgb(255 255 255 / 0.16)); border-radius: 999px; background: rgb(255 255 255 / 0.05); color: #fff; font-family: var(--font-body, 'Geist Variable', system-ui, sans-serif); font-size: 15px; font-weight: 500; line-height: 1.25; text-decoration: none; transition: transform 160ms cubic-bezier(0.23, 1, 0.32, 1), background-color 180ms ease, border-color 180ms ease; } .ds-btn-secondary:hover { background: rgb(255 255 255 / 0.1); border-color: oklch(0.7 0.18 295); } .ds-btn-secondary:active { transform: scale(0.97); } .ds-btn-secondary:focus-visible { outline: 2px solid var(--accent, oklch(0.8 0.14 295)); outline-offset: 3px; } .ds-icon { width: 1em; height: 1em; transition: transform 220ms cubic-bezier(0.23, 1, 0.32, 1); } .ds-btn-secondary:hover .ds-icon { transform: translate(2px, -2px); }"
+    },
+    {
+      "name": "Navigation",
+      "kind": "nav",
+      "refersTo": "nav-link",
+      "description": "Sticky blurred bar: name with a glowing dot, mono links, CV pill.",
+      "html": "<nav class=\"ds-nav\"><a class=\"ds-brand\" href=\"#\"><span class=\"ds-dot\"></span>Wilfred Chetat</a><span class=\"ds-navlinks\"><a href=\"#\" aria-current=\"true\">/projects</a><a href=\"#\">/stack</a><a href=\"#\">/career</a></span><a class=\"ds-cv\" href=\"#\">CV (PDF)</a></nav>",
+      "css": ".ds-nav { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 14px 20px; background: rgb(7 5 13 / 0.6); border-bottom: 1px solid rgb(255 255 255 / 0.06); backdrop-filter: blur(14px); } .ds-nav a { text-decoration: none; } .ds-nav a:focus-visible { outline: 2px solid var(--accent, oklch(0.8 0.14 295)); outline-offset: 3px; } .ds-brand { display: flex; align-items: center; gap: 10px; font-family: var(--font-body, 'Geist Variable', system-ui, sans-serif); font-size: 15px; font-weight: 500; color: #fff; } .ds-dot { width: 10px; height: 10px; border-radius: 50%; background: oklch(0.7 0.22 295); box-shadow: 0 0 14px var(--accent-glow, oklch(0.6 0.25 295)); } .ds-navlinks { display: flex; gap: 22px; font-family: var(--font-mono, 'Geist Mono Variable', ui-monospace, monospace); font-size: 13px; } .ds-navlinks a { color: var(--muted-2, #b9b2cc); transition: color 180ms ease; } .ds-navlinks a:hover, .ds-navlinks a[aria-current] { color: #fff; } .ds-cv { padding: 8px 16px; border: 1px solid var(--line-strong, rgb(255 255 255 / 0.16)); border-radius: 999px; background: rgb(255 255 255 / 0.05); font-family: var(--font-body, 'Geist Variable', system-ui, sans-serif); font-size: 13px; line-height: 1.25; color: #fff; transition: background-color 180ms ease, border-color 180ms ease; } .ds-cv:hover { background: oklch(0.5 0.22 295); border-color: transparent; }"
+    },
+    {
+      "name": "Chips",
+      "kind": "chip",
+      "refersTo": "chip",
+      "description": "The involvement chip, its warm illustrative variant, and the mono skill chip.",
+      "html": "<div class=\"ds-ground\"><span class=\"ds-chip\">Personal product</span> <span class=\"ds-chip ds-chip-illustrative\">Illustrative reconstruction</span> <span class=\"ds-skill\">PostgreSQL</span></div>",
+      "css": ".ds-ground { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; padding: 24px; background: var(--canvas, #07050d); } .ds-chip { display: inline-flex; align-items: center; padding: 3px 10px; border-radius: 999px; background: var(--surface-2, #17122a); color: var(--ink, #ece8f5); font-family: var(--font-body, 'Geist Variable', system-ui, sans-serif); font-size: 13px; font-weight: 600; line-height: 1.5; white-space: nowrap; } .ds-chip-illustrative { background: oklch(0.3 0.06 70); color: oklch(0.9 0.08 80); } .ds-skill { padding: 7px 13px; border: 1px solid var(--accent-line, oklch(0.65 0.2 295 / 0.6)); border-radius: 999px; background: #120d1f; box-shadow: 0 0 18px oklch(0.55 0.25 295 / 0.35); font-family: var(--font-mono, 'Geist Mono Variable', ui-monospace, monospace); font-size: 12px; line-height: 1.25; color: var(--ink, #ece8f5); }"
+    },
+    {
+      "name": "Category Tabs",
+      "kind": "custom",
+      "refersTo": "category-tab",
+      "description": "Hairline pills that switch the skills orbit; the selected one fills violet.",
+      "html": "<div class=\"ds-ground\" role=\"tablist\"><button class=\"ds-cat\" role=\"tab\" aria-selected=\"true\">Backend and integration</button><button class=\"ds-cat\" role=\"tab\" aria-selected=\"false\">Applied AI</button><button class=\"ds-cat\" role=\"tab\" aria-selected=\"false\">Data and analytics</button></div>",
+      "css": ".ds-ground { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; padding: 24px; background: var(--canvas, #07050d); } .ds-cat { min-height: 44px; padding: 10px 16px; border: 1px solid rgb(255 255 255 / 0.14); border-radius: 999px; background: transparent; font-family: var(--font-body, 'Geist Variable', system-ui, sans-serif); font-size: 14px; color: var(--ink, #ece8f5); cursor: pointer; transition: border-color 180ms ease, background-color 180ms ease; } .ds-cat:hover { border-color: oklch(0.7 0.18 295); } .ds-cat[aria-selected='true'] { border-color: transparent; background: oklch(0.5 0.24 295); color: #fff; } .ds-cat:focus-visible { outline: 2px solid var(--accent, oklch(0.8 0.14 295)); outline-offset: 3px; }"
+    },
+    {
+      "name": "Project Tabs and Stage",
+      "kind": "custom",
+      "refersTo": "project-tab",
+      "description": "A vertical tab list beside a stage with corner brackets and a violet glow.",
+      "html": "<div class=\"ds-split\"><div class=\"ds-list\" role=\"tablist\"><button class=\"ds-ptab\" role=\"tab\" aria-selected=\"true\"><span class=\"ds-num\">01</span><span><span class=\"ds-pname\">Intrvuer</span><span class=\"ds-kind\">Personal product · Live</span></span></button><button class=\"ds-ptab\" role=\"tab\" aria-selected=\"false\"><span class=\"ds-num\">02</span><span><span class=\"ds-pname\">Sysconnector</span><span class=\"ds-kind\">Client project</span></span></button></div><div class=\"ds-stage\"><span class=\"ds-br ds-br-top\"></span><span class=\"ds-br ds-br-bottom\"></span><h3>A voice interview coach that ties practice to the role you’re preparing for.</h3><p>Candidates add a résumé and target job, answer questions out loud, and get feedback on each answer.</p></div></div>",
+      "css": ".ds-split { display: flex; flex-wrap: wrap; align-items: stretch; gap: 20px; padding: 24px; background: var(--canvas, #07050d); } .ds-list { display: flex; flex: 1 1 220px; flex-direction: column; gap: 10px; } .ds-ptab { display: flex; align-items: baseline; gap: 16px; padding: 18px 20px; border: 1px solid var(--line, rgb(255 255 255 / 0.08)); border-radius: 14px; background: rgb(255 255 255 / 0.03); color: var(--ink, #ece8f5); text-align: left; cursor: pointer; transition: border-color 180ms ease, background-color 180ms ease; } .ds-ptab:hover { border-color: oklch(0.6 0.2 295 / 0.6); } .ds-ptab[aria-selected='true'] { border-color: oklch(0.7 0.2 295 / 0.7); background: linear-gradient(90deg, oklch(0.45 0.22 295 / 0.5), oklch(0.45 0.22 295 / 0.08)); } .ds-ptab:focus-visible { outline: 2px solid var(--accent, oklch(0.8 0.14 295)); outline-offset: 3px; } .ds-num { font-family: var(--font-mono, 'Geist Mono Variable', ui-monospace, monospace); font-size: 12px; color: var(--muted, #a59fb8); } .ds-pname { display: block; font-family: var(--font-display, 'Instrument Serif', serif); font-weight: 400; font-size: 26px; line-height: 1; } .ds-kind { display: block; margin-top: 4px; font-family: var(--font-body, 'Geist Variable', system-ui, sans-serif); font-size: 12px; line-height: 1.4; color: var(--muted-2, #b9b2cc); } .ds-stage { position: relative; flex: 2.2 1 300px; padding: 32px; border: 1px solid var(--line, rgb(255 255 255 / 0.08)); border-radius: 6px; background: radial-gradient(520px circle at 70% 0%, oklch(0.5 0.22 295 / 0.28), transparent 60%), var(--surface, #0c0916); } .ds-stage h3 { margin: 0; font-family: var(--font-display, 'Instrument Serif', serif); font-weight: 400; font-size: 28px; line-height: 1.2; color: var(--ink, #ece8f5); } .ds-stage p { margin: 16px 0 0; font-family: var(--font-body, 'Geist Variable', system-ui, sans-serif); font-size: 15px; line-height: 1.65; color: var(--muted-2, #b9b2cc); } .ds-br { position: absolute; width: 18px; height: 18px; border: 0 solid oklch(0.8 0.16 295); } .ds-br-top { top: -1px; left: -1px; border-top-width: 2px; border-left-width: 2px; } .ds-br-bottom { right: -1px; bottom: -1px; border-right-width: 2px; border-bottom-width: 2px; }"
+    },
+    {
+      "name": "Timeline Row",
+      "kind": "custom",
+      "refersTo": "card",
+      "description": "A role on the experience card: name, mono dates and a bar that glows for the current role.",
+      "html": "<div class=\"ds-ground\"><div class=\"ds-card\"><div class=\"ds-row\"><p class=\"ds-who\"><strong>UXE Security Solutions</strong> · Senior Backend Engineer</p><p class=\"ds-dates\">Sep 2024 to now</p></div><div class=\"ds-track\"><span class=\"ds-bar\"></span></div></div></div>",
+      "css": ".ds-ground { padding: 24px; background: var(--canvas, #07050d); } .ds-card { display: flex; flex-direction: column; gap: 8px; padding: 28px; border: 1px solid var(--line, rgb(255 255 255 / 0.08)); border-radius: 18px; background: var(--surface, #0c0916); } .ds-row { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 6px 16px; } .ds-who { margin: 0; font-family: var(--font-body, 'Geist Variable', system-ui, sans-serif); font-size: 15px; line-height: 1.5; color: var(--muted, #a59fb8); } .ds-who strong { font-weight: 500; color: var(--ink, #ece8f5); } .ds-dates { margin: 0; font-family: var(--font-mono, 'Geist Mono Variable', ui-monospace, monospace); font-size: 12px; color: oklch(0.85 0.14 295); } .ds-track { position: relative; height: 10px; border-radius: 5px; background: rgb(255 255 255 / 0.04); } .ds-bar { position: absolute; top: 0; bottom: 0; left: 70%; right: 0; border-radius: 5px; background: linear-gradient(90deg, oklch(0.6 0.24 295), oklch(0.82 0.16 295)); box-shadow: 0 0 20px oklch(0.6 0.25 295 / 0.8); }"
+    },
+    {
+      "name": "Email Capsule",
+      "kind": "custom",
+      "refersTo": "email-capsule",
+      "description": "The contact close's address in mono beside a filled Copy pill.",
+      "html": "<div class=\"ds-ground\"><div class=\"ds-mail\"><a class=\"ds-address\" href=\"#\">name@example.com</a><button class=\"ds-copy\" type=\"button\">Copy</button></div></div>",
+      "css": ".ds-ground { display: flex; justify-content: center; padding: 32px 24px; background: var(--canvas, #07050d); } .ds-mail { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 6px; padding: 6px; border: 1px solid oklch(0.6 0.2 295 / 0.5); border-radius: 28px; background: rgb(7 5 13 / 0.7); box-shadow: 0 10px 50px oklch(0.5 0.25 295 / 0.35); } .ds-address { display: inline-flex; align-items: center; min-height: 44px; padding: 10px 18px; font-family: var(--font-mono, 'Geist Mono Variable', ui-monospace, monospace); font-size: 15px; color: #fff; text-decoration: none; } .ds-address:focus-visible, .ds-copy:focus-visible { outline: 2px solid var(--accent, oklch(0.8 0.14 295)); outline-offset: 3px; } .ds-copy { min-width: 92px; min-height: 44px; padding: 10px 20px; border: 0; border-radius: 999px; background: var(--accent-fill, oklch(0.52 0.24 295)); font-family: var(--font-body, 'Geist Variable', system-ui, sans-serif); font-size: 14px; font-weight: 500; color: #fff; cursor: pointer; transition: background-color 180ms ease; } .ds-copy:hover { background: var(--accent-fill-hover, oklch(0.58 0.24 295)); }"
+    }
+  ],
+  "narrative": {
+    "northStar": "One Hue on a Dark Ground",
+    "overview": "The site sits on one near-black violet ground. Panels take one tone step up from it, and every accent colour is the same hue at a different lightness and chroma, written as `oklch(L C var(--h))` with `--h: 295`. Changing that one variable re-tints the links, buttons, glows, timeline bars and the hero canvas together. Headings are set in Instrument Serif, body text in Geist, and nav links, labels, dates and code in Geist Mono.\n\nThe home page is a single column of sections with 56px of padding above and below each. It opens with a centred hero over a drawn canvas (stars, a planet and a tilted ring of particles), then a facts strip that rides 60px up over the foot of the hero, then project tabs, a skills orbit, an experience timeline, experiments and writing, and a centred contact close above a glowing horizon. The case studies, the Rust parser page and the 404 page keep their earlier layout (two-column intro, sticky index, tinted panels) in the new colours and fonts.\n\nMotion is part of the home page: the canvas drifts and leans toward the cursor, the skill chips turn on a 90s orbit, the italic word in the H1 changes every 2.4s, and the timeline bars grow in over 1s. Under `prefers-reduced-motion` the canvas holds one still frame, the orbit stops and the hero word stays on its first value.",
+    "keyCharacteristics": [
+      "One dark ground, one panel step, one accent hue held in `--h`.",
+      "Instrument Serif headings at weight 400, with italic for emphasis and never a bold.",
+      "Geist for body text; Geist Mono for nav, labels, dates and code.",
+      "Controls are pills at least 44px tall; cards use 18px corners and a 1px white hairline at 8% opacity.",
+      "Light comes from glows in the accent hue. There are no neutral drop shadows.",
+      "Every interactive piece degrades to plain HTML without JavaScript."
+    ],
+    "rules": [
+      {
+        "name": "The One Hue Rule",
+        "body": "Every accent colour is `oklch(L C var(--h))`. A new accent shade changes lightness and chroma only, never the hue. The canvas reads `--h` too and subtracts 27 to get the matching hsl hue.",
+        "section": "colors"
+      },
+      {
+        "name": "The Word-With-Colour Rule",
+        "body": "Status colour never stands alone. The accent, Attention Amber and the Live dot always sit beside the word they qualify.",
+        "section": "colors"
+      },
+      {
+        "name": "The Contrast Floor Rule",
+        "body": "Measured in the browser: Muted is 8.0:1 on Ground and 7.7:1 on Panel, Faint is 5.9:1 on Panel, white is 6.2:1 on Fill Violet and 4.8:1 on Fill Violet Hover, and links are 10:1 on Panel. A new text colour or fill is measured before it ships and has to meet WCAG AA.",
+        "section": "colors"
+      },
+      {
+        "name": "The One Weight Rule",
+        "body": "Instrument Serif ships at 400 only and `font-synthesis-weight: none` is set, so a heading is never bold. Emphasis inside a heading is italic in the accent.",
+        "section": "typography"
+      },
+      {
+        "name": "The Mono Label Rule",
+        "body": "Geist Mono is for short functional strings: nav links, dates, numbers, tool names, field labels, the email address and code. Sentences are set in Geist.",
+        "section": "typography"
+      },
+      {
+        "name": "The Small Caps Rule",
+        "body": "Uppercase appears only in mono labels of 11 to 12px with 0.08em to 0.1em tracking. Headings, buttons and body text stay in sentence case.",
+        "section": "typography"
+      },
+      {
+        "name": "The Glow-Only Rule",
+        "body": "A shadow is light in the accent hue, placed on something the page wants noticed: the primary action, the current role, the email address, the skill chips. Nothing gets a grey or black drop shadow.",
+        "section": "elevation"
+      },
+      {
+        "name": "The Hairline Rule",
+        "body": "On the home page a card is a Panel fill with a 1px Hairline edge. On detail pages panels have no edge, and a drawn line appears only between rows of a real table or inside a reconstructed interface that draws its own UI.",
+        "section": "shapes"
+      }
+    ],
+    "dos": [
+      "**Do** write every accent shade as `oklch(L C var(--h))` so one variable re-tints the site.",
+      "**Do** set headings in Instrument Serif at 400 and use italic in the accent for emphasis.",
+      "**Do** use Geist Mono for nav links, dates, numbers, tool names, field labels and code, and Geist for sentences.",
+      "**Do** make every control a pill at least 44px tall, with a 2px accent focus outline offset 3px.",
+      "**Do** build home page cards from the Panel fill, a 1px Hairline edge and 18px corners.",
+      "**Do** keep text at or above the measured floors: Muted at 7.7:1 on Panel, Faint at 5.9:1 on Panel, white on fills at 4.8:1 or more.",
+      "**Do** pair every status colour with its word.",
+      "**Do** label anything not captured from a real screen with the warm illustrative chip.",
+      "**Do** give every scripted piece a plain HTML form, and stop the canvas, the orbit and the rotating word under `prefers-reduced-motion`."
+    ],
+    "donts": [
+      "**Don't** introduce a second accent hue. Live Dot Green and Attention Amber are status colours, not accents.",
+      "**Don't** bold a serif heading or let the browser synthesise a bold.",
+      "**Don't** use a grey or black drop shadow. Shadows are glows in the accent hue.",
+      "**Don't** set uppercase outside 11 to 12px mono labels.",
+      "**Don't** draw the skills orbit when any category would collide; show the chip list.",
+      "**Don't** add lines to detail-page panels outside real tables and reconstructed interfaces.",
+      "**Don't** use the Live green for text."
+    ]
+  }
+}
