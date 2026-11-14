@@ -61,10 +61,11 @@ const { label, title, href, backLabel = 'Back to projects', backHref = '/#work' 
   }
 
   .title {
+    font-family: var(--font-display);
     font-size: var(--text-h2);
-    font-weight: 650;
-    line-height: 1.02;
-    letter-spacing: -0.035em;
+    font-weight: 400;
+    line-height: 1.05;
+    letter-spacing: -0.015em;
   }
 
   .label {
@@ -79,7 +80,7 @@ const { label, title, href, backLabel = 'Back to projects', backHref = '/#work' 
     width: clamp(3rem, 2.4rem + 2.4vw, 4.5rem);
     height: clamp(3rem, 2.4rem + 2.4vw, 4.5rem);
     border-radius: 50%;
-    background: var(--ink);
+    background: var(--accent-fill);
     color: var(--white);
     font-size: clamp(1.25rem, 1rem + 1vw, 1.75rem);
   }

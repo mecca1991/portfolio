@@ -1,63 +1,76 @@
 /*
- * Design tokens: a light, product-grade portfolio (direction chosen 2026-10-31).
- * One ground, one ink, one green accent; dark bands for code and the close.
- * Fluid sizes interpolate between a 390px phone and a 1440px desktop.
+ * Design tokens: a dark, single-hue portfolio (revamp v2, 2026-11-14).
+ * One ground, one panel step, one accent hue. Every accent colour is
+ * oklch(L C var(--h)), so changing --h re-tints the whole site.
  */
 :root {
+  /* the one hue */
+  --h: 295;
+
   /* colour */
-  --canvas: #ffffff;
-  --surface: #f4f5f7; /* one tone step: panels behind screenshots and code */
-  --surface-2: #eaedf1; /* the step below: pressed and hovered panels */
-  --ink: #0c1014; /* 19:1 on canvas */
-  --muted: #4f5966; /* 7.1:1 on canvas, 6.5:1 on surface */
-  --accent: #087050; /* 6.1:1 on canvas: primary action and links only */
-  --accent-hover: #065c42;
-  --accent-pressed: #054a35;
-  --live: #1e9e6a; /* the status dot beside the word Live; never text */
-  --line: #e2e6eb; /* real tables only */
-  --attention: #a8360c; /* always paired with a word */
+  --canvas: #07050d;
+  --surface: #0c0916; /* panels and cards */
+  --surface-2: #17122a; /* the step above: chips, pressed and hovered panels */
+  --ink: #ece8f5; /* 16:1 on canvas */
+  --ink-soft: #d8d2e6;
+  --muted: #a59fb8; /* 8.0:1 on canvas, 7.7:1 on surface */
+  --muted-2: #b9b2cc;
+  --faint: #8f89a3; /* 5.9:1 on surface: axis ticks and fine print */
+  --accent: oklch(0.8 0.14 var(--h)); /* links */
+  --accent-hover: #ffffff;
+  --accent-pressed: oklch(0.46 0.24 var(--h));
+  --accent-label: oklch(0.8 0.15 var(--h)); /* mono kickers */
+  --accent-soft: oklch(0.82 0.15 var(--h)); /* italic words in headings */
+  --accent-fill: oklch(0.52 0.24 var(--h)); /* primary buttons; white text sits at 6.2:1 */
+  --accent-fill-hover: oklch(0.58 0.24 var(--h)); /* white text at 4.8:1 */
+  --accent-glow: oklch(0.6 0.25 var(--h));
+  --accent-line: oklch(0.65 0.2 var(--h) / 0.6);
+  --live: #3ddc97; /* the status dot beside the word Live; never text */
+  --line: rgb(255 255 255 / 0.08);
+  --line-strong: rgb(255 255 255 / 0.16);
+  --attention: oklch(0.8 0.13 45); /* always paired with a word */
   --white: #ffffff;
 
-  /* dark band (experiments, contact, footer, code) */
-  --dark: #0c1014;
-  --dark-surface: #161c22;
-  --dark-text-soft: #d3d9e0;
-  --dark-muted: #9aa4b0; /* 7.6:1 on dark */
-  --dark-line: #232a32;
-  --dark-accent: #3ddc97; /* links on dark, 10.8:1 */
+  /* the old dark bands now sit on the same ground as the page */
+  --dark: var(--canvas);
+  --dark-surface: var(--surface);
+  --dark-text-soft: var(--ink-soft);
+  --dark-muted: var(--muted);
+  --dark-line: var(--line);
+  --dark-accent: var(--accent);
 
   /* error notice */
-  --error-bg: #fbf1ec;
-  --error-line: #efcdbd;
-  --error-text: #7a2c0b;
+  --error-bg: oklch(0.24 0.06 35);
+  --error-line: oklch(0.42 0.1 35);
+  --error-text: oklch(0.88 0.07 45);
 
-  /* type: one family */
-  --font-display: 'Mona Sans Variable', ui-sans-serif, system-ui, sans-serif;
-  --font-body: 'Mona Sans Variable', ui-sans-serif, system-ui, sans-serif;
-  --font-mono: ui-monospace, 'SFMono-Regular', Menlo, monospace;
+  /* type: serif headings, sans body, mono labels */
+  --font-display: 'Instrument Serif', 'Iowan Old Style', 'Times New Roman', serif;
+  --font-body: 'Geist Variable', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'Geist Mono Variable', ui-monospace, 'SFMono-Regular', Menlo, monospace;
 
-  --text-display: clamp(2.5rem, 1.25rem + 5.2vw, 6rem); /* 40 → 96: the homepage H1 */
+  --text-display: clamp(2.75rem, 8.4vw, 6.5rem); /* 44 → 104: the homepage H1 */
   --text-h1: clamp(2.5rem, 1.8rem + 2.9vw, 4.5rem); /* 40 → 72: page titles */
-  --text-h2: clamp(2rem, 1.55rem + 1.85vw, 3.25rem); /* 32 → 52 */
-  --text-h3: clamp(1.375rem, 1.2rem + 0.75vw, 1.875rem); /* 22 → 30 */
-  --text-lead: clamp(1.125rem, 1.04rem + 0.38vw, 1.375rem); /* 18 → 22 */
-  --text-body: clamp(1.0625rem, 1.04rem + 0.1vw, 1.125rem); /* 17 → 18 */
+  --text-h2: clamp(2.25rem, 5vw, 3.75rem); /* 36 → 60 */
+  --text-h3: clamp(1.5rem, 1.3rem + 0.75vw, 1.875rem); /* 24 → 30 */
+  --text-lead: clamp(1.0625rem, 1rem + 0.3vw, 1.1875rem); /* 17 → 19 */
+  --text-body: 1rem;
   --text-caption: 0.9375rem; /* 15 */
-  --text-small: 0.875rem; /* 14: meta lines; nothing readable goes below 13 */
+  --text-small: 0.875rem; /* 14 */
 
-  /* shape: controls are pills, media panels are softly rounded */
+  /* shape: controls are pills, panels are softly rounded */
   --radius-sm: 6px;
-  --radius: 12px;
-  --radius-lg: 20px;
+  --radius: 14px;
+  --radius-lg: 18px;
   --radius-pill: 999px;
 
   /* layout */
-  --content-max: 1280px;
-  --gutter: clamp(1.25rem, 0.86rem + 1.6vw, 2.5rem); /* 20 → 40 */
-  --section: clamp(5rem, 3.14rem + 7.6vw, 10rem); /* 80 → 160 between sections */
+  --content-max: 1120px;
+  --gutter: clamp(20px, 5vw, 56px);
+  --section: 56px; /* top and bottom of every section */
   --tap: 44px;
 
-  /* motion: strong ease-out for anything entering or responding */
+  /* motion */
   --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
   --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
   --dur-press: 160ms;

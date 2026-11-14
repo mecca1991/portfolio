@@ -4,58 +4,112 @@ import Icon from './Icon.astro';
 
 interface Props {
   title: string;
+  /** closing words of the title, set in italic on the home page */
+  emphasis?: string;
   intro: string;
   footer?: boolean;
   /** smaller type and padding, used at the end of detail pages */
   compact?: boolean;
 }
 
-const { title, intro, footer = false, compact = false } = Astro.props;
+const { title, emphasis, intro, footer = false, compact = false } = Astro.props;
 const year = new Date().getFullYear();
 ---
 
-<section id="contact" class:list={['dark', 'contact', { compact }]} aria-labelledby="contact-title">
-  <div class="container body">
-    <h2 id="contact-title" class="display" data-reveal>{title}</h2>
-    <div class="reach" data-reveal style="--i: 1">
-      <p class="intro">{intro}</p>
-      <div class="email-row">
-        <a class="email" href={`mailto:${site.email}`}>{site.email}</a>
-        <button class="copy" type="button" data-copy={site.email} hidden>
-          <span class="when-idle"><Icon name="copy" /> Copy</span>
-          <span class="when-copied"><Icon name="check" /> Copied</span>
-          <span class="visually-hidden" aria-live="polite"></span>
-        </button>
+{
+  compact ? (
+    <section id="contact" class="dark contact compact" aria-labelledby="contact-title">
+      <div class="container body">
+        <h2 id="contact-title" class="display" data-reveal>
+          {title}
+        </h2>
+        <div class="reach" data-reveal style="--i: 1">
+          <p class="intro">{intro}</p>
+          <div class="email-row">
+            <a class="email" href={`mailto:${site.email}`}>
+              {site.email}
+            </a>
+            <button class="copy" type="button" data-copy={site.email} hidden>
+              <span class="when-idle">
+                <Icon name="copy" /> Copy
+              </span>
+              <span class="when-copied">
+                <Icon name="check" /> Copied
+              </span>
+              <span class="visually-hidden" aria-live="polite" />
+            </button>
+          </div>
+          <ul class="links">
+            <li>
+              <a class="btn btn-secondary" href={site.links.linkedin}>
+                LinkedIn <Icon name="arrow-up-right" />
+              </a>
+            </li>
+            <li>
+              <a class="btn btn-secondary" href={site.links.github}>
+                GitHub <Icon name="arrow-up-right" />
+              </a>
+            </li>
+            <li>
+              <a class="btn btn-secondary" href={site.links.cv}>
+                CV (PDF) <Icon name="arrow-up-right" />
+              </a>
+            </li>
+          </ul>
+        </div>
       </div>
-      <ul class="links">
-        <li>
-          <a class="btn btn-secondary" href={site.links.linkedin}>LinkedIn <Icon name="arrow-up-right" /></a>
-        </li>
-        <li><a class="btn btn-secondary" href={site.links.github}>GitHub <Icon name="arrow-up-right" /></a></li>
-        <li><a class="btn btn-secondary" href={site.links.cv}>CV (PDF) <Icon name="arrow-up-right" /></a></li>
-      </ul>
-    </div>
-  </div>
-  {
-    footer && (
-      <footer class="container footer">
-        <div class="fine">
+    </section>
+  ) : (
+    <section id="contact" class="close" aria-labelledby="contact-title">
+      <div class="centre">
+        <p class="kicker">POST /contact</p>
+        <h2 id="contact-title">
+          {title} {emphasis && <em>{emphasis}</em>}
+        </h2>
+        <p class="lede">{intro}</p>
+        <div class="mail">
+          <a class="address" href={`mailto:${site.email}`}>
+            {site.email}
+          </a>
+          <button class="copy-fill" type="button" data-copy={site.email} hidden>
+            <span class="when-idle">Copy</span>
+            <span class="when-copied">Copied</span>
+            <span class="visually-hidden" aria-live="polite" />
+          </button>
+        </div>
+        <ul class="pills">
+          <li>
+            <a href={site.links.linkedin}>
+              LinkedIn <Icon name="arrow-up-right" />
+            </a>
+          </li>
+          <li>
+            <a href={site.links.github}>
+              GitHub <Icon name="arrow-up-right" />
+            </a>
+          </li>
+          <li>
+            <a href={site.links.cv}>
+              CV (PDF) <Icon name="arrow-up-right" />
+            </a>
+          </li>
+        </ul>
+      </div>
+      <div class="horizon" aria-hidden="true" />
+      {footer && (
+        <footer>
           <span>
             © {year} {site.name}
           </span>
-          <a href="#main">Back to top</a>
-        </div>
-        <p class="name" aria-hidden="true">
-          {site.name}
-        </p>
-      </footer>
-    )
-  }
-</section>
+        </footer>
+      )}
+    </section>
+  )
+}
 
 <style>
   .contact {
-    background: var(--dark);
+    border-top: 1px solid var(--line);
     color: var(--white);
   }
 
@@ -67,9 +121,8 @@ const year = new Date().getFullYear();
     padding-block: clamp(4.5rem, 3rem + 6vw, 8rem);
   }
 
-  h2 {
+  .contact h2 {
     font-size: var(--text-h1);
-    letter-spacing: -0.04em;
   }
 
   .intro {
@@ -88,9 +141,8 @@ const year = new Date().getFullYear();
   }
 
   .email {
-    font-size: var(--text-h3);
-    font-weight: 600;
-    letter-spacing: -0.02em;
+    font-family: var(--font-mono);
+    font-size: clamp(1rem, 0.9rem + 0.5vw, 1.25rem);
     color: var(--white);
     text-decoration-thickness: 2px;
     text-decoration-color: color-mix(in srgb, var(--dark-accent) 70%, transparent);
@@ -105,7 +157,7 @@ const year = new Date().getFullYear();
   /* copy: the two labels share one spot and cross-fade */
   .copy {
     display: inline-grid;
-    min-height: 40px;
+    min-height: var(--tap);
     padding: 8px 16px;
     border: 0;
     border-radius: var(--radius-pill);
@@ -121,7 +173,7 @@ const year = new Date().getFullYear();
   }
 
   .copy:hover {
-    background: #1f262e;
+    background: var(--surface-2);
   }
 
   .copy:active {
@@ -171,30 +223,172 @@ const year = new Date().getFullYear();
     color: var(--white);
   }
 
-  .footer {
+  /* the home page's close: centred, with a glowing horizon under it */
+  .close {
+    position: relative;
+    padding: 96px var(--gutter) 260px;
+    text-align: center;
     overflow: hidden;
+    scroll-margin-top: 60px;
   }
 
-  /* the name returns at full width as the page's close */
-  .name {
-    font-size: clamp(2.5rem, 10.4vw, 9.5rem);
-    font-weight: 700;
-    line-height: 0.85;
-    letter-spacing: -0.04em;
-    white-space: nowrap;
-    color: #5f6b78; /* 3.6:1 on dark: large decorative type; the name is also in the line above */
-    margin-top: clamp(2rem, 1.4rem + 2.5vw, 3.5rem);
-    margin-bottom: -0.12em; /* the descender-less name sits on the page's bottom edge */
+  .centre {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    max-width: 680px;
+    margin-inline: auto;
   }
 
-  .fine {
+  .kicker {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 1.3;
+    color: var(--accent-label);
+  }
+
+  .close h2 {
+    font-size: clamp(40px, 6.5vw, 76px);
+    line-height: 1.03;
+    letter-spacing: 0;
+  }
+
+  .close em {
+    color: oklch(0.82 0.14 var(--h));
+  }
+
+  .lede {
+    font-size: 17px;
+    line-height: 1.65;
+    color: var(--muted-2);
+  }
+
+  .mail {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 6px;
+    border: 1px solid oklch(0.6 0.2 var(--h) / 0.5);
+    border-radius: 28px;
+    background: rgb(7 5 13 / 0.7);
+    box-shadow: 0 10px 50px oklch(0.5 0.25 var(--h) / 0.35);
+  }
+
+  .address {
+    display: inline-flex;
+    align-items: center;
+    min-height: var(--tap);
+    padding: 10px 18px;
+    font-family: var(--font-mono);
+    font-size: clamp(13px, 3.6vw, 15px);
+    color: var(--white);
+    text-decoration: none;
+    overflow-wrap: anywhere;
+  }
+
+  /* the two labels share one spot, so the button keeps its width */
+  .copy-fill {
+    display: inline-grid;
+    place-items: center;
+    min-width: 92px;
+    min-height: var(--tap);
+    padding: 10px 20px;
+    border: 0;
+    border-radius: var(--radius-pill);
+    background: var(--accent-fill);
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--white);
+    cursor: pointer;
+    transition: background-color var(--fade);
+  }
+
+  .copy-fill:hover {
+    background: var(--accent-fill-hover);
+  }
+
+  .copy-fill > span:not(.visually-hidden) {
+    grid-area: 1 / 1;
+  }
+
+  .copy-fill .when-copied,
+  .copy-fill[data-state='copied'] .when-idle {
+    visibility: hidden;
+  }
+
+  .copy-fill[data-state='copied'] .when-copied {
+    visibility: visible;
+  }
+
+  .pills {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    font-size: 14px;
+  }
+
+  .pills a {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    min-height: var(--tap);
+    padding: 9px 18px;
+    border: 1px solid rgb(255 255 255 / 0.14);
+    border-radius: var(--radius-pill);
+    color: var(--ink-soft);
+    text-decoration: none;
+    transition:
+      color var(--fade),
+      border-color var(--fade);
+  }
+
+  .pills a:hover {
+    border-color: oklch(0.7 0.18 var(--h));
+    color: var(--white);
+  }
+
+  /* a circle far wider than the page; only its lit top edge shows */
+  .horizon {
+    position: absolute;
+    top: calc(100% - 110px);
+    left: 50%;
+    width: max(1500px, 170vw);
+    height: max(1500px, 170vw);
+    border-top: 1px solid oklch(0.85 0.12 var(--h) / 0.8);
+    border-radius: 50%;
+    background: radial-gradient(
+      circle at 50% 0%,
+      oklch(0.42 0.22 var(--h)) 0,
+      oklch(0.25 0.14 var(--h)) 12%,
+      #0a0714 30%
+    );
+    box-shadow:
+      0 -24px 110px oklch(0.55 0.26 var(--h) / 0.7),
+      0 -4px 24px oklch(0.8 0.18 var(--h) / 0.6);
+    transform: translateX(-50%);
+    pointer-events: none;
+  }
+
+  footer {
+    position: absolute;
+    inset: auto 0 22px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
     gap: 8px 24px;
-    padding-top: 28px;
-    font-size: var(--text-small);
-    color: var(--dark-muted);
+    padding: 0 20px;
+    font-size: 13px;
+    color: var(--ink-soft);
   }
 
   .compact .body {
@@ -217,9 +411,6 @@ const year = new Date().getFullYear();
       font-size: 18px;
     }
 
-    .fine {
-      padding-top: 8px;
-    }
   }
 
   @media (prefers-reduced-motion: reduce) {

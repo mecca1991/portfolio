@@ -2,10 +2,11 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Header from '../components/Header.astro';
 import Hero from '../components/Hero.astro';
-import SelectedWork from '../components/SelectedWork.astro';
+import Facts from '../components/Facts.astro';
+import Projects from '../components/Projects.astro';
+import Stack from '../components/Stack.astro';
+import Experience from '../components/Experience.astro';
 import Experiments from '../components/Experiments.astro';
-import WritingList from '../components/WritingList.astro';
-import About from '../components/About.astro';
 import ContactSection from '../components/ContactSection.astro';
 ---
 
@@ -16,16 +17,16 @@ import ContactSection from '../components/ContactSection.astro';
   <Header />
   <main id="main">
     <Hero />
-    <SelectedWork />
+    <Facts />
+    <Projects />
+    <Stack />
+    <Experience />
     <Experiments />
-    <WritingList />
-    <About />
-
     <ContactSection
-      title="Tell me what you’re building."
-      intro="For an engineering role or a freelance project, whether it’s a backend, an integration, a data workflow or an AI feature, send a short outline of what you need."
+      title="Tell me what you’re"
+      emphasis="building."
+      intro="For an engineering role involving backend systems, integrations, data workflows or AI, send a short outline of what you need."
       footer
     />
   </main>
 </BaseLayout>
-

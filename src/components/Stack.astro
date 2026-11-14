@@ -1,0 +1,299 @@
+---
+import { site } from '../data/site';
+---
+
+<section id="stack" class="stack" aria-labelledby="stack-title">
+  <div class="container">
+    <div class="head">
+      <p class="kicker">GET /stack</p>
+      <h2 id="stack-title">What I work with</h2>
+      <p class="intro">{site.stackIntro}</p>
+      <div class="cats" role="tablist" aria-labelledby="stack-title" data-stack-tabs>
+        {
+          site.stack.map((cat, i) => (
+            <button
+              type="button"
+              role="tab"
+              id={`stack-tab-${i}`}
+              aria-controls={`stack-panel-${i}`}
+              aria-selected={i === 0 ? 'true' : 'false'}
+              tabindex={i === 0 ? 0 : -1}
+            >
+              {cat.area}
+            </button>
+          ))
+        }
+      </div>
+    </div>
+
+    <!-- every category starts as a wrapped chip list; the script turns it into an orbit when one fits -->
+    <div class="orbits" data-orbit>
+      {
+        site.stack.map((cat, i) => (
+          <div
+            class:list={['panel', { 'is-active': i === 0 }]}
+            role="tabpanel"
+            id={`stack-panel-${i}`}
+            aria-labelledby={`stack-tab-${i}`}
+            data-tools={JSON.stringify(cat.tools)}
+          >
+            <span class="ring outer" aria-hidden="true" />
+            <span class="ring inner" aria-hidden="true" />
+            <span class="core" aria-hidden="true" />
+            <p class="name">{cat.area}</p>
+            <ul class="chips">
+              {cat.tools.map((tool) => (
+                <li>{tool}</li>
+              ))}
+            </ul>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<script>
+  import { initTabs } from '../scripts/tabs';
+  import { layoutOrbit, orbitBox } from '../scripts/orbit';
+
+  const tabs = document.querySelector<HTMLElement>('[data-stack-tabs]');
+  if (tabs) initTabs(tabs);
+
+  const wrap = document.querySelector<HTMLElement>('[data-orbit]');
+  if (wrap) {
+    const panels = Array.from(wrap.querySelectorAll<HTMLElement>('[data-tools]'));
+    const lists = panels.map((panel) => JSON.parse(panel.dataset.tools ?? '[]') as string[]);
+    let box = 0;
+
+    const render = () => {
+      const next = orbitBox(wrap.clientWidth);
+      if (next === box) return;
+      box = next;
+
+      // one category that cannot be laid out cleanly sends them all to the chip list
+      const layouts = lists.map((tools) => layoutOrbit(tools, box));
+      const ok = layouts.every((layout) => layout.bad === 0);
+      wrap.toggleAttribute('data-ready', ok);
+
+      panels.forEach((panel, p) => {
+        const chips = panel.querySelectorAll<HTMLElement>('.chips li');
+        chips.forEach((chip) => chip.removeAttribute('style'));
+        if (!ok) return;
+        for (const c of layouts[p].chips) {
+          const chip = chips[c.i];
+          chip.style.left = `${50 + ((c.r * Math.cos(c.th)) / box) * 100}%`;
+          chip.style.top = `${50 + ((c.r * Math.sin(c.th)) / box) * 100}%`;
+          chip.style.fontSize = `${layouts[p].f}px`;
+        }
+      });
+    };
+
+    render();
+    new ResizeObserver(render).observe(wrap);
+  }
+</script>
+
+<style>
+  .stack {
+    padding-block: var(--section);
+    scroll-margin-top: 60px;
+  }
+
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 36px;
+  }
+
+  .head {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 18px;
+    width: 100%;
+    max-width: 760px;
+    text-align: center;
+  }
+
+  .kicker {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 1.3;
+    color: var(--accent-label);
+  }
+
+  h2 {
+    font-size: var(--text-h2);
+    line-height: 1.05;
+    letter-spacing: 0;
+  }
+
+  .intro {
+    font-size: 17px;
+    line-height: 1.7;
+    color: var(--ink-soft);
+  }
+
+  .cats {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 8px;
+  }
+
+  [role='tab'] {
+    min-height: var(--tap);
+    padding: 10px 16px;
+    border: 1px solid rgb(255 255 255 / 0.14);
+    border-radius: var(--radius-pill);
+    background: transparent;
+    font-size: 14px;
+    color: var(--ink);
+    cursor: pointer;
+    transition:
+      border-color var(--fade),
+      background-color var(--fade);
+  }
+
+  [role='tab']:hover {
+    border-color: oklch(0.7 0.18 var(--h));
+  }
+
+  [role='tab'][aria-selected='true'] {
+    border-color: transparent;
+    background: oklch(0.5 0.24 var(--h));
+    color: var(--white);
+  }
+
+  .orbits {
+    width: 100%;
+    min-width: 0;
+  }
+
+  /* the static form: a card with the category name over a wrapped chip list */
+  .panel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    padding: 28px 20px;
+    border: 1px solid oklch(0.6 0.2 var(--h) / 0.4);
+    border-radius: var(--radius-lg);
+    background: radial-gradient(closest-side, oklch(0.5 0.24 var(--h) / 0.25), transparent);
+  }
+
+  .panel + .panel {
+    margin-top: 16px;
+  }
+
+  .name {
+    font-family: var(--font-display);
+    font-size: 26px;
+    line-height: 1.1;
+    color: var(--white);
+    text-align: center;
+  }
+
+  .chips {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .chips li {
+    padding: 7px 13px;
+    border: 1px solid var(--accent-line);
+    border-radius: var(--radius-pill);
+    background: #120d1f;
+    box-shadow: 0 0 18px oklch(0.55 0.25 var(--h) / 0.35);
+    font-family: var(--font-mono);
+    font-size: 12px;
+    line-height: 1.25;
+    color: var(--ink);
+  }
+
+  .ring,
+  .core {
+    display: none;
+  }
+
+  /* the orbit: a square with two guide rings, the name in the middle and the chips turning round it */
+  [data-ready] .panel {
+    position: relative;
+    display: block;
+    width: min(600px, 86%);
+    aspect-ratio: 1;
+    margin: 0 auto;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    background: none;
+  }
+
+  [data-ready] .ring,
+  [data-ready] .core {
+    position: absolute;
+    display: block;
+    border-radius: 50%;
+  }
+
+  [data-ready] .outer {
+    inset: 4%;
+    border: 1px solid oklch(0.6 0.2 var(--h) / 0.4);
+  }
+
+  [data-ready] .inner {
+    inset: 20%;
+    border: 1px dashed oklch(0.7 0.18 var(--h) / 0.35);
+  }
+
+  [data-ready] .core {
+    inset: 30%;
+    background: radial-gradient(closest-side, oklch(0.5 0.24 var(--h) / 0.55), transparent);
+  }
+
+  [data-ready] .name {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 26%;
+    font-size: clamp(18px, 2.4vw, 28px);
+    transform: translate(-50%, -50%);
+  }
+
+  [data-ready] .chips {
+    position: absolute;
+    inset: 0;
+    display: block;
+    animation: orb 90s linear infinite;
+  }
+
+  /* each chip turns against the ring, so it stays level */
+  [data-ready] .chips li {
+    position: absolute;
+    padding: 6px 11px;
+    white-space: nowrap;
+    transform: translate(-50%, -50%);
+    animation: orbr 90s linear infinite;
+  }
+
+  /* one category at a time, in both forms; it comes last so the orbit's display rule cannot undo it */
+  :global(.js) .orbits .panel:not(.is-active) {
+    display: none;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    [data-ready] .chips,
+    [data-ready] .chips li {
+      animation: none;
+    }
+  }
+</style>

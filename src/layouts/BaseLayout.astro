@@ -1,9 +1,13 @@
 ---
-import '@fontsource-variable/mona-sans/wght.css';
+import '@fontsource-variable/geist/wght.css';
+import '@fontsource-variable/geist-mono/wght.css';
+import '@fontsource/instrument-serif/latin-400.css';
+import '@fontsource/instrument-serif/latin-400-italic.css';
 import '../styles/tokens.css';
 import '../styles/global.css';
-// same file the @font-face rule uses; preloading skips the wait for CSS to discover it
-import bodyFont from '@fontsource-variable/mona-sans/files/mona-sans-latin-wght-normal.woff2?url';
+// same files the @font-face rules use; preloading skips the wait for CSS to discover them
+import bodyFont from '@fontsource-variable/geist/files/geist-latin-wght-normal.woff2?url';
+import displayFont from '@fontsource/instrument-serif/files/instrument-serif-latin-400-normal.woff2?url';
 
 interface Props {
   title: string;
@@ -26,8 +30,10 @@ const ogImage = new URL('/og.png', Astro.site);
     <title>{title}</title>
     <meta name="description" content={description} />
     {noindex ? <meta name="robots" content="noindex" /> : <link rel="canonical" href={canonical} />}
-    <meta name="theme-color" content="#ffffff" />
+    <meta name="theme-color" content="#07050d" />
+    <meta name="color-scheme" content="dark" />
     <link rel="preload" href={bodyFont} as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href={displayFont} as="font" type="font/woff2" crossorigin />
     <!-- entrances hide content only when scripts run; if the site script never arrives, show everything -->
     <script is:inline>
       document.documentElement.classList.add('js');

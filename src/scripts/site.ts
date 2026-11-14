@@ -1,6 +1,6 @@
 /*
- * Site-wide behaviour, kept small: section entrances, the header's scrolled
- * state and copy-to-clipboard buttons. Every piece degrades to plain HTML.
+ * Site-wide behaviour, kept small: section entrances, copy-to-clipboard
+ * buttons and the phone menu. Every piece degrades to plain HTML.
  */
 
 const root = document.documentElement;
@@ -24,14 +24,6 @@ if ('IntersectionObserver' in window) {
 }
 root.dataset.revealReady = 'true';
 
-// header: marked once content scrolls under it, so it can lift off the page
-const header = document.querySelector<HTMLElement>('.site-header');
-if (header) {
-  const update = () => header.toggleAttribute('data-scrolled', window.scrollY > 4);
-  update();
-  window.addEventListener('scroll', update, { passive: true });
-}
-
 // copy buttons: [data-copy="text"], with the label swapped to confirm
 for (const button of document.querySelectorAll<HTMLButtonElement>('[data-copy]')) {
   let timer: number | undefined;
@@ -53,15 +45,25 @@ for (const button of document.querySelectorAll<HTMLButtonElement>('[data-copy]')
   });
 }
 
-// phone menu: close after choosing a link or pressing Escape
-for (const menu of document.querySelectorAll<HTMLDetailsElement>('details[data-menu]')) {
+// phone menu: a button that opens the stacked list; it closes on a link tap or Escape
+const menuButton = document.querySelector<HTMLButtonElement>('[data-menu-toggle]');
+const menu = menuButton && document.getElementById(menuButton.getAttribute('aria-controls') ?? '');
+if (menuButton && menu) {
+  const setOpen = (open: boolean) => {
+    menu.toggleAttribute('data-open', open);
+    menuButton.setAttribute('aria-expanded', String(open));
+    menuButton.textContent = open ? 'Close' : 'Menu';
+  };
+  menuButton.addEventListener('click', () => setOpen(!menu.hasAttribute('data-open')));
   menu.addEventListener('click', (event) => {
-    if ((event.target as HTMLElement).closest('a')) menu.open = false;
+    if ((event.target as HTMLElement).closest('a')) setOpen(false);
   });
   document.addEventListener('keydown', (event) => {
-    if (event.key === 'Escape' && menu.open) {
-      menu.open = false;
-      menu.querySelector('summary')?.focus();
+    if (event.key === 'Escape' && menu.hasAttribute('data-open')) {
+      setOpen(false);
+      menuButton.focus();
     }
   });
+  // the wide layout has no menu, so leave nothing open behind it
+  window.matchMedia('(max-width: 760px)').addEventListener('change', () => setOpen(false));
 }

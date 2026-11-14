@@ -118,7 +118,7 @@ let ch = chars.next().ok_or(ParseError::UnexpectedEnd)?;</code></pre>
 
   <ContactSection
     title="Tell me what you’re building."
-    intro="I’m Wilfred Chetat, a senior software engineer. Send a short outline of what you’re building."
+    intro="Send a short outline of what you need."
     compact
   />
 </BaseLayout>
@@ -134,7 +134,7 @@ let ch = chars.next().ok_or(ParseError::UnexpectedEnd)?;</code></pre>
 
   h1 {
     font-size: var(--text-h1);
-    letter-spacing: -0.04em;
+    letter-spacing: -0.015em;
   }
 
   .meta {
@@ -215,7 +215,7 @@ let ch = chars.next().ok_or(ParseError::UnexpectedEnd)?;</code></pre>
   }
 
   .parsed {
-    background: #11171c;
+    background: rgb(0 0 0 / 0.4);
   }
 
   .panel-name {
@@ -278,8 +278,7 @@ let ch = chars.next().ok_or(ParseError::UnexpectedEnd)?;</code></pre>
   }
 
   h3 {
-    font-size: var(--text-lead);
-    font-weight: 650;
+    font-size: 1.375rem; /* the serif needs more size than the old bold sans */
     letter-spacing: -0.015em;
   }
 

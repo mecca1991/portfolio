@@ -8,44 +8,44 @@ interface Props {
 }
 
 const { current, showCv = true } = Astro.props;
-
-const nav = [
-  { id: 'work', href: '/#work', label: 'Projects' },
-  { id: 'experiments', href: '/#experiments', label: 'Experiments' },
-  { id: 'about', href: '/#about', label: 'About' },
-  { id: 'contact', href: '#contact', label: 'Contact' },
-];
 ---
 
 <header class="site-header">
-  <div class="container bar">
-    <a class="logo" href="/">{site.name}</a>
+  <div class="bar">
+    <a class="brand" href="/#top">
+      <span class="dot" aria-hidden="true"></span>
+      <span>{site.name}</span>
+    </a>
     <nav class="nav-wide" aria-label="Primary">
       {
-        nav.map((item) => (
-          <a class="navlink" href={item.href} aria-current={item.id === current ? 'true' : undefined}>
+        site.nav.map((item) => (
+          <a href={item.href} aria-current={item.id === current ? 'true' : undefined}>
             {item.label}
           </a>
         ))
       }
     </nav>
-    {showCv && <a class="btn btn-sm btn-ink cv" href={site.links.cv}>CV (PDF)</a>}
-    <details class="menu" data-menu>
-      <summary aria-label="Menu">
-        <Icon name="menu" class="open-icon" />
-        <Icon name="close" class="close-icon" />
-      </summary>
-      <nav class="sheet" aria-label="Primary">
-        {
-          nav.map((item) => (
-            <a href={item.href} aria-current={item.id === current ? 'true' : undefined}>
-              {item.label}
-            </a>
-          ))
-        }
-      </nav>
-    </details>
+    {showCv && <a class="cv" href={site.links.cv}>CV (PDF)</a>}
+    <button class="menu-button" type="button" data-menu-toggle aria-expanded="false" aria-controls="site-menu">
+      Menu
+    </button>
   </div>
+  <nav id="site-menu" class="sheet" aria-label="Primary">
+    {
+      site.nav.map((item) => (
+        <a href={item.href} aria-current={item.id === current ? 'true' : undefined}>
+          {item.label}
+        </a>
+      ))
+    }
+    {
+      showCv && (
+        <a class="sheet-cv" href={site.links.cv}>
+          CV (PDF) <Icon name="arrow-up-right" />
+        </a>
+      )
+    }
+  </nav>
 </header>
 
 <style>
@@ -53,136 +53,156 @@ const nav = [
     position: sticky;
     top: 0;
     z-index: 30;
-    background: var(--canvas);
-    transition: box-shadow var(--dur-ui) var(--ease-out);
+    padding: 14px var(--gutter);
+    background: rgb(7 5 13 / 0.6);
+    border-bottom: 1px solid rgb(255 255 255 / 0.06);
+    -webkit-backdrop-filter: blur(14px);
+    backdrop-filter: blur(14px);
   }
 
-  /* it floats once content passes under it, so only then does it lift off the page */
-  .site-header[data-scrolled] {
-    /* sticky bar over scrolling content */
-    box-shadow: 0 10px 30px -18px rgb(12 16 20 / 0.28); /* taste-skill-ignore */
+  /* an open menu needs a firmer ground than the blur gives it */
+  .site-header:has(.sheet[data-open]) {
+    background: rgb(7 5 13 / 0.94);
   }
 
   .bar {
     display: flex;
     align-items: center;
-    gap: 8px;
-    min-height: 68px;
+    justify-content: space-between;
+    gap: 16px;
+    max-width: var(--content-max);
+    min-height: 34px;
+    margin-inline: auto;
   }
 
-  .logo {
-    margin-right: auto;
-    padding: 10px 0;
-    font-size: 18px;
-    font-weight: 650;
-    letter-spacing: -0.015em;
-    color: var(--ink);
+  a {
     text-decoration: none;
+  }
+
+  /* links stay small on screen; ::after gives each one a 44px target */
+  .brand,
+  .nav-wide a,
+  .cv {
+    position: relative;
+  }
+
+  .brand::after,
+  .nav-wide a::after,
+  .cv::after {
+    content: '';
+    position: absolute;
+    inset: 50% -8px auto;
+    height: var(--tap);
+    transform: translateY(-50%);
+  }
+
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--white);
+  }
+
+  .dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: oklch(0.7 0.22 var(--h));
+    box-shadow: 0 0 14px var(--accent-glow);
   }
 
   .nav-wide {
     display: flex;
-    align-items: center;
-    gap: 2px;
-    margin-right: 10px;
+    gap: 22px;
+    font-family: var(--font-mono);
+    font-size: 13px;
   }
 
-  .navlink {
-    padding: 9px 14px;
+  .nav-wide a {
+    color: var(--muted-2);
+  }
+
+  .nav-wide a:hover,
+  .nav-wide a[aria-current] {
+    color: var(--white);
+  }
+
+  .cv {
+    padding: 8px 16px;
+    border: 1px solid var(--line-strong);
     border-radius: var(--radius-pill);
-    font-size: 15px;
-    font-weight: 500;
-    color: var(--muted);
-    text-decoration: none;
+    background: rgb(255 255 255 / 0.05);
+    font-size: 13px;
+    line-height: 1.25;
+    color: var(--white);
   }
 
-  .navlink:hover {
-    background: var(--surface);
-    color: var(--ink);
+  .cv:hover {
+    background: oklch(0.5 0.22 var(--h));
+    border-color: transparent;
+    color: var(--white);
   }
 
-  .navlink[aria-current] {
-    color: var(--ink);
-    background: var(--surface);
-  }
-
-  .menu {
+  .menu-button,
+  .sheet {
     display: none;
   }
 
-  @media (max-width: 47.99rem) {
-    .bar {
-      min-height: 60px;
-    }
-
-    .nav-wide {
+  @media (max-width: 760px) {
+    .nav-wide,
+    .cv {
       display: none;
     }
 
-    .menu {
-      display: block;
+    .bar {
+      min-height: var(--tap);
     }
 
-    summary {
-      display: grid;
-      place-items: center;
-      width: var(--tap);
-      height: var(--tap);
-      margin-right: -10px;
+    /* the button only works with the script, so it only shows with it */
+    :global(.js) .menu-button {
+      display: block;
+      min-height: var(--tap);
+      padding: 0 18px;
+      border: 1px solid var(--line-strong);
       border-radius: var(--radius-pill);
-      font-size: 22px;
-      list-style: none;
+      background: rgb(255 255 255 / 0.05);
+      font-family: var(--font-mono);
+      font-size: 13px;
+      color: var(--white);
       cursor: pointer;
     }
 
-    summary::-webkit-details-marker {
-      display: none;
-    }
-
-    summary:active {
-      background: var(--surface);
-    }
-
-    .menu :global(.close-icon),
-    .menu[open] :global(.open-icon) {
-      display: none;
-    }
-
-    .menu[open] :global(.close-icon) {
-      display: block;
-    }
-
-    /* the sheet drops from the header and grows from its top edge */
     .sheet {
-      position: absolute;
-      inset: 100% 0 auto;
-      display: grid;
-      padding: 8px var(--gutter) 20px;
-      background: var(--canvas);
-      /* overlay menu */
-      box-shadow: 0 24px 40px -24px rgb(12 16 20 / 0.3); /* taste-skill-ignore */
-      transform-origin: top;
-      animation: sheet-in var(--dur-ui) var(--ease-out);
+      display: flex;
+      flex-direction: column;
+      max-width: var(--content-max);
+      margin: 12px auto 0;
+      border-top: 1px solid var(--line);
+      font-family: var(--font-mono);
+      font-size: 15px;
+    }
+
+    /* without the script the list simply stays open under the bar */
+    :global(.js) .sheet:not([data-open]) {
+      display: none;
     }
 
     .sheet a {
-      padding: 14px 0;
-      font-size: 22px;
-      font-weight: 600;
-      letter-spacing: -0.015em;
-      color: var(--ink);
-      text-decoration: none;
+      padding: 15px 0;
+      border-bottom: 1px solid rgb(255 255 255 / 0.06);
+      color: var(--ink-soft);
     }
 
-    .sheet a[aria-current] {
-      color: var(--accent);
+    .sheet a:hover,
+    .sheet a[aria-current],
+    .sheet .sheet-cv {
+      color: var(--white);
     }
-  }
 
-  @keyframes sheet-in {
-    from {
-      opacity: 0;
-      transform: translateY(-8px);
+    .sheet .sheet-cv {
+      border-bottom: 0;
     }
   }
 </style>

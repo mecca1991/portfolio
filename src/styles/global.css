@@ -7,7 +7,7 @@
 html {
   -webkit-text-size-adjust: 100%;
   scroll-behavior: smooth;
-  scroll-padding-top: 88px; /* anchors land below the sticky header */
+  scroll-padding-top: 72px; /* anchors land below the sticky header */
 }
 
 body {
@@ -21,10 +21,11 @@ body {
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
   caret-color: var(--accent);
+  overflow-x: clip; /* the hero canvas and the contact horizon are wider than the page */
 }
 
 ::selection {
-  background: var(--accent);
+  background: var(--accent-fill);
   color: var(--white);
 }
 
@@ -43,6 +44,17 @@ h1,
 h2,
 h3 {
   text-wrap: balance;
+}
+
+/* headings are the serif; it has one weight, so never fake a bold */
+h1,
+h2,
+h3 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-synthesis-weight: none;
+  letter-spacing: -0.01em;
+  line-height: 1.08;
 }
 
 p {
@@ -72,7 +84,6 @@ a:hover {
 :focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 3px;
-  border-radius: 4px;
 }
 
 .dark :focus-visible {
@@ -87,9 +98,8 @@ a:hover {
   color: var(--white);
 }
 
-.dark ::selection {
-  background: var(--dark-accent);
-  color: var(--dark);
+button {
+  font-family: inherit;
 }
 
 /* icons sit on the text baseline and nudge toward where they point */
@@ -127,16 +137,16 @@ a:hover {
   border: 0;
   border-radius: var(--radius-pill);
   font: inherit;
-  font-size: 16px;
-  font-weight: 600;
+  font-size: 15px;
+  font-weight: 500;
   line-height: 1.25;
-  letter-spacing: -0.005em;
   text-decoration: none;
   white-space: nowrap;
   cursor: pointer;
   transition:
     transform var(--dur-press) var(--ease-out),
     background-color var(--fade),
+    border-color var(--fade),
     color var(--fade);
 }
 
@@ -145,12 +155,15 @@ a:hover {
 }
 
 .btn-primary {
-  background: var(--accent);
+  background: var(--accent-fill);
   color: var(--white);
+  box-shadow:
+    inset 0 0 0 1px oklch(0.7 0.2 var(--h) / 0.5),
+    0 10px 40px oklch(0.5 0.25 var(--h) / 0.5);
 }
 
 .btn-primary:hover {
-  background: var(--accent-hover);
+  background: var(--accent-fill-hover);
   color: var(--white);
 }
 
@@ -158,44 +171,27 @@ a:hover {
   background: var(--accent-pressed);
 }
 
-/* secondary and outline are the same tone-step pill: no drawn outlines */
+/* secondary, outline and ink are the same glass pill with a hairline edge */
 .btn-secondary,
-.btn-outline {
-  background: var(--surface-2);
-  color: var(--ink);
-}
-
-.btn-secondary:hover,
-.btn-outline:hover {
-  background: #dfe3e8;
-  color: var(--ink);
-}
-
-/* ink pill: the header's CV and other strong secondary actions */
+.btn-outline,
 .btn-ink {
-  background: var(--ink);
+  border: 1px solid var(--line-strong);
+  background: rgb(255 255 255 / 0.05);
   color: var(--white);
 }
 
+.btn-secondary:hover,
+.btn-outline:hover,
 .btn-ink:hover {
-  background: #252c34;
+  background: rgb(255 255 255 / 0.1);
+  border-color: oklch(0.7 0.18 var(--h));
   color: var(--white);
 }
 
 .btn-sm {
   min-height: 40px;
   padding: 9px 18px;
-  font-size: 15px;
-}
-
-.dark .btn-secondary {
-  background: var(--dark-surface);
-  color: var(--white);
-}
-
-.dark .btn-secondary:hover {
-  background: #1f262e;
-  color: var(--white);
+  font-size: 14px;
 }
 
 /* plain ink link with an icon, e.g. "Visit intrvuer.com" */
@@ -253,9 +249,9 @@ a:hover {
 
 .display {
   font-family: var(--font-display);
-  font-weight: 650;
-  line-height: 1.02;
-  letter-spacing: -0.035em;
+  font-weight: 400;
+  line-height: 1.03;
+  letter-spacing: -0.015em;
 }
 
 .skip-link {
@@ -269,7 +265,7 @@ a:hover {
   z-index: 50;
   padding: 10px 14px;
   border-radius: var(--radius-sm);
-  background: var(--ink);
+  background: var(--accent-fill);
   color: var(--white);
 }
 
@@ -301,6 +297,54 @@ a:hover {
     opacity var(--dur-enter) var(--ease-out),
     transform var(--dur-enter) var(--ease-out);
   transition-delay: calc(var(--i, 0) * 70ms);
+}
+
+/* shared motion */
+@keyframes orb {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes orbr {
+  from {
+    transform: translate(-50%, -50%) rotate(0);
+  }
+  to {
+    transform: translate(-50%, -50%) rotate(-360deg);
+  }
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 0.45;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes wordin {
+  from {
+    opacity: 0;
+    transform: translateY(0.25em);
+    filter: blur(6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+    filter: none;
+  }
+}
+
+@keyframes grow {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
 }
 
 /* code keeps one monospace stack; the browser default would add a second face */
